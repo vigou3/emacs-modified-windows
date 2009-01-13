@@ -1,0 +1,31 @@
+=== GNU Emacs 22.2-modified-2 ===
+
+  * If R is not installed in the usual (default) location, it may be
+    necessary to edit the paths in the site configuration file for ESS
+    to find the R executable. This should also be true for any S-Plus
+    installation. The site configuration file is accessed easily using
+    the shortcut in the GNU Emacs program group of the Start menu.
+
+  * See http://aspell.net/win32/ to install other dictionnaries for
+    Aspell.
+
+  * See http://gnuwin32.sourceforge.net/ to install other Unix
+    applications sometimes required by Emacs (e.g. diff, gzip).
+
+  * preview-latex requires an installation of Ghostscript
+    (http://www.cs.wisc.edu/~ghost/). Make sure the file gswin32c.exe
+    is somewhere in the PATH environment variable; see below.
+
+  * If it did not already exist, an environment variable HOME was
+    created during installation. This variable is required by Emacs
+    and, thus, should not be removed. The HOME folder will be the
+    default work folder of Emacs. 
+
+  * To change the value of an environment variable (Windows XP):
+    right-click on My Computer, choose Properties, then the Advanced
+    tab and press the Environment variables button; select the user
+    variable (e.g. HOME or PATH) and press Modify; make the change and
+    close all the windows by pressing Ok.
+
+The information above is available in file Updates-en.txt in the
+Emacs installation folder.
