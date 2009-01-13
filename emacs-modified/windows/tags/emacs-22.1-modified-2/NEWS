@@ -1,0 +1,23 @@
+=== Modified version of GNU Emacs for Windows ===
+
+Version 22.1-modified-2 (19 September 2007)
+===========================================
+
+UPDATES
+
+o ESS updated to version 5.3.6.
+
+
+Version 22.1-modified-1 (30 August 2007)
+========================================
+
+NEW FEATURES
+
+o Introduction of a version number
+o Introduction of this NEWS file
+o By default, M-x R will now start R with the --no-restore-history and
+  --no-save options. The first option avoids getting a warning in the
+  minibuffer at R startup about a non-existing history file; with the
+  second option R exits gracefully if killed by Emacs shutdown.
+o Code indentation for *.R buffers now follows the R convention: BSD
+  style with an offset of 4 characters.

@@ -1,0 +1,22 @@
+=== GNU Emacs 22.2-modified-4 ===
+
+This is the latest stable release of GNU Emacs for Windows modified to
+include the following add-on packages:
+
+* ESS 5.3.8;
+* AUCTeX 11.85;
+* Aspell 0.50.3, a spell checked well integrated in Emacs;
+* English (version 0.50-2-3) and French (version 0.50-3-3) dictionnaries
+  for Aspell; 
+* Libraries for image formats XPM (xpm4.dll), PNG (libpng13.dll,
+  zlib1.dll), JPEG (jpeg62.dll), TIFF (libtiff3.dll) and GIF (giflib4.dll)
+  obtained from the GnuWin32 project.
+* w32-winprint.el, to ease printing on Windows;
+* htmlize.el, to print in color with w32-winprint.el;
+* site-start.el, to make everything work.
+
+Please direct questions or comments on this modified version of Emacs to
+Vincent Goulet.
+
+The information above is available in file Modifications-en.txt in the
+Emacs installation folder.

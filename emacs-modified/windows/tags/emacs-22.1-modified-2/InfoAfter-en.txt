@@ -1,0 +1,23 @@
+  * If R is not installed in the usual (default) location, it may be
+    necessary to edit the paths in the site configuration file for ESS
+    to find the R executable. This should also be true for any S-Plus
+    installation. The site configuration file is accessed easily using
+    the shortcut in the GNU Emacs program group of the Start menu.
+
+  * See http://aspell.net/win32/ to install other dictionnaries for
+    Aspell.
+
+  * See http://gnuwin32.sourceforge.net/ to install other Unix
+    applications sometimes required by Emacs (e.g. diff, gzip).
+
+  * If it did not already exist, an environment variable HOME was
+    created during installation. This variable is required by Emacs
+    and, thus, should not be removed. The HOME folder will be the
+    default work folder of Emacs. To change the value of the variable
+    (Windows XP): right-click on My Computer, choose Properties, then
+    the Advanced tab and press the Environment variables button;
+    select the HOME user variable and press Modify; enter the name of
+    the desired folder and close all the windows by pressing Ok.
+
+The information above is available in file Updates-en.txt in the
+Emacs installation folder.

@@ -1,0 +1,195 @@
+\documentclass[a4paper]{article}
+\usepackage{multicol}
+\usepackage{parskip}
+\usepackage{a4}%-Northamerica: {fullpage}
+\usepackage{svn}%!/hg/s/linux/9/app/teTeX/11.05/texmf-dist/tex/latex/svn/svn.sty
+%           --- ubuntu lacks this but has latex-svinfo - usepackage{svninfo}
+\addtolength{\textheight}{20mm}
+\addtolength{\topmargin}{-16mm}
+
+
+\newenvironment{tabI}{\begin{tabular}{p{16mm}l}}{\end{tabular}}
+\newenvironment{tabTit}[1]{\underline{\textbf{#1}}\\ \begin{tabI}}{\end{tabI}}
+%
+\newcommand{\Sect}[1]{\par\noindent\medskip\fbox{\large\textbf{#1}}
+  \vskip -.2ex plus 1ex minus 1ex}
+\newcommand*{\Ecmd}[1]{$\left\langle \textrm{#1} \right\rangle$}
+\newcommand*{\sEcmd}[1]{{\small\Ecmd{#1}}}
+\newcommand*{\RET}[0]{\Ecmd{\textsc{ret}}}
+\newcommand*{\TAB}[0]{\Ecmd{\textsc{tab}}}
+
+\raggedcolumns%\raggedbottom
+\setlength{\columnseprule}{.4pt}% default 0
+\setlength{\columnsep}{22pt}% default is less (18 pt?)
+\pagestyle{empty}
+
+\begin{document}
+\SVN $Date: 2006-08-28 17:26:04 +0200 (Mon, 28 Aug 2006) $
+%\begin{multicols}{1}
+\begin{center}
+  {\LARGE ESS \ \ \ \ {\large
+      [\textbf{E}macs \textbf{S}peaks \textbf{Statistics}]}
+      \\[.5ex] Reference Card for S and R}
+
+  \smallskip
+
+  {\small updated for ESS 5.3.0}% {\footnotesize --- needs \em{more} updating!}}
+  \\[1ex] {\tiny \SVNDate}
+           \footnotesize --- as of \today
+\end{center}
+\begin{enumerate}
+\item  \textsc{Nota Bene:} S is the \emph{language},
+  R is one \emph{dialect}!
+\item This is a list of the more widely used \textbf{key - shortcuts}.
+  Many more are available, and most are accessible from the Emacs
+  \textbf{Menus} such as \texttt{iESS}, \texttt{ESS}, etc.
+%NN  \vspace*{-3ex}
+\end{enumerate}
+%\end{multicols}
+%NN \rule{\textwidth}{.2pt}%----------------------------------------------------
+
+\begin{multicols}{2}
+
+\Sect{Interacting with the S process}
+%%    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For use in a process buffer `\texttt{*R*}' ({\tiny inferior-ess-mode}):
+
+\begin{tabI}
+  \texttt{\RET   }& Send a command \\
+  \texttt{\TAB   }& Complete S object name \\
+  \texttt{C-c C-c }& Break \\
+  \texttt{C-g}     & interrupt Emacs' waiting for S\\
+  %% SfS-only (others need C-u C-a for comint-bol !
+  \texttt{C-a} / \texttt{C-e} & Beginning / End of command \\
+  \texttt{C-c C-u }& Delete this command \\
+  \texttt{C-c C-w }& Delete last word
+\end{tabI}
+
+\begin{tabTit}{Command history (part of Menu `\texttt{In/Out}')}
+  \texttt{M-p   }& Previous            command \\
+  \texttt{M-n   }& Next \hspace{1.4em} command \\
+  \texttt{C-c C-l}& List command history (\& choose!)\\
+%% MM has these on the arrow keys:
+  \texttt{C-c M-r}& Previous            similar command \\
+  \texttt{C-c M-s}& Next \hspace{1.4em} similar command \\
+%% MM-only:
+%%-   \texttt{$\uparrow$ / \Ecmd{up}}
+%%-               & Previous            similar command \\
+%%-   \texttt{\hbox{$\downarrow$ / \sEcmd{down}}}
+%%-               & Next \hspace{1.4em} similar command \\
+  \texttt{C-c\RET}& Copy current input \\
+%  \texttt{M-C-r }& String search
+  \texttt{C-c C-r }& Top of last output \\
+  \texttt{C-c C-o }& Delete last output
+\end{tabTit}
+
+%% == ESS-transcript mode ?? ---
+%\begin{tabTit}{Viewing the transcript}
+%  \texttt{M-P   }& Move to last command \\
+%  \texttt{M-N   }& Move to next command \\
+%  \texttt{C-c C-b }& String search and move \\
+%  \texttt{C-c C-v }& Prompt at bottom of screen \\
+%\end{tabTit}
+
+\begin{tabTit}{Hot keys}
+  \texttt{C-c C-v }& Help for S object \\
+  \texttt{C-c C-l }& \textbf{L}oad source file {\small ($+$ error check!)}\\
+  \texttt{C-c C-x }& List objects \\
+  \texttt{C-c C-s }& Display \texttt{\textbf{s}earch} list \\
+  \texttt{C-c C-a }& \textbf{A}ttach a directory \\
+  \texttt{C-c C-d }& Edit an object {\small (\textbf{d}ump to file)}
+\end{tabTit}
+
+\begin{tabTit}{Others}
+  \texttt{C-c `   }& Jump to error after \texttt{C-c C-l}\\
+%  \texttt{C-c C-t }& Toggle Tek mode \\
+  \texttt{C-c C-q }& Quit from S \\
+  \texttt{C-c C-z }& Kill the S process
+\end{tabTit}\\[0.5cm]
+
+
+\Sect{Inside S Transcripts (I + O)}
+%%    ~~~~~~~~~~~~~~~~
+
+Inside \texttt{ESS transcript} buffers, (\texttt{*.Rout} files):
+
+\begin{tabI}
+  \texttt{\RET} & Send and Move \\
+  \texttt{C-c C-n}& Next \hspace{1.4em} prompt \\
+  \texttt{C-c C-p}& Previous            prompt \\
+  \texttt{C-c C-w}& Clean Region ($\mapsto$ input only)
+\end{tabI}
+
+\columnbreak
+%%%%%%%%%%================================================================
+
+
+\Sect{Editing S source}
+%%    ~~~~~~~~~~~~~~~~
+For use in \texttt{ess-mode} edit buffers, (\texttt{*.R} files):
+
+\begin{tabI}
+  \texttt{\TAB} & Indent this line \\
+  \texttt{C-c\TAB}& Complete S object name \\
+  \texttt{M-\TAB} & Complete file- / path- name \\
+  \texttt{M-C-a} & Beginning of function \\
+  \texttt{M-C-e} & End of function \\
+  \texttt{M-C-q} & Indent this expression (use at `\texttt{\{}')\\
+  \texttt{M-C-h} & Mark this function
+\end{tabI}
+
+\begin{tabTit}{Evaluation commands (Prefix \texttt{C-u}: \emph{in/visibly})}
+  \texttt{C-c C-l} & Load this buffer -- detect errors !\\
+  \texttt{C-c C-n} & \underline{Step through code -- line by line} \\
+  \texttt{C-c C-e} & Evaluate an expression \\
+  \texttt{C-c C-j} & Evaluate this line \\
+  \texttt{C-c M-j} & Evaluate this line and go \\
+  \texttt{M-C-x}   & Evaluate this function \\
+  \texttt{C-c C-f} & \underline{Evaluate this function} \\
+  \texttt{C-c M-f} & Evaluate this function and go \\
+  \texttt{C-c C-p} & Evaluate this paragraph and step \\
+  \texttt{C-c C-c} & \underline{Evaluate this para.\ or function \emph{\& step}}\\
+  \texttt{C-c C-r} & \underline{Evaluate this region} \\
+  \texttt{C-c M-r} & Evaluate this region and go \\
+  \texttt{C-c C-b} & Evaluate this buffer \\
+  \texttt{C-c M-b} & Evaluate this buffer and go \\
+\end{tabTit}
+
+\begin{tabTit}{Others}
+  %%-SfS-deleted:  \texttt{M-\TAB} & Complete S object name \\
+  \texttt{C-c C-v }& Help for S object \\
+  \texttt{C-c C-d }& ``\texttt{dump}'' -- Edit another object \\
+  %%\texttt{C-c C-y} & Return to S process \\
+  \texttt{C-c C-z} & Return to S process (at prompt)
+\end{tabTit}
+
+\begin{tabTit}{At SfS, or activated by \texttt{M-x ess-add-MM-keys}}%-SfS-added
+  \texttt{C-c f}   & insert function() definition outline%-SfS-added
+\end{tabTit}\\[-1mm]%\\[0.5cm]                           %-SfS-added
+
+\Sect{Reading help files}
+%%    ~~~~~~~~~~~~~~~~~~
+
+For use in `\texttt{*help[R]($\ldots$)*}' help buffers:
+
+\begin{tabI}
+  \texttt{SPC} & Next page \\
+  \texttt{DEL} & Previous page \\
+  \texttt{b}   & Previous page (`\textbf{b}ack')\\
+  \texttt{/}   & Search forwards \\
+  \texttt{n}   & \textbf{N}ext section \\
+  \texttt{p}   & \textbf{P}revious section \\
+  \texttt{s}   & \textbf{S}kip (`jump') to a named section \\
+  \texttt{s e} & e.g., \textbf{s}kip to ``\texttt{\textbf{E}xamples:}'' \\
+  \texttt{l}   & \underline{Evaluate one `Example' \textbf{l}ine} \\
+  \texttt{r}   & Evaluate current \textbf{r}egion \\
+  \texttt{h}   &\textbf{H}elp on another object \\
+  \texttt{?}   & Help for this mode \\
+  \texttt{q}   & Return to S process (`\textbf{q}uit) \\
+  \texttt{x}   & Kill this buffer and return (`e\textbf{x}it) \\
+\end{tabI}
+
+\end{multicols}
+
+\end{document}
