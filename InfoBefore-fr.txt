@@ -1,0 +1,21 @@
+Ceci est la plus récente version stable de GNU Emacs modifiée pour
+contenir les ajouts suivants:
+
+  * ESS 5.3.6;
+  * AUCTeX 11.85;
+  * Aspell 0.50.3, un correcteur orthographique bien intégré à Emacs;
+  * Dictionnaires anglais (version 0.50-2-3) et français (version
+    0.50-3-3) pour Aspell;
+  * Librairies pour images XPM (xpm4.dll), PNG (libpng13.dll,
+    zlib1.dll), JPEG (jpeg62.dll), TIFF (libtiff3.dll) et GIF
+    (giflib4.dll) obtenues du projet GnuWin32.
+  * w32-winprint.el, pour faciliter l'impression sous Windows;
+  * htmlize.el, pour imprimer en couleur avec w32-winprint.el;
+  * site-start.el, un fichier de configuration système pour faire
+    fonctionner le tout.
+
+Pour toute question ou tout commentaire au sujet de cette version
+modifiée de Emacs, prière de contacter Vincent Goulet.
+
+L'information ci-dessus est disponible dans le fichier
+Modifications-fr.txt du dossier d'installation de Emacs.
