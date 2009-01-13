@@ -1,0 +1,28 @@
+  * Si R n'est pas installé à l'endroit habituel (lire: par défaut),
+    il peut s'avérer nécessaire de modifier les chemins d'accès dans
+    le fichier de configuration système afin que ESS trouve
+    l'exécutable de R. Ceci devrait également s'appliquer à toute
+    installation de S-Plus. Le fichier de configuration système est
+    aisément accessible par le raccourci dans le dossier GNU Emacs du
+    menu Démarrer.
+
+  * Voir http://aspell.net/win32/ pour installer des dictionnaires
+    additionnels pour Aspell.
+
+  * Voir http://gnuwin32.sourceforge.net/ pour installer des
+    applications Unix parfois utilisées par Emacs (par exemple: diff,
+    gzip).
+
+  * Si elle n'existait pas déjà, une variable d'environnement HOME a
+    été crée lors de l'installation. Cette variable est nécessaire
+    pour Emacs et, par conséquent, ne doit pas être supprimée. Le
+    dossier HOME est le dossier par défaut de Emacs. Pour modifier la
+    valeur de la variable (Windows XP): cliquer avec le bouton droit
+    sur Poste de travail, choisir Propriétés, puis l'onglet Avancé et
+    appuyer sur le bouton Variables d'environnement; sélectionner la
+    variable utilisateur HOME et appuyer sur Modifier; entrer le nom
+    du dossier souhaité et fermer toutes les fenêtres en appuyant sur
+    Ok.
+
+L'information ci-dessus est disponible dans le fichier Updates-fr.txt
+du dossier d'installation de Emacs.

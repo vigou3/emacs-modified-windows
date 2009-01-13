@@ -1,0 +1,25 @@
+@itemize @bullet
+@item
+@c @uref{http://www.google.com/,A.J. Rossini}
+@uref{mailto:blindglobe@@gmail.com, A.J. Rossini}
+@c --------
+@item
+@c @uref{http://www.sbm.temple.edu/departments/statistics/,Richard M. Heiberger}
+@uref{mailto:rmh@@temple.edu, Richard M. Heiberger}
+@c --------
+@item
+@c @uref{http://www.ci.tuwien.ac.at/~hornik,Kurt Hornik}
+@uref{mailto:Kurt.Hornik@@R-project.org, Kurt Hornik}
+@c --------
+@item
+@c @uref{http://stat.ethz.ch/people/maechler/,Martin Maechler}
+@uref{mailto:maechler@@stat.math.ethz.ch, Martin Maechler}
+@c --------
+@item
+@c @uref{http://www.mcw.edu/pcor/rsparapa,Rodney A. Sparapani}
+@uref{mailto:rsparapa@@mcw.edu, Rodney A. Sparapani}
+@c --------
+@item
+@c @uref{http://www.damtp.cam.ac.uk/user/eglen,Stephen Eglen}
+@uref{mailto:stephen@@gnu.org, Stephen Eglen}
+@end itemize
