@@ -1,13 +1,13 @@
-=== GNU Emacs 22.3-modified-2 ===
+=== GNU Emacs 22.3-modified-3 ===
 
 This is the latest stable release of GNU Emacs for Windows modified to
 include the following add-on packages:
 
-* ESS 5.3.10;
+* ESS 5.3.11;
 * AUCTeX 11.85;
 * Aspell 0.50.3, a spell checked well integrated in Emacs;
-* English (version 0.50-2-3) and French (version 0.50-3-3) dictionnaries
-  for Aspell; 
+* English (version 0.50-2-3), French (version 0.50-3-3) and German
+  (version 0.50-2-3) dictionnaries for Aspell; 
 * Libraries for image formats XPM (xpm4.dll), PNG (libpng13.dll,
   zlib1.dll), JPEG (jpeg62.dll), TIFF (libtiff3.dll) and GIF (giflib4.dll)
   obtained from the GnuWin32 project.
