@@ -68,5 +68,4 @@
 (load "preview-latex.el" nil t t)
 (require 'tex-mik)
 
-;; The AUCTeX info documentation is stored inside the site-lisp/auctex
-;; tree. Add the path to Info-default-directory-list.
+;; Use Aspell for spell checking

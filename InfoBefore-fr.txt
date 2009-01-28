@@ -1,13 +1,13 @@
-=== GNU Emacs 22.3-modified-2 ===
+=== GNU Emacs 22.3-modified-3 ===
 
 Ceci est la plus récente version stable de GNU Emacs modifiée pour contenir
 les ajouts suivants:
 
-* ESS 5.3.10;
+* ESS 5.3.11;
 * AUCTeX 11.85;
 * Aspell 0.50.3, un correcteur orthographique bien intégré à Emacs;
-* Dictionnaires anglais (version 0.50-2-3) et français (version 0.50-3-3)
-  pour Aspell;
+* Dictionnaires anglais (version 0.50-2-3), français (version
+  0.50-3-3) et allemand (version 0.50-2-3) pour Aspell;
 * Librairies pour images XPM (xpm4.dll), PNG (libpng13.dll, zlib1.dll), 
   JPEG (jpeg62.dll), TIFF (libtiff3.dll) et GIF (giflib4.dll) obtenues du
   projet GnuWin32.

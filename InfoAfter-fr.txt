@@ -1,4 +1,4 @@
-=== GNU Emacs 22.3-modified-2 ===
+=== GNU Emacs 22.3-modified-3 ===
 
 * Si R n'est pas installé à l'endroit habituel (lire: par défaut), il peut
   s'avérer nécessaire de modifier les chemins d'accès dans le fichier de

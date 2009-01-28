@@ -1,6 +1,6 @@
 [Setup]
 AppName=GNU Emacs
-AppVerName=GNU Emacs 22.3-modified-2
+AppVerName=GNU Emacs 22.3-modified-3
 AppPublisher=Vincent Goulet
 AppPublisherURL=http://vgoulet.act.ulaval.ca/emacs
 AppSupportURL=http://vgoulet.act.ulaval.ca/emacs
@@ -9,7 +9,7 @@ DefaultDirName={pf}\GNU Emacs 22.3
 DefaultGroupName=GNU Emacs 22.3
 LicenseFile=emacs-22.3\etc\COPYING
 OutputDir=..
-OutputBaseFilename=emacs-22.3-modified-2
+OutputBaseFilename=emacs-22.3-modified-3
 UninstallDisplayIcon={app}\bin\runemacs.exe
 Compression=lzma
 SolidCompression=yes
@@ -70,6 +70,13 @@ Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "HOME"; Value
 
 [Code]
 procedure AppendPaths(S: String);
+begin
+  S := ExpandConstant(S);
+  StringChangeEx(S, '\', '/', True);
+  SaveStringToFile(ExpandConstant(CurrentFileName), '(setq-default ispell-program-name "' + S + '/aspell/bin/aspell.exe")', True);
+end;
+
+procedure AppendPathsOld(S: String);
 begin
   S := ExpandConstant(S);
   StringChangeEx(S, '\', '/', True);

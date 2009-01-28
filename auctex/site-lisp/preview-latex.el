@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (preview-report-bug LaTeX-preview-setup preview-install-styles)
-;;;;;;  "preview" "preview.el" (18342 10700))
+;;;;;;  "preview" "preview.el" (18342 7100))
 ;;; Generated autoloads from preview.el
 
 (autoload (quote preview-install-styles) "preview" "\
