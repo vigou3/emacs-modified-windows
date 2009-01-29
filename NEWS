@@ -1,4 +1,16 @@
-=== Modified version of GNU Emacs for Windows ===
+=== Emacs for Windows Modified ===
+
+Version 22.3-modified-3 (28 January 2009)
+=========================================
+
+NEW FEATURES
+
+o German dictionary for aspell
+
+UPDATES
+
+o ESS 5.3.11
+
 
 Version 22.3-modified-2 (19 December 2008)
 ==========================================
