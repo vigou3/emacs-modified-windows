@@ -18,8 +18,8 @@ sed \
 
 ## Copy the original Emacs info/dir file to the ess/info directory so
 ## that ESS can correctly update the file.
-mkdir -p ${PREFIX}/ess/info/
-cp -p ${PREFIX}/emacs-${EMACSVERSION}/info/dir ${PREFIX}/ess/info/
+#mkdir -p ${PREFIX}/ess/info/
+#cp -p ${PREFIX}/emacs-${EMACSVERSION}/info/dir ${PREFIX}/ess/info/
 
 ## Build and install
 TMPDIR=$TMP make all

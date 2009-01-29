@@ -44,10 +44,10 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "emacs-22.3\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "emacs-22.3\*"; DestDir: "{app}"; Excludes: ".svn, info\dir"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "lib\*"; DestDir: "{app}\bin"; Excludes: ".svn"; Flags: ignoreversion
-Source: "auctex\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "ess\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "auctex\*"; DestDir: "{app}"; Excludes: ".svn, info\dir"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "ess\*"; DestDir: "{app}"; Excludes: ".svn, info\dir"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "aspell\*"; DestDir: "{app}\aspell"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "htmlize.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "htmlize-view.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
@@ -57,6 +57,11 @@ Source: "InfoAfter-en.txt"; DestDir: "{app}"; DestName: "Updates-en.txt"; Flags:
 Source: "InfoAfter-fr.txt"; DestDir: "{app}"; DestName: "Updates-fr.txt"; Flags: ignoreversion
 Source: "InfoBefore-en.txt"; DestDir: "{app}"; DestName: "Modifications-en.txt"; Flags: ignoreversion
 Source: "NEWS"; DestDir: "{app}"; Flags: ignoreversion
+
+Source: "ess\info\dir"; DestDir: "{app}"; DestName: "dir.ess"; Flags: ignoreversion deleteafterinstall
+Source: "auctex\info\dir"; DestDir: "{app}"; DestName: "dir.auctex"; Flags: ignoreversion deleteafterinstall
+Source: "emacs-22.3\info\dir"; DestDir: "{app}\info"; AfterInstall: AppendInfoDirs('{app}'); Flags: ignoreversion
+
 
 [Icons]
 Name: "{group}\GNU Emacs"; Filename: "{app}\bin\runemacs.exe"; WorkingDir: "%HOME%"
@@ -74,6 +79,17 @@ begin
   S := ExpandConstant(S);
   StringChangeEx(S, '\', '/', True);
   SaveStringToFile(ExpandConstant(CurrentFileName), '(setq-default ispell-program-name "' + S + '/aspell/bin/aspell.exe")', True);
+end;
+
+procedure AppendInfoDirs(Dir: String);
+var
+  S: String;
+begin
+  Dir := ExpandConstant(Dir);
+  LoadStringFromFile(Dir + '\dir.ess', S);
+  SaveStringToFile(ExpandConstant(CurrentFileName), S, True);
+  LoadStringFromFile(Dir + '\dir.auctex', S);
+  SaveStringToFile(ExpandConstant(CurrentFileName), S, True);
 end;
 
 procedure AppendPathsOld(S: String);
