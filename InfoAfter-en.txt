@@ -1,4 +1,4 @@
-=== GNU Emacs 22.3-modified-3 ===
+=== Emacs for Windows Modified ===
 
 * If R is not installed in the usual (default) location, it may be
   necessary to edit the paths in the site configuration file for ESS to
