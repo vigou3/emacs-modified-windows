@@ -1,6 +1,6 @@
 [Setup]
 AppName=GNU Emacs
-AppVerName=GNU Emacs 22.3-modified-3
+AppVerName=GNU Emacs 22.3-modified-4
 AppPublisher=Vincent Goulet
 AppPublisherURL=http://vgoulet.act.ulaval.ca/emacs
 AppSupportURL=http://vgoulet.act.ulaval.ca/emacs
@@ -9,10 +9,11 @@ DefaultDirName={pf}\GNU Emacs 22.3
 DefaultGroupName=GNU Emacs 22.3
 LicenseFile=emacs-22.3\etc\COPYING
 OutputDir=..
-OutputBaseFilename=emacs-22.3-modified-3
+OutputBaseFilename=emacs-22.3-modified-4
 UninstallDisplayIcon={app}\bin\runemacs.exe
 Compression=lzma
 SolidCompression=yes
+PrivilegesRequired=none
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"; InfoBeforeFile: "InfoBefore-en.txt"; InfoAfterFile: "InfoAfter-en.txt"

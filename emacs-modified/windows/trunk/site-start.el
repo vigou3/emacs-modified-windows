@@ -1,8 +1,31 @@
-;;; =========================
-;;;  Site configuration file
-;;; =========================
+;;; site-start.el --- Site configuration for GNU Emacs
 
+;; Copyright (C) 2009 Vincent Goulet
+
+;; Author: Vincent Goulet
+
+;; This file is part of Emacs for Windows Modified
+;; http://vgoulet.act.ulaval.ca/emacs
+
+;; GNU Emacs for Windows Modified is free software; you can
+;; redistribute it and/or modify it under the terms of the GNU General
+;; Public License as published by the Free Software Foundation; either
+;; version 3, or (at your option) any later version.
+
+;; GNU Emacs is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
+
+
+;;;
 ;;; Nice options to have On by default
+;;;
 (global-font-lock-mode t)		; syntax highlighting
 (transient-mark-mode t)			; sane select (mark) mode
 (delete-selection-mode t)		; entry deletes marked text
@@ -10,12 +33,14 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill) ; wrap long lines in text mode
 ;(tool-bar-mode nil)			; hide the toolbar
 
+;;;
 ;;; Easier printing
+;;;
 (require 'w32-winprint)
 (require 'htmlize-view)
 (htmlize-view-add-to-files-menu)
 
-
+;;;
 ;;; ESS
 ;;;
 ;; Load ESS and activate the nifty feature showing function arguments
@@ -58,7 +83,7 @@
 ;(setq-default inferior-Sqpe+6-SHOME-name
 ;              "c:/program files/insightful/splus7/")
 
-
+;;;
 ;;; AUCTeX
 ;;;
 ;; We assume that MiKTeX (http://www.miktek.org) is used for
@@ -68,4 +93,6 @@
 (load "preview-latex.el" nil t t)
 (require 'tex-mik)
 
-;; Use Aspell for spell checking
+;;;
+;;; Use Aspell for spell checking
+;;;

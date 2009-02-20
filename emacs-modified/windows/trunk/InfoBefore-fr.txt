@@ -1,4 +1,4 @@
-=== GNU Emacs 22.3-modified-3 ===
+=== Emacs pour Windows modifié ===
 
 Ceci est la plus récente version stable de GNU Emacs modifiée pour contenir
 les ajouts suivants:
