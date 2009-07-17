@@ -2,8 +2,7 @@
 
 . ./Makeconf
 
-PREFIX=c:/docume~1/vincent/mesdoc~1/emacsm~1/trunk
-EMACS=${PREFIX}/emacs-${EMACSVERSION}/bin/emacs.exe
+EMACS=${PREFIX}/bin/emacs.exe
 
 cd ess-*
 
