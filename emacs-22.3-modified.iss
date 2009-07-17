@@ -47,8 +47,8 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 [Files]
 Source: "emacs-22.3\*"; DestDir: "{app}"; Excludes: ".svn, info\dir"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "lib\*"; DestDir: "{app}\bin"; Excludes: ".svn"; Flags: ignoreversion
-Source: "auctex\*"; DestDir: "{app}"; Excludes: ".svn, info\dir"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "ess\*"; DestDir: "{app}"; Excludes: ".svn, info\dir"; Flags: ignoreversion recursesubdirs createallsubdirs
+#Source: "auctex\*"; DestDir: "{app}"; Excludes: ".svn, info\dir"; Flags: ignoreversion recursesubdirs createallsubdirs
+#Source: "ess\*"; DestDir: "{app}"; Excludes: ".svn, info\dir"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "aspell\*"; DestDir: "{app}\aspell"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "htmlize.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "htmlize-view.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
