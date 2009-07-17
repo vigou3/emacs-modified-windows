@@ -9,7 +9,7 @@ cd ess-*
 ## Edit Makeconf file for our purposes
 cp -p Makeconf Makeconf.orig
 sed \
--e "/^DESTDIR/s#/usr/local#$PREFIX/ess#" \
+-e "/^DESTDIR/s#/usr/local#$PREFIX#" \
 -e '/^EMACS/s#emacs#'${EMACS}'#' \
 -e '/^LISPDIR/s/share\/emacs\/site-lisp/site-lisp\/ess/' \
 -e '/^ETCDIR/s/share\/emacs\///' \
