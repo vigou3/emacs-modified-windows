@@ -94,5 +94,17 @@
 (require 'tex-mik)
 
 ;;;
+;;; SVN
+;;;
+;; Support for the Subversion version control system
+;; (http://http://subversion.tigris.org/) in the VC backend. Use 'M-x
+;; svn-status RET' on a directory under version control to update,
+;; commit changes, revert files, etc., all within Emacs. Requires an
+;; installation of Subversion in the path.
+(add-to-list 'vc-handled-backends 'SVN)
+(require 'psvn)
+(add-hook 'svn-log-edit-mode-hook 'turn-off-auto-fill) ; useful option
+
+;;;
 ;;; Use Aspell for spell checking
 ;;;

@@ -1,6 +1,6 @@
 [Setup]
 AppName=GNU Emacs
-AppVerName=GNU Emacs 22.3-modified-4
+AppVerName=GNU Emacs 22.3-modified-5
 AppPublisher=Vincent Goulet
 AppPublisherURL=http://vgoulet.act.ulaval.ca/emacs
 AppSupportURL=http://vgoulet.act.ulaval.ca/emacs
@@ -9,7 +9,7 @@ DefaultDirName={pf}\GNU Emacs 22.3
 DefaultGroupName=GNU Emacs 22.3
 LicenseFile=emacs-22.3\etc\COPYING
 OutputDir=..
-OutputBaseFilename=emacs-22.3-modified-4
+OutputBaseFilename=emacs-22.3-modified-5
 UninstallDisplayIcon={app}\bin\runemacs.exe
 Compression=lzma
 SolidCompression=yes
@@ -47,22 +47,19 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 [Files]
 Source: "emacs-22.3\*"; DestDir: "{app}"; Excludes: ".svn, info\dir"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "lib\*"; DestDir: "{app}\bin"; Excludes: ".svn"; Flags: ignoreversion
-#Source: "auctex\*"; DestDir: "{app}"; Excludes: ".svn, info\dir"; Flags: ignoreversion recursesubdirs createallsubdirs
-#Source: "ess\*"; DestDir: "{app}"; Excludes: ".svn, info\dir"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "aspell\*"; DestDir: "{app}\aspell"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "htmlize.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "htmlize-view.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "w32-winprint.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
+Source: "psvn.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "site-start.el"; DestDir: "{app}\site-lisp"; AfterInstall: AppendPaths('{app}'); Flags: ignoreversion
 Source: "InfoAfter-en.txt"; DestDir: "{app}"; DestName: "Updates-en.txt"; Flags: ignoreversion
 Source: "InfoAfter-fr.txt"; DestDir: "{app}"; DestName: "Updates-fr.txt"; Flags: ignoreversion
 Source: "InfoBefore-en.txt"; DestDir: "{app}"; DestName: "Modifications-en.txt"; Flags: ignoreversion
 Source: "NEWS"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "ess\info\dir"; DestDir: "{app}"; DestName: "dir.ess"; Flags: ignoreversion deleteafterinstall
-Source: "auctex\info\dir"; DestDir: "{app}"; DestName: "dir.auctex"; Flags: ignoreversion deleteafterinstall
-Source: "emacs-22.3\info\dir"; DestDir: "{app}\info"; AfterInstall: AppendInfoDirs('{app}'); Flags: ignoreversion
-
+[Dirs]
+Name: "{app}\site-lisp\site-start.d"
 
 [Icons]
 Name: "{group}\GNU Emacs"; Filename: "{app}\bin\runemacs.exe"; WorkingDir: "%HOME%"
@@ -79,7 +76,7 @@ procedure AppendPaths(S: String);
 begin
   S := ExpandConstant(S);
   StringChangeEx(S, '\', '/', True);
-  SaveStringToFile(ExpandConstant(CurrentFileName), '(setq-default ispell-program-name "' + S + '/aspell/bin/aspell.exe")', True);
+  SaveStringToFile(ExpandConstant(CurrentFileName), '(setq-default ispell-program-name "' + S + '/aspell/bin/aspell.exe")' + #13#10#13#10 + ';;;' + #13#10 + ';;; Other site extensions' + #13#10 + ';;;' + #13#10 + ';; Emacs will load all ".el" files in "' + #13#10 + ';; ' + S + '/site-lisp/site-start.d/"' + #13#10 + ';; on startup.' + #13#10 + '(mapc ''load' + #13#10 + '      (directory-files "' + S + '/site-lisp/site-start.d" t "\\.el\\''"))', True);
 end;
 
 procedure AppendInfoDirs(Dir: String);
@@ -92,11 +89,3 @@ begin
   LoadStringFromFile(Dir + '\dir.auctex', S);
   SaveStringToFile(ExpandConstant(CurrentFileName), S, True);
 end;
-
-procedure AppendPathsOld(S: String);
-begin
-  S := ExpandConstant(S);
-  StringChangeEx(S, '\', '/', True);
-  SaveStringToFile(ExpandConstant(CurrentFileName), '(add-to-list ''Info-default-directory-list "' + S + '/site-lisp/auctex/doc/info/")' + #13#10#13#10 + ';;; Ispell' + #13#10 + ';;;' + #13#10 + ';; Use Aspell for spell checking.' + #13#10 + '(setq-default ispell-program-name "' + S + '/aspell/bin/aspell.exe")', True);
-end;
-

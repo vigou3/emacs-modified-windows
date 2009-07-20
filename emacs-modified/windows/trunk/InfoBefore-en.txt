@@ -3,7 +3,7 @@
 This is the latest stable release of GNU Emacs for Windows modified to
 include the following add-on packages:
 
-* ESS 5.3.11;
+* ESS 5.4;
 * AUCTeX 11.85;
 * Aspell 0.50.3, a spell checked well integrated in Emacs;
 * English (version 0.50-2-3), French (version 0.50-3-3) and German
@@ -13,6 +13,7 @@ include the following add-on packages:
   obtained from the GnuWin32 project.
 * w32-winprint.el, to ease printing on Windows;
 * htmlize.el, to print in color with w32-winprint.el;
+* psvn.el, to add Subversion support to VC;
 * site-start.el, to make everything work.
 
 Please direct questions or comments on this modified version of Emacs to
