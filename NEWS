@@ -1,5 +1,21 @@
 === Emacs for Windows Modified ===
 
+Version 22.3-modified-5 (20 July 2009)
+======================================
+
+NEW FEATURES
+
+o psvn.el is now included to add a Subversion interface to the VC
+  backend of Emacs.
+o New folder '...\site-lisp\site-start.d' in the installation. All .el
+  files in this folder are automatically loaded by Emacs on
+  startup. Thanks to Paul Johnson for the suggestion.
+
+UPDATES
+
+o ESS 5.4
+
+
 Version 22.3-modified-4 (20 February 2009)
 ==========================================
 
