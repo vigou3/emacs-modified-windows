@@ -1,13 +1,13 @@
-# Makeconf file used by Makefile and all *_install.sh scripts
+# Makeconf file used by Makefile
 
 # Copyright (C) 2009 Vincent Goulet
 
 # Author: Vincent Goulet
 
-# This file is part of GNU Emacs.app Modified
+# This file is part of GNU Emacs Modified
 # http://vgoulet.act.ulaval.ca/emacs
 
-EMACSVERSION=22.3
-VERSION=5
-PREFIX=c:/docume~1/vincent/mesdoc~1/emacsm~1/trunk/emacs-$EMACSVERSION
-
+EMACSVERSION=23.1
+VERSION=1
+EMACSNAME=emacs-${EMACSVERSION}-modified
+DISTNAME=${EMACSNAME}-${VERSION}
