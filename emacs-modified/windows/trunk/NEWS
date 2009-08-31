@@ -1,5 +1,15 @@
 === Emacs for Windows Modified ===
 
+Version 23.1-modified-2 (31 August 2009)
+========================================
+
+BUG FIXES
+
+o The Quick Print menu option did not work due to an outdated version
+  of htmlize.el. Thanks to Ruan Rossouw for pointing this out and
+  finding the solution.
+
+
 Version 23.1-modified-1 (19 August 2009)
 ========================================
 
