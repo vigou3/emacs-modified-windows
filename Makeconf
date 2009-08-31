@@ -8,6 +8,6 @@
 # http://vgoulet.act.ulaval.ca/emacs
 
 EMACSVERSION=23.1
-VERSION=1
+VERSION=2
 EMACSNAME=emacs-${EMACSVERSION}-modified
 DISTNAME=${EMACSNAME}-${VERSION}

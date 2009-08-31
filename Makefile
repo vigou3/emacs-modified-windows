@@ -22,7 +22,7 @@ INNOSETUP=c:/progra~1/innose~1/iscc.exe
 ESS=`ls -d ess-*`
 AUCTEX=`ls -d auctex-*`
 
-all : emacs ess auctex dmg
+all : emacs
 
 .PHONY : emacs ess auctex exe clean
 
