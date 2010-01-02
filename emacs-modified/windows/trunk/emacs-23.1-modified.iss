@@ -1,6 +1,6 @@
 [Setup]
 AppName=GNU Emacs
-AppVerName=GNU Emacs 23.1-modified-3
+AppVerName=GNU Emacs 23.1-modified-4
 AppPublisher=Vincent Goulet
 AppPublisherURL=http://vgoulet.act.ulaval.ca/emacs
 AppSupportURL=http://vgoulet.act.ulaval.ca/emacs
@@ -9,7 +9,7 @@ DefaultDirName={pf}\GNU Emacs 23.1
 DefaultGroupName=GNU Emacs 23.1
 LicenseFile=emacs-23.1\etc\COPYING
 OutputDir=..
-OutputBaseFilename=emacs-23.1-modified-3
+OutputBaseFilename=emacs-23.1-modified-4
 UninstallDisplayIcon={app}\bin\runemacs.exe
 Compression=lzma
 SolidCompression=yes
