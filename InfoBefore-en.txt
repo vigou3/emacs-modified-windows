@@ -3,7 +3,7 @@
 This is the latest stable release of GNU Emacs for Windows modified to
 include the following add-on packages:
 
-* ESS 5.5;
+* ESS 5.7.1;
 * AUCTeX 11.85;
 * Aspell 0.50.3, a spell checked well integrated in Emacs;
 * English (version 0.50-2-3), French (version 0.50-3-3) and German
