@@ -1,0 +1,13 @@
+# Makeconf file used by Makefile
+
+# Copyright (C) 2009 Vincent Goulet
+
+# Author: Vincent Goulet
+
+# This file is part of GNU Emacs Modified
+# http://vgoulet.act.ulaval.ca/emacs
+
+EMACSVERSION=23.1
+VERSION=4
+EMACSNAME=emacs-${EMACSVERSION}-modified
+DISTNAME=${EMACSNAME}-${VERSION}
