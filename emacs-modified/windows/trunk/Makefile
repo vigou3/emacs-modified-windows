@@ -72,7 +72,7 @@ clean :
 	rm -f ${EMACSDIR}/info/ess.info
 	rm -f ${EMACSDIR}/info/auctex.info
 	rm -f ${EMACSDIR}/info/preview-latex.info
-	sed -e '/^EmacsINFO-DIR-SECTION TeX/,$d' \
+	sed -e '/^TeX/,$$d' \
 	    ${EMACSDIR}/info/dir > ${EMACSDIR}/info/dir.orig
 	mv ${EMACSDIR}/info/dir.orig ${EMACSDIR}/info/dir
 	cd ${ESS} && ${MAKE} clean

@@ -7,6 +7,10 @@
   configuration système est aisément accessible par le raccourci dans le
   dossier GNU Emacs du menu Démarrer.
 
+* Pour ajouter des extensions à cette distribution de Emacs,
+  simplement déposer les fichiers .el dans le dossier
+  ...\site-lisp\site-start.d\.
+
 * Voir http://aspell.net/win32/ pour installer des dictionnaires
   additionnels pour Aspell.
 
