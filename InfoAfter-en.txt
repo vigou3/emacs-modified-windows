@@ -1,10 +1,13 @@
 === Emacs for Windows Modified ===
 
 * If R is not installed in the usual (default) location, it may be
-  necessary to edit the paths in the site configuration file for ESS to
-  find the R executable. This should also be true for any S-Plus
-  installation. The site configuration file is accessed easily using the
-  shortcut in the GNU Emacs program group of the Start menu.
+  necessary to edit the paths in the site configuration file for ESS
+  to find the R executable. This should also be true for any S+
+  installation. The site configuration file is accessed easily using
+  the shortcut in the GNU Emacs program group of the Start menu.
+
+* To add Emacs extensions to this distribution, simply drop .el
+  files into the ...\site-lisp\site-start.d\ folder.
 
 * See http://aspell.net/win32/ to install other dictionnaries for Aspell.
 
