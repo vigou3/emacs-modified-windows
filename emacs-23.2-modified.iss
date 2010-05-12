@@ -1,15 +1,15 @@
 [Setup]
 AppName=GNU Emacs
-AppVerName=GNU Emacs 23.1-modified-5
+AppVerName=GNU Emacs 23.2-modified-1
 AppPublisher=Vincent Goulet
 AppPublisherURL=http://vgoulet.act.ulaval.ca/emacs
 AppSupportURL=http://vgoulet.act.ulaval.ca/emacs
 AppUpdatesURL=http://vgoulet.act.ulaval.ca/emacs
-DefaultDirName={pf}\GNU Emacs 23.1
-DefaultGroupName=GNU Emacs 23.1
-LicenseFile=emacs-23.1\etc\COPYING
+DefaultDirName={pf}\GNU Emacs 23.2
+DefaultGroupName=GNU Emacs 23.2
+LicenseFile=emacs-23.2\etc\COPYING
 OutputDir=..
-OutputBaseFilename=emacs-23.1-modified-5
+OutputBaseFilename=emacs-23.2-modified-1
 UninstallDisplayIcon={app}\bin\runemacs.exe
 Compression=lzma
 SolidCompression=yes
@@ -45,7 +45,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "emacs-23.1\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "emacs-23.2\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "lib\*"; DestDir: "{app}\bin"; Excludes: ".svn"; Flags: ignoreversion
 Source: "aspell\*"; DestDir: "{app}\aspell"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "htmlize.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
