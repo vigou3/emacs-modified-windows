@@ -1,9 +1,9 @@
-=== Emacs for Windows Modified ===
+=== GNU Emacs for Windows Modified ===
 
 This is the latest stable release of GNU Emacs for Windows modified to
 include the following add-on packages:
 
-* ESS 5.8;
+* ESS 5.9.1;
 * AUCTeX 11.86;
 * Aspell 0.50.3, a spell checked well integrated withﬂ Emacs;
 * English (version 0.50-2-3), French (version 0.50-3-3) and German
