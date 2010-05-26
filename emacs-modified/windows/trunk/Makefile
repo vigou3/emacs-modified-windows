@@ -13,7 +13,7 @@
 
 include ./Makeconf
 
-EMACSDIR=c:/docume~1/vincent/mesdoc~1/emacsm~1/trunk/emacs-${EMACSVERSION}
+EMACSDIR=c:/emacs-modified/trunk/emacs-${EMACSVERSION}
 PREFIX=${EMACSDIR}
 EMACS=${PREFIX}/bin/emacs.exe
 INNOSCRIPT=emacs-${EMACSVERSION}-modified.iss
