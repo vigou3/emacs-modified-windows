@@ -16,11 +16,19 @@ include ./Makeconf
 EMACSDIR=c:/emacs-modified/trunk/emacs-${EMACSVERSION}
 PREFIX=${EMACSDIR}
 EMACS=${PREFIX}/bin/emacs.exe
-INNOSCRIPT=emacs-${EMACSVERSION}-modified.iss
+INNOSCRIPT=emacs-modified.iss
 INNOSETUP=c:/progra~1/innose~1/iscc.exe
+INFOBEFOREFR=InfoBefore-fr.txt
+INFOBEFOREEN=InfoBefore-en.txt
 
-ESS=`ls -d ess-*`
-AUCTEX=`ls -d auctex-*`
+# To override ESS variables defined in Makeconf
+DESTDIR=${PREFIX}
+LISPDIR=${PREFIX}/site-lisp/ess
+ETCDIR=${PREFIX}/etc/ess
+DOCDIR=${PREFIX}/doc/ess
+
+ESS=ess-${ESSVERSION}
+AUCTEX=auctex-${AUCTEXVERSION}
 
 all : emacs
 
@@ -43,25 +51,24 @@ auctex :
 
 ess : 
 	@echo ----- Making ESS...
-	cp -p ${ESS}/Makeconf ${ESS}/Makeconf.orig
-	sed \
-	    -e "/^DESTDIR/s#/usr/local#${PREFIX}#" \
-	    -e '/^EMACS/s#emacs#${EMACS}#' \
-	    -e '/^LISPDIR/s/share\/emacs\/site-lisp/site-lisp\/ess/' \
-	    -e '/^ETCDIR/s/share\/emacs\///' \
-	    -e '/^DOCDIR/s/share\///' ${ESS}/Makeconf.orig > ${ESS}/Makeconf
-	TMPDIR=${TMP} ${MAKE} -C ${ESS} all 
-	${MAKE} -C ${ESS} install
+	TMPDIR=${TMP} ${MAKE} EMACS=${EMACS} -C ${ESS} all 
+	${MAKE} DESTDIR=${DESTDIR} LISPDIR=${LISPDIR} \
+	        ETCDIR=${ETCDIR} DOCDIR=${DOCDIR} -C ${ESS} install
 	@echo ----- Done making ESS
 
 exe : 
 	@echo ----- Building the archive...
-	cp -p ${INNOSCRIPT} ${INNOSCRIPT}.orig
-	sed \
-	    -e '/^AppVerName/s/modified-.*$$/modified-${VERSION}/' \
-	    -e '/^OutputBaseFilename/s/modified-.*$$/modified-${VERSION}/' \
-	    ${INNOSCRIPT}.orig > ${INNOSCRIPT}
-	rm ${INNOSCRIPT}.orig
+	sed -e '/^AppVerName/s/<VERSION>/${VERSION}/'           \
+	    -e '/^Default/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
+	    -e '/^LicenseFile/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
+	    -e '/^OutputBaseFilename/s/<DISTNAME>/${DISTNAME}/' \
+	    ${INNOSCRIPT}.in > ${INNOSCRIPT}
+	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
+	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
+	    ${INFOBEFOREFR}.in > ${INFOBEFOREFR}
+	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
+	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
+	    ${INFOBEFOREEN}.in > ${INFOBEFOREEN}
 	cmd /c "${INNOSETUP} ${INNOSCRIPT}"
 	@echo ----- Done building the archive
 
