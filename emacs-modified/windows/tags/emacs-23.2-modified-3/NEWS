@@ -1,0 +1,221 @@
+=== GNU Emacs for Windows Modified ===
+
+Version 23.2-modified-3 (27 May 2010)
+=====================================
+
+BUG FIX
+
+o Less invasive definition of the ESS indentation style in
+  site-start.el. Follows from a thread in ess-help starting here:
+  https://stat.ethz.ch/pipermail/ess-help/2010-May/006050.html.
+
+
+Version 23.2-modified-2 (25 May 2010)
+=====================================
+
+UPDATE
+
+o ESS version 5.9.1.
+
+
+Version 23.2-modified-1 (12 May 2010)
+=====================================
+
+UPDATE
+
+o GNU Emacs 23.2 released on May 8, 2010.
+
+
+Version 23.1-modified-5 (7 March 2010)
+======================================
+
+UPDATES
+
+o ESS version 5.8.
+o AUCTeX version 11.86.
+
+
+Version 23.1-modified-4 (2 January 2010)
+========================================
+
+UPDATES
+
+o ESS version 5.7.1.
+
+
+Version 23.1-modified-3 (7 October 2009)
+========================================
+
+UPDATES
+
+o ESS version 5.5.
+
+
+Version 23.1-modified-2 (31 August 2009)
+========================================
+
+BUG FIXES
+
+o The Quick Print menu option did not work due to an outdated version
+  of htmlize.el. Thanks to Ruan Rossouw for pointing this out and
+  finding the solution.
+
+
+Version 23.1-modified-1 (19 August 2009)
+========================================
+
+UPDATES
+
+o GNU Emacs version 23.1.
+
+
+Version 22.3-modified-5 (20 July 2009)
+======================================
+
+NEW FEATURES
+
+o psvn.el is now included to add a Subversion interface to the VC
+  backend of Emacs.
+o New folder '...\site-lisp\site-start.d' in the installation. All .el
+  files in this folder are automatically loaded by Emacs on
+  startup. Thanks to Paul Johnson for the suggestion.
+
+UPDATES
+
+o ESS 5.4
+
+
+Version 22.3-modified-4 (20 February 2009)
+==========================================
+
+NEW FEATURES
+
+o Installation no longer requires administrator privileges.
+
+
+Version 22.3-modified-3 (28 January 2009)
+=========================================
+
+NEW FEATURES
+
+o German dictionary for aspell
+
+UPDATES
+
+o ESS 5.3.11
+
+
+Version 22.3-modified-2 (19 December 2008)
+==========================================
+
+UPDATES
+
+o ESS 5.3.10
+
+
+Version 22.3-modified-1 (15 September 2008)
+===========================================
+
+UPDATES
+
+o GNU Emacs version 22.3.
+
+
+Version 22.2-modified-4 (28 July 2008)
+======================================
+
+UPDATES
+
+o ESS updated to version 5.3.8. Installation of ESS was also
+  streamlined to include only required files and documentation.
+
+
+Version 22.2-modified-3 (23 June 2008)
+======================================
+
+BUG FIXES
+
+o Reorganization of AUCTeX installation fixes an incomplete list of
+  other info manuals. Thanks to Georgi Boshnakov for the heads up.
+
+
+Version 22.2-modified-2 (10 April 2008)
+=======================================
+
+UPDATES
+
+o ESS updated to version 5.3.7.
+
+
+Version 22.2-modified-1 (27 March 2008)
+=======================================
+
+NEW FEATURES
+
+o GNU Emacs version 22.2.
+
+OTHER CHANGES
+
+o Version information in files Modifications-*.txt and Updates-*.txt.
+o Sources reorganized (AUCTeX files are now stored outside of the
+  Emacs tree).
+
+
+Version 22.1-modified-5 (19 February 2008)
+==========================================
+
+NEW FEATURES
+
+o AUCTeX version 11.85.
+o Distribution now includes htmlize-view.el (from the EmacsW32
+  project) to add a Quick print in color menu entry.
+
+
+Version 22.1-modified-4 (12 December 2007)
+==========================================
+
+BUG FIX
+
+o The w32-winprint.el package was not activated in the site-start.el
+  file, so the promise of simpler printing was not fulfilled. This is
+  a simple fix that does not require a complete new download: add 
+
+    ;;; Activate w32-winprint
+    (require 'w32-winprint)
+
+  in the system-wide configuration file site-start.el.
+
+
+Version 22.1-modified-3 (19 November 2007)
+==========================================
+
+NEW FEATURES
+
+o Libraries for image formats XPM (xpm4.dll), PNG (libpng13.dll,
+  zlib1.dll), JPEG (jpeg62.dll), TIFF (libtiff3.dll) and GIF
+  giflib4.dll) now included in the distribution. This gives access to
+  the color toolbar and preview-latex (with an installation of
+  Ghostscript). Libraries obtained from the GnuWin32 project.
+
+
+Version 22.1-modified-2 (19 September 2007)
+===========================================
+
+UPDATES
+
+o ESS updated to version 5.3.6.
+
+
+Version 22.1-modified-1 (30 August 2007)
+========================================
+
+NEW FEATURES
+
+o Introduction of a version number
+o Introduction of this NEWS file
+o By default, M-x R will now start R with the --no-restore-history and
+  --no-save options. The first option avoids getting a warning in the
+  minibuffer at R startup about a non-existing history file; with the
+  second option R exits gracefully if killed by Emacs shutdown.
+o Code indentation for *.R buffers now follows the R convention: BSD
+  style with an offset of 4 characters.

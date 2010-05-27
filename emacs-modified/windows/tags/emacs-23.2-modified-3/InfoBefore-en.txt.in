@@ -1,0 +1,23 @@
+=== GNU Emacs for Windows Modified ===
+
+This is the latest stable release of GNU Emacs for Windows modified to
+include the following add-on packages:
+
+* ESS <ESSVERSION>;
+* AUCTeX <AUCTEXVERSION>;
+* Aspell 0.50.3, a spell checked well integrated withﬂ Emacs;
+* English (version 0.50-2-3), French (version 0.50-3-3) and German
+  (version 0.50-2-3) dictionnaries for Aspell; 
+* Libraries for image formats XPM (xpm4.dll), PNG (libpng13.dll,
+  zlib1.dll), JPEG (jpeg62.dll), TIFF (libtiff3.dll) and GIF (giflib4.dll)
+  obtained from the GnuWin32 project.
+* w32-winprint.el, to ease printing on Windows;
+* htmlize.el, to print in color with w32-winprint.el;
+* psvn.el, to add Subversion support to VC;
+* site-start.el, to make everything work.
+
+Please direct questions or comments on this modified version of Emacs to
+Vincent Goulet.
+
+The information above is available in file Modifications-en.txt in the
+Emacs installation folder.
