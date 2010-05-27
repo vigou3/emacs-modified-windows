@@ -55,15 +55,16 @@
 (setq-default inferior-R-args "--no-restore-history --no-save ")
 
 ;; Set code indentation following the standard in R sources.
-(setq-default c-default-style "bsd")
-(setq-default c-basic-offset 4)
+(setq ess-default-style 'C++)
+
+;; Automagically delete trailing whitespace when saving R script
+;; files. One can add other commands in the ess-mode-hook below.
 (add-hook 'ess-mode-hook
 	  '(lambda()
-	     (ess-set-style 'C++ 'quiet)
 	     (add-hook 'write-file-functions
                            (lambda ()
-                             (ess-nuke-trailing-whitespace)))))
-(setq ess-nuke-trailing-whitespace-p t)
+                             (ess-nuke-trailing-whitespace)))
+	     (setq ess-nuke-trailing-whitespace-p t)))
 
 ;; Path to R executable. Uncomment and edit as needed if R is
 ;; installed in such an unusual place that ESS can't find it. (And

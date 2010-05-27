@@ -1,5 +1,15 @@
 === GNU Emacs for Windows Modified ===
 
+Version 23.2-modified-3 (27 May 2010)
+=====================================
+
+BUG FIX
+
+o Less invasive definition of the ESS indentation style in
+  site-start.el. Follows from a thread in ess-help starting here:
+  https://stat.ethz.ch/pipermail/ess-help/2010-May/006050.html.
+
+
 Version 23.2-modified-2 (25 May 2010)
 =====================================
 
