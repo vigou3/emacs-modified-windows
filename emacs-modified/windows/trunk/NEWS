@@ -1,5 +1,14 @@
 === GNU Emacs for Windows Modified ===
 
+Version 23.2-modified-4 (3 June 2010)
+=====================================
+
+BUG FIX
+
+o Incorrect AUCTeX initialization prevented latex-mode to load when
+  opening a (La)TeX file.
+
+
 Version 23.2-modified-3 (27 May 2010)
 =====================================
 
