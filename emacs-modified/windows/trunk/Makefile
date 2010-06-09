@@ -13,7 +13,10 @@
 
 include ./Makeconf
 
-EMACSDIR=c:/emacs-modified/trunk/emacs-${EMACSVERSION}
+TMPDIR=${CURDIR}/tmpdir
+EMACSDIR=${TMPDIR}/emacs-${EMACSVERSION}
+ZIPFILE=emacs-${EMACSVERSION}-bin-i386.zip
+
 PREFIX=${EMACSDIR}
 EMACS=${PREFIX}/bin/emacs.exe
 INNOSCRIPT=emacs-modified.iss
@@ -23,18 +26,39 @@ INFOBEFOREEN=InfoBefore-en.txt
 
 # To override ESS variables defined in Makeconf
 DESTDIR=${PREFIX}
-LISPDIR=${PREFIX}/site-lisp/ess
-ETCDIR=${PREFIX}/etc/ess
-DOCDIR=${PREFIX}/doc/ess
+LISPDIR=${DESTDIR}/site-lisp/ess
+ETCDIR=${DESTDIR}/etc/ess
+DOCDIR=${DESTDIR}/doc/ess
 
 ESS=ess-${ESSVERSION}
 AUCTEX=auctex-${AUCTEXVERSION}
 
 all : emacs
 
-.PHONY : emacs ess auctex exe clean
+.PHONY : emacs dir auctex ess exe clean
 
-emacs : auctex ess exe
+emacs : dir auctex ess exe
+
+dir :
+	@echo ----- Creating the application in temporary directory...
+	if [ -d ${TMPDIR} ]; then rm -rf ${TMPDIR}; fi
+	unzip -q ${ZIPFILE} -d ${TMPDIR}
+	sed -e '/^AppVerName/s/<VERSION>/${VERSION}/'           \
+	    -e '/^Default/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
+	    -e '/^LicenseFile/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
+	    -e '/^OutputBaseFilename/s/<DISTNAME>/${DISTNAME}/' \
+	    -e '/^Source/s/<EMACSVERSION>/${EMACSVERSION}/' \
+	    ${INNOSCRIPT}.in > ${TMPDIR}/${INNOSCRIPT}
+	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
+	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
+	    ${INFOBEFOREFR}.in > ${TMPDIR}/${INFOBEFOREFR}
+	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
+	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
+	    ${INFOBEFOREEN}.in > ${TMPDIR}/${INFOBEFOREEN}
+	cp -dpr lib ${TMPDIR}
+	cp -dpr aspell ${TMPDIR}
+	cp -a htmlize.el htmlize-view.el InfoAfter*.txt NEWS psvn.el \
+	   site-start.el w32-winprint.el ${TMPDIR}
 
 auctex :
 	@echo ----- Making AUCTeX...
@@ -58,30 +82,12 @@ ess :
 
 exe : 
 	@echo ----- Building the archive...
-	sed -e '/^AppVerName/s/<VERSION>/${VERSION}/'           \
-	    -e '/^Default/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
-	    -e '/^LicenseFile/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
-	    -e '/^OutputBaseFilename/s/<DISTNAME>/${DISTNAME}/' \
-	    ${INNOSCRIPT}.in > ${INNOSCRIPT}
-	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
-	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
-	    ${INFOBEFOREFR}.in > ${INFOBEFOREFR}
-	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
-	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
-	    ${INFOBEFOREEN}.in > ${INFOBEFOREEN}
-	cmd /c "${INNOSETUP} ${INNOSCRIPT}"
+	cd ${TMPDIR}/ && cmd /c "${INNOSETUP} ${INNOSCRIPT}"
+	rm -rf ${TMPDIR}
 	@echo ----- Done building the archive
 
 clean :
-	rm -rf ${EMACSDIR}/site-lisp/ess
-	rm -rf ${EMACSDIR}/site-lisp/auctex
-	rm -rf ${EMACSDIR}/doc
-	rm -f ${EMACSDIR}/info/ess.info
-	rm -f ${EMACSDIR}/info/auctex.info
-	rm -f ${EMACSDIR}/info/preview-latex.info
-	sed -e '/^TeX/,$$d' \
-	    ${EMACSDIR}/info/dir > ${EMACSDIR}/info/dir.orig
-	mv ${EMACSDIR}/info/dir.orig ${EMACSDIR}/info/dir
+	rm -rf ${TMPDIR}
 	cd ${ESS} && ${MAKE} clean
 	cd ${AUCTEX} && ${MAKE} clean
 
