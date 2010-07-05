@@ -101,6 +101,12 @@
 	    (turn-on-reftex)
 	    (setq reftex-plug-into-AUCTeX t)))
 
+;; Add standard Sweave file extensions to the list of files recognized
+;; by AUCTeX.
+(setq TeX-file-extensions
+      '("Rnw" "rnw" "Snw" "snw" "tex" "sty" "cls" "ltx" "texi" "texinfo" "dtx"))
+
+
 ;;;
 ;;; SVN
 ;;;
