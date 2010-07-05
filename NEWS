@@ -1,5 +1,14 @@
 === GNU Emacs for Windows Modified ===
 
+Version <to be determined>
+=====================================
+
+NEW FEATURE
+
+o RefTeX is now activated in the site-start.el file. Thanks to Miguel
+  Ruiz <rbenit68@gmail.com> for the suggestion.
+
+
 Version 23.2-modified-5 (9 June 2010)
 =====================================
 
@@ -195,7 +204,7 @@ BUG FIX
 
 o The w32-winprint.el package was not activated in the site-start.el
   file, so the promise of simpler printing was not fulfilled. This is
-  a simple fix that does not require a complete new download: add 
+  a simple fix that does not require a complete new download: add
 
     ;;; Activate w32-winprint
     (require 'w32-winprint)
