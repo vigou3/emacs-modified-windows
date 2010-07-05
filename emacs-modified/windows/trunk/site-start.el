@@ -1,6 +1,6 @@
 ;;; site-start.el --- Site configuration for GNU Emacs
 
-;; Copyright (C) 2009 Vincent Goulet
+;; Copyright (C) 2009, 2010 Vincent Goulet
 
 ;; Author: Vincent Goulet
 
@@ -93,6 +93,13 @@
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 (require 'tex-mik)
+
+;; Turn on RefTeX for LaTeX documents. Put further RefTeX
+;; customizations in your .emacs file.
+(add-hook 'LaTeX-mode-hook
+	  (lambda ()
+	    (turn-on-reftex)
+	    (setq reftex-plug-into-AUCTeX t)))
 
 ;;;
 ;;; SVN
