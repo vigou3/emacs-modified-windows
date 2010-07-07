@@ -6,8 +6,9 @@ include the following add-on packages:
 * ESS <ESSVERSION>;
 * AUCTeX <AUCTEXVERSION>;
 * Aspell 0.50.3, a spell checked well integrated withﬂ Emacs;
-* English (version 0.50-2-3), French (version 0.50-3-3) and German
-  (version 0.50-2-3) dictionnaries for Aspell; 
+* English (version 0.50-2-3), French (version 0.50-3-3), German
+  (version 0.50-2-3) and Spanish (version 0.50-2-3) dictionnaries for
+  Aspell;
 * Libraries for image formats XPM (xpm4.dll), PNG (libpng13.dll,
   zlib1.dll), JPEG (jpeg62.dll), TIFF (libtiff3.dll) and GIF (giflib4.dll)
   obtained from the GnuWin32 project.

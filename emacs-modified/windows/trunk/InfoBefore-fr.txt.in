@@ -7,7 +7,8 @@ les ajouts suivants:
 * AUCTeX <AUCTEXVERSION>;
 * Aspell 0.50.3, un correcteur orthographique bien intégré à Emacs;
 * Dictionnaires anglais (version 0.50-2-3), français (version
-  0.50-3-3) et allemand (version 0.50-2-3) pour Aspell;
+  0.50-3-3), allemand (version 0.50-2-3) et espagnol (version
+  0.50-2-3) pour Aspell;
 * Librairies pour images XPM (xpm4.dll), PNG (libpng13.dll, zlib1.dll), 
   JPEG (jpeg62.dll), TIFF (libtiff3.dll) et GIF (giflib4.dll) obtenues du
   projet GnuWin32.
