@@ -1,6 +1,6 @@
 === GNU Emacs for Windows Modified ===
 
-Version <to be determined>
+Version 23.2-modified-6 (7 July 2010)
 =====================================
 
 NEW FEATURES
@@ -10,6 +10,10 @@ o RefTeX is now activated in the site-start.el file. Thanks to Miguel
 
 o Site configuration file adds standard Sweave file extensions to the
   list of files recognized by AUCTeX.
+
+o The Spanish dictionary of Aspell is now included in the
+  distribution. Thanks to Miguel Ruiz <rbenit68@gmail.com> for the
+  initiative and the installation instructions.
 
 
 Version 23.2-modified-5 (9 June 2010)
