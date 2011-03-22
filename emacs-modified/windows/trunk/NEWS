@@ -1,5 +1,29 @@
 === GNU Emacs for Windows Modified ===
 
+Version 23.2-modified-9 (10 February 2010)
+==========================================
+
+UPDATE
+
+o ESS version 5.13.
+
+NEW FEATURE
+
+o framepop.el is now included in the distribution. This is a package
+  to open temporary buffers (such as *Completions*) in a separate
+  frame. Thanks to Paul Johnson <pauljohn@ku.edu> for the suggestion.
+
+
+Version 23.2-modified-8patched (12 January 2011)
+================================================
+
+BUG FIX
+
+o ESS 5.12 patched to correctly find rterm.exe inside the i386 and/or
+  x64 subdirectories of R 2.12.x installations. Thanks to Richard
+  Heiberger for providing the fix.
+
+
 Version 23.2-modified-8 (9 November 2010)
 =========================================
 
