@@ -35,7 +35,7 @@ AUCTEX=auctex-${AUCTEXVERSION}
 
 all : emacs
 
-.PHONY : emacs dir auctex ess exe clean
+.PHONY : emacs dir auctex ess exe www clean
 
 emacs : dir auctex ess exe
 
@@ -73,18 +73,43 @@ auctex :
 	rmdir ${PREFIX}/site-lisp/auctex/doc
 	@echo ----- Done making AUCTeX
 
-ess : 
+ess :
 	@echo ----- Making ESS...
-	TMPDIR=${TMP} ${MAKE} EMACS=${EMACS} -C ${ESS} all 
+	TMPDIR=${TMP} ${MAKE} EMACS=${EMACS} -C ${ESS} all
 	${MAKE} DESTDIR=${DESTDIR} LISPDIR=${LISPDIR} \
 	        ETCDIR=${ETCDIR} DOCDIR=${DOCDIR} -C ${ESS} install
 	@echo ----- Done making ESS
 
-exe : 
+exe :
 	@echo ----- Building the archive...
 	cd ${TMPDIR}/ && cmd /c "${INNOSETUP} ${INNOSCRIPT}"
 	rm -rf ${TMPDIR}
 	@echo ----- Done building the archive
+
+www :
+	@echo ----- Updating web site...
+	cp -p ${DISTNAME}.exe ${WWWLIVE}/htdocs/pub/emacs/
+	cp -p NEWS ${WWWLIVE}/htdocs/pub/emacs/NEWS-windows
+	cd ${WWWSRC} && svn update
+	cd ${WWWSRC}/htdocs/s/emacs/ &&                       \
+		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
+		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/g' \
+		    -e 's/<VERSION>/${VERSION}/g'             \
+		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
+		    windows.html.in > windows.html
+	cp -p ${WWWSRC}/htdocs/s/emacs/windows.html ${WWWLIVE}/htdocs/s/emacs/
+	cd ${WWWSRC}/htdocs/en/s/emacs/ &&                    \
+		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
+		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/g' \
+		    -e 's/<VERSION>/${VERSION}/g'             \
+		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
+		    windows.html.in > windows.html
+	cp -p ${WWWSRC}/htdocs/en/s/emacs/windows.html ${WWWLIVE}/htdocs/en/s/emacs/
+	cd ${WWWLIVE} && ls -lRa > ${WWWSRC}/ls-lRa
+	cd ${WWWSRC} && svn ci -m "Update for Emacs Modified for Windows version ${VERSION}"
+	svn ci -m "Version ${VERSION}"
+	svn cp ${REPOS}/trunk ${REPOS}/tags/${DISTNAME} -m "Tag version ${VERSION}"
+	@echo ----- Done updating web site
 
 clean :
 	rm -rf ${TMPDIR}
