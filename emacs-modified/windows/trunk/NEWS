@@ -1,6 +1,15 @@
 === GNU Emacs for Windows Modified ===
 
-Version 23.2-modified-9 (10 February 2010)
+Version 23.3-modified-1 (23 March 2011)
+=======================================
+
+UPDATE
+
+o GNU Emacs 23.3 released March 10, 2011. ESS and AUCTeX are still at
+  version 5.13 and 11.86, respectively.
+
+
+Version 23.2-modified-9 (10 February 2011)
 ==========================================
 
 UPDATE
