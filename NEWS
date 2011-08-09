@@ -1,5 +1,25 @@
 === GNU Emacs for Windows Modified ===
 
+Version 23.3-modified-2 (9 August 2011)
+=======================================
+
+UPDATES
+
+o ESS version 5.14.
+
+o Image libraries libpng and zlib1 updated (to 1.4.3 and 1.2.5,
+  respectively) to solve a docview-mode problem with
+  AUCTeX. Up-to-date binaries taken from http://gtk.org. Many thanks
+  to Hans Olav Husum <hohusum@gmail.com> for reporting both the
+  problem and the solution.
+
+o AUCTEX 11.86 patched to have version 1.286 of preview.el. This
+  solves image creation issues as explained here:
+  https://bugzilla.redhat.com/show_bug.cgi?id=646632
+  More thanks to Hans Olav Husum <hohusum@gmail.com> for reporting the
+  problem with a solution.
+
+
 Version 23.3-modified-1 (23 March 2011)
 =======================================
 

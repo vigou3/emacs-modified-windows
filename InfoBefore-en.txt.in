@@ -9,7 +9,7 @@ include the following add-on packages:
 * English (version 0.50-2-3), French (version 0.50-3-3), German
   (version 0.50-2-3) and Spanish (version 0.50-2-3) dictionnaries for
   Aspell;
-* Libraries for image formats XPM (xpm4.dll), PNG (libpng13.dll,
+* Libraries for image formats XPM (xpm4.dll), PNG (libpng14-14.dll,
   zlib1.dll), JPEG (jpeg62.dll), TIFF (libtiff3.dll) and GIF (giflib4.dll)
   obtained from the GnuWin32 project.
 * w32-winprint.el, to ease printing on Windows;
