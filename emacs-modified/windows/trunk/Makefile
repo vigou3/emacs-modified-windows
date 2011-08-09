@@ -1,21 +1,21 @@
-# Makefile for GNU Emacs.app Modified
+# Makefile for GNU Emacs for Windows Modified
 
-# Copyright (C) 2009 Vincent Goulet
+# Copyright (C) 2011 Vincent Goulet
 
 # Author: Vincent Goulet
 
-# This file is part of GNU Emacs.app Modified
+# This file is part of GNU Emacs for Windows Modified
 # http://vgoulet.act.ulaval.ca/emacs
 
-# This Makefile will create a disk image to distribute the software.
-# The code is based on a Makefile created by Remko Troncon
-# (http://el-tramo.be/about).
+# This Makefile will create a installation wizard to distribute the
+# software using Inno Setup.
 
+# Set most variables in Makeconf
 include ./Makeconf
 
 TMPDIR=${CURDIR}/tmpdir
-EMACSDIR=${TMPDIR}/emacs-${EMACSVERSION}
 ZIPFILE=emacs-${EMACSVERSION}-bin-i386.zip
+EMACSDIR=${TMPDIR}/emacs-${EMACSVERSION}
 
 PREFIX=${EMACSDIR}
 EMACS=${PREFIX}/bin/emacs.exe
@@ -37,7 +37,7 @@ all : emacs
 
 .PHONY : emacs dir auctex ess exe www clean
 
-emacs : dir auctex ess exe
+emacs : dir ess auctex exe
 
 dir :
 	@echo ----- Creating the application in temporary directory...
