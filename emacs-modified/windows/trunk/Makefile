@@ -88,7 +88,7 @@ exe :
 
 www :
 	@echo ----- Updating web site...
-	cp -p ${DISTNAME}.exe ${WWWLIVE}/htdocs/pub/emacs/
+#	cp -p ${DISTNAME}.exe ${WWWLIVE}/htdocs/pub/emacs/
 	cp -p NEWS ${WWWLIVE}/htdocs/pub/emacs/NEWS-windows
 	cd ${WWWSRC} && svn update
 	cd ${WWWSRC}/htdocs/s/emacs/ &&                       \
