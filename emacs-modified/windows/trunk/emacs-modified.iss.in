@@ -37,8 +37,8 @@ Name: "slovenian"; MessagesFile: "compiler:Languages\Slovenian.isl"
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 
 [CustomMessages]
-UpdateSiteStart=Update Site Configuration
-french.UpdateSiteStart=Modifier la configuration système
+UpdateDefault=Update Default Configuration
+french.UpdateDefault=Modifier la configuration par défaut
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
@@ -52,7 +52,7 @@ Source: "htmlize.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "htmlize-view.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "w32-winprint.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "psvn.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
-Source: "site-start.el"; DestDir: "{app}\site-lisp"; AfterInstall: AppendPaths('{app}'); Flags: ignoreversion
+Source: "default.el"; DestDir: "{app}\site-lisp"; AfterInstall: AppendPaths('{app}'); Flags: ignoreversion
 Source: "InfoAfter-en.txt"; DestDir: "{app}"; DestName: "Updates-en.txt"; Flags: ignoreversion
 Source: "InfoAfter-fr.txt"; DestDir: "{app}"; DestName: "Updates-fr.txt"; Flags: ignoreversion
 Source: "InfoBefore-en.txt"; DestDir: "{app}"; DestName: "Modifications-en.txt"; Flags: ignoreversion
@@ -64,7 +64,7 @@ Name: "{app}\site-lisp\site-start.d"
 
 [Icons]
 Name: "{group}\GNU Emacs"; Filename: "{app}\bin\runemacs.exe"; WorkingDir: "%HOME%"
-Name: "{group}\{cm:UpdateSiteStart}"; Filename: "{app}\bin\runemacs.exe"; Parameters: "--no-splash ""{app}\site-lisp\site-start.el"""; WorkingDir: "%HOME%"
+Name: "{group}\{cm:UpdateDefault}"; Filename: "{app}\bin\runemacs.exe"; Parameters: "--no-splash ""{app}\site-lisp\default.el"""; WorkingDir: "%HOME%"
 Name: "{group}\{cm:UninstallProgram,GNU Emacs}"; Filename: "{uninstallexe}"
 Name: "{commondesktop}\GNU Emacs"; Filename: "{app}\bin\runemacs.exe"; WorkingDir: "%HOME%"; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\GNU Emacs"; Filename: "{app}\bin\runemacs.exe"; WorkingDir: "%HOME%"; Tasks: quicklaunchicon
