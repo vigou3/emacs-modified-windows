@@ -57,8 +57,8 @@ dir :
 	    ${INFOBEFOREEN}.in > ${TMPDIR}/${INFOBEFOREEN}
 	cp -dpr lib ${TMPDIR}
 	cp -dpr aspell ${TMPDIR}
-	cp -a htmlize.el htmlize-view.el InfoAfter*.txt framepop.el \
-	   NEWS psvn.el site-start.el w32-winprint.el ${TMPDIR}
+	cp -a default.el htmlize.el htmlize-view.el InfoAfter*.txt \
+	   framepop.el NEWS psvn.el w32-winprint.el ${TMPDIR}
 
 auctex :
 	@echo ----- Making AUCTeX...

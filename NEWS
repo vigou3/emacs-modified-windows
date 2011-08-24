@@ -1,5 +1,18 @@
 === GNU Emacs for Windows Modified ===
 
+Version 23.3-modified-3 (20 August 2011)
+========================================
+
+(MORE OR LESS) USER VISIBLE CHANGE
+
+o File site-start.el renamed to default.el. Therefore, package loading
+  and Emacs configuration now happens *after* any user and site
+  configuration file is read. The distribution should now behave
+  better with users' settings. Thanks to Rodney Sparapani
+  <rsparapa@mcw.edu> and Stephen Eglen <S.J.Eglen@damtp.cam.ac.uk> for
+  pointers on this issue.
+
+
 Version 23.3-modified-2 (9 August 2011)
 =======================================
 
