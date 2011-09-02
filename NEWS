@@ -1,5 +1,16 @@
 === GNU Emacs for Windows Modified ===
 
+Version ??????? (?????)
+=======================
+
+NEW FEATURE
+
+o AppId now set to GNU Emacs version (e.g. 23.3) in Inno Setup. This
+  way, the installer will stop using an older version's (e.g. 23.2)
+  installation directory as default when said previous version was not
+  uninstalled. See http://www.jrsoftware.org/isfaq.php#olddir for details.
+
+
 Version 23.3-modified-3 (20 August 2011)
 ========================================
 
