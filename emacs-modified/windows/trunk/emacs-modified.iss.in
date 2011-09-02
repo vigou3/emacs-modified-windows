@@ -1,6 +1,7 @@
 [Setup]
 AppName=GNU Emacs
 AppVerName=GNU Emacs <VERSION>
+AppId=GNUEmacs<VERSION>
 AppPublisher=Vincent Goulet
 AppPublisherURL=http://vgoulet.act.ulaval.ca/emacs
 AppSupportURL=http://vgoulet.act.ulaval.ca/emacs
