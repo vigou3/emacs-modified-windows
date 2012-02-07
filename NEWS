@@ -1,14 +1,20 @@
 === GNU Emacs for Windows Modified ===
 
-Version ??????? (?????)
-=======================
+Version 23.4-modified-1 (6 February 2012)
+=========================================
 
 NEW FEATURE
 
-o AppId now set to GNU Emacs version (e.g. 23.3) in Inno Setup. This
-  way, the installer will stop using an older version's (e.g. 23.2)
+o AppId now set to GNU Emacs version (e.g. 23.4) in Inno Setup. This
+  way, the installer will stop using an older version's (e.g. 23.3)
   installation directory as default when said previous version was not
-  uninstalled. See http://www.jrsoftware.org/isfaq.php#olddir for details.
+  uninstalled. See http://www.jrsoftware.org/isfaq.php#olddir for
+  details.
+
+UPDATE
+
+o GNU Emacs 23.4 released January 29, 2012. ESS and AUCTeX are still at
+  version 5.14 and 11.86patched, respectively.
 
 
 Version 23.3-modified-3 (20 August 2011)
