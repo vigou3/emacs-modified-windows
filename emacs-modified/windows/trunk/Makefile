@@ -33,12 +33,13 @@ INFODIR=${DESTDIR}/info
 
 ESS=ess-${ESSVERSION}
 AUCTEX=auctex-${AUCTEXVERSION}
+ORG=org-${ORGVERSION}
 
 all : emacs
 
-.PHONY : emacs dir auctex ess exe www clean
+.PHONY : emacs dir ess org auctex exe www clean
 
-emacs : dir ess auctex exe
+emacs : dir ess org auctex exe
 
 dir :
 	@echo ----- Creating the application in temporary directory...
@@ -52,14 +53,17 @@ dir :
 	    ${INNOSCRIPT}.in > ${TMPDIR}/${INNOSCRIPT}
 	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
 	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
+	    -e '/^* org-mode/s/<ORGVERSION>/${ORGVERSION}/' \
 	    ${INFOBEFOREFR}.in > ${TMPDIR}/${INFOBEFOREFR}
 	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
 	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
+	    -e '/^* org-mode/s/<ORGVERSION>/${ORGVERSION}/' \
 	    ${INFOBEFOREEN}.in > ${TMPDIR}/${INFOBEFOREEN}
 	cp -dpr lib ${TMPDIR}
 	cp -dpr aspell ${TMPDIR}
 	cp -a default.el htmlize.el htmlize-view.el InfoAfter*.txt \
-	   framepop.el NEWS psvn.el w32-winprint.el ${TMPDIR}
+	   framepop.el NEWS psvn.el site-start.el w32-winprint.el \
+	   ${TMPDIR}
 
 ess :
 	@echo ----- Making ESS...
@@ -104,6 +108,7 @@ www :
 	cd ${WWWSRC}/htdocs/s/emacs/ &&                       \
 		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
 		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/g' \
+		    -e 's/<ORGVERSION>/${ORGVERSION}/g' \
 		    -e 's/<VERSION>/${VERSION}/g'             \
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
 		    windows.html.in > windows.html
@@ -111,6 +116,7 @@ www :
 	cd ${WWWSRC}/htdocs/en/s/emacs/ &&                    \
 		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
 		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/g' \
+		    -e 's/<ORGVERSION>/${ORGVERSION}/g' \
 		    -e 's/<VERSION>/${VERSION}/g'             \
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
 		    windows.html.in > windows.html

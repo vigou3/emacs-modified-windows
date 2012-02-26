@@ -1,5 +1,26 @@
 === GNU Emacs for Windows Modified ===
 
+Version 23.4-modified-1-i386 (26 February 2012)
+===============================================
+
+NEW FEATURE
+
+o An up-to-date version of org-mode is now included with the
+  distribution. As of this release, this is version 7.8.03 of
+  org-mode.
+
+(APPARENTLY) USER VISIBLE CHANGE
+
+o File site-start.el is reinstated in the distribution. Loading of
+  extension packages is still done in default.el, but customizations
+  that I provide [that is, the (setq ..)] are located in
+  site-start.el.
+
+UPDATE
+
+o psvn.el updated to version of 2012-02-21.
+
+
 Version 23.4-modified-1 (6 February 2012)
 =========================================
 
