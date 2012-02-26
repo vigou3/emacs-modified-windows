@@ -29,6 +29,7 @@ DESTDIR=${PREFIX}
 LISPDIR=${DESTDIR}/site-lisp/ess
 ETCDIR=${DESTDIR}/etc/ess
 DOCDIR=${DESTDIR}/doc/ess
+INFODIR=${DESTDIR}/info
 
 ESS=ess-${ESSVERSION}
 AUCTEX=auctex-${AUCTEXVERSION}
@@ -60,6 +61,22 @@ dir :
 	cp -a default.el htmlize.el htmlize-view.el InfoAfter*.txt \
 	   framepop.el NEWS psvn.el w32-winprint.el ${TMPDIR}
 
+ess :
+	@echo ----- Making ESS...
+	TMPDIR=${TMP} ${MAKE} EMACS=${EMACS} -C ${ESS} all
+	${MAKE} DESTDIR=${DESTDIR} LISPDIR=${LISPDIR}/ess \
+	        ETCDIR=${ETCDIR}/ess DOCDIR=${DOCDIR}/ess -C ${ESS} install
+	@echo ----- Done making ESS
+
+org :
+	@echo ----- Making org...
+	${MAKE} EMACS=${EMACS} -C ${ORG} all
+	${MAKE} EMACS=${EMACS} DESTDIR=${DESTDIR} lispdir=${LISPDIR}/org \
+	        datadir=${ETCDIR}/org -C ${ORG} install
+	${MAKE} infodir=${INFODIR} -C ${ORG} install-info
+	mkdir ${DOCDIR}/org && cp -a ${ORG}/doc/*.pdf ${DOCDIR}/org/
+	@echo ----- Done making org
+
 auctex :
 	@echo ----- Making AUCTeX...
 	cd ${AUCTEX} && ./configure --prefix=${PREFIX} \
@@ -72,13 +89,6 @@ auctex :
 	mv ${PREFIX}/site-lisp/auctex/doc/preview.* ${PREFIX}/doc/auctex
 	rmdir ${PREFIX}/site-lisp/auctex/doc
 	@echo ----- Done making AUCTeX
-
-ess :
-	@echo ----- Making ESS...
-	TMPDIR=${TMP} ${MAKE} EMACS=${EMACS} -C ${ESS} all
-	${MAKE} DESTDIR=${DESTDIR} LISPDIR=${LISPDIR} \
-	        ETCDIR=${ETCDIR} DOCDIR=${DOCDIR} -C ${ESS} install
-	@echo ----- Done making ESS
 
 exe :
 	@echo ----- Building the archive...
