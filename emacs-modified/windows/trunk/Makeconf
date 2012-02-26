@@ -1,6 +1,6 @@
 # Makeconf file used by Makefile
 
-# Copyright (C) 2009 Vincent Goulet
+# Copyright (C) 2012 Vincent Goulet
 
 # Author: Vincent Goulet
 
@@ -14,6 +14,7 @@ DISTVERSION=1
 # Extensions version numbers
 ESSVERSION=5.14
 AUCTEXVERSION=11.86patched
+ORGVERSION=7.8.03
 
 # Version strings
 VERSION=${EMACSVERSION}-modified-${DISTVERSION}

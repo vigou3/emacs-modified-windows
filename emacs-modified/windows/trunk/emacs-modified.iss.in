@@ -54,6 +54,7 @@ Source: "htmlize-view.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "w32-winprint.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "psvn.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "default.el"; DestDir: "{app}\site-lisp"; AfterInstall: AppendPaths('{app}'); Flags: ignoreversion
+Source: "site-start.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "InfoAfter-en.txt"; DestDir: "{app}"; DestName: "Updates-en.txt"; Flags: ignoreversion
 Source: "InfoAfter-fr.txt"; DestDir: "{app}"; DestName: "Updates-fr.txt"; Flags: ignoreversion
 Source: "InfoBefore-en.txt"; DestDir: "{app}"; DestName: "Modifications-en.txt"; Flags: ignoreversion
