@@ -26,9 +26,9 @@ INFOBEFOREEN=InfoBefore-en.txt
 
 # To override ESS variables defined in Makeconf
 DESTDIR=${PREFIX}
-LISPDIR=${DESTDIR}/site-lisp/ess
-ETCDIR=${DESTDIR}/etc/ess
-DOCDIR=${DESTDIR}/doc/ess
+LISPDIR=${DESTDIR}/site-lisp
+ETCDIR=${DESTDIR}/etc
+DOCDIR=${DESTDIR}/doc
 INFODIR=${DESTDIR}/info
 
 ESS=ess-${ESSVERSION}
