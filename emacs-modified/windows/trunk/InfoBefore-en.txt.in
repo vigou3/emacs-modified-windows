@@ -16,6 +16,7 @@ include the following add-on packages:
 * w32-winprint.el, to ease printing on Windows;
 * htmlize.el, to print in color with w32-winprint.el;
 * psvn.el, to add Subversion support to VC;
+* vc-svn17.el, to provide Subversion 1.7 support to VC;
 * framepop.el, to obtain temporary buffers in separate frames;
 * site-start.el, to make everything work.
 
