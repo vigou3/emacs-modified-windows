@@ -1,5 +1,20 @@
 === GNU Emacs for Windows Modified ===
 
+Version 23.4-modified-2 (1 April 2012 - No April's Fool!)
+=========================================================
+
+UPDATES
+
+o ESS 12.03
+
+o Org 7.8.07
+
+NEW FEATURE
+
+o Added vc-svn17.el to provide Subversion 1.7 support for vc-svn on
+  Emacs 23.
+
+
 Version 23.4-modified-2 (26 February 2012)
 ==========================================
 

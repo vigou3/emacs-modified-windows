@@ -69,6 +69,12 @@
 (add-to-list 'vc-handled-backends 'SVN)
 (require 'psvn)
 
+;; psvn currently does not work with Subversion 1.7. We can add
+;; support for Subversion 1.7 to the VC backend of Emacs 23 with the
+;; following.
+(require 'vc-svn17)
+
+
 ;;;
 ;;; Use Aspell for spell checking
 ;;;
