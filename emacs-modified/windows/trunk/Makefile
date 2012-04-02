@@ -62,8 +62,8 @@ dir :
 	cp -dpr lib ${TMPDIR}
 	cp -dpr aspell ${TMPDIR}
 	cp -a default.el htmlize.el htmlize-view.el InfoAfter*.txt \
-	   framepop.el NEWS psvn.el site-start.el w32-winprint.el \
-	   ${TMPDIR}
+	   framepop.el NEWS psvn.el vc-svn17.el site-start.el \
+	   w32-winprint.el ${TMPDIR}
 
 ess :
 	@echo ----- Making ESS...
