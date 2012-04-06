@@ -1,6 +1,21 @@
 === GNU Emacs for Windows Modified ===
 
-Version 23.4-modified-2 (1 April 2012 - No April's Fool!)
+Version 23.4-modified-4 (6 April 2012)
+======================================
+
+UPDATES
+
+o ESS 12.04
+
+o Org 7.8.08
+
+BUG FIX
+
+o Org was not correctly installed in previous version due to org's
+  akward use of environment variable DESTDIR in its Makefile.
+
+
+Version 23.4-modified-3 (1 April 2012 - No April's Fool!)
 =========================================================
 
 UPDATES
