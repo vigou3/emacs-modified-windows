@@ -1,10 +1,6 @@
 ;;; psvn.el --- Subversion interface for emacs
 ;; Copyright (C) 2002-2012 by Stefan Reichoer
 
-;; This is a version modified to include Koji Nakamaru's patch
-;; (http://www.eaflux.com/psvn/psvn.el.diff) for supporting Subversion
-;; 1.7. Patch applied by Vincent Goulet.
-
 ;; Author: Stefan Reichoer <stefan@xsteve.at>
 ;; Note: This version is currently not under svn control
 ;; For the revision date see svn-psvn-revision below
@@ -1148,7 +1144,7 @@ If there is no .svn directory, examine if there is CVS and run
                          (svn-wc-adm-dir-name)))
         (cvs-dir (format "%sCVS" (file-name-as-directory dir))))
     (cond
-     ((my-file-directory-p svn-dir)
+     ((file-directory-p svn-dir)
       (setq arg (svn-status-possibly-negate-meaning-of-arg arg 'svn-status))
       (svn-status-1 dir arg))
      ((and (file-directory-p cvs-dir)
@@ -6046,12 +6042,12 @@ Return nil, if not in a svn working copy."
       (let* ((base-dir start-dir)
              (repository-root (svn-status-repo-for-path base-dir))
              (dot-svn-dir (concat base-dir (svn-wc-adm-dir-name)))
-             (in-tree (and repository-root (my-file-exists-p dot-svn-dir)))
+             (in-tree (and repository-root (file-exists-p dot-svn-dir)))
              (dir-below (expand-file-name base-dir)))
         ;; (message "repository-root: %s start-dir: %s" repository-root start-dir)
         (if (and (<= (car svn-client-version) 1) (< (cadr svn-client-version) 3))
             (setq base-dir (svn-status-base-dir-for-ancient-svn-client start-dir)) ;; svn version < 1.3
-          (while (when (and dir-below (my-file-exists-p dot-svn-dir))
+          (while (when (and dir-below (file-exists-p dot-svn-dir))
                    (setq base-dir (file-name-directory dot-svn-dir))
                    (string-match "\\(.+/\\).+/" dir-below)
                    (setq dir-below
@@ -6432,19 +6428,6 @@ working directory."
           (svn-admin-create-trunk-directory)))
     (setq svn-admin-last-repository-dir (read-string "Repository Url: ")))
   (svn-checkout svn-admin-last-repository-dir "."))
-
-(defun my-file-directory-p (dir)
-  (setq dir (expand-file-name dir))
-  (if (file-directory-p dir)
-      t
-    (let* ((dir1 (directory-file-name (file-name-directory dir)))
-           (dir2 (directory-file-name (file-name-directory dir1))))
-      (if (equal dir1 dir2)
-          nil
-        (my-file-directory-p (concat (file-name-as-directory dir2) ".svn"))))))
-
-(defun my-file-exists-p (dir)
-  (my-file-directory-p dir))
 
 ;; --------------------------------------------------------------------------------
 ;; svn status profiling
