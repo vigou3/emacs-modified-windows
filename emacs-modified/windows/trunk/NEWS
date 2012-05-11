@@ -1,5 +1,19 @@
 === GNU Emacs for Windows Modified ===
 
+Version 23.4-modified-5 (11 May 2012)
+=====================================
+
+UPDATES
+
+o ESS 12.04-2
+
+o Org 7.8.09
+
+o psvn.el modified to include Koji Nakamaru's patch
+  (http://www.eaflux.com/psvn/psvn.el.diff) for supporting Subversion
+  1.7.
+
+
 Version 23.4-modified-4 (6 April 2012)
 ======================================
 
