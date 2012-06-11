@@ -16,7 +16,6 @@ les ajouts suivants:
 * w32-winprint.el, pour faciliter l'impression sous Windows;
 * htmlize.el, pour imprimer en couleur avec w32-winprint.el;
 * psvn.el, pour supporter Subversion via VC;
-* vc-svn17.el, pour supporter Subversion 1.7 via VC;
 * framepop.el, pour ouvrir des tampons temporaires dans une fenêtre
   séparée;
 * site-start.el, un fichier de configuration système pour faire
