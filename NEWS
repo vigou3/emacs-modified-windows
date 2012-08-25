@@ -1,5 +1,15 @@
 === GNU Emacs for Windows Modified ===
 
+Version 24.1-modified-2 ()
+======================================
+
+UPDATES
+
+BUG FIX
+
+o ESS info files were left off the distribution.
+
+
 Version 24.1-modified-1 (10 June 2012)
 ======================================
 
