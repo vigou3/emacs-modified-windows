@@ -8,13 +8,13 @@
 # http://vgoulet.act.ulaval.ca/emacs
 
 # GNU and this distribution version number
-EMACSVERSION=24.1
+EMACSVERSION=24.2
 DISTVERSION=1
 
 # Extensions version numbers
 ESSVERSION=12.04-4
 AUCTEXVERSION=11.86patched
-ORGVERSION=7.8.11
+ORGVERSION=7.9.1
 
 # Version strings
 VERSION=${EMACSVERSION}-modified-${DISTVERSION}
@@ -22,7 +22,7 @@ DISTNAME=emacs-${VERSION}
 
 # WWW site sources and live share mount point
 WWWSRC=/c/www
-WWWLIVE=/z
+WWWLIVE=/z/act-vgoulet
 
 # Subversion repository
 REPOS=https://svn.fsg.ulaval.ca/svn/vgoulet/emacs-modified/windows
