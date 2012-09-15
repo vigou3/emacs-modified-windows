@@ -77,8 +77,7 @@ org :
 	@echo ----- Making org...
 	${MAKE} EMACS=${EMACS} -C ${ORG} all
 	${MAKE} EMACS=${EMACS} DESTDIR="" lispdir=${LISPDIR}/org \
-	        datadir=${ETCDIR}/org -C ${ORG} install
-	${MAKE} infodir=${INFODIR} -C ${ORG} install-info
+	        datadir=${ETCDIR}/org infodir=${INFODIR} -C ${ORG} install
 	mkdir ${DOCDIR}/org && cp -a ${ORG}/doc/*.pdf ${DOCDIR}/org/
 	@echo ----- Done making org
 
