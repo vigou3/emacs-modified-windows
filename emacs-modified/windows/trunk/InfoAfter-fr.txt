@@ -1,11 +1,10 @@
 === Emacs pour Windows modifié ===
 
-* Si R n'est pas installé à l'endroit habituel (lire: par défaut), il peut
-  s'avérer nécessaire de modifier les chemins d'accès dans le fichier de
-  configuration système afin que ESS trouve l'exécutable de R. Ceci devrait
-  également s'appliquer à toute installation de S-Plus. Le fichier de
-  configuration système est aisément accessible par le raccourci dans le
-  dossier GNU Emacs du menu Démarrer.
+* Si R n'est pas installé à l'endroit habituel (lire: par défaut), il
+  peut s'avérer nécessaire de modifier les chemins d'accès dans le
+  fichier de configuration système afin que ESS trouve l'exécutable de
+  R. Le fichier de configuration système est aisément accessible par
+  le raccourci dans le dossier GNU Emacs du menu Démarrer.
 
 * Pour ajouter des extensions à cette distribution de Emacs,
   simplement déposer les fichiers .el dans le dossier
@@ -27,12 +26,14 @@
   conséquent, ne doit pas être supprimée. Le dossier HOME est le dossier
   par défaut de Emacs.
 
-* Pour modifier la valeur d'une variable d'environnement (Windows XP):
-  cliquer avec le bouton droit sur Poste de travail, choisir Propriétés,
-  puis l'onglet Avancé et appuyer sur le bouton Variables d'environnement;
-  sélectionner la variable utilisateur désirée (par exemple HOME ou PATH)
-  et appuyer sur Modifier; entrer les modifications puis fermer toutes les
-  fenêtres en appuyant sur Ok.
+* Pour modifier la valeur d'une variable d'environnement (Windows 7):
+  dans le menu Démarrer ou dans l'Explorateur Windows, cliquer avec le
+  bouton droit sur Ordinateur et choisir Propriétés. Dans la liste de
+  gauche du panneau qui s'ouvre alors, cliquer sur Paramêtres système
+  avancés, puis sur le bouton Variables d'environnement dans la
+  nouvelle fenêtre; sélectionner la variable utilisateur désirée (par
+  exemple HOME ou PATH) et appuyer sur Modifier; entrer les
+  modifications puis fermer toutes les fenêtres en appuyant sur Ok.
 
 L'information ci-dessus est disponible dans le fichier Updates-fr.txt du
 dossier d'installation de Emacs.

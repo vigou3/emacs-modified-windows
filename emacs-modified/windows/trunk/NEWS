@@ -1,5 +1,15 @@
 === GNU Emacs for Windows Modified ===
 
+Version 24.2-modified-2 (24 September 2012)
+===========================================
+
+UPDATES
+
+o ESS 12-09
+
+o psvn.el dated 2012-03-26. It appears I missed this update before.
+
+
 Version 24.2-modified-1 (15 September 2012)
 ===========================================
 
