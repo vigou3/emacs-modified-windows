@@ -2,9 +2,9 @@
 
 * If R is not installed in the usual (default) location, it may be
   necessary to edit the paths in the site configuration file for ESS
-  to find the R executable. This should also be true for any S+
-  installation. The site configuration file is accessed easily using
-  the shortcut in the GNU Emacs program group of the Start menu.
+  to find the R executable. The site configuration file is accessed
+  easily using the shortcut in the GNU Emacs program group of the
+  Start menu.
 
 * To add Emacs extensions to this distribution, simply drop .el
   files into the ...\site-lisp\site-start.d\ folder.
@@ -22,8 +22,10 @@
   during installation. This variable is required by Emacs and, thus, should
   not be removed. The HOME folder will be the default work folder of Emacs.
 
-* To change the value of an environment variable (Windows XP): right-click
-  on My Computer, choose Properties, then the Advanced tab and press the
+* To change the value of an environment variable (Windows 7): in the
+  Start menu or Windows Explorer, right-click on System and choose
+  Properties. In the task list on the left of the new window, click
+  Advanced system settings. This opens yet another window: press the
   Environment variables button; select the user variable (e.g. HOME or
   PATH) and press Modify; make the change and close all the windows by
   pressing Ok.

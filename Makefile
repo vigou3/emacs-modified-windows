@@ -108,7 +108,8 @@ www :
 	cd ${WWWSRC}/htdocs/s/emacs/ &&                       \
 		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
 		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/g' \
-		    -e 's/<ORGVERSION>/${ORGVERSION}/g' \
+		    -e 's/<ORGVERSION>/${ORGVERSION}/g'       \
+		    -e 's/<PSVNVERSION>/${PSVNVERSION}/g'     \
 		    -e 's/<VERSION>/${VERSION}/g'             \
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
 		    windows.html.in > windows.html
@@ -116,7 +117,8 @@ www :
 	cd ${WWWSRC}/htdocs/en/s/emacs/ &&                    \
 		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
 		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/g' \
-		    -e 's/<ORGVERSION>/${ORGVERSION}/g' \
+		    -e 's/<ORGVERSION>/${ORGVERSION}/g'       \
+		    -e 's/<PSVNVERSION>/${PSVNVERSION}/g'     \
 		    -e 's/<VERSION>/${VERSION}/g'             \
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
 		    windows.html.in > windows.html
