@@ -9,12 +9,12 @@
 
 # GNU and this distribution version number
 EMACSVERSION=24.2
-DISTVERSION=2
+DISTVERSION=3
 
 # Extensions version numbers
 ESSVERSION=12.09
-AUCTEXVERSION=11.86patched
-ORGVERSION=7.9.1
+AUCTEXVERSION=11.87
+ORGVERSION=7.9.2
 PSVNVERSION=2012-03-26
 
 # Version strings
