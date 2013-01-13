@@ -1,23 +1,21 @@
 === GNU Emacs for Windows Modified ===
 
-Version 24.2-modified-5 ( 2013)
-==========================================
+Version 24.2-modified-5 (12 January 2013)
+=========================================
 
 UPDATES
 
 o ESS 12.09-2
 
-o Org 7.9.3a   ***!!!***
+o Org 7.9.3c
 
-o psvn.el is now revision 1369093 of Subversion source code
-  repository. This version in some respect appears to actually be
-  *older* than Stefan Reichoer's version of 2012-03-26. Still, using
-  the Subversion sources version made it easier to apply Andre
-  Colomb's refinement of Koji Nakamaru's patch to support Subversion
-  1.7; see
+o psvn.el is now revision 1369093 of Subversion source code repository
+  with Andre Colomb's and Koji Nakamaru's patches to support
+  Subversion 1.7; see
   http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/%3C503B958F.6010906@schickhardt.org%3E
-  (Just to be clear: the patch *is* applied to the version of psvn.el
-  shipped with this distribution.)
+  The original file appears to actually be *older* than Stefan
+  Reichoer's version of 2012-03-26 in some respect, but using the
+  Subversion sources version made it easier to apply the patches.
 
 
 Version 24.2-modified-4 (22 December 2012)
