@@ -1,5 +1,23 @@
 === GNU Emacs for Windows Modified ===
 
+Version 24.2-modified-6 (18 January 2013)
+=========================================
+
+USER VISIBLE CHANGE
+
+o Org is *removed* from the distribution as it triggered a warning
+  message at Emacs startup. This may seem a rather drastic measure,
+  but Org has proved annoying to support as an add-on to the
+  distribution. In addition, Org maintainers recommend to install the
+  package through the Emacs package system; see
+  http://orgmode.org/manual/Installation.html. The version of Org
+  shipping with GNU Emacs 24.2 is 7.8.11.
+
+BUG FIX
+
+o For some reason, addpm.exe was left off the distribution.
+
+
 Version 24.2-modified-5 (12 January 2013)
 =========================================
 
