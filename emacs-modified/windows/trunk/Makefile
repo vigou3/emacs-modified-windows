@@ -37,7 +37,7 @@ ORG=org-${ORGVERSION}
 
 all : emacs
 
-.PHONY : emacs dir ess org auctex exe www clean
+.PHONY : emacs dir ess auctex exe www clean
 
 emacs : dir ess org auctex exe
 
@@ -108,7 +108,6 @@ www :
 	cd ${WWWSRC}/htdocs/s/emacs/ &&                       \
 		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
 		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/g' \
-		    -e 's/<ORGVERSION>/${ORGVERSION}/g'       \
 		    -e 's/<PSVNVERSION>/${PSVNVERSION}/g'     \
 		    -e 's/<VERSION>/${VERSION}/g'             \
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
@@ -117,7 +116,6 @@ www :
 	cd ${WWWSRC}/htdocs/en/s/emacs/ &&                    \
 		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
 		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/g' \
-		    -e 's/<ORGVERSION>/${ORGVERSION}/g'       \
 		    -e 's/<PSVNVERSION>/${PSVNVERSION}/g'     \
 		    -e 's/<VERSION>/${VERSION}/g'             \
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
