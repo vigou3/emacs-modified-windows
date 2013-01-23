@@ -39,7 +39,7 @@ all : emacs
 
 .PHONY : emacs dir ess auctex exe www clean
 
-emacs : dir ess org auctex exe
+emacs : dir ess auctex exe
 
 dir :
 	@echo ----- Creating the application in temporary directory...
@@ -53,11 +53,9 @@ dir :
 	    ${INNOSCRIPT}.in > ${TMPDIR}/${INNOSCRIPT}
 	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
 	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
-	    -e '/^* org-mode/s/<ORGVERSION>/${ORGVERSION}/' \
 	    ${INFOBEFOREFR}.in > ${TMPDIR}/${INFOBEFOREFR}
 	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
 	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
-	    -e '/^* org-mode/s/<ORGVERSION>/${ORGVERSION}/' \
 	    ${INFOBEFOREEN}.in > ${TMPDIR}/${INFOBEFOREEN}
 	cp -dpr lib ${TMPDIR}
 	cp -dpr aspell ${TMPDIR}

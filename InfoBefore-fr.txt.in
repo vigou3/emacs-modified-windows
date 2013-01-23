@@ -5,7 +5,6 @@ les ajouts suivants:
 
 * ESS <ESSVERSION>;
 * AUCTeX <AUCTEXVERSION>;
-* org-mode <ORGVERSION>;
 * Aspell 0.50.3, un correcteur orthographique bien intégré à Emacs;
 * Dictionnaires anglais (version 0.50-2-3), français (version
   0.50-3-3), allemand (version 0.50-2-3) et espagnol (version
