@@ -8,13 +8,13 @@
 # http://vgoulet.act.ulaval.ca/emacs
 
 # GNU and this distribution version number
-EMACSVERSION=24.2
-DISTVERSION=7
+EMACSVERSION=24.3
+DISTVERSION=1
 
 # Extensions version numbers
 ESSVERSION=12.09-2
 AUCTEXVERSION=11.87
-ORGVERSION=7.9.3c
+#ORGVERSION=7.9.3c
 PSVNVERSION=1369093
 
 # Version strings
