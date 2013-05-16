@@ -1,5 +1,22 @@
 === GNU Emacs for Windows Modified ===
 
+Version 24.3-modified-2 (15 May 2013)
+=====================================
+
+UPDATES
+
+o ESS 13.05
+
+(MORE OF LESS) USER VISIBLE CHANGES
+
+o In site-start.el, 'inferior-R-args' no longer includes
+  "--no-restore-history" as it apparently had no effect. Thanks to
+  Vitalie Spinu for the rectification.
+
+o In site-start.el, 'ess-default-style' is no longer defined to be
+  "C++" since the default indentation style in ESS is now "RRR".
+
+
 Version 24.3-modified-1 (19 March 2013)
 =======================================
 
