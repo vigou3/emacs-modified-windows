@@ -1,5 +1,17 @@
 === GNU Emacs for Windows Modified ===
 
+Version xxx (yyy)
+==========================================
+
+BUG FIX
+
+o Inno Setup installer's AppId key was not correctly updated between
+  versions.
+
+UPDATES
+
+
+
 Version 24.3-modified-3 (27 September 2013)
 ==========================================
 
