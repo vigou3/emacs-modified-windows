@@ -46,6 +46,7 @@ dir :
 	if [ -d ${TMPDIR} ]; then rm -rf ${TMPDIR}; fi
 	unzip -q ${ZIPFILE} -d ${TMPDIR}
 	sed -e '/^AppVerName/s/<VERSION>/${VERSION}/'           \
+	    -e '/^AppId/s/<VERSION>/${VERSION}/'  		\
 	    -e '/^Default/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
 	    -e '/^LicenseFile/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
 	    -e '/^OutputBaseFilename/s/<DISTNAME>/${DISTNAME}/' \
