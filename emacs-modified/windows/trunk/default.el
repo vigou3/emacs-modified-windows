@@ -24,6 +24,12 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
+;;;
+;;; Version number of Emacs Modified
+;;;
+;; Define variable and function 'emacs-modified-version'
+(require 'version-modified)
+
 
 ;;;
 ;;; Easier printing

@@ -58,10 +58,14 @@ dir :
 	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
 	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
 	    ${INFOBEFOREEN}.in > ${TMPDIR}/${INFOBEFOREEN}
+	sed -e '/^(defconst/s/<DISTVERSION>/${DISTVERSION}/' \
+	    version-modified.el.in > version-modified.el
+	cp -p version-modified.el ${PREFIX}/Resources/site-lisp/
 	cp -dpr lib ${TMPDIR}
 	cp -dpr aspell ${TMPDIR}
 	cp -a default.el htmlize.el htmlize-view.el InfoAfter*.txt \
-	   framepop.el NEWS psvn.el site-start.el w32-winprint.el \
+	   framepop.el NEWS psvn.el site-start.el version-modified.el \
+	   w32-winprint.el \
            ${TMPDIR}
 
 ess :
