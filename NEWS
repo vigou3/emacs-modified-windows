@@ -3,6 +3,11 @@
 Version xxx (yyy)
 ==========================================
 
+NEW FEATURE
+
+o Function and variable 'emacs-modified-version' to display and hold
+  the distribution version number.
+
 BUG FIX
 
 o Inno Setup installer's AppId key was not correctly updated between
@@ -13,7 +18,7 @@ UPDATES
 
 
 Version 24.3-modified-3 (27 September 2013)
-==========================================
+===========================================
 
 UPDATES
 
