@@ -74,6 +74,7 @@ ess :
 	${MAKE} DESTDIR=${DESTDIR} LISPDIR=${LISPDIR}/ess \
 	        ETCDIR=${ETCDIR}/ess DOCDIR=${DOCDIR}/ess \
 	        INFODIR=${INFODIR} -C ${ESS} install
+	if [ -f ${SITELISP}/ess-site.el ]; then rm ${SITELISP}/ess-site.el; fi
 	@echo ----- Done making ESS
 
 org :
