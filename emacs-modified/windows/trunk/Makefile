@@ -26,7 +26,8 @@ INFOBEFOREEN=InfoBefore-en.txt
 
 # To override ESS variables defined in Makeconf
 DESTDIR=${PREFIX}
-LISPDIR=${DESTDIR}/site-lisp
+SITELISP=${DESTDIR}/site-lisp
+#LISPDIR=${DESTDIR}/site-lisp
 ETCDIR=${DESTDIR}/etc
 DOCDIR=${DESTDIR}/doc
 INFODIR=${DESTDIR}/info
@@ -60,7 +61,7 @@ dir :
 	    ${INFOBEFOREEN}.in > ${TMPDIR}/${INFOBEFOREEN}
 	sed -e '/^(defconst/s/<DISTVERSION>/${DISTVERSION}/' \
 	    version-modified.el.in > version-modified.el
-	cp -p version-modified.el ${PREFIX}/Resources/site-lisp/
+	cp -p version-modified.el ${SITELISP}/
 	cp -dpr lib ${TMPDIR}
 	cp -dpr aspell ${TMPDIR}
 	cp -a default.el htmlize.el htmlize-view.el InfoAfter*.txt \
@@ -71,7 +72,7 @@ dir :
 ess :
 	@echo ----- Making ESS...
 	TMPDIR=${TMP} ${MAKE} EMACS=${EMACS} -C ${ESS} all
-	${MAKE} DESTDIR=${DESTDIR} LISPDIR=${LISPDIR}/ess \
+	${MAKE} DESTDIR=${DESTDIR} SITELISP=${SITELISP} \
 	        ETCDIR=${ETCDIR}/ess DOCDIR=${DOCDIR}/ess \
 	        INFODIR=${INFODIR} -C ${ESS} install
 	if [ -f ${SITELISP}/ess-site.el ]; then rm ${SITELISP}/ess-site.el; fi
@@ -87,15 +88,15 @@ org :
 
 auctex :
 	@echo ----- Making AUCTeX...
-	cd ${AUCTEX} && ./configure --prefix=${PREFIX} \
-		--datarootdir=${PREFIX} \
+	cd ${AUCTEX} && ./configure --prefix=${DESTDIR} \
+		--datarootdir=${DESTDIR} \
 		--without-texmf-dir \
-		--with-lispdir=${PREFIX}/site-lisp \
+		--with-lispdir=${SITELISP} \
 		--with-emacs=${EMACS}
 	make -C ${AUCTEX}
 	make -C ${AUCTEX} install
-	mv ${PREFIX}/site-lisp/auctex/doc/preview.* ${PREFIX}/doc/auctex
-	rmdir ${PREFIX}/site-lisp/auctex/doc
+	mv ${SITELISP}/auctex/doc/preview.* ${DESTDIR}/doc/auctex
+	rmdir ${SITELISP}/auctex/doc
 	@echo ----- Done making AUCTeX
 
 exe :
