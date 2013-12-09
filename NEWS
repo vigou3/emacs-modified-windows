@@ -1,7 +1,7 @@
 === GNU Emacs for Windows Modified ===
 
-Version xxx (yyy)
-==========================================
+Version 24.3-modified-4 (8 December 2013)
+=========================================
 
 NEW FEATURE
 
@@ -15,6 +15,7 @@ o Inno Setup installer's AppId key was not correctly updated between
 
 UPDATES
 
+o ESS 13.09-1
 
 
 Version 24.3-modified-3 (27 September 2013)
