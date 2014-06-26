@@ -1,6 +1,6 @@
 # Makefile for GNU Emacs for Windows Modified
 
-# Copyright (C) 2011 Vincent Goulet
+# Copyright (C) 2014 Vincent Goulet
 
 # Author: Vincent Goulet
 
@@ -34,7 +34,7 @@ INFODIR=${DESTDIR}/info
 
 ESS=ess-${ESSVERSION}
 AUCTEX=auctex-${AUCTEXVERSION}
-ORG=org-${ORGVERSION}
+#ORG=org-${ORGVERSION}
 
 all : emacs
 
@@ -61,12 +61,21 @@ dir :
 	    ${INFOBEFOREEN}.in > ${TMPDIR}/${INFOBEFOREEN}
 	sed -e '/^(defconst/s/<DISTVERSION>/${DISTVERSION}/' \
 	    version-modified.el.in > version-modified.el
-	cp -p version-modified.el ${SITELISP}/
 	cp -dpr lib ${TMPDIR}
 	cp -dpr aspell ${TMPDIR}
-	cp -a default.el htmlize.el htmlize-view.el InfoAfter*.txt \
-	   framepop.el NEWS psvn.el site-start.el version-modified.el \
-	   w32-winprint.el \
+	cp -a framepop.el ${TMPDIR}/
+	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/framepop.el
+	cp -a htmlize.el ${TMPDIR}/
+	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/htmlize.el
+	cp -a htmlize-view.el ${TMPDIR}/
+	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/htmlize-view.el
+	cp -a psvn.el ${TMPDIR}/
+	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/psvn.el
+	cp -a version-modified.el ${TMPDIR}/
+	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/version-modified.el
+	cp -a w32-winprint.el ${TMPDIR}/
+	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/w32-winprint.el
+	cp -a default.el site-start.el InfoAfter*.txt NEWS \
            ${TMPDIR}
 
 ess :
@@ -78,13 +87,13 @@ ess :
 	if [ -f ${SITELISP}/ess-site.el ]; then rm ${SITELISP}/ess-site.el; fi
 	@echo ----- Done making ESS
 
-org :
-	@echo ----- Making org...
-	${MAKE} EMACS=${EMACS} -C ${ORG} all
-	${MAKE} EMACS=${EMACS} DESTDIR="" lispdir=${LISPDIR}/org \
-	        datadir=${ETCDIR}/org infodir=${INFODIR} -C ${ORG} install
-	mkdir ${DOCDIR}/org && cp -a ${ORG}/doc/*.pdf ${DOCDIR}/org/
-	@echo ----- Done making org
+# org :
+# 	@echo ----- Making org...
+# 	${MAKE} EMACS=${EMACS} -C ${ORG} all
+# 	${MAKE} EMACS=${EMACS} DESTDIR="" lispdir=${LISPDIR}/org \
+# 	        datadir=${ETCDIR}/org infodir=${INFODIR} -C ${ORG} install
+# 	mkdir ${DOCDIR}/org && cp -a ${ORG}/doc/*.pdf ${DOCDIR}/org/
+# 	@echo ----- Done making org
 
 auctex :
 	@echo ----- Making AUCTeX...
@@ -98,6 +107,17 @@ auctex :
 	mv ${SITELISP}/auctex/doc/preview.* ${DESTDIR}/doc/auctex
 	rmdir ${SITELISP}/auctex/doc
 	@echo ----- Done making AUCTeX
+
+polymode :
+	@echo ----- copying markdown-mode and polymode files...
+	cp -p markdown-mode.el ${TMPDIR}/
+	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/markdown-mode.el
+	mkdir -p ${SITELISP}/polymode
+	cp -p polymode/*.el ${SITELISP}/polymode
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/polymode/*.el
+	mkdir -p ${DOCDIR}/polymode
+	cp -p polymode/*.md ${DOCDIR}/polymode
+	@echo ----- Done installing polymode
 
 exe :
 	@echo ----- Building the archive...
