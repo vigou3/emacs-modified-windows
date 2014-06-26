@@ -5,6 +5,7 @@ include the following add-on packages:
 
 * ESS <ESSVERSION>;
 * AUCTeX <AUCTEXVERSION>;
+* polymode <POLYMODEVERSION> and markdown-mode <MARKDOWNMODEVERSION>;
 * Aspell 0.50.3, a spell checked well integrated withﬂ Emacs;
 * English (version 0.50-2-3), French (version 0.50-3-3), German
   (version 0.50-2-3) and Spanish (version 0.50-2-3) dictionnaries for
