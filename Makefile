@@ -19,6 +19,7 @@ EMACSDIR=${TMPDIR}/emacs-${EMACSVERSION}
 
 PREFIX=${EMACSDIR}
 EMACS=${PREFIX}/bin/emacs.exe
+EMACSBATCH = $(EMACS) -batch -no-site-file -no-init-file
 INNOSCRIPT=emacs-modified.iss
 INNOSETUP=c:/progra~1/innose~1/iscc.exe
 INFOBEFOREFR=InfoBefore-fr.txt
@@ -38,14 +39,32 @@ AUCTEX=auctex-${AUCTEXVERSION}
 
 all : emacs
 
-.PHONY : emacs dir ess auctex exe www clean
+.PHONY : emacs dir ess auctex polymode exe www clean
 
-emacs : dir ess auctex exe
+emacs : dir ess auctex polymode exe
 
 dir :
 	@echo ----- Creating the application in temporary directory...
 	if [ -d ${TMPDIR} ]; then rm -rf ${TMPDIR}; fi
 	unzip -q ${ZIPFILE} -d ${TMPDIR}
+	cp -p lib/* ${DESTDIR}/bin
+	cp -dpr aspell ${DESTDIR}
+	cp -p default.el ${SITELISP}/
+	cp -p site-start.el ${SITELISP}/
+	sed -e '/^(defconst/s/<DISTVERSION>/${DISTVERSION}/' \
+	    version-modified.el.in > version-modified.el
+	cp -p version-modified.el ${SITELISP}/
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/version-modified.el
+	cp -p framepop.el ${SITELISP}/
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
+	cp -p w32-winprint.el ${SITELISP}/
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/framepop.el
+	cp -p htmlize.el ${SITELISP}/
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/htmlize.el
+	cp -p htmlize-view.el ${SITELISP}/
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/htmlize-view.el
+	cp -p psvn.el ${SITELISP}/
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/w32-winprint.el
 	sed -e '/^AppVerName/s/<VERSION>/${VERSION}/'           \
 	    -e '/^AppId/s/<VERSION>/${VERSION}/'  		\
 	    -e '/^Default/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
@@ -55,28 +74,15 @@ dir :
 	    ${INNOSCRIPT}.in > ${TMPDIR}/${INNOSCRIPT}
 	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
 	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
-	    ${INFOBEFOREFR}.in > ${TMPDIR}/${INFOBEFOREFR}
+	    -e '/^* polymode/s/<POLYMODEVERSION>/${POLYMODEVERSION}/' \
+	    -e '/^* polymode/s/<MARKDOWNMODEVERSION>/${MARKDOWNMODEVERSION}/' \
+		    ${INFOBEFOREFR}.in > ${TMPDIR}/${INFOBEFOREFR}
 	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
 	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
+	    -e '/^* polymode/s/<POLYMODEVERSION>/${POLYMODEVERSION}/' \
+	    -e '/^* polymode/s/<MARKDOWNMODEVERSION>/${MARKDOWNMODEVERSION}/' \
 	    ${INFOBEFOREEN}.in > ${TMPDIR}/${INFOBEFOREEN}
-	sed -e '/^(defconst/s/<DISTVERSION>/${DISTVERSION}/' \
-	    version-modified.el.in > version-modified.el
-	cp -dpr lib ${TMPDIR}
-	cp -dpr aspell ${TMPDIR}
-	cp -a framepop.el ${TMPDIR}/
-	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/framepop.el
-	cp -a htmlize.el ${TMPDIR}/
-	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/htmlize.el
-	cp -a htmlize-view.el ${TMPDIR}/
-	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/htmlize-view.el
-	cp -a psvn.el ${TMPDIR}/
-	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/psvn.el
-	cp -a version-modified.el ${TMPDIR}/
-	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/version-modified.el
-	cp -a w32-winprint.el ${TMPDIR}/
-	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/w32-winprint.el
-	cp -a default.el site-start.el InfoAfter*.txt NEWS \
-           ${TMPDIR}
+	cp -p InfoAfter*.txt NEWS ${TMPDIR}
 
 ess :
 	@echo ----- Making ESS...
@@ -110,8 +116,8 @@ auctex :
 
 polymode :
 	@echo ----- copying markdown-mode and polymode files...
-	cp -p markdown-mode.el ${TMPDIR}/
-	$(EMACSBATCH) -f batch-byte-compile ${TMPDIR}/markdown-mode.el
+	cp -p markdown-mode.el ${SITELISP}/
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/markdown-mode.el
 	mkdir -p ${SITELISP}/polymode
 	cp -p polymode/*.el ${SITELISP}/polymode
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/polymode/*.el

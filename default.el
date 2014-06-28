@@ -2,7 +2,7 @@
 ;;; Used mainly to load custom extensions.
 ;;; (Loaded *after* any user and site configuration files)
 
-;; Copyright (C) 2012 Vincent Goulet
+;; Copyright (C) 2014 Vincent Goulet
 
 ;; Author: Vincent Goulet
 
@@ -45,12 +45,6 @@
 ;; in the minibuffer until the call is closed with ')'.
 (require 'ess-site)
 
-;;;
-;;; org
-;;;
-;; Load recent version of org-mode.
-(require 'org-install)
-
 
 ;;;
 ;;; AUCTeX
@@ -61,6 +55,16 @@
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 (require 'tex-mik)
+
+
+;;;
+;;; polymode
+;;;
+;; Basic configuration of polymode and activation of the R and
+;; markdown specific bundles.
+(require 'polymode-configuration)
+(require 'poly-R)
+(require 'poly-markdown)
 
 
 ;;;
