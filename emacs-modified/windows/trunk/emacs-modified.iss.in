@@ -47,20 +47,20 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "emacs-<EMACSVERSION>\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "lib\*"; DestDir: "{app}\bin"; Excludes: ".svn"; Flags: ignoreversion
-Source: "aspell\*"; DestDir: "{app}\aspell"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "htmlize.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
-Source: "htmlize.elc"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
-Source: "htmlize-view.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
-Source: "htmlize-view.elc"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
-Source: "markdown-mode.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
-Source: "markdown-mode.elc"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
-Source: "psvn.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
-Source: "psvn.elc"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
-Source: "w32-winprint.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
-Source: "w32-winprint.elc"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
-Source: "default.el"; DestDir: "{app}\site-lisp"; AfterInstall: AppendPaths('{app}'); Flags: ignoreversion
-Source: "site-start.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
+;Source: "lib\*"; DestDir: "{app}\bin"; Excludes: ".svn"; Flags: ignoreversion
+;Source: "aspell\*"; DestDir: "{app}\aspell"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
+;Source: "htmlize.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
+;Source: "htmlize.elc"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
+;Source: "htmlize-view.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
+;Source: "htmlize-view.elc"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
+;Source: "markdown-mode.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
+;Source: "markdown-mode.elc"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
+;Source: "psvn.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
+;Source: "psvn.elc"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
+;Source: "w32-winprint.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
+;Source: "w32-winprint.elc"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
+;Source: "default.el"; DestDir: "{app}\site-lisp"; AfterInstall: AppendPaths('{app}'); Flags: ignoreversion
+;Source: "site-start.el"; DestDir: "{app}\site-lisp"; Flags: ignoreversion
 Source: "InfoAfter-en.txt"; DestDir: "{app}"; DestName: "Updates-en.txt"; Flags: ignoreversion
 Source: "InfoAfter-fr.txt"; DestDir: "{app}"; DestName: "Updates-fr.txt"; Flags: ignoreversion
 Source: "InfoBefore-en.txt"; DestDir: "{app}"; DestName: "Modifications-en.txt"; Flags: ignoreversion
