@@ -5,8 +5,10 @@ Version 24.3-modified-5 ()
 
 NEW FEATURES
 
-o polymode and markdown-mode are now included in the distribution.
-  By default, polymode is active for R and markdown modes.
+o polymode and markdown-mode are now included in the distribution. By
+  default, polymode is active for R mode and automaically loaded for
+  the following file extensions: .Snw, .Rnw, .Rmd, .rapport, .Rhtml,
+  .Rbrew, .Rcpp, .cppR.
 
 o All .el files (except configuration files default.el and
   site-start.el) are now also distributed byte-compiled.
