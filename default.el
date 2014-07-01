@@ -60,11 +60,16 @@
 ;;;
 ;;; polymode
 ;;;
-;; Basic configuration of polymode and activation of the R and
-;; markdown specific bundles.
-(require 'polymode-configuration)
+;; Activation of the R specific bundle and basic configuration.
+(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+(add-to-list 'auto-mode-alist '("\\.rapport" . poly-rapport-mode))
+(add-to-list 'auto-mode-alist '("\\.Rhtml" . poly-html+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rbrew" . poly-brew+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rcpp" . poly-r+c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cppR" . poly-c++r-mode))
 (require 'poly-R)
-(require 'poly-markdown)
 
 
 ;;;
