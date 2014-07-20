@@ -22,7 +22,7 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-(defconst emacs-modified-version <DISTVERSION> 
+(defconst emacs-modified-version '<DISTVERSION> 
   "Revision number of this version of Emacs Modified")
 
 (defun emacs-modified-version (&optional here)
@@ -30,7 +30,7 @@
 If optional argument HERE is non-nil, insert string at point."
   (interactive "P")
   (let ((version-string
-         (format "GNU Emacs %d.%d-modified-%d"
+         (format "GNU Emacs %d.%d-modified-%s"
                  emacs-major-version
                  emacs-minor-version
                  emacs-modified-version)))
