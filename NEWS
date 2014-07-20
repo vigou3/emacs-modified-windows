@@ -10,6 +10,9 @@ o polymode and markdown-mode are now included in the distribution. By
   the following file extensions: .Snw, .Rnw, .Rmd, .rapport, .Rhtml,
   .Rbrew, .Rcpp, .cppR.
 
+o org mode (latest stable release at build time) is reintroduced in
+  the distribution.
+
 o All .el files (except configuration files default.el and
   site-start.el) are now also distributed byte-compiled.
 
