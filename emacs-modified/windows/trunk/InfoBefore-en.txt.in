@@ -5,6 +5,7 @@ include the following add-on packages:
 
 * ESS <ESSVERSION>;
 * AUCTeX <AUCTEXVERSION>;
+* org <ORGVERSION>;
 * polymode <POLYMODEVERSION> and markdown-mode <MARKDOWNMODEVERSION>;
 * Aspell 0.50.3, a spell checked well integrated withﬂ Emacs;
 * English (version 0.50-2-3), French (version 0.50-3-3), German
@@ -18,6 +19,8 @@ include the following add-on packages:
 * psvn.el, to add Subversion support to VC;
 * framepop.el, to obtain temporary buffers in separate frames;
 * site-start.el, to make everything work.
+
+Note that polymode is made active for R mode by default.
 
 Please direct questions or comments on this modified version of Emacs to
 Vincent Goulet.
