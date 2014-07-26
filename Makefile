@@ -28,20 +28,19 @@ INFOBEFOREEN=InfoBefore-en.txt
 # To override ESS variables defined in Makeconf
 DESTDIR=${PREFIX}
 SITELISP=${DESTDIR}/site-lisp
-#LISPDIR=${DESTDIR}/site-lisp
 ETCDIR=${DESTDIR}/etc
 DOCDIR=${DESTDIR}/doc
 INFODIR=${DESTDIR}/info
 
 ESS=ess-${ESSVERSION}
 AUCTEX=auctex-${AUCTEXVERSION}
-#ORG=org-${ORGVERSION}
+ORG=org-${ORGVERSION}
 
 all : emacs
 
-.PHONY : emacs dir ess auctex polymode exe www clean
+.PHONY : emacs dir ess auctex org polymode exe www clean
 
-emacs : dir ess auctex polymode exe
+emacs : dir ess auctex org polymode exe
 
 dir :
 	@echo ----- Creating the application in temporary directory...
@@ -49,40 +48,36 @@ dir :
 	unzip -q ${ZIPFILE} -d ${TMPDIR}
 	cp -p lib/* ${DESTDIR}/bin
 	cp -dpr aspell ${DESTDIR}
-	cp -p default.el ${SITELISP}/
 	cp -p site-start.el ${SITELISP}/
 	sed -e '/^(defconst/s/<DISTVERSION>/${DISTVERSION}/' \
 	    version-modified.el.in > version-modified.el
 	cp -p version-modified.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/version-modified.el
 	cp -p framepop.el ${SITELISP}/
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/framepop.el
+	cp -p psvn.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
 	cp -p w32-winprint.el ${SITELISP}/
-	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/framepop.el
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/w32-winprint.el
 	cp -p htmlize.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/htmlize.el
 	cp -p htmlize-view.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/htmlize-view.el
-	cp -p psvn.el ${SITELISP}/
-	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/w32-winprint.el
 	sed -e '/^AppVerName/s/<VERSION>/${VERSION}/'           \
 	    -e '/^AppId/s/<VERSION>/${VERSION}/'  		\
 	    -e '/^Default/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
 	    -e '/^LicenseFile/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
 	    -e '/^OutputBaseFilename/s/<DISTNAME>/${DISTNAME}/' \
 	    -e '/^Source/s/<EMACSVERSION>/${EMACSVERSION}/' \
-	    ${INNOSCRIPT}.in > ${TMPDIR}/${INNOSCRIPT}
+	    ${INNOSCRIPT}.in > ${INNOSCRIPT}
 	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
 	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
+	    -e '/^* org/s/<ORGVERSION>/${ORGVERSION}/' \
 	    -e '/^* polymode/s/<POLYMODEVERSION>/${POLYMODEVERSION}/' \
 	    -e '/^* polymode/s/<MARKDOWNMODEVERSION>/${MARKDOWNMODEVERSION}/' \
-		    ${INFOBEFOREFR}.in > ${TMPDIR}/${INFOBEFOREFR}
-	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
-	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
-	    -e '/^* polymode/s/<POLYMODEVERSION>/${POLYMODEVERSION}/' \
-	    -e '/^* polymode/s/<MARKDOWNMODEVERSION>/${MARKDOWNMODEVERSION}/' \
-	    ${INFOBEFOREEN}.in > ${TMPDIR}/${INFOBEFOREEN}
-	cp -p InfoAfter*.txt NEWS ${TMPDIR}
+	    -e '/^* psvn/s/<PSVNVERSION>/${PSVNVERSION}/' \
+		    README-Modified.txt.in > README-Modified.txt
+	cp -p default.el README-Modified.txt NEWS ${INNOSCRIPT} ${TMPDIR}
 
 ess :
 	@echo ----- Making ESS...
@@ -92,14 +87,6 @@ ess :
 	        INFODIR=${INFODIR} -C ${ESS} install
 	if [ -f ${SITELISP}/ess-site.el ]; then rm ${SITELISP}/ess-site.el; fi
 	@echo ----- Done making ESS
-
-# org :
-# 	@echo ----- Making org...
-# 	${MAKE} EMACS=${EMACS} -C ${ORG} all
-# 	${MAKE} EMACS=${EMACS} DESTDIR="" lispdir=${LISPDIR}/org \
-# 	        datadir=${ETCDIR}/org infodir=${INFODIR} -C ${ORG} install
-# 	mkdir ${DOCDIR}/org && cp -a ${ORG}/doc/*.pdf ${DOCDIR}/org/
-# 	@echo ----- Done making org
 
 auctex :
 	@echo ----- Making AUCTeX...
@@ -113,6 +100,14 @@ auctex :
 	mv ${SITELISP}/auctex/doc/preview.* ${DESTDIR}/doc/auctex
 	rmdir ${SITELISP}/auctex/doc
 	@echo ----- Done making AUCTeX
+
+org :
+	@echo ----- Making org...
+	${MAKE} EMACS=${EMACS} -C ${ORG} all
+	${MAKE} EMACS=${EMACS} lispdir=${SITELISP}/org \
+	        datadir=${ETCDIR}/org infodir=${INFODIR} -C ${ORG} install
+	mkdir -p ${DOCDIR}/org && cp -p ${ORG}/doc/*.pdf ${DOCDIR}/org/
+	@echo ----- Done making org
 
 polymode :
 	@echo ----- copying markdown-mode and polymode files...

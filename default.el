@@ -45,18 +45,6 @@
 ;; in the minibuffer until the call is closed with ')'.
 (require 'ess-site)
 
-
-;;;
-;;; AUCTeX
-;;;
-;; We assume that MiKTeX (http://www.miktek.org) is used for
-;; TeX/LaTeX. Otherwise, change the (require ...) line as per the
-;; AUCTeX documentation.
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
-(require 'tex-mik)
-
-
 ;;;
 ;;; polymode
 ;;;
@@ -71,7 +59,6 @@
 (add-to-list 'auto-mode-alist '("\\.cppR" . poly-c++r-mode))
 (require 'poly-R)
 
-
 ;;;
 ;;; SVN
 ;;;
@@ -83,7 +70,11 @@
 (add-to-list 'vc-handled-backends 'SVN)
 (require 'psvn)
 
-
 ;;;
-;;; Use Aspell for spell checking
+;;; AUCTeX
 ;;;
+;; We assume that MiKTeX (http://www.miktek.org) is used for
+;; TeX/LaTeX. Otherwise, change the (require ...) line as per the
+;; AUCTeX documentation.
+(load "auctex.el" nil t t)
+(load "preview-latex.el" nil t t)

@@ -19,6 +19,16 @@ o All .el files (except configuration files default.el and
 UPDATES
 
 
+USER VISIBLE CHANGES
+
+o Streamlined installation procedure: no more information screens at
+  the beginning and end of the setup wizard. These have been replaced
+  by an option to see the README-Modified file containing the
+  inforation that was formerly displayed.
+
+o Configuration of Emacs for MIKTeX is now an option in the setup
+  wizard (it was done by default before).
+
 
 Version 24.3-modified-4 (8 December 2013)
 =========================================
