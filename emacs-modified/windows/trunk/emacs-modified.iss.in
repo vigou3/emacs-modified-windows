@@ -48,8 +48,8 @@ CPDescription=Are you using the MIKTeX distribution?
 french.CPDescription=Utilisez-vous la distribution MIKTeX?
 CPSubCaption=Emacs can be configured to better work with the MIKTeX distribution.
 french.CPSubCaption=Emacs peut être configuré pour mieux fonctionner avec la distribution MIKTeX.
-CPOption0=Yes, configure Emacs to work with MIKTeX
-french.CPOption0=Oui, configurer Emacs pour fonctionner avec MIKTeX
+CPOption0=Yes, configure Emacs for MIKTeX
+french.CPOption0=Oui, configurer Emacs pour MIKTeX
 CPOption1=No, use the standard configuration (compatible with TeX Live)
 french.CPOption1=Non, utiliser la configuration standard (compatible avec TeX Live)
 
@@ -61,7 +61,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Filename: "{app}\README-Modified.txt"; Description: "{cm:ReadMe}"; Flags: postinstall shellexec skipifsilent
 
 [Files]
-Source: "emacs-<EMACSVERSION>\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "emacs-<EMACSVERSION>\bin\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "default.el"; DestDir: "{app}\site-lisp"; AfterInstall: DefaultConfig('{app}'); Flags: ignoreversion
 Source: "README-Modified.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "NEWS"; DestDir: "{app}"; Flags: ignoreversion
@@ -111,6 +111,35 @@ begin
   SetPreviousData(PreviousDataKey, 'Distribution', Distribution);
 end;
 
+function ReplaceStringInFile(const FileName: String; const FromStr, ToStr: String; const Append: Boolean): Boolean;
+var
+  I: Integer;
+  Line: String;
+  StrPos: Integer;
+  FileLines: TStringList;
+begin
+  Result := False;
+  FileLines := TStringList.Create;
+  if Append then
+    ToStr := FromStr + #13#10 + ToStr;
+  try
+    FileLines.LoadFromFile(FileName);
+    for I := 0 to FileLines.Count - 1 do
+    begin
+      Line := FileLines[I];
+      StrPos := Pos(FromStr, Line);
+      if StrPos > 0 then
+      begin
+        StringChangeEx(Line, FromStr, ToStr, True);
+        FileLines[I] := Line;
+        FileLines.SaveToFile(FileName);
+      end;
+    end;
+  finally
+    FileLines.Free;
+  end;
+end;
+
 procedure DefaultConfig(S: String);
 var
   File: String;
@@ -121,7 +150,7 @@ begin
   StringChangeEx(S, '\', '/', True);
 
   if (ConfigPage.SelectedValueIndex = 0) then
-      SaveStringToFile(File, '(require ''tex-mik)', True);
+      ReplaceStringInFile(File, '(load "preview-latex.el" nil t t)', '(require ''tex-mik)', True);
 
-  SaveStringToFile(File, #13#10#13#10 + ';;;' + #13#10 + ';;; Use Aspell for spell checking' + #13#10 + ';;;' + #13#10 + '(setq-default ispell-program-name "' + S + '/aspell/bin/aspell.exe")' + #13#10#13#10 + ';;;' + #13#10 + ';;; Other site extensions' + #13#10 + ';;;' + #13#10 + ';; Emacs will load all ".el" files in "' + #13#10 + ';; ' + S + '/site-lisp/site-start.d/"' + #13#10 + ';; on startup.' + #13#10 + '(mapc ''load' + #13#10 + '      (directory-files "' + S + '/site-lisp/site-start.d" t "\\.el\\''"))', True);
+  ReplaceStringInFile(File, '<EMACSDIR>', S, False);
 end;

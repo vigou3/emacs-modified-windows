@@ -30,7 +30,6 @@
 ;; Define variable and function 'emacs-modified-version'
 (require 'version-modified)
 
-
 ;;;
 ;;; Easier printing
 ;;;
@@ -44,6 +43,13 @@
 ;; Load ESS and activate the nifty feature showing function arguments
 ;; in the minibuffer until the call is closed with ')'.
 (require 'ess-site)
+
+;;;
+;;; AUCTeX
+;;;
+;; Load AUCTeX and preview-latex.
+(load "auctex.el" nil t t)
+(load "preview-latex.el" nil t t)
 
 ;;;
 ;;; polymode
@@ -71,10 +77,15 @@
 (require 'psvn)
 
 ;;;
-;;; AUCTeX
+;;; Use Aspell for spell checking
 ;;;
-;; We assume that MiKTeX (http://www.miktek.org) is used for
-;; TeX/LaTeX. Otherwise, change the (require ...) line as per the
-;; AUCTeX documentation.
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
+(setq-default ispell-program-name "<EMACSDIR>/aspell/bin/aspell.exe")
+
+;;;
+;;; Other extensions
+;;;
+;; Emacs will load all ".el" files in 
+;;   <EMACSDIR>/site-lisp/site-start.d/
+;; on startup.
+(mapc 'load
+      (directory-files "<EMACSDIR>/site-lisp/site-start.d" t "\\.el\\'"))
