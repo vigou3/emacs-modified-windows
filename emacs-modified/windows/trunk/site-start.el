@@ -33,7 +33,6 @@
 (show-paren-mode t)			; match parentheses
 (add-hook 'text-mode-hook 'turn-on-auto-fill) ; wrap long lines in text mode
 
-
 ;;;
 ;;; ESS
 ;;;
@@ -58,7 +57,6 @@
 ;(setq-default inferior-R-program-name
 ;              "c:/program files/r/r-2.7.1/bin/rterm.exe")
 
-
 ;;;
 ;;; AUCTeX
 ;;;
@@ -73,7 +71,6 @@
 ;; by AUCTeX.
 (setq TeX-file-extensions
       '("Rnw" "rnw" "Snw" "snw" "tex" "sty" "cls" "ltx" "texi" "texinfo" "dtx"))
-
 
 ;;;
 ;;; SVN
