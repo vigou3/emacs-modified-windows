@@ -51,12 +51,6 @@
                          (ess-nuke-trailing-whitespace)))
 	     (setq ess-nuke-trailing-whitespace-p t)))
 
-;; Path to R executable. Uncomment and edit as needed if R is
-;; installed in such an unusual place that ESS can't find it. (And
-;; then keep updating with each R update!)
-;(setq-default inferior-R-program-name
-;              "c:/program files/r/r-2.7.1/bin/rterm.exe")
-
 ;;;
 ;;; AUCTeX
 ;;;
