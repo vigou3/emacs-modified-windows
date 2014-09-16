@@ -1,5 +1,22 @@
 === GNU Emacs for Windows Modified ===
 
+Version -modified- ()
+===========================================
+
+NEW FEATURES
+
+
+UPDATES
+
+
+USER VISIBLE CHANGES
+
+o The icon provided in the program group to edit the site
+  configuration file has been deleted. It no longer served any good
+  purpose now that ESS is able to locate all (sensibly located)
+  versions of R on the system.
+
+
 Version 24.3-modified-5 (14 September 2014)
 ===========================================
 
