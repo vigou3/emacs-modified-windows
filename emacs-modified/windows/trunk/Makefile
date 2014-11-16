@@ -132,6 +132,7 @@ www :
 	cd ${WWWSRC}/htdocs/s/emacs/ &&                       \
 		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
 		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/g' \
+		    -e 's/<ORGVERSION>/${ORGVERSION}/g'     \
 		    -e 's/<PSVNVERSION>/${PSVNVERSION}/g'     \
 		    -e 's/<VERSION>/${VERSION}/g'             \
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
@@ -140,15 +141,16 @@ www :
 	cd ${WWWSRC}/htdocs/en/s/emacs/ &&                    \
 		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
 		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/g' \
+		    -e 's/<ORGVERSION>/${ORGVERSION}/g'     \
 		    -e 's/<PSVNVERSION>/${PSVNVERSION}/g'     \
 		    -e 's/<VERSION>/${VERSION}/g'             \
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
 		    windows.html.in > windows.html
 	cp -p ${WWWSRC}/htdocs/en/s/emacs/windows.html ${WWWLIVE}/htdocs/en/s/emacs/
-	cd ${WWWLIVE} && ls -lRa > ${WWWSRC}/ls-lRa
-	cd ${WWWSRC} && svn ci -m "Update for Emacs Modified for Windows version ${VERSION}"
-	svn ci -m "Version ${VERSION}"
-	svn cp ${REPOS}/trunk ${REPOS}/tags/${DISTNAME} -m "Tag version ${VERSION}"
+	# cd ${WWWLIVE} && ls -lRa > ${WWWSRC}/ls-lRa
+	# cd ${WWWSRC} && svn ci -m "Update for Emacs Modified for Windows version ${VERSION}"
+	# svn ci -m "Version ${VERSION}"
+	# svn cp ${REPOS}/trunk ${REPOS}/tags/${DISTNAME} -m "Tag version ${VERSION}"
 	@echo ----- Done updating web site
 
 clean :
