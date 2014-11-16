@@ -8,13 +8,13 @@
 # http://vgoulet.act.ulaval.ca/emacs
 
 # GNU and this distribution version number
-EMACSVERSION=24.3
-DISTVERSION=5
+EMACSVERSION=24.4
+DISTVERSION=1
 
 # Extensions version numbers
 ESSVERSION=14.09
 AUCTEXVERSION=11.87
-ORGVERSION=8.2.7c
+ORGVERSION=8.2.10
 PSVNVERSION=1573006
 MARKDOWNMODEVERSION=2.0
 POLYMODEVERSION=1.0
@@ -22,6 +22,7 @@ POLYMODEVERSION=1.0
 # Version strings
 VERSION=${EMACSVERSION}-modified-${DISTVERSION}
 DISTNAME=emacs-${VERSION}
+ARCH=i686-pc-mingw32
 
 # WWW site sources and live share mount point
 WWWSRC=/c/www
