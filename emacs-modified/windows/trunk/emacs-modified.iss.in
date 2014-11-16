@@ -8,7 +8,7 @@ AppSupportURL=http://vgoulet.act.ulaval.ca/emacs
 AppUpdatesURL=http://vgoulet.act.ulaval.ca/emacs
 DefaultDirName={pf}\GNU Emacs <EMACSVERSION>
 DefaultGroupName=GNU Emacs <EMACSVERSION>
-LicenseFile=emacs-<EMACSVERSION>\etc\COPYING
+LicenseFile=share\emacs\<EMACSVERSION>\etc\COPYING
 OutputDir=..
 OutputBaseFilename=<DISTNAME>
 UninstallDisplayIcon={app}\bin\runemacs.exe
@@ -58,13 +58,13 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Run]
-Filename: "{app}\README-Modified.txt"; Description: "{cm:ReadMe}"; Flags: postinstall shellexec skipifsilent
+Filename: "{app}\share\emacs\<EMACSVERSION>\README-Modified.txt"; Description: "{cm:ReadMe}"; Flags: postinstall shellexec skipifsilent
 
 [Files]
-Source: "emacs-<EMACSVERSION>\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "default.el"; DestDir: "{app}\site-lisp"; AfterInstall: DefaultConfig('{app}'); Flags: ignoreversion
-Source: "README-Modified.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "NEWS"; DestDir: "{app}"; Flags: ignoreversion
+Source: "*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "default.el"; DestDir: "{app}\share\emacs\site-lisp"; AfterInstall: DefaultConfig('{app}'); Flags: ignoreversion
+Source: "README-Modified.txt"; DestDir: "{app}\share\emacs\<EMACSVERSION>"; Flags: ignoreversion
+Source: "NEWS"; DestDir: "{app}\share\emacs\<EMACSVERSION>"; Flags: ignoreversion
 
 [Dirs]
 Name: "{app}\site-lisp\site-start.d"

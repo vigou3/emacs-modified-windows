@@ -85,7 +85,7 @@
 ;;; Other extensions
 ;;;
 ;; Emacs will load all ".el" files in 
-;;   <EMACSDIR>/site-lisp/site-start.d/
+;;   <EMACSDIR>/share/emacs/site-lisp/site-start.d/
 ;; on startup.
 (mapc 'load
-      (directory-files "<EMACSDIR>/site-lisp/site-start.d" t "\\.el\\'"))
+      (directory-files "<EMACSDIR>/share/emacs/site-lisp/site-start.d" t "\\.el\\'"))
