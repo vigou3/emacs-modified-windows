@@ -1,13 +1,13 @@
 === GNU Emacs for Windows Modified ===
 
-Version -modified- ()
-===========================================
-
-NEW FEATURES
-
+Version 24.4-modified-1 (16 November 2014)
+==========================================
 
 UPDATES
 
+o GNU Emacs 24.4 released October 20, 2014.
+
+o org 8.2.10
 
 USER VISIBLE CHANGES
 
@@ -15,6 +15,13 @@ o The icon provided in the program group to edit the site
   configuration file has been deleted. It no longer served any good
   purpose now that ESS is able to locate all (sensibly located)
   versions of R on the system.
+
+o The directory structure in the Emacs installation directory changed
+  significantly upstream. Most files are now located in the
+  ...\share\emacs directory.
+
+o Due to difficulty building the Org manuals on Windows, the PDF
+  manual has been replaced in the distribution by the HTML version.
 
 
 Version 24.3-modified-5 (14 September 2014)

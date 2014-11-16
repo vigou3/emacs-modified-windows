@@ -36,7 +36,7 @@ into the ...\site-lisp\site-start.d\ folder.
 
 See http://aspell.net/win32/ to install other dictionnaries for Aspell.
 
-See http://gnuwin32.sourceforge.net/ to install other Unix
+See http://sourceforge.net/projects/ezwinports/ to install other Unix
 applications sometimes required by Emacs (e.g. diff, gzip).
 
 preview-latex requires an installation of Ghostscript
