@@ -14,8 +14,8 @@
 include ./Makeconf
 
 TMPDIR=${CURDIR}/tmpdir
-ZIPFILE=emacs-${EMACSVERSION}-bin-i386.zip
-EMACSDIR=${TMPDIR}/emacs-${EMACSVERSION}
+ZIPFILE=emacs-${EMACSVERSION}-bin-${ARCH}.zip
+EMACSDIR=${TMPDIR}
 
 PREFIX=${EMACSDIR}
 EMACS=${PREFIX}/bin/emacs.exe
@@ -25,10 +25,9 @@ INNOSETUP=c:/progra~1/innose~1/iscc.exe
 INFOBEFOREFR=InfoBefore-fr.txt
 INFOBEFOREEN=InfoBefore-en.txt
 
-# To override ESS variables defined in Makeconf
-DESTDIR=${PREFIX}
-SITELISP=${DESTDIR}/site-lisp
-ETCDIR=${DESTDIR}/etc
+DESTDIR=${PREFIX}/share/
+SITELISP=${DESTDIR}/emacs/site-lisp
+ETCDIR=${DESTDIR}/emacs/etc
 DOCDIR=${DESTDIR}/doc
 INFODIR=${DESTDIR}/info
 
@@ -46,8 +45,8 @@ dir :
 	@echo ----- Creating the application in temporary directory...
 	if [ -d ${TMPDIR} ]; then rm -rf ${TMPDIR}; fi
 	unzip -q ${ZIPFILE} -d ${TMPDIR}
-	cp -p lib/* ${DESTDIR}/bin
-	cp -dpr aspell ${DESTDIR}
+	cp -p lib/* ${PREFIX}/bin
+	cp -dpr aspell ${PREFIX}
 	cp -p site-start.el ${SITELISP}/
 	sed -e '/^(defconst/s/<DISTVERSION>/${DISTVERSION}/' \
 	    version-modified.el.in > version-modified.el
@@ -68,7 +67,8 @@ dir :
 	    -e '/^Default/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
 	    -e '/^LicenseFile/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
 	    -e '/^OutputBaseFilename/s/<DISTNAME>/${DISTNAME}/' \
-	    -e '/^Source/s/<EMACSVERSION>/${EMACSVERSION}/' \
+	    -e '/^Filename/s/<EMACSVERSION>/${EMACSVERSION}/' \
+	    -e '/^Source/s/<EMACSVERSION>/${EMACSVERSION}/g' \
 	    ${INNOSCRIPT}.in > ${INNOSCRIPT}
 	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
 	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
@@ -90,14 +90,12 @@ ess :
 
 auctex :
 	@echo ----- Making AUCTeX...
-	cd ${AUCTEX} && ./configure --prefix=${DESTDIR} \
-		--datarootdir=${DESTDIR} \
+	cd ${AUCTEX} && ./configure --prefix=${PREFIX} \
 		--without-texmf-dir \
-		--with-lispdir=${SITELISP} \
 		--with-emacs=${EMACS}
 	make -C ${AUCTEX}
 	make -C ${AUCTEX} install
-	mv ${SITELISP}/auctex/doc/preview.* ${DESTDIR}/doc/auctex
+	mv ${SITELISP}/auctex/doc/preview.* ${DOCDIR}/auctex
 	rmdir ${SITELISP}/auctex/doc
 	@echo ----- Done making AUCTeX
 
@@ -106,7 +104,7 @@ org :
 	${MAKE} EMACS=${EMACS} -C ${ORG} all
 	${MAKE} EMACS=${EMACS} lispdir=${SITELISP}/org \
 	        datadir=${ETCDIR}/org infodir=${INFODIR} -C ${ORG} install
-	mkdir -p ${DOCDIR}/org && cp -p ${ORG}/doc/*.pdf ${DOCDIR}/org/
+	mkdir -p ${DOCDIR}/org && cp -p ${ORG}/doc/*.html ${DOCDIR}/org/
 	@echo ----- Done making org
 
 polymode :
