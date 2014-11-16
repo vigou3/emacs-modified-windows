@@ -48,7 +48,7 @@
 ;;
 ;; If not run on MS Windows this file does nothing except gives a message.
 
-(if (not (string-match "i386" system-configuration))
+(if (not (string-match "i[36]86" system-configuration))
     (message "w32-print.el can only be used on MS Windows")
 
   (defgroup w32-winprint nil
