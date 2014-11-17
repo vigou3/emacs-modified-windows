@@ -15,9 +15,8 @@ include ./Makeconf
 
 TMPDIR=${CURDIR}/tmpdir
 ZIPFILE=emacs-${EMACSVERSION}-bin-${ARCH}.zip
-EMACSDIR=${TMPDIR}
 
-PREFIX=${EMACSDIR}
+PREFIX=${TMPDIR}
 EMACS=${PREFIX}/bin/emacs.exe
 EMACSBATCH = $(EMACS) -batch -no-site-file -no-init-file
 INNOSCRIPT=emacs-modified.iss
@@ -40,6 +39,8 @@ all : emacs
 .PHONY : emacs dir ess auctex org polymode exe www clean
 
 emacs : dir ess auctex org polymode exe
+
+install-packages : install-ess install-auctex install-org install-polymode
 
 dir :
 	@echo ----- Creating the application in temporary directory...
@@ -147,11 +148,34 @@ www :
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
 		    windows.html.in > windows.html
 	cp -p ${WWWSRC}/htdocs/en/s/emacs/windows.html ${WWWLIVE}/htdocs/en/s/emacs/
-	# cd ${WWWLIVE} && ls -lRa > ${WWWSRC}/ls-lRa
-	# cd ${WWWSRC} && svn ci -m "Update for Emacs Modified for Windows version ${VERSION}"
-	# svn ci -m "Version ${VERSION}"
-	# svn cp ${REPOS}/trunk ${REPOS}/tags/${DISTNAME} -m "Tag version ${VERSION}"
+	cd ${WWWLIVE} && ls -lRa > ${WWWSRC}/ls-lRa
+	cd ${WWWSRC} && svn ci -m "Update for Emacs Modified for Windows version ${VERSION}"
+	svn ci -m "Version ${VERSION}"
+	svn cp ${REPOS}/trunk ${REPOS}/tags/${DISTNAME} -m "Tag version ${VERSION}"
 	@echo ----- Done updating web site
+
+install-ess :
+	@echo ----- Fetching and unpacking ESS...
+	rm -rf ${ESS}
+	wget http://ess.r-project.org/downloads/ess/${ESS}.zip && unzip ${ESS}.zip
+
+install-auctex :
+	@echo ----- Fetching and unpacking AUCTeX...
+	rm -rf ${AUCTEX}
+	wget http://ftp.gnu.org/pub/gnu/auctex/${AUCTEX}.zip && unzip ${AUCTEX}.zip
+
+install-org :
+	@echo ----- Fetching and unpacking org...
+	rm -rf ${ORG}
+	wget http://orgmode.org/${ORG}.zip && unzip ${ORG}.zip
+
+install-polymode :
+	@echo ----- Preparing polymode
+	rm -rf polymode
+	cd ../polymode && git pull
+	mkdir polymode && \
+		cp -p ../polymode/*.el ../polymode/modes/*.el ../polymode/readme.md polymode && \
+		cp -p ../polymode/modes/readme.md polymode/developing.md
 
 clean :
 	rm -rf ${TMPDIR}
