@@ -1,4 +1,4 @@
-;;; site-start.el --- Customizations for GNU Emacs on OS X
+;;; site-start.el --- Customizations for GNU Emacs on Windows
 
 ;; Copyright (C) 2012 Vincent Goulet
 
