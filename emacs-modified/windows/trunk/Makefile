@@ -16,7 +16,7 @@ include ./Makeconf
 TMPDIR=${CURDIR}/tmpdir
 ZIPFILE=emacs-${EMACSVERSION}-bin-${ARCH}.zip
 
-PREFIX=${TMPDIR}
+PREFIX=${TMPDIR}/emacs-bin
 EMACS=${PREFIX}/bin/emacs.exe
 EMACSBATCH = $(EMACS) -batch -no-site-file -no-init-file
 INNOSCRIPT=emacs-modified.iss
@@ -45,7 +45,8 @@ install-packages : install-ess install-auctex install-org install-polymode
 dir :
 	@echo ----- Creating the application in temporary directory...
 	if [ -d ${TMPDIR} ]; then rm -rf ${TMPDIR}; fi
-	unzip -q ${ZIPFILE} -d ${TMPDIR}
+	mkdir -p ${PREFIX}
+	unzip -q ${ZIPFILE} -d ${PREFIX}
 	cp -p lib/* ${PREFIX}/bin
 	cp -dpr aspell ${PREFIX}
 	cp -p site-start.el ${SITELISP}/
@@ -71,7 +72,8 @@ dir :
 	    -e '/^Filename/s/<EMACSVERSION>/${EMACSVERSION}/' \
 	    -e '/^Source/s/<EMACSVERSION>/${EMACSVERSION}/g' \
 	    ${INNOSCRIPT}.in > ${INNOSCRIPT}
-	sed -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
+	sed -e '/^=== GNU/s/<VERSION>/${VERSION}/' \
+	    -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
 	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
 	    -e '/^* org/s/<ORGVERSION>/${ORGVERSION}/' \
 	    -e '/^* polymode/s/<POLYMODEVERSION>/${POLYMODEVERSION}/' \
