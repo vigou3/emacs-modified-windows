@@ -1,5 +1,24 @@
 === GNU Emacs for Windows Modified ===
 
+Version 24.4-modified-2 ()
+==========================================
+
+UPDATES
+
+
+USER VISIBLE CHANGES
+
+o The distribution version string is now included in the
+  README-Modified.txt file.
+
+BUG FIXES
+
+o The site-start.d directory was incorrectly located in the previous
+  release.
+
+o Files were inadvertently left in the installation directory.
+
+
 Version 24.4-modified-1 (16 November 2014)
 ==========================================
 

@@ -8,7 +8,7 @@ AppSupportURL=http://vgoulet.act.ulaval.ca/emacs
 AppUpdatesURL=http://vgoulet.act.ulaval.ca/emacs
 DefaultDirName={pf}\GNU Emacs <EMACSVERSION>
 DefaultGroupName=GNU Emacs <EMACSVERSION>
-LicenseFile=share\emacs\<EMACSVERSION>\etc\COPYING
+LicenseFile=emacs-bin\share\emacs\<EMACSVERSION>\etc\COPYING
 OutputDir=..
 OutputBaseFilename=<DISTNAME>
 UninstallDisplayIcon={app}\bin\runemacs.exe
@@ -61,13 +61,13 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Filename: "{app}\share\emacs\<EMACSVERSION>\README-Modified.txt"; Description: "{cm:ReadMe}"; Flags: postinstall shellexec skipifsilent
 
 [Files]
-Source: "*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "emacs-bin\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "default.el"; DestDir: "{app}\share\emacs\site-lisp"; AfterInstall: DefaultConfig('{app}'); Flags: ignoreversion
 Source: "README-Modified.txt"; DestDir: "{app}\share\emacs\<EMACSVERSION>"; Flags: ignoreversion
 Source: "NEWS"; DestDir: "{app}\share\emacs\<EMACSVERSION>"; Flags: ignoreversion
 
 [Dirs]
-Name: "{app}\site-lisp\site-start.d"
+Name: "{app}\share\emacs\site-lisp\site-start.d"
 
 [Icons]
 Name: "{group}\GNU Emacs"; Filename: "{app}\bin\runemacs.exe"; WorkingDir: "%HOME%"
