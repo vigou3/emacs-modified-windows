@@ -34,13 +34,13 @@ ESS=ess-${ESSVERSION}
 AUCTEX=auctex-${AUCTEXVERSION}
 ORG=org-${ORGVERSION}
 
-all : emacs
+all : get-packages emacs
 
 .PHONY : emacs dir ess auctex org polymode exe www clean
 
 emacs : dir ess auctex org polymode exe
 
-install-packages : install-ess install-auctex install-org install-polymode
+get-packages : get-ess get-auctex get-org get-polymode
 
 dir :
 	@echo ----- Creating the application in temporary directory...
@@ -156,22 +156,22 @@ www :
 	svn cp ${REPOS}/trunk ${REPOS}/tags/${DISTNAME} -m "Tag version ${VERSION}"
 	@echo ----- Done updating web site
 
-install-ess :
+get-ess :
 	@echo ----- Fetching and unpacking ESS...
 	rm -rf ${ESS}
 	wget http://ess.r-project.org/downloads/ess/${ESS}.zip && unzip ${ESS}.zip
 
-install-auctex :
+get-auctex :
 	@echo ----- Fetching and unpacking AUCTeX...
 	rm -rf ${AUCTEX}
 	wget http://ftp.gnu.org/pub/gnu/auctex/${AUCTEX}.zip && unzip ${AUCTEX}.zip
 
-install-org :
+get-org :
 	@echo ----- Fetching and unpacking org...
 	rm -rf ${ORG}
 	wget http://orgmode.org/${ORG}.zip && unzip ${ORG}.zip
 
-install-polymode :
+get-polymode :
 	@echo ----- Preparing polymode
 	rm -rf polymode
 	cd ../polymode && git pull
