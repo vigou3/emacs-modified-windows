@@ -16,9 +16,11 @@ include the following add-on packages:
 * English (version 0.50-2-3), French (version 0.50-3-3), German
   (version 0.50-2-3) and Spanish (version 0.50-2-3) dictionnaries for
   Aspell;
-* Libraries for image formats XPM (xpm4.dll), PNG (libpng14-14.dll,
-  zlib1.dll), JPEG (jpeg62.dll), TIFF (libtiff3.dll) and GIF (giflib4.dll)
-  obtained from the GnuWin32 project.
+* Libraries for image formats PNG (libpng16-16.dll, zlib1.dll),
+  JPEG (libjpeg-9.dll), TIFF (libtiff-5.dll) and GIF (libgif-7.dll)
+  obtained from the ezwinports project.
+* GnuTLS libraries from the ezwinports project to allow Emacs to
+  access web sites using https.
 * w32-winprint.el, to ease printing on Windows;
 * htmlize.el, to print in color with w32-winprint.el;
 * framepop.el, to obtain temporary buffers in separate frames;
@@ -27,11 +29,8 @@ include the following add-on packages:
 Note that polymode is made active for R mode by default.
 
 
-The site configuration file is accessed easily using the shortcut in
-the GNU Emacs program group of the Start menu.
-
 To add Emacs extensions to this distribution, simply drop .el files
-into the ...\site-lisp\site-start.d\ folder.
+into the ...\share\emacs\site-lisp\site-start.d\ folder.
 
 See http://aspell.net/win32/ to install other dictionnaries for Aspell.
 
