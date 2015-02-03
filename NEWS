@@ -1,10 +1,21 @@
 === GNU Emacs for Windows Modified ===
 
-Version 24.4-modified-2 ()
-==========================================
+Version 24.4-modified-2 (2 February 2015)
+=========================================
 
 UPDATES
 
+o AUCTeX 11.88
+
+NEW FEATURES
+
+o GnuTLS libraries are now included to allow Emacs to access web sites
+  using https; see
+
+    http://stackoverflow.com/questions/17219643/cant-install-emacs-el-get-package-emacs-cant-connect-to-the-internet
+
+  for a rationale. Thanks to Emiliano Heyns <emiliano.heyns@iris-advies.com>
+  for the suggestion.
 
 USER VISIBLE CHANGES
 
