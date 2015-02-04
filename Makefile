@@ -64,21 +64,17 @@ dir :
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/htmlize.el
 	cp -p htmlize-view.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/htmlize-view.el
-	sed -e '/^AppVerName/s/<VERSION>/${VERSION}/'           \
-	    -e '/^AppId/s/<VERSION>/${VERSION}/'  		\
-	    -e '/^Default/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
-	    -e '/^LicenseFile/s/<EMACSVERSION>/${EMACSVERSION}/g'   \
-	    -e '/^OutputBaseFilename/s/<DISTNAME>/${DISTNAME}/' \
-	    -e '/^Filename/s/<EMACSVERSION>/${EMACSVERSION}/' \
-	    -e '/^Source/s/<EMACSVERSION>/${EMACSVERSION}/g' \
+	sed -e 's/<VERSION>/${VERSION}/' \
+	    -e 's/<EMACSVERSION>/${EMACSVERSION}/' \
+	    -e 's/<DISTNAME>/${DISTNAME}/' \
 	    ${INNOSCRIPT}.in > ${INNOSCRIPT}
-	sed -e '/^=== GNU/s/<VERSION>/${VERSION}/' \
-	    -e '/^* ESS/s/<ESSVERSION>/${ESSVERSION}/' \
-	    -e '/^* AUCTeX/s/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
-	    -e '/^* org/s/<ORGVERSION>/${ORGVERSION}/' \
-	    -e '/^* polymode/s/<POLYMODEVERSION>/${POLYMODEVERSION}/' \
-	    -e '/^* polymode/s/<MARKDOWNMODEVERSION>/${MARKDOWNMODEVERSION}/' \
-	    -e '/^* psvn/s/<PSVNVERSION>/${PSVNVERSION}/' \
+	sed -e 's/<VERSION>/${VERSION}/' \
+	    -e 's/<ESSVERSION>/${ESSVERSION}/' \
+	    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
+	    -e 's/<ORGVERSION>/${ORGVERSION}/' \
+	    -e 's/<POLYMODEVERSION>/${POLYMODEVERSION}/' \
+	    -e 's/<MARKDOWNMODEVERSION>/${MARKDOWNMODEVERSION}/' \
+	    -e 's/<PSVNVERSION>/${PSVNVERSION}/' \
 	    -e 's/<LIBPNGVERSION>/${LIBPNGVERSION}/' \
 	    -e 's/<LIBZLIBVERSION>/${LIBZLIBVERSION}/' \
 	    -e 's/<LIBJPEGVERSION>/${LIBJPEGVERSION}/' \
