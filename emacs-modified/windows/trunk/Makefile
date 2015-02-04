@@ -79,6 +79,12 @@ dir :
 	    -e '/^* polymode/s/<POLYMODEVERSION>/${POLYMODEVERSION}/' \
 	    -e '/^* polymode/s/<MARKDOWNMODEVERSION>/${MARKDOWNMODEVERSION}/' \
 	    -e '/^* psvn/s/<PSVNVERSION>/${PSVNVERSION}/' \
+	    -e 's/<LIBPNGVERSION>/${LIBPNGVERSION}/' \
+	    -e 's/<LIBZLIBVERSION>/${LIBZLIBVERSION}/' \
+	    -e 's/<LIBJPEGVERSION>/${LIBJPEGVERSION}/' \
+	    -e 's/<LIBTIFFVERSION>/${LIBTIFFVERSION}/' \
+	    -e 's/<LIBGIFVERSION>/${LIBGIFVERSION}/' \
+	    -e 's/<LIBGNUTLSVERSION>/${LIBGNUTLSVERSION}/' \
 		    README-Modified.txt.in > README-Modified.txt
 	cp -p default.el README-Modified.txt NEWS ${INNOSCRIPT} ${TMPDIR}
 
@@ -139,6 +145,12 @@ www :
 		    -e 's/<PSVNVERSION>/${PSVNVERSION}/g'     \
 		    -e 's/<VERSION>/${VERSION}/g'             \
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
+		    -e 's/<LIBPNGVERSION>/${LIBPNGVERSION}/' \
+		    -e 's/<LIBZLIBVERSION>/${LIBZLIBVERSION}/' \
+		    -e 's/<LIBJPEGVERSION>/${LIBJPEGVERSION}/' \
+		    -e 's/<LIBTIFFVERSION>/${LIBTIFFVERSION}/' \
+		    -e 's/<LIBGIFVERSION>/${LIBGIFVERSION}/' \
+		    -e 's/<LIBGNUTLSVERSION>/${LIBGNUTLSVERSION}/' \
 		    windows.html.in > windows.html
 	cp -p ${WWWSRC}/htdocs/s/emacs/windows.html ${WWWLIVE}/htdocs/s/emacs/
 	cd ${WWWSRC}/htdocs/en/s/emacs/ &&                    \
@@ -148,6 +160,12 @@ www :
 		    -e 's/<PSVNVERSION>/${PSVNVERSION}/g'     \
 		    -e 's/<VERSION>/${VERSION}/g'             \
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
+		    -e 's/<LIBPNGVERSION>/${LIBPNGVERSION}/' \
+		    -e 's/<LIBZLIBVERSION>/${LIBZLIBVERSION}/' \
+		    -e 's/<LIBJPEGVERSION>/${LIBJPEGVERSION}/' \
+		    -e 's/<LIBTIFFVERSION>/${LIBTIFFVERSION}/' \
+		    -e 's/<LIBGIFVERSION>/${LIBGIFVERSION}/' \
+		    -e 's/<LIBGNUTLSVERSION>/${LIBGNUTLSVERSION}/' \
 		    windows.html.in > windows.html
 	cp -p ${WWWSRC}/htdocs/en/s/emacs/windows.html ${WWWLIVE}/htdocs/en/s/emacs/
 	cd ${WWWLIVE} && ls -lRa > ${WWWSRC}/ls-lRa
