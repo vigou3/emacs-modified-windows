@@ -62,7 +62,7 @@ Filename: "{app}\share\emacs\<EMACSVERSION>\README-Modified.txt"; Description: "
 
 [Files]
 Source: "emacs-bin\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "default.el"; DestDir: "{app}\share\emacs\site-lisp"; AfterInstall: DefaultConfig('{app}'); Flags: ignoreversion
+Source: "site-start.el"; DestDir: "{app}\share\emacs\site-lisp"; AfterInstall: DefaultConfig('{app}'); Flags: ignoreversion
 Source: "README-Modified.txt"; DestDir: "{app}\share\emacs\<EMACSVERSION>"; Flags: ignoreversion
 Source: "NEWS"; DestDir: "{app}\share\emacs\<EMACSVERSION>"; Flags: ignoreversion
 

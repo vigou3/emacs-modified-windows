@@ -49,7 +49,7 @@ dir :
 	unzip -q ${ZIPFILE} -d ${PREFIX}
 	cp -p lib/* ${PREFIX}/bin
 	cp -dpr aspell ${PREFIX}
-	cp -p site-start.el ${SITELISP}/
+	cp -p default.el ${SITELISP}/
 	sed -e '/^(defconst/s/<DISTVERSION>/${DISTVERSION}/' \
 	    version-modified.el.in > version-modified.el
 	cp -p version-modified.el ${SITELISP}/
@@ -82,7 +82,7 @@ dir :
 	    -e 's/<LIBGIFVERSION>/${LIBGIFVERSION}/' \
 	    -e 's/<LIBGNUTLSVERSION>/${LIBGNUTLSVERSION}/' \
 		    README-Modified.txt.in > README-Modified.txt
-	cp -p default.el README-Modified.txt NEWS ${INNOSCRIPT} ${TMPDIR}
+	cp -p site-start.el README-Modified.txt NEWS ${INNOSCRIPT} ${TMPDIR}
 
 ess :
 	@echo ----- Making ESS...
