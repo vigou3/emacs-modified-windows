@@ -1,6 +1,6 @@
 ;;; site-start.el --- Customizations for GNU Emacs on Windows
 
-;; Copyright (C) 2012 Vincent Goulet
+;; Copyright (C) 2015 Vincent Goulet
 
 ;; Author: Vincent Goulet
 
@@ -51,6 +51,9 @@
                          (ess-nuke-trailing-whitespace)))
 	     (setq ess-nuke-trailing-whitespace-p t)))
 
+;; Load ESS
+(require 'ess-site)
+
 ;;;
 ;;; AUCTeX
 ;;;
@@ -66,10 +69,53 @@
 (setq TeX-file-extensions
       '("Rnw" "rnw" "Snw" "snw" "tex" "sty" "cls" "ltx" "texi" "texinfo" "dtx"))
 
+;; Load AUCTeX and preview-latex.
+(load "auctex.el" nil t t)
+(load "preview-latex.el" nil t t)
+
+;;;
+;;; polymode
+;;;
+;; Activation of the R specific bundle and basic configuration.
+(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+(add-to-list 'auto-mode-alist '("\\.rapport" . poly-rapport-mode))
+(add-to-list 'auto-mode-alist '("\\.Rhtml" . poly-html+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rbrew" . poly-brew+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rcpp" . poly-r+c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cppR" . poly-c++r-mode))
+(require 'poly-R)
+
 ;;;
 ;;; SVN
 ;;;
-;; Support for the Subversion version control system. Use 'M-x
+;; Support for the Subversion version control system
+;; (http://http://subversion.tigris.org/) in the VC backend. Use 'M-x
 ;; svn-status RET' on a directory under version control to update,
-;; commit changes, revert files, etc., all within Emacs.
+;; commit changes, revert files, etc., all within Emacs. Requires an
+;; installation of Subversion in the path.
+(add-to-list 'vc-handled-backends 'SVN)
 (add-hook 'svn-log-edit-mode-hook 'turn-off-auto-fill) ; useful option
+(require 'psvn)
+
+;;;
+;;; Easier printing
+;;;
+(require 'w32-winprint)
+(require 'htmlize-view)
+(htmlize-view-add-to-files-menu)
+
+;;;
+;;; Use Aspell for spell checking
+;;;
+(setq-default ispell-program-name "<EMACSDIR>/aspell/bin/aspell.exe")
+
+;;;
+;;; Other extensions
+;;;
+;; Emacs will load all ".el" files in 
+;;   <EMACSDIR>/share/emacs/site-lisp/site-start.d/
+;; on startup.
+(mapc 'load
+      (directory-files "<EMACSDIR>/share/emacs/site-lisp/site-start.d" t "\\.el\\'"))

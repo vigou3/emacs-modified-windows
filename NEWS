@@ -1,5 +1,22 @@
 === GNU Emacs for Windows Modified ===
 
+Version 24.4-modified-4 (26 April 2015)
+=======================================
+
+UPDATES
+
+o ESS 15.03-1
+
+USER VISIBLE CHANGES
+
+o As per an AUCTeX maintainer's recommendation, packages initialisation
+  has been moved back from default.el to site-start.el. Please report
+  if this causes any problem.
+
+  Config file default.el now only contains invocations for this
+  distribution's custom package 'version-modified.el'.
+
+
 Version 24.4-modified-3 (1 April 2015)
 ======================================
 

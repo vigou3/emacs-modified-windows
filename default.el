@@ -2,7 +2,7 @@
 ;;; Used mainly to load custom extensions.
 ;;; (Loaded *after* any user and site configuration files)
 
-;; Copyright (C) 2014 Vincent Goulet
+;; Copyright (C) 2015 Vincent Goulet
 
 ;; Author: Vincent Goulet
 
@@ -30,62 +30,4 @@
 ;; Define variable and function 'emacs-modified-version'
 (require 'version-modified)
 
-;;;
-;;; Easier printing
-;;;
-(require 'w32-winprint)
-(require 'htmlize-view)
-(htmlize-view-add-to-files-menu)
 
-;;;
-;;; ESS
-;;;
-;; Load ESS and activate the nifty feature showing function arguments
-;; in the minibuffer until the call is closed with ')'.
-(require 'ess-site)
-
-;;;
-;;; AUCTeX
-;;;
-;; Load AUCTeX and preview-latex.
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
-
-;;;
-;;; polymode
-;;;
-;; Activation of the R specific bundle and basic configuration.
-(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
-(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
-(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
-(add-to-list 'auto-mode-alist '("\\.rapport" . poly-rapport-mode))
-(add-to-list 'auto-mode-alist '("\\.Rhtml" . poly-html+r-mode))
-(add-to-list 'auto-mode-alist '("\\.Rbrew" . poly-brew+r-mode))
-(add-to-list 'auto-mode-alist '("\\.Rcpp" . poly-r+c++-mode))
-(add-to-list 'auto-mode-alist '("\\.cppR" . poly-c++r-mode))
-(require 'poly-R)
-
-;;;
-;;; SVN
-;;;
-;; Support for the Subversion version control system
-;; (http://http://subversion.tigris.org/) in the VC backend. Use 'M-x
-;; svn-status RET' on a directory under version control to update,
-;; commit changes, revert files, etc., all within Emacs. Requires an
-;; installation of Subversion in the path.
-(add-to-list 'vc-handled-backends 'SVN)
-(require 'psvn)
-
-;;;
-;;; Use Aspell for spell checking
-;;;
-(setq-default ispell-program-name "<EMACSDIR>/aspell/bin/aspell.exe")
-
-;;;
-;;; Other extensions
-;;;
-;; Emacs will load all ".el" files in 
-;;   <EMACSDIR>/share/emacs/site-lisp/site-start.d/
-;; on startup.
-(mapc 'load
-      (directory-files "<EMACSDIR>/share/emacs/site-lisp/site-start.d" t "\\.el\\'"))
