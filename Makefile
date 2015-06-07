@@ -129,10 +129,16 @@ exe :
 	rm -rf ${TMPDIR}
 	@echo ----- Done building the archive
 
-www :
-	@echo ----- Updating web site...
+www : www-files www-pages
+
+www-files :
+	@echo ----- Pushing files to web site...
 	cp -p ${DISTNAME}.exe ${WWWLIVE}/htdocs/pub/emacs/
 	cp -p NEWS ${WWWLIVE}/htdocs/pub/emacs/NEWS-windows
+	@echo ----- Done copying files
+
+www-pages :
+	@echo ----- Updating web pages...
 	cd ${WWWSRC} && svn update
 	cd ${WWWSRC}/htdocs/s/emacs/ &&                       \
 		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
@@ -168,7 +174,7 @@ www :
 	cd ${WWWSRC} && svn ci -m "Update for Emacs Modified for Windows version ${VERSION}"
 	svn ci -m "Version ${VERSION}"
 	svn cp ${REPOS}/trunk ${REPOS}/tags/${DISTNAME} -m "Tag version ${VERSION}"
-	@echo ----- Done updating web site
+	@echo ----- Done updating web pages
 
 get-ess :
 	@echo ----- Fetching and unpacking ESS...
