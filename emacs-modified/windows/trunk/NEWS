@@ -1,5 +1,13 @@
 === GNU Emacs for Windows Modified ===
 
+Version 24.5-modified-2 (24 September 2015)
+===========================================
+
+UPDATES
+
+o ESS 15.09
+
+
 Version 24.5-modified-1 (11 May 2015)
 =====================================
 
@@ -31,6 +39,8 @@ Version 24.4-modified-3 (1 April 2015)
 UPDATES
 
 o ESS 15.03
+
+o Org 8.3.1
 
 
 Version 24.4-modified-2 (2 February 2015)
