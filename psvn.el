@@ -2,7 +2,7 @@
 ;; Copyright (C) 2002-2009 by Stefan Reichoer
 
 ;; Author: Stefan Reichoer <stefan@xsteve.at>
-;; $Id: psvn.el 1369093 2012-08-03 16:36:46Z philip $
+;; $Id: psvn.el 1573006 2014-02-28 17:26:47Z breser $
 
 ;; psvn.el is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -256,7 +256,7 @@
       (require 'diff-mode))
   (error nil))
 
-(defconst svn-psvn-revision "$Id: psvn.el 1369093 2012-08-03 16:36:46Z philip $"
+(defconst svn-psvn-revision "$Id: psvn.el 1573006 2014-02-28 17:26:47Z breser $"
   "The revision number of psvn.")
 
 ;;; user setable variables
@@ -1137,7 +1137,7 @@ If there is no .svn directory, examine if there is CVS and run
                          (svn-wc-adm-dir-name)))
         (cvs-dir (format "%sCVS" (file-name-as-directory dir))))
     (cond
-     ((my-file-directory-p svn-dir)
+     ((file-directory-p svn-dir)
       (setq arg (svn-status-possibly-negate-meaning-of-arg arg 'svn-status))
       (svn-status-1 dir arg))
      ((and (file-directory-p cvs-dir)
@@ -1347,7 +1347,7 @@ The hook svn-pre-run-hook allows to monitor/modify the ARGLIST."
                 (setq svn-pre-run-mode-line-process nil))))))
     (error "You can only run one svn process at once!")))
 
-(defun svn-process-sentinel-fixup-path-seperators ()
+(defun svn-process-sentinel-fixup-path-separators ()
     "Convert all path separators to UNIX style.
 \(This is a no-op unless `system-type' is windows-nt\)"
   (when (eq system-type 'windows-nt)
@@ -1371,7 +1371,7 @@ The hook svn-pre-run-hook allows to monitor/modify the ARGLIST."
            (run-hooks 'svn-post-process-svn-output-hook)
            (cond ((eq svn-process-cmd 'status)
                   ;;(message "svn status finished")
-                  (svn-process-sentinel-fixup-path-seperators)
+                  (svn-process-sentinel-fixup-path-separators)
                   (svn-parse-status-result)
                   (svn-status-apply-elide-list)
                   (when svn-status-update-previous-process-output
@@ -1423,7 +1423,7 @@ The hook svn-pre-run-hook allows to monitor/modify the ARGLIST."
                     (svn-status-activate-blame-mode))
                   (message "svn blame finished"))
                  ((eq svn-process-cmd 'commit)
-                  (svn-process-sentinel-fixup-path-seperators)
+                  (svn-process-sentinel-fixup-path-separators)
                   (svn-status-remove-temp-file-maybe)
                   (when (member 'commit svn-status-unmark-files-after-list)
                     (svn-status-unset-all-usermarks))
@@ -4071,7 +4071,7 @@ user can enter a new file name, or an existing directory: this is used as the ar
 ;;              ;; run  svn-status-goto-file-name to move point to line of file
 ;;              ;; run  svn-status-unset-user-mark to unmark dir+all contents
 ;;              ;; run  svn-status-set-user-mark   to remark dir
-;;              ;; maybe check for local mods here, and unmark if user does't say --force?
+;;              ;; maybe check for local mods here, and unmark if user doesn't say --force?
 ;;              ))
     (dolist (original marked-files)
       (let ((original-name (svn-status-line-info->filename original))
@@ -4568,14 +4568,18 @@ names are relative to the directory where `svn-status' was run."
                          (expand-file-name(concat default-directory file-name-with-revision)))
                 (let ((content
                        (with-temp-buffer
-                         (progn
-                           (setq buffer-file-coding-system 'undefined)
-                           (svn-run nil t 'cat "cat" "-r" revision
-                                    (concat default-directory (file-name-nondirectory file-name)))
-                           ;;todo: error processing
-                           ;;svn: Filesystem has no item
-                           ;;svn: file not found: revision `15', path `/trunk/file.txt'
-                           (insert-buffer-substring svn-process-buffer-name))
+                         (if (string= revision "BASE")
+                             (insert-file-contents (concat (svn-wc-adm-dir-name)
+                                                           "/text-base/"
+                                                           (file-name-nondirectory file-name)
+                                                           ".svn-base"))
+                           (progn
+                             (svn-run nil t 'cat "cat" "-r" revision
+                                      (concat default-directory (file-name-nondirectory file-name)))
+                             ;;todo: error processing
+                             ;;svn: Filesystem has no item
+                             ;;svn: file not found: revision `15', path `/trunk/file.txt'
+                             (insert-buffer-substring svn-process-buffer-name)))
                          (buffer-string))))
                   (find-file file-name-with-revision)
                   (setq buffer-read-only nil)
@@ -6032,12 +6036,12 @@ Return nil, if not in a svn working copy."
       (let* ((base-dir start-dir)
              (repository-root (svn-status-repo-for-path base-dir))
              (dot-svn-dir (concat base-dir (svn-wc-adm-dir-name)))
-             (in-tree (and repository-root (my-file-exists-p dot-svn-dir)))
+             (in-tree (and repository-root (file-exists-p dot-svn-dir)))
              (dir-below (expand-file-name base-dir)))
         ;; (message "repository-root: %s start-dir: %s" repository-root start-dir)
         (if (and (<= (car svn-client-version) 1) (< (cadr svn-client-version) 3))
             (setq base-dir (svn-status-base-dir-for-ancient-svn-client start-dir)) ;; svn version < 1.3
-          (while (when (and dir-below (my-file-exists-p dot-svn-dir))
+          (while (when (and dir-below (file-exists-p dot-svn-dir))
                    (setq base-dir (file-name-directory dot-svn-dir))
                    (string-match "\\(.+/\\).+/" dir-below)
                    (setq dir-below
@@ -6418,19 +6422,6 @@ working directory."
           (svn-admin-create-trunk-directory)))
     (setq svn-admin-last-repository-dir (read-string "Repository Url: ")))
   (svn-checkout svn-admin-last-repository-dir "."))
-
-(defun my-file-directory-p (dir)
-  (setq dir (expand-file-name dir))
-  (if (file-directory-p dir)
-      t
-    (let* ((dir1 (directory-file-name (file-name-directory dir)))
-           (dir2 (directory-file-name (file-name-directory dir1))))
-      (if (equal dir1 dir2)
-          nil
-        (my-file-directory-p (concat (file-name-as-directory dir2) ".svn"))))))
-
-(defun my-file-exists-p (dir)
-  (my-file-directory-p dir))
 
 ;; --------------------------------------------------------------------------------
 ;; svn status profiling
