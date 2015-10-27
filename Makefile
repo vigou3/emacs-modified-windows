@@ -36,11 +36,11 @@ ORG=org-${ORGVERSION}
 
 all : get-packages emacs
 
-.PHONY : emacs dir ess auctex org polymode exe www clean
+.PHONY : emacs dir ess auctex org polymode psvn exe www clean
 
-emacs : dir ess auctex org polymode exe
+emacs : dir ess auctex org polymode markdownmode psvn exe
 
-get-packages : get-ess get-auctex get-org get-polymode
+get-packages : get-ess get-auctex get-org get-polymode get-markdownmode get-psvn
 
 dir :
 	@echo ----- Creating the application in temporary directory...
@@ -56,8 +56,6 @@ dir :
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/version-modified.el
 	cp -p framepop.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/framepop.el
-	cp -p psvn.el ${SITELISP}/
-	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
 	cp -p w32-winprint.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/w32-winprint.el
 	cp -p htmlize.el ${SITELISP}/
@@ -113,15 +111,25 @@ org :
 	@echo ----- Done making org
 
 polymode :
-	@echo ----- copying markdown-mode and polymode files...
-	cp -p markdown-mode.el ${SITELISP}/
-	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/markdown-mode.el
+	@echo ----- Copying polymode files...
 	mkdir -p ${SITELISP}/polymode
 	cp -p polymode/*.el ${SITELISP}/polymode
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/polymode/*.el
 	mkdir -p ${DOCDIR}/polymode
 	cp -p polymode/*.md ${DOCDIR}/polymode
 	@echo ----- Done installing polymode
+
+markdownmode :
+	@echo ----- Copying markdown-mode.el...
+	cp -p markdown-mode.el ${SITELISP}/
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/markdown-mode.el
+	@echo ----- Done installing markdown-mode.el
+
+psvn :
+	@echo ----- Copying psvn.el...
+	cp -p psvn.el ${SITELISP}/
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
+	@echo ----- Done copying installing psvn.el
 
 exe :
 	@echo ----- Building the archive...
@@ -141,11 +149,11 @@ www-pages :
 	@echo ----- Updating web pages...
 	cd ${WWWSRC} && svn update
 	cd ${WWWSRC}/htdocs/s/emacs/ &&                       \
-		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
-		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/g' \
-		    -e 's/<ORGVERSION>/${ORGVERSION}/g'     \
-		    -e 's/<PSVNVERSION>/${PSVNVERSION}/g'     \
-		    -e 's/<VERSION>/${VERSION}/g'             \
+		sed -e 's/<ESSVERSION>/${ESSVERSION}/'       \
+		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
+		    -e 's/<ORGVERSION>/${ORGVERSION}/'     \
+		    -e 's/<PSVNVERSION>/${PSVNVERSION}/'     \
+		    -e 's/<VERSION>/${VERSION}/'             \
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
 		    -e 's/<LIBPNGVERSION>/${LIBPNGVERSION}/' \
 		    -e 's/<LIBZLIBVERSION>/${LIBZLIBVERSION}/' \
@@ -156,11 +164,11 @@ www-pages :
 		    windows.html.in > windows.html
 	cp -p ${WWWSRC}/htdocs/s/emacs/windows.html ${WWWLIVE}/htdocs/s/emacs/
 	cd ${WWWSRC}/htdocs/en/s/emacs/ &&                    \
-		sed -e 's/<ESSVERSION>/${ESSVERSION}/g'       \
-		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/g' \
-		    -e 's/<ORGVERSION>/${ORGVERSION}/g'     \
-		    -e 's/<PSVNVERSION>/${PSVNVERSION}/g'     \
-		    -e 's/<VERSION>/${VERSION}/g'             \
+		sed -e 's/<ESSVERSION>/${ESSVERSION}/'       \
+		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
+		    -e 's/<ORGVERSION>/${ORGVERSION}/'     \
+		    -e 's/<PSVNVERSION>/${PSVNVERSION}/'     \
+		    -e 's/<VERSION>/${VERSION}/'             \
 		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
 		    -e 's/<LIBPNGVERSION>/${LIBPNGVERSION}/' \
 		    -e 's/<LIBZLIBVERSION>/${LIBZLIBVERSION}/' \
@@ -194,10 +202,20 @@ get-org :
 get-polymode :
 	@echo ----- Preparing polymode
 	rm -rf polymode
-	cd ../polymode && git pull
+	git -C ../polymode pull
 	mkdir polymode && \
 		cp -p ../polymode/*.el ../polymode/modes/*.el ../polymode/readme.md polymode && \
 		cp -p ../polymode/modes/readme.md polymode/developing.md
+
+get-markdownmode :
+	@echo ----- Preparing markdown-mode
+	git -C ../markdown-mode pull
+	cp -p ../markdown-mode/markdown-mode.el .
+
+get-psvn :
+	@echo ----- Preparing psvn.el
+	svn update ../emacs-svn
+	cp -p ../emacs-svn/psvn.el .
 
 get-libs :
 	@echo ----- Preparing library files
