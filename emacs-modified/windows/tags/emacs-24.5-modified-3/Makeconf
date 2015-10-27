@@ -1,0 +1,39 @@
+# Makeconf file used by Makefile
+
+# Copyright (C) 2015 Vincent Goulet
+
+# Author: Vincent Goulet
+
+# This file is part of GNU Emacs Modified
+# http://vgoulet.act.ulaval.ca/emacs
+
+# GNU and this distribution version number
+EMACSVERSION=24.5
+DISTVERSION=3
+
+# Extensions version numbers
+ESSVERSION=15.09-1
+AUCTEXVERSION=11.88
+ORGVERSION=8.3.2
+POLYMODEVERSION=$(shell git -C ../polymode show -s --format="%ci" HEAD | cut -d " " -f 1 -)
+MARKDOWNMODEVERSION=$(shell git -C ../markdown-mode describe --tags)
+EXECPATHVERSION=$(shell git -C ../exec-path-from-shell describe --tags)
+PSVNVERSION=$(shell svn -v status ../emacs-svn/psvn.el | cut -d " " -f 16 -)
+LIBPNGVERSION=libpng-1.6.12
+LIBZLIBVERSION=zlib-1.2.8-2
+LIBJPEGVERSION=jpeg-v9a
+LIBTIFFVERSION=tiff-4.0.3
+LIBGIFVERSION=giflib-5.1.0
+LIBGNUTLSVERSION=gnutls-3.3.11
+
+# Version strings
+VERSION=${EMACSVERSION}-modified-${DISTVERSION}
+DISTNAME=emacs-${VERSION}
+ARCH=i686-mingw32
+
+# WWW site sources and live share mount point
+WWWSRC=/c/www
+WWWLIVE=/z/act-vgoulet
+
+# Subversion repository
+REPOS=https://svn.fsg.ulaval.ca/svn/vgoulet/emacs-modified/windows
