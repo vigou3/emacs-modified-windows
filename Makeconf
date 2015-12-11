@@ -9,10 +9,10 @@
 
 # GNU and this distribution version number
 EMACSVERSION=24.5
-DISTVERSION=3
+DISTVERSION=4
 
 # Extensions version numbers
-ESSVERSION=15.09-1
+ESSVERSION=15.09-2
 AUCTEXVERSION=11.88
 ORGVERSION=8.3.2
 POLYMODEVERSION=$(shell git -C ../polymode show -s --format="%ci" HEAD | cut -d " " -f 1 -)
