@@ -127,7 +127,7 @@ markdownmode :
 
 psvn :
 	@echo ----- Patching and copying psvn.el...
-	patch < psvn.el_svn1.7.diff
+	patch -o psvn.el psvn.el.orig psvn.el_svn1.7.diff
 	cp -p psvn.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
 	@echo ----- Done copying installing psvn.el
@@ -216,7 +216,7 @@ get-markdownmode :
 get-psvn :
 	@echo ----- Preparing psvn.el
 	svn update ../emacs-svn
-	cp -p ../emacs-svn/psvn.el .
+	cp -p ../emacs-svn/psvn.el psvn.el.orig
 
 get-libs :
 	@echo ----- Preparing library files
