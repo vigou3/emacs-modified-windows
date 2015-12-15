@@ -1,5 +1,14 @@
 === GNU Emacs for Windows Modified ===
 
+Version 24.5-1-modified-5 (15 December 2015)
+============================================
+
+BUG FIX
+
+o The patches to psvn.el to support Subversion > v1.7, removed from
+  the previous release, are reinstated.
+
+
 Version 24.5-modified-4 (11 December 2015)
 ==========================================
 
