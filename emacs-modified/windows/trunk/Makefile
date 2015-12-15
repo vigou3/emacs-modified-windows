@@ -127,7 +127,8 @@ markdownmode :
 
 psvn :
 	@echo ----- Patching and copying psvn.el...
-	patch -o psvn.el psvn.el.orig psvn.el_svn1.7.diff
+	sed 's/^M//' psvn.el.orig > psvn.el
+	patch < psvn.el_svn1.7.diff
 	cp -p psvn.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
 	@echo ----- Done copying installing psvn.el
