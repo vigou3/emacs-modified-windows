@@ -1,5 +1,26 @@
 === GNU Emacs for Windows Modified ===
 
+Version 24.5-1-modified-6 (30 March 2016)
+=========================================
+
+NEW FEATURE
+
+o markdown-mode is now automatically loaded for file extensions
+  '.text', '.markdown' and '.md'.
+
+UPDATES
+
+o AUCTeX 11.89
+
+o Org 8.3.4
+
+o markdown-mode 2.1
+
+o polymode 2016-03-24
+
+o exec-path-from-shell 1.10-7
+
+
 Version 24.5-1-modified-5 (15 December 2015)
 ============================================
 
