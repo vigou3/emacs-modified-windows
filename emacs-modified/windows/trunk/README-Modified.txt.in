@@ -9,7 +9,7 @@ include the following add-on packages:
 * ESS <ESSVERSION>;
 * AUCTeX <AUCTEXVERSION>;
 * org <ORGVERSION>;
-* polymode <POLYMODEVERSION>;
+* polymode <POLYMODEVERSION>;
 * markdown-mode <MARKDOWNMODEVERSION>;
 * psvn.el r<PSVNVERSION> from Subversion sources, to work with
   Subversion repositories from within Emacs;
