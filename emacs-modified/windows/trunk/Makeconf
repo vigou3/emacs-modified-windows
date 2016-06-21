@@ -9,7 +9,7 @@
 
 # GNU and this distribution version number
 EMACSVERSION=24.5
-DISTVERSION=7
+DISTVERSION=8
 
 # Extensions version numbers
 ESSVERSION=16.04

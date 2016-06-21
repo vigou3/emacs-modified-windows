@@ -1,5 +1,23 @@
 === GNU Emacs for Windows Modified ===
 
+Version 24.5-1-modified-8 (20 June 2016)
+========================================
+
+BUG FIXES
+
+o Additional image libraries were missing from the previous
+  release. Thanks to Dvid Braze <dave.braze@yale.edu> for the heads
+  up.
+
+
+Version 24.5-1-modified-7 (8 May 2016)
+======================================
+
+UPDATES
+
+o ESS 16.04
+
+
 Version 24.5-1-modified-6 (30 March 2016)
 =========================================
 
