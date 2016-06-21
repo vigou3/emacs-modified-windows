@@ -221,6 +221,7 @@ get-psvn :
 
 get-libs :
 	@echo ----- Preparing library files
+	rm -rf lib
 	wget https://sourceforge.net/projects/ezwinports/files/${LIBPNGVERSION}-w32-bin.zip && \
 	unzip -j ${LIBPNGVERSION}-w32-bin.zip bin/libpng16-16.dll -d lib/
 	wget https://sourceforge.net/projects/ezwinports/files/${LIBZLIBVERSION}-w32-bin.zip && \
