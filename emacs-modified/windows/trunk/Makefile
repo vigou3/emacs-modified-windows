@@ -40,7 +40,7 @@ all : get-packages emacs
 
 emacs : dir ess auctex org polymode markdownmode psvn exe
 
-get-packages : get-ess get-auctex get-org get-polymode get-markdownmode get-psvn
+get-packages : get-ess get-auctex get-org get-polymode get-markdownmode get-psvn get-libs
 
 dir :
 	@echo ----- Creating the application in temporary directory...
