@@ -222,17 +222,17 @@ get-psvn :
 get-libs :
 	@echo ----- Preparing library files
 	rm -rf lib
-	wget https://sourceforge.net/projects/ezwinports/files/${LIBPNGVERSION}-w32-bin.zip && \
+	wget -nc https://sourceforge.net/projects/ezwinports/files/${LIBPNGVERSION}-w32-bin.zip && \
 	unzip -j ${LIBPNGVERSION}-w32-bin.zip bin/libpng16-16.dll -d lib/
-	wget https://sourceforge.net/projects/ezwinports/files/${LIBZLIBVERSION}-w32-bin.zip && \
+	wget -nc https://sourceforge.net/projects/ezwinports/files/${LIBZLIBVERSION}-w32-bin.zip && \
 	unzip -j ${LIBZLIBVERSION}-w32-bin.zip bin/zlib1.dll -d lib/
-	wget https://sourceforge.net/projects/ezwinports/files/${LIBJPEGVERSION}-w32-bin.zip && \
+	wget -nc https://sourceforge.net/projects/ezwinports/files/${LIBJPEGVERSION}-w32-bin.zip && \
 	unzip -j ${LIBJPEGVERSION}-w32-bin.zip bin/libjpeg-9.dll -d lib/
-	wget https://sourceforge.net/projects/ezwinports/files/${LIBTIFFVERSION}-w32-bin.zip && \
+	wget -nc https://sourceforge.net/projects/ezwinports/files/${LIBTIFFVERSION}-w32-bin.zip && \
 	unzip -j ${LIBTIFFVERSION}-w32-bin.zip bin/libtiff-5.dll -d lib/
-	wget https://sourceforge.net/projects/ezwinports/files/${LIBGIFVERSION}-w32-bin.zip && \
+	wget -nc https://sourceforge.net/projects/ezwinports/files/${LIBGIFVERSION}-w32-bin.zip && \
 	unzip -j ${LIBGIFVERSION}-w32-bin.zip bin/libgif-7.dll -d lib/
-	wget https://sourceforge.net/projects/ezwinports/files/${LIBGNUTLSVERSION}-w32-bin.zip && \
+	wget -nc https://sourceforge.net/projects/ezwinports/files/${LIBGNUTLSVERSION}-w32-bin.zip && \
 	unzip -j ${LIBGNUTLSVERSION}-w32-bin.zip bin/*.dll -x bin/zlib1.dll -d lib/
 
 clean :
