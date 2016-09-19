@@ -1,15 +1,25 @@
 === GNU Emacs for Windows Modified ===
 
+Version 25.1-modified-1 (19 September 2016)
+===========================================
+
+UPDATES
+
+o GNU Emacs 25.1, released September 17, 2016.
+
+o Org 8.3.6
+
+
 Version 24.5-1-modified-9 (15 July 2016)
 ========================================
 
 USER VISIBLE CHANGES
 
 o The default configuration has changed as follows:
-  ess-swv-plug-into-AUCTeX is active to Sweave documents using the
+  ess-swv-plug-into-AUCTeX is active for Sweave documents using the
   AUCTeX interface; polymode is active only for Rmarkdown (and as a
-  by-product for R help files).  See threads in the ess-help mailing
-  list in April and July 2016 for some rationale of this decision
+  by-product for R help files). See threads in the ess-help mailing
+  list in April and July 2016 for some rationale for this decision
   (https://stat.ethz.ch/pipermail/ess-help/). With this update the
   Windows version of the distribution is now in line with the macOS
   version.
