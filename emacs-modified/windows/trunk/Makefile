@@ -14,7 +14,7 @@
 include ./Makeconf
 
 TMPDIR=${CURDIR}/tmpdir
-ZIPFILE=emacs-${EMACSVERSION}-bin-${ARCH}.zip
+ZIPFILE=emacs-${EMACSVERSION}-${ARCH}.zip
 
 PREFIX=${TMPDIR}/emacs-bin
 EMACS=${PREFIX}/bin/emacs.exe
