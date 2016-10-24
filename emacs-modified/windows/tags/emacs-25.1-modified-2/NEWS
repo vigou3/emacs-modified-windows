@@ -1,0 +1,805 @@
+=== GNU Emacs for Windows Modified ===
+
+Version 25.1-modified-2 (24 October 2016)
+=========================================
+
+UPDATES
+
+o ESS 16.10
+
+
+Version 25.1-modified-1 (19 September 2016)
+===========================================
+
+UPDATES
+
+o GNU Emacs 25.1, released September 17, 2016.
+
+o Org 8.3.6
+
+
+Version 24.5-1-modified-9 (15 July 2016)
+========================================
+
+USER VISIBLE CHANGES
+
+o The default configuration has changed as follows:
+  ess-swv-plug-into-AUCTeX is active for Sweave documents using the
+  AUCTeX interface; polymode is active only for Rmarkdown (and as a
+  by-product for R help files). See threads in the ess-help mailing
+  list in April and July 2016 for some rationale for this decision
+  (https://stat.ethz.ch/pipermail/ess-help/). With this update the
+  Windows version of the distribution is now in line with the macOS
+  version.
+  
+
+Version 24.5-1-modified-8 (20 June 2016)
+========================================
+
+BUG FIXES
+
+o Additional image libraries were missing from the previous
+  release. Thanks to David Braze <dave.braze@yale.edu> for the heads
+  up.
+
+
+Version 24.5-1-modified-7 (8 May 2016)
+======================================
+
+UPDATES
+
+o ESS 16.04
+
+
+Version 24.5-1-modified-6 (30 March 2016)
+=========================================
+
+NEW FEATURE
+
+o markdown-mode is now automatically loaded for file extensions
+  '.text', '.markdown' and '.md'.
+
+UPDATES
+
+o AUCTeX 11.89
+
+o Org 8.3.4
+
+o markdown-mode 2.1
+
+o polymode 2016-03-24
+
+o exec-path-from-shell 1.10-7
+
+
+Version 24.5-1-modified-5 (15 December 2015)
+============================================
+
+BUG FIX
+
+o The patches to psvn.el to support Subversion > v1.7, removed from
+  the previous release, are reinstated.
+
+
+Version 24.5-modified-4 (11 December 2015)
+==========================================
+
+UPDATES
+
+o ESS 15.09-2
+
+
+Version 24.5-modified-3 (26 October 2015)
+=========================================
+
+UPDATES
+
+o ESS 15.09-1
+
+o Org 8.3.2
+
+
+Version 24.5-modified-2 (24 September 2015)
+===========================================
+
+UPDATES
+
+o ESS 15.09
+
+
+Version 24.5-modified-1 (11 May 2015)
+=====================================
+
+UPDATES
+
+o GNU Emacs 24.5 released April 10, 2015.
+
+
+Version 24.4-modified-4 (26 April 2015)
+=======================================
+
+UPDATES
+
+o ESS 15.03-1
+
+USER VISIBLE CHANGES
+
+o As per an AUCTeX maintainer's recommendation, packages initialisation
+  has been moved back from default.el to site-start.el. Please report
+  if this causes any problem.
+
+  Config file default.el now only contains invocations for this
+  distribution's custom package 'version-modified.el'.
+
+
+Version 24.4-modified-3 (1 April 2015)
+======================================
+
+UPDATES
+
+o ESS 15.03
+
+o Org 8.3.1
+
+
+Version 24.4-modified-2 (2 February 2015)
+=========================================
+
+UPDATES
+
+o AUCTeX 11.88
+
+NEW FEATURES
+
+o GnuTLS libraries are now included to allow Emacs to access web sites
+  using https; see
+
+    http://stackoverflow.com/questions/17219643/cant-install-emacs-el-get-package-emacs-cant-connect-to-the-internet
+
+  for a rationale. Thanks to Emiliano Heyns <emiliano.heyns@iris-advies.com>
+  for the suggestion.
+
+USER VISIBLE CHANGES
+
+o The distribution version string is now included in the
+  README-Modified.txt file.
+
+BUG FIXES
+
+o The site-start.d directory was incorrectly located in the previous
+  release.
+
+o Files were inadvertently left in the installation directory.
+
+
+Version 24.4-modified-1 (16 November 2014)
+==========================================
+
+UPDATES
+
+o GNU Emacs 24.4 released October 20, 2014.
+
+o org 8.2.10
+
+USER VISIBLE CHANGES
+
+o The icon provided in the program group to edit the site
+  configuration file has been deleted. It no longer served any good
+  purpose now that ESS is able to locate all (sensibly located)
+  versions of R on the system.
+
+o The directory structure in the Emacs installation directory changed
+  significantly upstream. Most files are now located in the
+  ...\share\emacs directory.
+
+o Due to difficulty building the Org manuals on Windows, the PDF
+  manual has been replaced in the distribution by the HTML version.
+
+
+Version 24.3-modified-5 (14 September 2014)
+===========================================
+
+NEW FEATURES
+
+o polymode and markdown-mode are now included in the distribution. By
+  default, polymode is active for R mode and automaically loaded for
+  the following file extensions: .Snw, .Rnw, .Rmd, .rapport, .Rhtml,
+  .Rbrew, .Rcpp, .cppR.
+
+o org mode (latest stable release at build time) is reintroduced in
+  the distribution.
+
+o All .el files (except configuration files default.el and
+  site-start.el) are now also distributed byte-compiled.
+
+UPDATES
+
+o ESS 14.09
+
+o org 8.2.7c
+
+USER VISIBLE CHANGES
+
+o Streamlined installation procedure: no more information screens at
+  the beginning and end of the setup wizard. These have been replaced
+  by an option to see the README-Modified file containing the
+  inforation that was formerly displayed.
+
+o Configuration of Emacs for MIKTeX is now an option in the setup
+  wizard (it was done by default before).
+
+
+Version 24.3-modified-4 (8 December 2013)
+=========================================
+
+NEW FEATURE
+
+o Function and variable 'emacs-modified-version' to display and hold
+  the distribution version number.
+
+BUG FIX
+
+o Inno Setup installer's AppId key was not correctly updated between
+  versions.
+
+UPDATES
+
+o ESS 13.09-1
+
+
+Version 24.3-modified-3 (27 September 2013)
+===========================================
+
+UPDATES
+
+o ESS 13.09
+
+
+Version 24.3-modified-2 (15 May 2013)
+=====================================
+
+UPDATES
+
+o ESS 13.05
+
+(MORE OF LESS) USER VISIBLE CHANGES
+
+o In site-start.el, 'inferior-R-args' no longer includes
+  "--no-restore-history" as it apparently had no effect. Thanks to
+  Vitalie Spinu for the rectification.
+
+o In site-start.el, 'ess-default-style' is no longer defined to be
+  "C++" since the default indentation style in ESS is now "RRR".
+
+
+Version 24.3-modified-1 (19 March 2013)
+=======================================
+
+UPDATES
+
+o GNU Emacs 24.3, released on March 11 but only today in Windows
+  binary form.
+
+
+Version 24.2-modified-7 (23 January 2013)
+=========================================
+
+BUG FIX
+
+o Fixed the startup warning message about org-install being
+  deprecated. Unfinished job in previous release.
+
+
+Version 24.2-modified-6 (18 January 2013)
+=========================================
+
+USER VISIBLE CHANGE
+
+o Org is *removed* from the distribution as it triggered a warning
+  message at Emacs startup. This may seem a rather drastic measure,
+  but Org has proved annoying to support as an add-on to the
+  distribution. The package may be installed via the Emacs package
+  system; see http://orgmode.org/manual/Installation.html. The version
+  of Org shipping with GNU Emacs 24.2 is 7.8.11.
+
+BUG FIX
+
+o For some reason, addpm.exe was left off the distribution.
+
+
+Version 24.2-modified-5 (12 January 2013)
+=========================================
+
+UPDATES
+
+o ESS 12.09-2
+
+o Org 7.9.3c
+
+o psvn.el is now revision 1369093 of Subversion source code repository
+  with Andre Colomb's and Koji Nakamaru's patches to support
+  Subversion 1.7; see
+  http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/%3C503B958F.6010906@schickhardt.org%3E
+  The original file appears to actually be *older* than Stefan
+  Reichoer's version of 2012-03-26 in some respect, but using the
+  Subversion sources version made it easier to apply the patches.
+
+
+Version 24.2-modified-4 (22 December 2012)
+==========================================
+
+UPDATE
+
+o ESS 12-09-1
+
+
+Version 24.2-modified-3 (8 December 2012)
+=========================================
+
+UPDATES
+
+o AUCTeX 11.87
+
+o Org 7.9.2
+
+
+Version 24.2-modified-2 (24 September 2012)
+===========================================
+
+UPDATES
+
+o ESS 12-09
+
+o psvn.el dated 2012-03-26. It appears I missed this update before.
+
+
+Version 24.2-modified-1 (15 September 2012)
+===========================================
+
+UPDATES
+
+o GNU Emacs 24.2, released August 27, 2012.
+
+o Org 7.9.1
+
+BUG FIX
+
+o ESS info files were left off the distribution.
+
+
+Version 24.1-modified-1 (10 June 2012)
+======================================
+
+UPDATES
+
+o GNU Emacs 24.1, released June 10, 2012.
+
+o ESS 12.04-4
+
+
+Version 23.4-modified-6 (1 June 2012)
+=====================================
+
+UPDATES
+
+o ESS 12.04-3
+
+o Org 7.8.11
+
+
+Version 23.4-modified-5 (11 May 2012)
+=====================================
+
+UPDATES
+
+o ESS 12.04-2
+
+o Org 7.8.09
+
+o psvn.el modified to include Koji Nakamaru's patch
+  (http://www.eaflux.com/psvn/psvn.el.diff) for supporting Subversion
+  1.7.
+
+
+Version 23.4-modified-4 (6 April 2012)
+======================================
+
+UPDATES
+
+o ESS 12.04
+
+o Org 7.8.08
+
+BUG FIX
+
+o Org was not correctly installed in previous version due to org's
+  akward use of environment variable DESTDIR in its Makefile.
+
+
+Version 23.4-modified-3 (1 April 2012 - No April's Fool!)
+=========================================================
+
+UPDATES
+
+o ESS 12.03
+
+o Org 7.8.07
+
+NEW FEATURE
+
+o Added vc-svn17.el to provide Subversion 1.7 support for vc-svn on
+  Emacs 23.
+
+
+Version 23.4-modified-2 (26 February 2012)
+==========================================
+
+NEW FEATURE
+
+o An up-to-date version of org-mode is now included with the
+  distribution. As of this release, this is version 7.8.03 of
+  org-mode.
+
+(APPARENTLY) USER VISIBLE CHANGE
+
+o File site-start.el is reinstated in the distribution. Loading of
+  extension packages is still done in default.el, but customizations
+  that I provide [that is, the (setq ..)] are located in
+  site-start.el.
+
+UPDATE
+
+o psvn.el updated to version of 2012-02-21.
+
+
+Version 23.4-modified-1 (6 February 2012)
+=========================================
+
+NEW FEATURE
+
+o AppId now set to GNU Emacs version (e.g. 23.4) in Inno Setup. This
+  way, the installer will stop using an older version's (e.g. 23.3)
+  installation directory as default when said previous version was not
+  uninstalled. See http://www.jrsoftware.org/isfaq.php#olddir for
+  details.
+
+UPDATE
+
+o GNU Emacs 23.4 released January 29, 2012. ESS and AUCTeX are still at
+  version 5.14 and 11.86patched, respectively.
+
+
+Version 23.3-modified-3 (20 August 2011)
+========================================
+
+(MORE OR LESS) USER VISIBLE CHANGE
+
+o File site-start.el renamed to default.el. Therefore, package loading
+  and Emacs configuration now happens *after* any user and site
+  configuration file is read. The distribution should now behave
+  better with users' settings. Thanks to Rodney Sparapani
+  <rsparapa@mcw.edu> and Stephen Eglen <S.J.Eglen@damtp.cam.ac.uk> for
+  pointers on this issue.
+
+
+Version 23.3-modified-2 (9 August 2011)
+=======================================
+
+UPDATES
+
+o ESS version 5.14.
+
+o Image libraries libpng and zlib1 updated (to 1.4.3 and 1.2.5,
+  respectively) to solve a docview-mode problem with
+  AUCTeX. Up-to-date binaries taken from http://gtk.org. Many thanks
+  to Hans Olav Husum <hohusum@gmail.com> for reporting both the
+  problem and the solution.
+
+o AUCTEX 11.86 patched to have version 1.286 of preview.el. This
+  solves image creation issues as explained here:
+  https://bugzilla.redhat.com/show_bug.cgi?id=646632
+  More thanks to Hans Olav Husum <hohusum@gmail.com> for reporting the
+  problem with a solution.
+
+
+Version 23.3-modified-1 (23 March 2011)
+=======================================
+
+UPDATE
+
+o GNU Emacs 23.3 released March 10, 2011. ESS and AUCTeX are still at
+  version 5.13 and 11.86, respectively.
+
+
+Version 23.2-modified-9 (10 February 2011)
+==========================================
+
+UPDATE
+
+o ESS version 5.13.
+
+NEW FEATURE
+
+o framepop.el is now included in the distribution. This is a package
+  to open temporary buffers (such as *Completions*) in a separate
+  frame. Thanks to Paul Johnson <pauljohn@ku.edu> for the suggestion.
+
+
+Version 23.2-modified-8patched (12 January 2011)
+================================================
+
+BUG FIX
+
+o ESS 5.12 patched to correctly find rterm.exe inside the i386 and/or
+  x64 subdirectories of R 2.12.x installations. Thanks to Richard
+  Heiberger for providing the fix.
+
+
+Version 23.2-modified-8 (9 November 2010)
+=========================================
+
+UPDATE
+
+o ESS version 5.12.
+
+
+Version 23.2-modified-7 (14 July 2010)
+=====================================
+
+UPDATE
+
+o ESS version 5.11.
+
+
+Version 23.2-modified-6 (7 July 2010)
+=====================================
+
+NEW FEATURES
+
+o RefTeX is now activated in the site-start.el file. Thanks to Miguel
+  Ruiz <rbenit68@gmail.com> for the suggestion.
+
+o Site configuration file adds standard Sweave file extensions to the
+  list of files recognized by AUCTeX.
+
+o The Spanish dictionary of Aspell is now included in the
+  distribution. Thanks to Miguel Ruiz <rbenit68@gmail.com> for the
+  initiative and the installation instructions.
+
+
+Version 23.2-modified-5 (9 June 2010)
+=====================================
+
+UPDATE
+
+o ESS version 5.10.
+
+
+Version 23.2-modified-4 (3 June 2010)
+=====================================
+
+BUG FIX
+
+o Incorrect AUCTeX initialization prevented latex-mode to load when
+  opening a (La)TeX file.
+
+
+Version 23.2-modified-3 (27 May 2010)
+=====================================
+
+BUG FIX
+
+o Less invasive definition of the ESS indentation style in
+  site-start.el. Follows from a thread in ess-help starting here:
+  https://stat.ethz.ch/pipermail/ess-help/2010-May/006050.html.
+
+
+Version 23.2-modified-2 (25 May 2010)
+=====================================
+
+UPDATE
+
+o ESS version 5.9.1.
+
+
+Version 23.2-modified-1 (12 May 2010)
+=====================================
+
+UPDATE
+
+o GNU Emacs 23.2 released on May 8, 2010.
+
+
+Version 23.1-modified-5 (7 March 2010)
+======================================
+
+UPDATES
+
+o ESS version 5.8.
+o AUCTeX version 11.86.
+
+
+Version 23.1-modified-4 (2 January 2010)
+========================================
+
+UPDATES
+
+o ESS version 5.7.1.
+
+
+Version 23.1-modified-3 (7 October 2009)
+========================================
+
+UPDATES
+
+o ESS version 5.5.
+
+
+Version 23.1-modified-2 (31 August 2009)
+========================================
+
+BUG FIXES
+
+o The Quick Print menu option did not work due to an outdated version
+  of htmlize.el. Thanks to Ruan Rossouw for pointing this out and
+  finding the solution.
+
+
+Version 23.1-modified-1 (19 August 2009)
+========================================
+
+UPDATES
+
+o GNU Emacs version 23.1.
+
+
+Version 22.3-modified-5 (20 July 2009)
+======================================
+
+NEW FEATURES
+
+o psvn.el is now included to add a Subversion interface to the VC
+  backend of Emacs.
+o New folder '...\site-lisp\site-start.d' in the installation. All .el
+  files in this folder are automatically loaded by Emacs on
+  startup. Thanks to Paul Johnson for the suggestion.
+
+UPDATES
+
+o ESS 5.4
+
+
+Version 22.3-modified-4 (20 February 2009)
+==========================================
+
+NEW FEATURES
+
+o Installation no longer requires administrator privileges.
+
+
+Version 22.3-modified-3 (28 January 2009)
+=========================================
+
+NEW FEATURES
+
+o German dictionary for aspell
+
+UPDATES
+
+o ESS 5.3.11
+
+
+Version 22.3-modified-2 (19 December 2008)
+==========================================
+
+UPDATES
+
+o ESS 5.3.10
+
+
+Version 22.3-modified-1 (15 September 2008)
+===========================================
+
+UPDATES
+
+o GNU Emacs version 22.3.
+
+
+Version 22.2-modified-4 (28 July 2008)
+======================================
+
+UPDATES
+
+o ESS updated to version 5.3.8. Installation of ESS was also
+  streamlined to include only required files and documentation.
+
+
+Version 22.2-modified-3 (23 June 2008)
+======================================
+
+BUG FIXES
+
+o Reorganization of AUCTeX installation fixes an incomplete list of
+  other info manuals. Thanks to Georgi Boshnakov for the heads up.
+
+
+Version 22.2-modified-2 (10 April 2008)
+=======================================
+
+UPDATES
+
+o ESS updated to version 5.3.7.
+
+
+Version 22.2-modified-1 (27 March 2008)
+=======================================
+
+NEW FEATURES
+
+o GNU Emacs version 22.2.
+
+OTHER CHANGES
+
+o Version information in files Modifications-*.txt and Updates-*.txt.
+o Sources reorganized (AUCTeX files are now stored outside of the
+  Emacs tree).
+
+
+Version 22.1-modified-5 (19 February 2008)
+==========================================
+
+NEW FEATURES
+
+o AUCTeX version 11.85.
+o Distribution now includes htmlize-view.el (from the EmacsW32
+  project) to add a Quick print in color menu entry.
+
+
+Version 22.1-modified-4 (12 December 2007)
+==========================================
+
+BUG FIX
+
+o The w32-winprint.el package was not activated in the site-start.el
+  file, so the promise of simpler printing was not fulfilled. This is
+  a simple fix that does not require a complete new download: add
+
+    ;;; Activate w32-winprint
+    (require 'w32-winprint)
+
+  in the system-wide configuration file site-start.el.
+
+
+Version 22.1-modified-3 (19 November 2007)
+==========================================
+
+NEW FEATURES
+
+o Libraries for image formats XPM (xpm4.dll), PNG (libpng13.dll,
+  zlib1.dll), JPEG (jpeg62.dll), TIFF (libtiff3.dll) and GIF
+  giflib4.dll) now included in the distribution. This gives access to
+  the color toolbar and preview-latex (with an installation of
+  Ghostscript). Libraries obtained from the GnuWin32 project.
+
+
+Version 22.1-modified-2 (19 September 2007)
+===========================================
+
+UPDATES
+
+o ESS updated to version 5.3.6.
+
+
+Version 22.1-modified-1 (30 August 2007)
+========================================
+
+NEW FEATURES
+
+o Introduction of a version number
+o Introduction of this NEWS file
+o By default, M-x R will now start R with the --no-restore-history and
+  --no-save options. The first option avoids getting a warning in the
+  minibuffer at R startup about a non-existing history file; with the
+  second option R exits gracefully if killed by Emacs shutdown.
+o Code indentation for *.R buffers now follows the R convention: BSD
+  style with an offset of 4 characters.
