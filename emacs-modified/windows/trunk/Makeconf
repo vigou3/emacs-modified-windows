@@ -9,12 +9,13 @@
 
 # GNU and this distribution version number
 EMACSVERSION=25.1
-DISTVERSION=2
+EMACSPATCHLEVEL=2
+DISTVERSION=3
 
 # Extensions version numbers
 ESSVERSION=16.10
 AUCTEXVERSION=11.89
-ORGVERSION=8.3.6
+ORGVERSION=9.0.2
 POLYMODEVERSION=$(shell git -C ../polymode show -s --format="%ci" HEAD | cut -d " " -f 1 -)
 MARKDOWNMODEVERSION=$(shell git -C ../markdown-mode describe --tags)
 EXECPATHVERSION=$(shell git -C ../exec-path-from-shell describe --tags | cut -d "-" -f 1-2 -)
@@ -24,12 +25,14 @@ LIBZLIBVERSION=zlib-1.2.8-2
 LIBJPEGVERSION=jpeg-v9a
 LIBTIFFVERSION=tiff-4.0.3
 LIBGIFVERSION=giflib-5.1.0
-LIBGNUTLSVERSION=gnutls-3.3.11
+LIBGNUTLSVERSION=gnutls-3.4.15
+LIBSVGVERSION=librsvg-2.40.1-2
 
-# Version strings
-VERSION=${EMACSVERSION}-modified-${DISTVERSION}
+# Version strings and file names
+VERSION=${EMACSVERSION}$(if ${EMACSPATCHLEVEL},-${EMACSPATCHLEVEL},)-modified-${DISTVERSION}
 DISTNAME=emacs-${VERSION}
 ARCH=i686-w64-mingw32
+ZIPFILE=emacs-${EMACSVERSION}$(if ${EMACSPATCHLEVEL},-${EMACSPATCHLEVEL},)-${ARCH}.zip
 
 # WWW site sources and live share mount point
 WWWSRC=/c/www
