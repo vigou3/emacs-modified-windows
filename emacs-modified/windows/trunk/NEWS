@@ -1,5 +1,31 @@
 === GNU Emacs for Windows Modified ===
 
+Version 25.1-2-modified-3 (15 December 2016)
+============================================
+
+NEW FEATURE
+
+o Experimental support for SVG images by means of
+  librsvg-2.2.dll. Please report any problems (or success!).
+
+UPDATES
+
+o GNU Emacs 25.1-2, released November 29, 2016. This Windows-only
+  patch release fixes impaired performance in the previous release due
+  to missing optimization flags at build time. Thanks to Max Sutton
+  <max.sutton.is@gmail.com> for the heads up.
+
+o Org 9.0.2
+
+o gnutls-3.4.15 providing libgnutls-30.dll as required by Emacs
+  25.1. Thanks again to Max Sutton <max.sutton.is@gmail.com> for
+  pointing this out.
+
+BUG FIX
+
+o 'emacs-modified-version' now correctly report the Emacs patch level.
+
+
 Version 25.1-modified-2 (24 October 2016)
 =========================================
 
@@ -31,7 +57,7 @@ o The default configuration has changed as follows:
   (https://stat.ethz.ch/pipermail/ess-help/). With this update the
   Windows version of the distribution is now in line with the macOS
   version.
-  
+
 
 Version 24.5-1-modified-8 (20 June 2016)
 ========================================
