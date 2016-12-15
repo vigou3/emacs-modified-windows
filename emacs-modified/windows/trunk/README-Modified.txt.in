@@ -19,8 +19,8 @@ include the following add-on packages:
   (version 0.50-2-3) and Spanish (version 0.50-2-3) dictionnaries for
   Aspell;
 * Libraries for image formats PNG (<LIBPNGVERSION>, <LIBZLIBVERSION>),
-  JPEG (<LIBJPEGVERSION>), TIFF (<LIBTIFFVERSION>) and GIF (<LIBGIFVERSION>) obtained
-  from the ezwinports project.
+  JPEG (<LIBJPEGVERSION>), TIFF (<LIBTIFFVERSION>), GIF (<LIBGIFVERSION>)
+  and SVG (<LIBSVGVERSION>) obtained from the ezwinports project.
 * GnuTLS libraries from the ezwinports project (<LIBGNUTLSVERSION>) to
   allow Emacs to access web sites using https on Windows.
 * w32-winprint.el, to ease printing on Windows;
