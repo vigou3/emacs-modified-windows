@@ -14,7 +14,6 @@
 include ./Makeconf
 
 TMPDIR=${CURDIR}/tmpdir
-ZIPFILE=emacs-${EMACSVERSION}-${ARCH}.zip
 
 PREFIX=${TMPDIR}/emacs-bin
 EMACS=${PREFIX}/bin/emacs.exe
@@ -40,7 +39,7 @@ all : get-packages emacs
 
 emacs : dir ess auctex org polymode markdownmode psvn exe
 
-get-packages : get-ess get-auctex get-org get-polymode get-markdownmode get-psvn get-libs
+get-packages : get-emacs get-ess get-auctex get-org get-polymode get-markdownmode get-psvn get-libs
 
 dir :
 	@echo ----- Creating the application in temporary directory...
@@ -78,6 +77,7 @@ dir :
 	    -e 's/<LIBJPEGVERSION>/${LIBJPEGVERSION}/' \
 	    -e 's/<LIBTIFFVERSION>/${LIBTIFFVERSION}/' \
 	    -e 's/<LIBGIFVERSION>/${LIBGIFVERSION}/' \
+	    -e 's/<LIBSVGVERSION>/${LIBSVGVERSION}/' \
 	    -e 's/<LIBGNUTLSVERSION>/${LIBGNUTLSVERSION}/' \
 		    README-Modified.txt.in > README-Modified.txt
 	cp -p site-start.el README-Modified.txt NEWS ${INNOSCRIPT} ${TMPDIR}
@@ -162,6 +162,7 @@ www-pages :
 		    -e 's/<LIBJPEGVERSION>/${LIBJPEGVERSION}/' \
 		    -e 's/<LIBTIFFVERSION>/${LIBTIFFVERSION}/' \
 		    -e 's/<LIBGIFVERSION>/${LIBGIFVERSION}/' \
+		    -e 's/<LIBSVGVERSION>/${LIBSVGVERSION}/' \
 		    -e 's/<LIBGNUTLSVERSION>/${LIBGNUTLSVERSION}/' \
 		    windows.html.in > windows.html
 	cp -p ${WWWSRC}/htdocs/s/emacs/windows.html ${WWWLIVE}/htdocs/s/emacs/
@@ -177,6 +178,7 @@ www-pages :
 		    -e 's/<LIBJPEGVERSION>/${LIBJPEGVERSION}/' \
 		    -e 's/<LIBTIFFVERSION>/${LIBTIFFVERSION}/' \
 		    -e 's/<LIBGIFVERSION>/${LIBGIFVERSION}/' \
+		    -e 's/<LIBSVGVERSION>/${LIBSVGVERSION}/' \
 		    -e 's/<LIBGNUTLSVERSION>/${LIBGNUTLSVERSION}/' \
 		    windows.html.in > windows.html
 	cp -p ${WWWSRC}/htdocs/en/s/emacs/windows.html ${WWWLIVE}/htdocs/en/s/emacs/
@@ -186,20 +188,25 @@ www-pages :
 	svn cp ${REPOS}/trunk ${REPOS}/tags/${DISTNAME} -m "Tag version ${VERSION}"
 	@echo ----- Done updating web pages
 
+get-emacs :
+	@echo ----- Fetching and unpacking ESS...
+	rm -rf ${ZIPFILE}
+	wget -nc ftp://ftp.gnu.org/gnu/emacs/windows/${ZIPFILE}
+
 get-ess :
 	@echo ----- Fetching and unpacking ESS...
 	rm -rf ${ESS}
-	wget http://ess.r-project.org/downloads/ess/${ESS}.zip && unzip ${ESS}.zip
+	wget -nc http://ess.r-project.org/downloads/ess/${ESS}.zip && unzip ${ESS}.zip
 
 get-auctex :
 	@echo ----- Fetching and unpacking AUCTeX...
 	rm -rf ${AUCTEX}
-	wget http://ftp.gnu.org/pub/gnu/auctex/${AUCTEX}.zip && unzip ${AUCTEX}.zip
+	wget -nc http://ftp.gnu.org/pub/gnu/auctex/${AUCTEX}.zip && unzip ${AUCTEX}.zip
 
 get-org :
 	@echo ----- Fetching and unpacking org...
 	rm -rf ${ORG}
-	wget http://orgmode.org/${ORG}.zip && unzip ${ORG}.zip
+	wget -nc http://orgmode.org/${ORG}.zip && unzip ${ORG}.zip
 
 get-polymode :
 	@echo ----- Preparing polymode
@@ -222,17 +229,19 @@ get-psvn :
 get-libs :
 	@echo ----- Preparing library files
 	rm -rf lib
-	wget -nc https://sourceforge.net/projects/ezwinports/files/${LIBPNGVERSION}-w32-bin.zip && \
+	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBPNGVERSION}-w32-bin.zip && \
 	unzip -j ${LIBPNGVERSION}-w32-bin.zip bin/libpng16-16.dll -d lib/
-	wget -nc https://sourceforge.net/projects/ezwinports/files/${LIBZLIBVERSION}-w32-bin.zip && \
+	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBZLIBVERSION}-w32-bin.zip && \
 	unzip -j ${LIBZLIBVERSION}-w32-bin.zip bin/zlib1.dll -d lib/
-	wget -nc https://sourceforge.net/projects/ezwinports/files/${LIBJPEGVERSION}-w32-bin.zip && \
+	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBJPEGVERSION}-w32-bin.zip && \
 	unzip -j ${LIBJPEGVERSION}-w32-bin.zip bin/libjpeg-9.dll -d lib/
-	wget -nc https://sourceforge.net/projects/ezwinports/files/${LIBTIFFVERSION}-w32-bin.zip && \
+	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBTIFFVERSION}-w32-bin.zip && \
 	unzip -j ${LIBTIFFVERSION}-w32-bin.zip bin/libtiff-5.dll -d lib/
-	wget -nc https://sourceforge.net/projects/ezwinports/files/${LIBGIFVERSION}-w32-bin.zip && \
+	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBGIFVERSION}-w32-bin.zip && \
 	unzip -j ${LIBGIFVERSION}-w32-bin.zip bin/libgif-7.dll -d lib/
-	wget -nc https://sourceforge.net/projects/ezwinports/files/${LIBGNUTLSVERSION}-w32-bin.zip && \
+	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBSVGVERSION}-w32-bin.zip && \
+	unzip -j ${LIBSVGVERSION}-w32-bin.zip bin/*.dll -x bin/zlib1.dll bin/libiconv-*.dll bin/libintl-*.dll bin/libpng*.dll -d lib/
+	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBGNUTLSVERSION}-w32-bin.zip && \
 	unzip -j ${LIBGNUTLSVERSION}-w32-bin.zip bin/*.dll -x bin/zlib1.dll -d lib/
 
 clean :
