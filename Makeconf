@@ -1,18 +1,23 @@
-# Makeconf file used by Makefile
+### User settable variables used in -*-Makefile-*-
+##
+## Copyright (C) 2017 Vincent Goulet
+##
+## This file should only serves as a fall-back when the version
+## strings did not come from the make process started in branch
+## master. All values in this file are static since the submodules are
+## not installed in this branch.
+##
+## Author: Vincent Goulet
+##
+## This file is part of GNU Emacs Modified for Windows
+## http://github.com/vigou3/emacs-modified-windows
 
-# Copyright (C) 2016 Vincent Goulet
-
-# Author: Vincent Goulet
-
-# This file is part of GNU Emacs Modified
-# http://vgoulet.act.ulaval.ca/emacs
-
-# GNU and this distribution version number
+## GNU and this distribution version number
 EMACSVERSION=25.1
 EMACSPATCHLEVEL=2
 DISTVERSION=3
 
-# Extensions version numbers
+## Extensions version numbers
 ESSVERSION=16.10
 AUCTEXVERSION=11.89
 ORGVERSION=9.0.2
@@ -28,15 +33,14 @@ LIBGIFVERSION=giflib-5.1.0
 LIBGNUTLSVERSION=gnutls-3.4.15
 LIBSVGVERSION=librsvg-2.40.1-2
 
-# Version strings and file names
+### No modification should be necessary beyond this point
+
+## Version strings and file names
 VERSION=${EMACSVERSION}$(if ${EMACSPATCHLEVEL},-${EMACSPATCHLEVEL},)-modified-${DISTVERSION}
 DISTNAME=emacs-${VERSION}
 ARCH=i686-w64-mingw32
 ZIPFILE=emacs-${EMACSVERSION}$(if ${EMACSPATCHLEVEL},-${EMACSPATCHLEVEL},)-${ARCH}.zip
 
-# WWW site sources and live share mount point
-WWWSRC=/c/www
-WWWLIVE=/z/act-vgoulet
-
-# Subversion repository
-REPOS=https://svn.fsg.ulaval.ca/svn/vgoulet/emacs-modified/windows
+## GitHub repository and authentication
+REPOSURL=https://api.github.com/repos/vigou3/emacs-modified-windows
+OAUTHTOKEN=$(shell cat ~/.github/token)

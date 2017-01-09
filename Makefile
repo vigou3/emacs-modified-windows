@@ -1,45 +1,53 @@
-# Makefile for GNU Emacs for Windows Modified
+### -*-Makefile-*- for GitHub page of GNU Emacs Modified for Windows
+##
+## Copyright (C) 2014-2017 Vincent Goulet
+##
+## The code of this Makefile is based on a file created by Remko
+## Troncon (http://el-tramo.be/about).
+##
+## Author: Vincent Goulet
+##
+## This file is part of GNU Emacs Modified for Windows
+## http://github.com/vigou3/emacs-modified-windows
 
-# Copyright (C) 2014 Vincent Goulet
-
-# Author: Vincent Goulet
-
-# This file is part of GNU Emacs for Windows Modified
-# http://vgoulet.act.ulaval.ca/emacs
-
-# This Makefile will create a installation wizard to distribute the
-# software using Inno Setup.
-
-# Set most variables in Makeconf
+## Set most variables in Makeconf
 include ./Makeconf
 
+## Build directory et al.
 TMPDIR=${CURDIR}/tmpdir
 
+## Emacs specific info
 PREFIX=${TMPDIR}/emacs-bin
 EMACS=${PREFIX}/bin/emacs.exe
 EMACSBATCH = $(EMACS) -batch -no-site-file -no-init-file
+
+## Inno Setup info
 INNOSCRIPT=emacs-modified.iss
 INNOSETUP=c:/progra~1/innose~1/iscc.exe
 INFOBEFOREFR=InfoBefore-fr.txt
 INFOBEFOREEN=InfoBefore-en.txt
 
+## Override of ESS variables
 DESTDIR=${PREFIX}/share/
 SITELISP=${DESTDIR}/emacs/site-lisp
 ETCDIR=${DESTDIR}/emacs/etc
 DOCDIR=${DESTDIR}/doc
 INFODIR=${DESTDIR}/info
 
+## Directories of extensions
 ESS=ess-${ESSVERSION}
 AUCTEX=auctex-${AUCTEXVERSION}
 ORG=org-${ORGVERSION}
 
-all : get-packages emacs
+all : get-packages emacs release
 
-.PHONY : emacs dir ess auctex org polymode psvn exe www clean
+get-packages : get-emacs get-ess get-auctex get-org get-polymode get-markdownmode get-psvn get-libs
 
 emacs : dir ess auctex org polymode markdownmode psvn exe
 
-get-packages : get-emacs get-ess get-auctex get-org get-polymode get-markdownmode get-psvn get-libs
+release : create-release upload publish
+
+.PHONY : emacs dir ess auctex org polymode psvn exe release create-release upload publish clean
 
 dir :
 	@echo ----- Creating the application in temporary directory...
@@ -111,25 +119,23 @@ org :
 	@echo ----- Done making org
 
 polymode :
-	@echo ----- Copying polymode files...
-	mkdir -p ${SITELISP}/polymode
-	cp -p polymode/*.el ${SITELISP}/polymode
+	@echo ----- Copying and byte compiling polymode files...
+	mkdir -p ${SITELISP}/polymode ${DOCDIR}/polymode
+	cp -p polymode/*.el polymode/modes/*.el ${SITELISP}/polymode
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/polymode/*.el
-	mkdir -p ${DOCDIR}/polymode
-	cp -p polymode/*.md ${DOCDIR}/polymode
+	cp -p polymode/readme.md ${DOCDIR}/polymode
+	cp -p polymode/modes/readme.md ${DOCDIR}/polymode/developing.md
 	@echo ----- Done installing polymode
 
 markdownmode :
-	@echo ----- Copying markdown-mode.el...
-	cp -p markdown-mode.el ${SITELISP}/
+	@echo ----- Copying and byte compiling markdown-mode.el...
+	cp -p markdown-mode/markdown-mode.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/markdown-mode.el
 	@echo ----- Done installing markdown-mode.el
 
 psvn :
-	@echo ----- Patching and copying psvn.el...
-	sed 's/^M//' psvn.el.orig > psvn.el
-	patch < psvn.el_svn1.7.diff
-	cp -p psvn.el ${SITELISP}/
+	@echo ----- Patching and byte compiling psvn.el...
+	sed 's/^M//'  emacs-svn/psvn.el | patch -o ${SITELISP}/psvn.el -i psvn.el_svn1.7.diff
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
 	@echo ----- Done copying installing psvn.el
 
@@ -139,54 +145,54 @@ exe :
 	rm -rf ${TMPDIR}
 	@echo ----- Done building the archive
 
-www : www-files www-pages
+create-release :
+	@echo ----- Creating release on GitHub...
+	if [ -e relnotes.in ]; then rm relnotes.in; fi
+	git commit -a -m "Version ${VERSION}" && git push
+	@echo '{"tag_name": "v${VERSION}",' > relnotes.in
+	@echo ' "name": "GNU Emacs Modified for Windows ${VERSION}",' >> relnotes.in
+	@echo '"body": "' >> relnotes.in
+	@awk '/${VERSION}/{flag=1; next} /^Version/{flag=0} flag' NEWS \
+	     | tail +3 | tail -r | tail +3 | tail -r | sed 's|$$|\\n|' >> relnotes.in
+	@echo '", "draft": false, "prerelease": false}' >> relnotes.in
+	curl --data @relnotes.in ${REPOSURL}/releases?access_token=${OAUTHTOKEN}
+	rm relnotes.in
+	@echo ----- Done creating the release
 
-www-files :
-	@echo ----- Pushing files to web site...
-	cp -p ${DISTNAME}.exe ${WWWLIVE}/htdocs/pub/emacs/
-	cp -p NEWS ${WWWLIVE}/htdocs/pub/emacs/NEWS-windows
-	@echo ----- Done copying files
+upload : 
+	@echo ----- Getting upload URL from GitHub...
+	$(eval upload_url=$(shell curl -s ${REPOSURL}/releases/latest \
+	 			  | grep "^  \"upload_url\""  \
+	 			  | cut -d \" -f 4            \
+	 			  | cut -d { -f 1))
+	@echo ${upload_url}
+	@echo ----- Uploading the installer to GitHub...
+	curl -H 'Content-Type: application/zip' \
+	     -H 'Authorization: token ${OAUTHTOKEN}' \
+	     --upload-file ${DISTNAME}.exe \
+             -s -i "${upload_url}?&name=${DISTNAME}.exe"
+	@echo ----- Done uploading the installer
 
-www-pages :
-	@echo ----- Updating web pages...
-	cd ${WWWSRC} && svn update
-	cd ${WWWSRC}/htdocs/s/emacs/ &&                       \
-		sed -e 's/<ESSVERSION>/${ESSVERSION}/'       \
-		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
-		    -e 's/<ORGVERSION>/${ORGVERSION}/'     \
-		    -e 's/<PSVNVERSION>/${PSVNVERSION}/'     \
-		    -e 's/<VERSION>/${VERSION}/'             \
-		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
-		    -e 's/<LIBPNGVERSION>/${LIBPNGVERSION}/' \
-		    -e 's/<LIBZLIBVERSION>/${LIBZLIBVERSION}/' \
-		    -e 's/<LIBJPEGVERSION>/${LIBJPEGVERSION}/' \
-		    -e 's/<LIBTIFFVERSION>/${LIBTIFFVERSION}/' \
-		    -e 's/<LIBGIFVERSION>/${LIBGIFVERSION}/' \
-		    -e 's/<LIBSVGVERSION>/${LIBSVGVERSION}/' \
-		    -e 's/<LIBGNUTLSVERSION>/${LIBGNUTLSVERSION}/' \
-		    windows.html.in > windows.html
-	cp -p ${WWWSRC}/htdocs/s/emacs/windows.html ${WWWLIVE}/htdocs/s/emacs/
-	cd ${WWWSRC}/htdocs/en/s/emacs/ &&                    \
-		sed -e 's/<ESSVERSION>/${ESSVERSION}/'       \
-		    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
-		    -e 's/<ORGVERSION>/${ORGVERSION}/'     \
-		    -e 's/<PSVNVERSION>/${PSVNVERSION}/'     \
-		    -e 's/<VERSION>/${VERSION}/'             \
-		    -e 's/<DISTNAME>/${DISTNAME}/g'           \
-		    -e 's/<LIBPNGVERSION>/${LIBPNGVERSION}/' \
-		    -e 's/<LIBZLIBVERSION>/${LIBZLIBVERSION}/' \
-		    -e 's/<LIBJPEGVERSION>/${LIBJPEGVERSION}/' \
-		    -e 's/<LIBTIFFVERSION>/${LIBTIFFVERSION}/' \
-		    -e 's/<LIBGIFVERSION>/${LIBGIFVERSION}/' \
-		    -e 's/<LIBSVGVERSION>/${LIBSVGVERSION}/' \
-		    -e 's/<LIBGNUTLSVERSION>/${LIBGNUTLSVERSION}/' \
-		    windows.html.in > windows.html
-	cp -p ${WWWSRC}/htdocs/en/s/emacs/windows.html ${WWWLIVE}/htdocs/en/s/emacs/
-	cd ${WWWLIVE} && ls -lRa > ${WWWSRC}/ls-lRa
-	cd ${WWWSRC} && svn ci -m "Update for Emacs Modified for Windows version ${VERSION}"
-	svn ci -m "Version ${VERSION}"
-	svn cp ${REPOS}/trunk ${REPOS}/tags/${DISTNAME} -m "Tag version ${VERSION}"
-	@echo ----- Done updating web pages
+publish :
+	@echo ----- Publishing the web page...
+	git checkout gh-pages && \
+	${MAKE} \
+	  VERSION=${VERSION} \
+	  ESSVERSION=${ESSVERSION} \
+	  AUCTEXVERSION=${AUCTEXVERSION} \
+	  ORGVERSION=${ORGVERSION} \
+	  POLYMODEVERSION=${POLYMODEVERSION} \
+	  MARDOWNMODEVERSION=${MARDOWNMODEVERSION} \
+	  PSVNVERSION=${PSVNVERSION} \
+	  DISTNAME=${DISTNAME} \
+	  LIBPNGVERSION=${LIBPNGVERSION} \
+	  LIBZLIBVERSION=${LIBZLIBVERSION} \
+	  LIBJPEGVERSION=${LIBJPEGVERSION} \
+	  LIBTIFFVERSION=${LIBTIFFVERSION} \
+	  LIBGIFVERSION=${LIBGIFVERSION} \
+	  LIBSVGVERSION=${LIBSVGVERSION} \
+	  LIBGNUTLSVERSION=${LIBGNUTLSVERSION} && \
+	git checkout master
 
 get-emacs :
 	@echo ----- Fetching and unpacking ESS...
@@ -210,21 +216,15 @@ get-org :
 
 get-polymode :
 	@echo ----- Preparing polymode
-	rm -rf polymode
-	git -C ../polymode pull
-	mkdir polymode && \
-		cp -p ../polymode/*.el ../polymode/modes/*.el ../polymode/readme.md polymode && \
-		cp -p ../polymode/modes/readme.md polymode/developing.md
+	git submodule update --remote markdown-mode
 
 get-markdownmode :
 	@echo ----- Preparing markdown-mode
-	git -C ../markdown-mode pull
-	cp -p ../markdown-mode/markdown-mode.el .
+	git submodule update --remote markdown-mode
 
 get-psvn :
 	@echo ----- Preparing psvn.el
-	svn update ../emacs-svn
-	cp -p ../emacs-svn/psvn.el psvn.el.orig
+	svn update emacs-svn
 
 get-libs :
 	@echo ----- Preparing library files
