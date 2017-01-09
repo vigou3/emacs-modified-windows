@@ -28,7 +28,7 @@ UPDATES
 BUG FIX
 -------
 
-- 'emacs-modified-version' now correctly report the Emacs patch level.
+- `emacs-modified-version` now correctly report the Emacs patch level.
 
 
 Version 25.1-modified-2 (24 October 2016)
@@ -94,7 +94,7 @@ NEW FEATURE
 -----------
 
 - markdown-mode is now automatically loaded for file extensions
-  '.text', '.markdown' and '.md'.
+  `.text`, `.markdown` and `.md`.
 
 UPDATES
 -------
@@ -174,7 +174,7 @@ USER VISIBLE CHANGES
   if this causes any problem.
 
   Config file default.el now only contains invocations for this
-  distribution's custom package 'version-modified.el'.
+  distribution's custom package `version-modified.el`.
 
 
 Version 24.4-modified-3 (1 April 2015)
@@ -290,7 +290,7 @@ Version 24.3-modified-4 (8 December 2013)
 NEW FEATURE
 -----------
 
-- Function and variable 'emacs-modified-version' to display and hold
+- Function and variable `emacs-modified-version` to display and hold
   the distribution version number.
 
 BUG FIX
@@ -325,11 +325,11 @@ UPDATES
 (MORE OF LESS) USER VISIBLE CHANGES
 --------------------
 
-- In site-start.el, 'inferior-R-args' no longer includes
+- In site-start.el, `inferior-R-args` no longer includes
   "--no-restore-history" as it apparently had no effect. Thanks to
   Vitalie Spinu for the rectification.
 
-- In site-start.el, 'ess-default-style' is no longer defined to be
+- In site-start.el, `ess-default-style` is no longer defined to be
   "C++" since the default indentation style in ESS is now "RRR".
 
 
@@ -763,7 +763,7 @@ NEW FEATURES
 
 - psvn.el is now included to add a Subversion interface to the VC
   backend of Emacs.
-- New folder '...\site-lisp\site-start.d' in the installation. All .el
+- New folder `...\site-lisp\site-start.d` in the installation. All .el
   files in this folder are automatically loaded by Emacs on
   startup. Thanks to Paul Johnson for the suggestion.
 
