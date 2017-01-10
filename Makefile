@@ -137,7 +137,7 @@ psvn :
 	@echo ----- Patching and byte compiling psvn.el...
 	patch -o ${SITELISP}/psvn.el emacs-svn/psvn.el psvn.el_svn1.7.diff
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
-	@echo ----- Done copying installing psvn.el
+	@echo ----- Done installing psvn.el
 
 exe :
 	@echo ----- Building the archive...
