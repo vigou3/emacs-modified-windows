@@ -1,6 +1,6 @@
 [submodule "markdown-mode"]
 	path = markdown-mode
-	url = git://jblevins.org/git/markdown-mode.git
+	url = https://github.com/jrblevin/markdown-mode.git
 	branch = stable
 [submodule "polymode"]
 	path = polymode
