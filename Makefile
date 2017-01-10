@@ -153,7 +153,7 @@ create-release :
 	@echo ' "name": "GNU Emacs Modified for Windows ${VERSION}",' >> relnotes.in
 	@echo '"body": "' >> relnotes.in
 	@awk '/${VERSION}/{flag=1; next} /^Version/{flag=0} flag' NEWS \
-	     | tail +3 | tail -r | tail +3 | tail -r | sed 's|$$|\\n|' >> relnotes.in
+	     | tail +3 | head -n -2 | sed 's|$$|\\n|' >> relnotes.in
 	@echo '", "draft": false, "prerelease": false}' >> relnotes.in
 	curl --data @relnotes.in ${REPOSURL}/releases?access_token=${OAUTHTOKEN}
 	rm relnotes.in
