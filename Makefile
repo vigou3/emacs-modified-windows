@@ -175,24 +175,8 @@ upload :
 
 publish :
 	@echo ----- Publishing the web page...
-	git checkout gh-pages && \
-	${MAKE} \
-	  VERSION=${VERSION} \
-	  ESSVERSION=${ESSVERSION} \
-	  AUCTEXVERSION=${AUCTEXVERSION} \
-	  ORGVERSION=${ORGVERSION} \
-	  POLYMODEVERSION=${POLYMODEVERSION} \
-	  MARDOWNMODEVERSION=${MARDOWNMODEVERSION} \
-	  PSVNVERSION=${PSVNVERSION} \
-	  LIBPNGVERSION=${LIBPNGVERSION} \
-	  LIBZLIBVERSION=${LIBZLIBVERSION} \
-	  LIBJPEGVERSION=${LIBJPEGVERSION} \
-	  LIBTIFFVERSION=${LIBTIFFVERSION} \
-	  LIBGIFVERSION=${LIBGIFVERSION} \
-	  LIBSVGVERSION=${LIBSVGVERSION} \
-	  LIBGNUTLSVERSION=${LIBGNUTLSVERSION} \
-	  DISTNAME=${DISTNAME} && \
-	git checkout master
+	${MAKE} -C docs
+	@echo ----- Done publishing
 
 get-emacs :
 	@echo ----- Fetching and unpacking Emacs...
