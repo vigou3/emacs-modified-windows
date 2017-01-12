@@ -11,16 +11,16 @@ include the following add-on packages:
 * org <ORGVERSION>;
 * polymode <POLYMODEVERSION> (active by default for RMarkdown mode
   only);
-* markdown-mode <MARKDOWNMODEVERSION>;
+* markdown-mode.el <MARKDOWNMODEVERSION>;
 * psvn.el r<PSVNVERSION> from Subversion sources, to work with
   Subversion repositories from within Emacs;
 * Aspell 0.50.3, a spell checked well integrated with Emacs;
 * English (version 0.50-2-3), French (version 0.50-3-3), German
-  (version 0.50-2-3) and Spanish (version 0.50-2-3) dictionnaries for
-  Aspell;
-* Libraries for image formats PNG (<LIBPNGVERSION>, <LIBZLIBVERSION>),
-  JPEG (<LIBJPEGVERSION>), TIFF (<LIBTIFFVERSION>), GIF (<LIBGIFVERSION>)
-  and SVG (<LIBSVGVERSION>) obtained from the ezwinports project.
+  (version 0.50-2-3) and Spanish (version 0.50-2-3) dictionnaries
+   for Aspell;
+* Libraries for image formats PNG <LIBPNGVERSION>, JPEG <JPEGVERSION>,TIFF <TIFFVERSION>,
+  GIF <GIFLIBVERSION> and SVG <LIBRSVGVERSION> obtained from the ezwinports project
+  (including zlib <ZLIBVERSION>).
 * GnuTLS libraries from the ezwinports project (<LIBGNUTLSVERSION>) to
   allow Emacs to access web sites using https on Windows.
 * w32-winprint.el, to ease printing on Windows;

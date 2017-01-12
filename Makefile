@@ -34,32 +34,39 @@ ETCDIR=${DESTDIR}/emacs/etc
 DOCDIR=${DESTDIR}/doc
 INFODIR=${DESTDIR}/info
 
-## Directories of extensions
+## Base name of extensions
 ESS=ess-${ESSVERSION}
 AUCTEX=auctex-${AUCTEXVERSION}
 ORG=org-${ORGVERSION}
+POLYMODE=polymode-master
+LIBPNG=libpng-${LIBPNGVERSION}-w32-bin
+ZLIB=zlib-${ZLIBVERSION}-w32-bin
+JPEG=jpeg-${JPEGVERSION}-w32-bin
+TIFF=tiff-${TIFFVERSION}-w32-bin
+GIFLIB=giflib-${GIFLIBVERSION}-w32-bin
+LIBRSVG=librsvg-${LIBRSVGVERSION}-w32-bin
+GNUTLS=gnutls-${GNUTLSVERSION}-w32-bin
+LIBS=libs
 
 all : get-packages emacs release
 
 get-packages : get-emacs get-ess get-auctex get-org get-polymode get-markdownmode get-psvn get-libs
 
-emacs : dir ess auctex org polymode markdownmode psvn exe
+emacs : dir libs ess auctex org polymode markdownmode psvn exe
 
 release : create-release upload publish
 
-.PHONY : emacs dir ess auctex org polymode psvn exe release create-release upload publish clean
+.PHONY : emacs dir libs ess auctex org polymode psvn exe release create-release upload publish clean
 
 dir :
 	@echo ----- Creating the application in temporary directory...
 	if [ -d ${TMPDIR} ]; then rm -rf ${TMPDIR}; fi
 	mkdir -p ${PREFIX}
 	unzip -q ${ZIPFILE} -d ${PREFIX}
-	cp -p lib/* ${PREFIX}/bin
 	cp -dpr aspell ${PREFIX}
 	cp -p default.el ${SITELISP}/
 	sed -e '/^(defconst/s/<DISTVERSION>/${DISTVERSION}/' \
-	    version-modified.el.in > version-modified.el
-	cp -p version-modified.el ${SITELISP}/
+	    version-modified.el.in > ${SITELISP}/version-modified.el
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/version-modified.el
 	cp -p framepop.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/framepop.el
@@ -72,7 +79,7 @@ dir :
 	sed -e 's/<VERSION>/${VERSION}/' \
 	    -e 's/<EMACSVERSION>/${EMACSVERSION}/' \
 	    -e 's/<DISTNAME>/${DISTNAME}/' \
-	    ${INNOSCRIPT}.in > ${INNOSCRIPT}
+	    ${INNOSCRIPT}.in > ${TMPDIR}/${INNOSCRIPT}
 	sed -e 's/<VERSION>/${VERSION}/' \
 	    -e 's/<ESSVERSION>/${ESSVERSION}/' \
 	    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
@@ -81,26 +88,45 @@ dir :
 	    -e 's/<MARKDOWNMODEVERSION>/${MARKDOWNMODEVERSION}/' \
 	    -e 's/<PSVNVERSION>/${PSVNVERSION}/' \
 	    -e 's/<LIBPNGVERSION>/${LIBPNGVERSION}/' \
-	    -e 's/<LIBZLIBVERSION>/${LIBZLIBVERSION}/' \
-	    -e 's/<LIBJPEGVERSION>/${LIBJPEGVERSION}/' \
-	    -e 's/<LIBTIFFVERSION>/${LIBTIFFVERSION}/' \
-	    -e 's/<LIBGIFVERSION>/${LIBGIFVERSION}/' \
-	    -e 's/<LIBSVGVERSION>/${LIBSVGVERSION}/' \
-	    -e 's/<LIBGNUTLSVERSION>/${LIBGNUTLSVERSION}/' \
-		    README-Modified.txt.in > README-Modified.txt
-	cp -p site-start.el README-Modified.txt NEWS ${INNOSCRIPT} ${TMPDIR}
+	    -e 's/<ZLIBVERSION>/${ZLIBVERSION}/' \
+	    -e 's/<JPEGVERSION>/${JPEGVERSION}/' \
+	    -e 's/<TIFFVERSION>/${TIFFVERSION}/' \
+	    -e 's/<GIFLIBVERSION>/${GIFLIBVERSION}/' \
+	    -e 's/<LIBRSVGVERSION>/${LIBRSVGVERSION}/' \
+	    -e 's/<GNUTLSVERSION>/${GNUTLSVERSION}/' \
+		    README-Modified.txt.in > ${TMPDIR}/README-Modified.txt
+	cp -p site-start.el NEWS ${TMPDIR}
+
+libs :
+	@echo ----- Copying image libraries...
+	if [ -d ${LIBS} ]; then rm -rf ${LIBS}; fi
+	unzip -j ${LIBPNG}.zip bin/libpng16-16.dll -d ${LIBS}
+	unzip -j ${ZLIB}.zip bin/zlib1.dll -d ${LIBS}
+	unzip -j ${JPEG}.zip bin/libjpeg-9.dll -d ${LIBS}
+	unzip -j ${TIFF}.zip bin/libtiff-5.dll -d ${LIBS}
+	unzip -j ${GIFLIB}.zip bin/libgif-7.dll -d ${LIBS}
+	unzip -j ${LIBRSVG}.zip bin/*.dll -x bin/zlib1.dll \
+	         bin/libiconv-*.dll bin/libintl-*.dll bin/libpng*.dll -d ${LIBS}
+	unzip -j ${GNUTLS}.zip bin/*.dll -x bin/zlib1.dll -d ${LIBS}
+	cp -p ${LIBS}/* ${PREFIX}/bin
+	@echo ----- Done copying the libraries
 
 ess :
 	@echo ----- Making ESS...
+	if [ -d ${ESS} ]; then rm -rf ${ESS}; fi
+	unzip ${ESS}.zip
 	TMPDIR=${TMP} ${MAKE} EMACS=${EMACS} -C ${ESS} all
 	${MAKE} DESTDIR=${DESTDIR} SITELISP=${SITELISP} \
 	        ETCDIR=${ETCDIR}/ess DOCDIR=${DOCDIR}/ess \
 	        INFODIR=${INFODIR} -C ${ESS} install
 	if [ -f ${SITELISP}/ess-site.el ]; then rm ${SITELISP}/ess-site.el; fi
+	rm -rf ${ESS}
 	@echo ----- Done making ESS
 
 auctex :
 	@echo ----- Making AUCTeX...
+	if [ -d ${AUCTEX} ]; then rm -rf ${AUCTEX}; fi
+	unzip ${AUCTEX}.zip
 	cd ${AUCTEX} && ./configure --prefix=${PREFIX} \
 		--without-texmf-dir \
 		--with-emacs=${EMACS}
@@ -108,34 +134,41 @@ auctex :
 	make -C ${AUCTEX} install
 	mv ${SITELISP}/auctex/doc/preview.* ${DOCDIR}/auctex
 	rmdir ${SITELISP}/auctex/doc
+	rm -rf ${AUCTEX}
 	@echo ----- Done making AUCTeX
 
 org :
 	@echo ----- Making org...
+	if [ -d ${ORG} ]; then rm -rf ${ORG}; fi
+	unzip ${ORG}.zip
 	${MAKE} EMACS=${EMACS} -C ${ORG} all
 	${MAKE} EMACS=${EMACS} lispdir=${SITELISP}/org \
 	        datadir=${ETCDIR}/org infodir=${INFODIR} -C ${ORG} install
 	mkdir -p ${DOCDIR}/org && cp -p ${ORG}/doc/*.html ${DOCDIR}/org/
+	rm -rf ${ORG}
 	@echo ----- Done making org
 
 polymode :
 	@echo ----- Copying and byte compiling polymode files...
+	if [ -d ${POLYMODE} ]; then rm -rf ${POLYMODE}; fi
+	unzip ${POLYMODE}.zip
 	mkdir -p ${SITELISP}/polymode ${DOCDIR}/polymode
-	cp -p polymode/*.el polymode/modes/*.el ${SITELISP}/polymode
+	cp -p ${POLYMODE}/*.el ${POLYMODE}/modes/*.el ${SITELISP}/polymode
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/polymode/*.el
-	cp -p polymode/readme.md ${DOCDIR}/polymode
-	cp -p polymode/modes/readme.md ${DOCDIR}/polymode/developing.md
+	cp -p ${POLYMODE}/readme.md ${DOCDIR}/polymode
+	cp -p ${POLYMODE}/modes/readme.md ${DOCDIR}/polymode/developing.md
+	rm -rf ${POLYMODE}
 	@echo ----- Done installing polymode
 
 markdownmode :
 	@echo ----- Copying and byte compiling markdown-mode.el...
-	cp -p markdown-mode/markdown-mode.el ${SITELISP}/
+	cp -p markdown-mode.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/markdown-mode.el
 	@echo ----- Done installing markdown-mode.el
 
 psvn :
 	@echo ----- Patching and byte compiling psvn.el...
-	patch -o ${SITELISP}/psvn.el emacs-svn/psvn.el psvn.el_svn1.7.diff
+	patch -o ${SITELISP}/psvn.el psvn.el psvn.el_svn1.7.diff
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
 	@echo ----- Done installing psvn.el
 
@@ -153,13 +186,13 @@ create-release :
 	@echo ' "name": "GNU Emacs Modified for Windows ${VERSION}",' >> relnotes.in
 	@echo '"body": "' >> relnotes.in
 	@awk '/${VERSION}/{flag=1; next} /^Version/{flag=0} flag' NEWS \
-	     | tail +3 | head -n -2 | sed 's|$$|\\n|' >> relnotes.in
+	     | tail +3 | tail -r | tail +3 | tail -r | sed 's|$$|\\n|' >> relnotes.in
 	@echo '", "draft": false, "prerelease": false}' >> relnotes.in
 	curl --data @relnotes.in ${REPOSURL}/releases?access_token=${OAUTHTOKEN}
 	rm relnotes.in
 	@echo ----- Done creating the release
 
-upload : 
+upload :
 	@echo ----- Getting upload URL from GitHub...
 	$(eval upload_url=$(shell curl -s ${REPOSURL}/releases/latest \
 	 			  | grep "^  \"upload_url\""  \
@@ -180,53 +213,49 @@ publish :
 
 get-emacs :
 	@echo ----- Fetching and unpacking Emacs...
-	rm -rf ${ZIPFILE}
-	wget -nc ftp://ftp.gnu.org/gnu/emacs/windows/${ZIPFILE}
+	if [ -f ${ZIPFILE} ]; then rm ${ZIPFILE}; fi
+	curl -O ftp://ftp.gnu.org/gnu/emacs/windows/${ZIPFILE}
 
 get-ess :
-	@echo ----- Fetching and unpacking ESS...
-	rm -rf ${ESS}
-	wget -nc http://ess.r-project.org/downloads/ess/${ESS}.zip && unzip ${ESS}.zip
+	@echo ----- Fetching ESS...
+	if [ -d ${ESS}.zip ]; then rm ${ESS}.zip; fi
+	curl -O http://ess.r-project.org/downloads/ess/${ESS}.zip
 
 get-auctex :
-	@echo ----- Fetching and unpacking AUCTeX...
-	rm -rf ${AUCTEX}
-	wget -nc http://ftp.gnu.org/pub/gnu/auctex/${AUCTEX}.zip && unzip ${AUCTEX}.zip
+	@echo ----- Fetching AUCTeX...
+	if [ -f ${AUCTEX}.zip ]; then rm ${AUCTEX}.zip; fi
+	curl -O http://ftp.gnu.org/pub/gnu/auctex/${AUCTEX}.zip
 
 get-org :
-	@echo ----- Fetching and unpacking org...
-	rm -rf ${ORG}
-	wget -nc http://orgmode.org/${ORG}.zip && unzip ${ORG}.zip
+	@echo ----- Fetching org...
+	if [ -f ${ORG}.zip ]; then rm ${ORG}.zip; fi
+	curl -O http://orgmode.org/${ORG}.zip
 
 get-polymode :
-	@echo ----- Preparing polymode
-	git submodule update --remote markdown-mode
+	@echo ----- Fetching polymode
+	if [ -f ${POLYMODE}.zip ]; then rm ${POLYMODE}.zip; fi
+	curl -L -o ${POLYMODE}.zip https://github.com/vspinu/polymode/archive/master.zip
 
 get-markdownmode :
-	@echo ----- Preparing markdown-mode
-	git submodule update --remote markdown-mode
+	@echo ----- Fetching markdown-mode.el
+	if [ -f markdown-mode.el ]; then rm markdown-mode.el; fi
+	curl -OL https://github.com/jrblevin/markdown-mode/raw/v${MARKDOWNMODEVERSION}/markdown-mode.el
 
 get-psvn :
-	@echo ----- Preparing psvn.el
-	svn update emacs-svn
+	@echo ----- Fetching psvn.el
+	if [ -f psvn.el ]; then rm psvn.el; fi
+	svn cat http://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/emacs/psvn.el > psvn.el && flip -u psvn.el
 
 get-libs :
 	@echo ----- Preparing library files
 	rm -rf lib
-	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBPNGVERSION}-w32-bin.zip && \
-	unzip -j ${LIBPNGVERSION}-w32-bin.zip bin/libpng16-16.dll -d lib/
-	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBZLIBVERSION}-w32-bin.zip && \
-	unzip -j ${LIBZLIBVERSION}-w32-bin.zip bin/zlib1.dll -d lib/
-	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBJPEGVERSION}-w32-bin.zip && \
-	unzip -j ${LIBJPEGVERSION}-w32-bin.zip bin/libjpeg-9.dll -d lib/
-	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBTIFFVERSION}-w32-bin.zip && \
-	unzip -j ${LIBTIFFVERSION}-w32-bin.zip bin/libtiff-5.dll -d lib/
-	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBGIFVERSION}-w32-bin.zip && \
-	unzip -j ${LIBGIFVERSION}-w32-bin.zip bin/libgif-7.dll -d lib/
-	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBSVGVERSION}-w32-bin.zip && \
-	unzip -j ${LIBSVGVERSION}-w32-bin.zip bin/*.dll -x bin/zlib1.dll bin/libiconv-*.dll bin/libintl-*.dll bin/libpng*.dll -d lib/
-	wget -nc --no-check-certificate https://sourceforge.net/projects/ezwinports/files/${LIBGNUTLSVERSION}-w32-bin.zip && \
-	unzip -j ${LIBGNUTLSVERSION}-w32-bin.zip bin/*.dll -x bin/zlib1.dll -d lib/
+	curl -OL https://sourceforge.net/projects/ezwinports/files/${LIBPNG}.zip
+	curl -OL https://sourceforge.net/projects/ezwinports/files/${ZLIB}.zip
+	curl -OL https://sourceforge.net/projects/ezwinports/files/${JPEG}.zip
+	curl -OL https://sourceforge.net/projects/ezwinports/files/${TIFF}.zip
+	curl -OL https://sourceforge.net/projects/ezwinports/files/${GIFLIB}.zip
+	curl -OL https://sourceforge.net/projects/ezwinports/files/${LIBRSVG}.zip
+	curl -OL https://sourceforge.net/projects/ezwinports/files/${GNUTLS}.zip
 
 clean :
 	rm -rf ${TMPDIR}
