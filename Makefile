@@ -109,6 +109,7 @@ libs :
 	         bin/libiconv-*.dll bin/libintl-*.dll bin/libpng*.dll -d ${LIBS}
 	unzip -j ${GNUTLS}.zip bin/*.dll -x bin/zlib1.dll -d ${LIBS}
 	cp -p ${LIBS}/* ${PREFIX}/bin
+	rm -rf ${LIBS}
 	@echo ----- Done copying the libraries
 
 ess :
