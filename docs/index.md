@@ -8,38 +8,37 @@ LaTeX users and R developers.
 The additions to stock Emacs are the following:
 
 -   [ESS](http://ess.r-project.org) 16.10;
--   [AUCTeX](http://www.gnu.org/software/auctex/) 11.89;
+-   [AUCTeX](http://www.gnu.org/software/auctex/) 11.90;
 -   [org](http://orgmode.org/) 9.0.3;
 -   [polymode](https://github.com/vitoshka/polymode) 2016-12-18;
--   [markdown-mode](http://jblevins.org/projects/markdown-mode/) v2.1-151-gdf4ac40;
--   [Aspell](http://aspell.net/) 0.50.3;
--   English, French, German and Spanish
-    [dictionaries](http://aspell.net/win32) for Aspell;
--   libraries for image formats PNG (libpng-1.6.12,
-    zlib-1.2.8-2), JPEG (jpeg-v9a), TIFF
-    (tiff-4.0.3), GIF (giflib-5.1.0) and SVG
-    (librsvg-2.40.1-2) obtained from the
-    [ezwinports](http://sourceforge.net/projects/ezwinports/files/)
-    project;
--   [GnuTLS](http://www.gnutls.org) libraries from the
-    [ezwinports](http://sourceforge.net/projects/ezwinports/files/)
-    project (gnutls-3.4.15) to allow Emacs to access web sites using
-    https on Windows;
+-   [`markdown-mode.el`](http://jblevins.org/projects/markdown-mode/) 2.1;
 -   [`psvn.el`](http://svn.apache.org/viewvc/subversion/trunk/contrib/client-side/emacs/)
     r1573006, an interface for the version control system
     [Subversion](http://subversion.tigris.org) modified to include
     Andre Colomb's and Koji Nakamaru's
     [combined patches](http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/raw/%3c503B958F.6010906@schickhardt.org%3e/1/4)
     to support Subversion 1.7;
+-   [Aspell](http://aspell.net/) 0.50.3;
+-   English, French, German and Spanish
+    [dictionaries](http://aspell.net/win32) for Aspell;
+-   libraries for image formats PNG 1.6.12, JPEG <JPEGVERSION>, TIFF
+    <TIFFVERSION>, GIF <GIFLIBVERSION> and SVG <LIBRSVGVERSION>
+    obtained from the
+    [ezwinports](http://sourceforge.net/projects/ezwinports/files/) 
+    project (this also includes zlib <ZLIBVERSION>);
+-   [GnuTLS](http://www.gnutls.org) libraries <GNUTLSVERSION> from the
+    [ezwinports](http://sourceforge.net/projects/ezwinports/files/)
+    project to allow Emacs to access web sites using
+    https on Windows;
 -   [`framepop.el`](http://bazaar.launchpad.net/~vcs-imports/emacs-goodies-el/trunk/view/head:/elisp/emacs-goodies-el/framepop.el)
     to open temporary buffers in a separate frame;
 -   [`w32-winprint.el`](http://www.emacswiki.org/cgi-bin/emacs?action=browse;id=w32-winprint.el),
     to ease printing under Windows;
 -   [`htmlize.el`](http://fly.srk.fer.hr/~hniksic/emacs/htmlize.el), to
     print in color with `w32-winprint.el`;
--   [`default.el`]({{ site.github.repository_url }}/tags/v25.1-2-modified-4/default.el)
+-   [`default.el`]({{ site.github.repository_url }}/tags/v25.1-2-modified-5/default.el)
     and
-    [`site-start.el`]({{ site.github.repository_url }}/tags/v25.1-2-modified-4/site-start.el),
+    [`site-start.el`]({{ site.github.repository_url }}/tags/v25.1-2-modified-5/site-start.el),
     configuration files to make everything work.
 
 This distribution is based on the latest stable official release of GNU Emacs.
@@ -47,7 +46,7 @@ This distribution is based on the latest stable official release of GNU Emacs.
 Latest release
 --------------
 
-Version 25.1-2-modified-4 ([Release notes]({{ site.github.repository_url }}/releases/tag/v25.1-2-modified-4/))
+Version 25.1-2-modified-5 ([Release notes]({{ site.github.repository_url }}/releases/tag/v25.1-2-modified-5/))
 
 Installation
 ============
