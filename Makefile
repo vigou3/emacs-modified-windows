@@ -184,7 +184,7 @@ create-release :
 	if [ -e relnotes.in ]; then rm relnotes.in; fi
 	git commit -a -m "Version ${VERSION}" && git push
 	@echo '{"tag_name": "v${VERSION}",' > relnotes.in
-	@echo ' "name": "GNU Emacs Modified for Windows ${VERSION}",' >> relnotes.in
+	@echo ' "name": "Emacs Modified for Windows ${VERSION}",' >> relnotes.in
 	@echo '"body": "' >> relnotes.in
 	@awk '/${VERSION}/{flag=1; next} /^Version/{flag=0} flag' NEWS \
 	     | tail +3 | tail -r | tail +3 | tail -r | sed 's|$$|\\n|' >> relnotes.in
