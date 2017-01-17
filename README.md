@@ -95,16 +95,20 @@ for all extensions but the image libraries.
 In a separate directory, I created a purely local Git repository named
 `emacs-modified-extensions`:
 
-    $ git init emacs-modified-extensions
-	
+```bash
+$ git init emacs-modified-extensions
+```
+
 In this repository I added the following submodules:
 
-    $ git submodule add https://github.com/emacs-ess/ESS/
-    $ git submodule add http://git.savannah.gnu.org/r/auctex.git
-    $ git submodule add http://orgmode.org/org-mode.git/
-    $ git submodule add https://github.com/vspinu/polymode
-    $ git submodule add https://github.com/jrblevin/markdown-mode
-    $ git submodule add https://github.com/purcell/exec-path-from-shell
+```bash
+$ git submodule add https://github.com/emacs-ess/ESS/
+$ git submodule add http://git.savannah.gnu.org/r/auctex.git
+$ git submodule add http://orgmode.org/org-mode.git/
+$ git submodule add https://github.com/vspinu/polymode
+$ git submodule add https://github.com/jrblevin/markdown-mode
+$ git submodule add https://github.com/purcell/exec-path-from-shell
+```
 
 Finally, I created a `Makefile` with the following content to fetch
 the version numbers of the latest releases of each of the above
@@ -112,25 +116,27 @@ submodules (except Polymode, where the date of the latest snapshop of
 the master branch is used). The script also extracts the latest
 revision number of `psvn.el` in the Subversion source code repository.
 
-	all :
-		git submodule foreach 'git submodule update'
-		if [ -f versions.txt ]; then rm versions.txt; fi
-		touch versions.txt
-		echo ESSVERSION=$(shell git -C ESS describe --tags | cut -d - -f 1 | tr -d v) \
-		  >> versions.txt
-		echo AUCTEXVERSION=$(shell git -C auctex describe --tags | cut -d - -f 1 | cut -d _ -f 2-3 | tr _ .) \
-		  >> versions.txt
-		echo ORGVERSION=$(shell git -C org-mode describe --tags | cut -d - -f 1 | cut -d _ -f 2) \
-		  >> versions.txt
-		echo POLYMODEVERSION=$(shell git -C polymode show -s --format="%ci" HEAD | cut -d " " -f 1) \
-		  >> versions.txt
-		echo MARKDOWNLOADVERSION=$(shell git -C markdown-mode describe --tags | cut -d - -f 1 | tr -d v) \
-		  >> versions.txt
-		echo EXECPATHVERSION=$(shell git -C exec-path-from-shell describe --tags | cut -d - -f 1) \
-		  >> versions.txt
-		echo PSVNVERSION=$(shell svn log -q -l 1 http://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/emacs/psvn.el \
-		  | grep ^r | cut -d " " -f 1 | tr -d r) \
-		  >> versions.txt
+```Makefile
+all :
+	git submodule foreach 'git submodule update'
+	if [ -f versions.txt ]; then rm versions.txt; fi
+	touch versions.txt
+	echo ESSVERSION=$(shell git -C ESS describe --tags | cut -d - -f 1 | tr -d v) \
+	  >> versions.txt
+	echo AUCTEXVERSION=$(shell git -C auctex describe --tags | cut -d - -f 1 | cut -d _ -f 2-3 | tr _ .) \
+	  >> versions.txt
+	echo ORGVERSION=$(shell git -C org-mode describe --tags | cut -d - -f 1 | cut -d _ -f 2) \
+	  >> versions.txt
+	echo POLYMODEVERSION=$(shell git -C polymode show -s --format="%ci" HEAD | cut -d " " -f 1) \
+	  >> versions.txt
+	echo MARKDOWNLOADVERSION=$(shell git -C markdown-mode describe --tags | cut -d - -f 1 | tr -d v) \
+	  >> versions.txt
+	echo EXECPATHVERSION=$(shell git -C exec-path-from-shell describe --tags | cut -d - -f 1) \
+	  >> versions.txt
+	echo PSVNVERSION=$(shell svn log -q -l 1 http://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/emacs/psvn.el \
+	  | grep ^r | cut -d " " -f 1 | tr -d r) \
+	  >> versions.txt
+```
 
 Running `make` in this directory yields a file `versions.txt`
 containing the variable initialization strings to use in this
