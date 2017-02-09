@@ -1,10 +1,10 @@
-# GNU Emacs Modified for Windows
+# Emacs Modified for Windows
 
 > See the [web page](https://vigou3.github.io/emacs-modified-windows)
 > of the project for detailed information on the distribution and to
 > obtain the binary releases.
 
-Emacs Modified for Windows is a distribution of GNU Emacs bundled with
+*Emacs Modified for Windows* is a distribution of GNU Emacs bundled with
 a few select packages for LaTeX users and R developers, most notably
 [AUCTeX](https://www.gnu.org/software/auctex/) and
 [ESS](https://ess.r-project.org). It also comes with a spell checker,
@@ -33,14 +33,14 @@ system. Therefore, one will need to install the following components:
 
 1. The base [MSYS](http://www.mingw.org/wiki/MSYS) system. This will
    provide a Unix shell, `make` and standard utilities.
-   
+
 2. A binary version of [curl](https://curl.haxx.se/download.html) to
    download files from the command line.
 
 3. The `flip` utility from the
    [ezwinports project](https://sourceforge.net/projects/ezwinports/files/?source=navbar)
    to convert DOS line endings to Unix style.
-   
+
 4. [Inno Setup](http://innosetup.com) to create the installer.
 
 ## Building the distribution
@@ -66,12 +66,12 @@ distribution and the various extensions (more on this below). Then
 
 2. `emacs` will, in summary, decompress the GNU binary distribution in a
    temporary directory, add all the extensions into the application
-   tree and build and installer. 
-   
+   tree and build and installer.
+
 3. `release` will create a tag and a release on GitHub, upload the
    installer and attach it to said release, and update the project's
    web page with the correct version numbers and hyperlinks.
-   
+
 Each of the above three steps is split into smaller recipes, around 20
 in total. See the `Makefile` for details.
 
