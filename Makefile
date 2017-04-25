@@ -183,12 +183,15 @@ create-release :
 	@echo ----- Creating release on GitHub...
 	if [ -e relnotes.in ]; then rm relnotes.in; fi
 	git commit -a -m "Version ${VERSION}" && git push
-	@echo '{"tag_name": "v${VERSION}",' > relnotes.in
-	@echo ' "name": "Emacs Modified for Windows ${VERSION}",' >> relnotes.in
-	@echo '"body": "' >> relnotes.in
-	@awk '/${VERSION}/{flag=1; next} /^Version/{flag=0} flag' NEWS \
-	     | tail +3 | tail -r | tail +3 | tail -r | sed 's|$$|\\n|' >> relnotes.in
-	@echo '", "draft": false, "prerelease": false}' >> relnotes.in
+	awk 'BEGIN { ORS=" "; print "{\"tag_name\": \"v${VERSION}\"," } \
+	      /^$$/ { next } \
+              (state==0) && /^# / { state=1; \
+	                            print "\"name\": \"Emacs Modified for Windows ${VERSION}\", \"body\": \""; \
+	                             next } \
+	      (state==1) && /^# / { state=2; print "\","; next } \
+	      state==1 { printf "%s\\n", $$0 } \
+	      END { print "\"draft\": false, \"prerelease\": false}" }' \
+	      NEWS > relnotes.in
 	curl --data @relnotes.in ${REPOSURL}/releases?access_token=${OAUTHTOKEN}
 	rm relnotes.in
 	@echo ----- Done creating the release
@@ -196,15 +199,14 @@ create-release :
 upload :
 	@echo ----- Getting upload URL from GitHub...
 	$(eval upload_url=$(shell curl -s ${REPOSURL}/releases/latest \
-	 			  | grep "^  \"upload_url\""  \
-	 			  | cut -d \" -f 4            \
-	 			  | cut -d { -f 1))
+	 			  | awk -F '[ {]' '/^  \"upload_url\"/ \
+	                                    { print substr($$4, 2, length) }'))
 	@echo ${upload_url}
 	@echo ----- Uploading the installer to GitHub...
 	curl -H 'Content-Type: application/zip' \
 	     -H 'Authorization: token ${OAUTHTOKEN}' \
 	     --upload-file ${DISTNAME}.exe \
-             -s -i "${upload_url}?&name=${DISTNAME}.exe"
+	     -s -i "${upload_url}?&name=${DISTNAME}.exe"
 	@echo ----- Done uploading the installer
 
 publish :
