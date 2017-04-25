@@ -18,8 +18,8 @@ include the following add-on packages:
 * English (version 0.50-2-3), French (version 0.50-3-3), German
   (version 0.50-2-3) and Spanish (version 0.50-2-3) dictionnaries
    for Aspell;
-* Libraries for image formats PNG <LIBPNGVERSION>, JPEG <JPEGVERSION>,TIFF <TIFFVERSION>,
-  GIF <GIFLIBVERSION> and SVG <LIBRSVGVERSION> obtained from the ezwinports project
+* Libraries for image formats from the ezwinports project: PNG <LIBPNGVERSION>,
+  JPEG <JPEGVERSION>, TIFF <TIFFVERSION>, GIF <GIFLIBVERSION> and SVG <LIBRSVGVERSION>
   (including zlib <ZLIBVERSION>).
 * GnuTLS libraries from the ezwinports project (<LIBGNUTLSVERSION>) to
   allow Emacs to access web sites using https on Windows.
