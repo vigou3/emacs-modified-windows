@@ -1,8 +1,9 @@
-# Emacs Modified for Windows
+> See the
+> [project page](https://vigou3.github.io/emacs-modified-windows) for
+> detailed information on the distribution and to obtain binary
+> releases.
 
-> See the [web page](https://vigou3.github.io/emacs-modified-windows)
-> of the project for detailed information on the distribution and to
-> obtain the binary releases.
+# Emacs Modified for Windows
 
 *Emacs Modified for Windows* is a distribution of GNU Emacs bundled with
 a few select packages for LaTeX users and R developers, most notably
