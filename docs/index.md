@@ -21,15 +21,15 @@ The additions to stock Emacs are the following:
 -   [Aspell](http://aspell.net/) 0.50.3;
 -   English, French, German and Spanish
     [dictionaries](http://aspell.net/win32) for Aspell;
--   libraries for image formats PNG 1.6.12, JPEG <JPEGVERSION>, TIFF
-    <TIFFVERSION>, GIF <GIFLIBVERSION> and SVG <LIBRSVGVERSION>
-    obtained from the
+-   libraries for image formats from the
     [ezwinports](http://sourceforge.net/projects/ezwinports/files/) 
-    project (this also includes zlib <ZLIBVERSION>);
--   [GnuTLS](http://www.gnutls.org) libraries <GNUTLSVERSION> from the
+    project: PNG 1.6.12, JPEG v9a, TIFF
+    4.0.3, GIF 5.1.0 and SVG 2.40.1-2
+    (also including zlib 1.2.8-2);
+-   [GnuTLS](http://www.gnutls.org) libraries 3.4.15 from the
     [ezwinports](http://sourceforge.net/projects/ezwinports/files/)
     project to allow Emacs to access web sites using
-    https on Windows;
+    `https` on Windows;
 -   [`framepop.el`](http://bazaar.launchpad.net/~vcs-imports/emacs-goodies-el/trunk/view/head:/elisp/emacs-goodies-el/framepop.el)
     to open temporary buffers in a separate frame;
 -   [`w32-winprint.el`](http://www.emacswiki.org/cgi-bin/emacs?action=browse;id=w32-winprint.el),
