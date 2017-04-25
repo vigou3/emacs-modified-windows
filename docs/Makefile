@@ -10,7 +10,12 @@
 ## Get version strings in Makeconf
 include ../Makeconf
 
-all : 
+INDEX = index.md
+DEFAULT = default.html
+
+all : files commit
+
+files : 
 	sed -e 's/<ESSVERSION>/${ESSVERSION}/'       \
 	    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
 	    -e 's/<ORGVERSION>/${ORGVERSION}/'     \
@@ -18,17 +23,19 @@ all :
 	    -e 's/<MARKDOWNMODEVERSION>/${MARKDOWNMODEVERSION}/' \
 	    -e 's/<PSVNVERSION>/${PSVNVERSION}/'     \
 	    -e 's/<LIBPNGVERSION>/${LIBPNGVERSION}/' \
-	    -e 's/<LIBZLIBVERSION>/${LIBZLIBVERSION}/' \
-	    -e 's/<LIBJPEGVERSION>/${LIBJPEGVERSION}/' \
-	    -e 's/<LIBTIFFVERSION>/${LIBTIFFVERSION}/' \
-	    -e 's/<LIBGIFVERSION>/${LIBGIFVERSION}/' \
-	    -e 's/<LIBSVGVERSION>/${LIBSVGVERSION}/' \
-	    -e 's/<LIBGNUTLSVERSION>/${LIBGNUTLSVERSION}/' \
+	    -e 's/<ZLIBVERSION>/${ZLIBVERSION}/' \
+	    -e 's/<JPEGVERSION>/${JPEGVERSION}/' \
+	    -e 's/<TIFFVERSION>/${TIFFVERSION}/' \
+	    -e 's/<GIFLIBVERSION>/${GIFLIBVERSION}/' \
+	    -e 's/<LIBRSVGVERSION>/${LIBRSVGVERSION}/' \
+	    -e 's/<GNUTLSVERSION>/${GNUTLSVERSION}/' \
 	    -e 's/<VERSION>/${VERSION}/g'             \
-	    index.md.in > index.md
+	    ${INDEX}.in > ${INDEX}
 	sed -e 's/<VERSION>/${VERSION}/g'     \
 	    -e 's/<DISTNAME>/${DISTNAME}/'      \
-	    _layouts/default.html.in > _layouts/default.html
+	    _layouts/${DEFAULT}.in > _layouts/${DEFAULT}
+
+commit :
 	git commit -a -m "Updating the web page for version ${VERSION}" && \
 	git push
 
