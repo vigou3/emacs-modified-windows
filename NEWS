@@ -2,6 +2,15 @@
 === GNU Emacs Modified for Windows
 ===
 
+# VERSION 25.1-1-modified-6 ()
+
+## User visible changes
+
+- In `site-start.el`, `ess-nuke-trailing-whitespace` is now added to
+  the `write-contents-functions` hook to avoid bleeding of the
+  functionality to other major modes (most notably markdown, where
+  trailing whitespace is sometimes usuful).
+
 # VERSION 25.1-2-modified-5 (11 January 2016)
 
 ## Updates
