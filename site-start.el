@@ -49,7 +49,7 @@
 ;; files. One can add other commands in the ess-mode-hook below.
 (add-hook 'ess-mode-hook
 	  '(lambda()
-	     (add-hook 'write-file-functions
+	     (add-hook 'write-contents-functions
 		       (lambda ()
                          (ess-nuke-trailing-whitespace)))
 	     (setq ess-nuke-trailing-whitespace-p t)))
