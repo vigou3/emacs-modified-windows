@@ -1,11 +1,11 @@
-;;; site-start.el --- Customizations for GNU Emacs on Windows
+;;; site-start.el --- Customizations for Emacs Modified for Windows
 
-;; Copyright (C) 2015 Vincent Goulet
+;; Copyright (C) 2015-2017 Vincent Goulet
 
 ;; Author: Vincent Goulet
 
-;; This file is part of GNU Emacs.app Modified
-;; http://vgoulet.act.ulaval.ca/emacs
+;; This file is part of Emacs Modified for Windows
+;; http://vigou3.github.io/emacs-modified-windows
 
 ;; GNU Emacs.app Modified is free software; you can redistribute it
 ;; and/or modify it under the terms of the GNU General Public License

@@ -1,7 +1,7 @@
 Copyright (C) 2008-2013 Free Software Foundation, Inc.
-Copyright (C) 2009-2015 Vincent Goulet for the modifications
+Copyright (C) 2009-2017 Vincent Goulet for the modifications
 
-=== GNU Emacs for Windows <VERSION> ===
+=== Emacs Modified for Windows <VERSION> ===
 
 This is the official release of GNU Emacs for Windows modified to
 include the following add-on packages:
@@ -54,7 +54,7 @@ Please direct questions or comments on this modified version of
 GNU Emacs for Windows to Vincent Goulet <vincent.goulet@act.ulaval.ca>.
 
 
-GNU Emacs Modified is free software: you can redistribute it and/or
-modify it under the terms of the GNU General Public License as
+Emacs Modified for Windows is free software: you can redistribute it
+and/or modify it under the terms of the GNU General Public License as
 published by the Free Software Foundation, either version 3 of the
 License, or (at your option) any later version.

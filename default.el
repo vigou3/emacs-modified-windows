@@ -1,15 +1,15 @@
-;;; default.el --- Default configuration for GNU Emacs
+;;; default.el --- Default configuration for Emacs Modified for Windows
 ;;; Used mainly to load custom extensions.
 ;;; (Loaded *after* any user and site configuration files)
 
-;; Copyright (C) 2015 Vincent Goulet
+;; Copyright (C) 2015-2017 Vincent Goulet
 
 ;; Author: Vincent Goulet
 
-;; This file is part of Emacs for Windows Modified
-;; http://vgoulet.act.ulaval.ca/emacs
+;; This file is part of Emacs Modified for Windows
+;; http://vigou3.github.io/emacs-modified-windows
 
-;; GNU Emacs for Windows Modified is free software; you can
+;; Emacs for Windows Modified is free software; you can
 ;; redistribute it and/or modify it under the terms of the GNU General
 ;; Public License as published by the Free Software Foundation; either
 ;; version 3, or (at your option) any later version.

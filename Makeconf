@@ -9,8 +9,8 @@
 ##
 ## Author: Vincent Goulet
 ##
-## This file is part of GNU Emacs Modified for Windows
-## http://github.com/vigou3/emacs-modified-windows
+## This file is part of Emacs Modified for Windows
+## http://vigou3.github.io/emacs-modified-windows
 
 ## GNU and this distribution version number
 EMACSVERSION=25.1

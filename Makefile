@@ -1,4 +1,4 @@
-### -*-Makefile-*- for GitHub page of GNU Emacs Modified for Windows
+### -*-Makefile-*- to build Emacs Modified for Windows
 ##
 ## Copyright (C) 2014-2017 Vincent Goulet
 ##
@@ -7,8 +7,8 @@
 ##
 ## Author: Vincent Goulet
 ##
-## This file is part of GNU Emacs Modified for Windows
-## http://github.com/vigou3/emacs-modified-windows
+## This file is part of Emacs Modified for Windows
+## http://vigou3.github.io/emacs-modified-windows
 
 ## Set most variables in Makeconf
 include ./Makeconf
