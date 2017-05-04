@@ -2,6 +2,20 @@
 === Emacs Modified for Windows
 ===
 
+# VERSION 25.2-modified-1 (4 May 2017)
+
+## Updates
+
+- GNU Emacs 25.2, released April 21, 2017.
+- Org 9.0.6
+
+## User visible changes
+
+- In `site-start.el`, `ess-nuke-trailing-whitespace` is now added to
+  the `write-contents-functions` hook to avoid bleeding of the
+  functionality to other major modes (most notably markdown, where
+  trailing whitespace is sometimes useful).
+
 # VERSION 25.1-2-modified-5 (11 January 2016)
 
 ## Updates
