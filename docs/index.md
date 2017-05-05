@@ -23,7 +23,7 @@ The additions to stock Emacs are the following:
     [dictionaries](http://aspell.net/win32) for Aspell;
 -   libraries for image formats from the
     [ezwinports](http://sourceforge.net/projects/ezwinports/files/) 
-    project: PNG 1.6.12, JPEG v9a, TIFF 4.0.3, 
+    project: PNG 1.6.12, JPEG v8d, TIFF 4.0.3, 
 	GIF 5.1.0 and SVG 2.40.1-2 (including zlib 1.2.8-2);
 -   [GnuTLS](http://www.gnutls.org) libraries 3.4.15 from the
     [ezwinports](http://sourceforge.net/projects/ezwinports/files/)
@@ -34,9 +34,9 @@ The additions to stock Emacs are the following:
     to ease printing under Windows;
 -   [`htmlize.el`](http://fly.srk.fer.hr/~hniksic/emacs/htmlize.el), to
     print in color with `w32-winprint.el`;
--   [`default.el`]({{ site.github.repository_url }}/tags/v25.2-modified-1/default.el)
+-   [`default.el`]({{ site.github.repository_url }}/tags/v25.2-modified-2/default.el)
     and
-    [`site-start.el`]({{ site.github.repository_url }}/tags/v25.2-modified-1/site-start.el),
+    [`site-start.el`]({{ site.github.repository_url }}/tags/v25.2-modified-2/site-start.el),
     configuration files to make everything work.
 
 This distribution is based on the latest stable official release of GNU Emacs.
@@ -44,7 +44,7 @@ This distribution is based on the latest stable official release of GNU Emacs.
 Latest release
 --------------
 
-Version 25.2-modified-1 ([Release notes]({{ site.github.repository_url }}/releases/tag/v25.2-modified-1/))
+Version 25.2-modified-2 ([Release notes]({{ site.github.repository_url }}/releases/tag/v25.2-modified-2/))
 
 Installation
 ============
