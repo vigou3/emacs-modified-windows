@@ -2,6 +2,14 @@
 === Emacs Modified for Windows
 ===
 
+# VERSION 25.2-modified-2 (5 May 2017)
+
+## Bug fix
+
+- JPEG image support fixed. The distribution now ships with
+  `libjpeg-8.dll` as this is the version Emacs was compiled
+  against. Thanks to GitHub user sylvest99js for the heads up.
+
 # VERSION 25.2-modified-1 (4 May 2017)
 
 ## Updates

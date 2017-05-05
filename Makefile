@@ -102,7 +102,7 @@ libs :
 	if [ -d ${LIBS} ]; then rm -rf ${LIBS}; fi
 	unzip -j ${LIBPNG}.zip bin/libpng16-16.dll -d ${LIBS}
 	unzip -j ${ZLIB}.zip bin/zlib1.dll -d ${LIBS}
-	unzip -j ${JPEG}.zip bin/libjpeg-9.dll -d ${LIBS}
+	unzip -j ${JPEG}.zip bin/libjpeg-8.dll -d ${LIBS}
 	unzip -j ${TIFF}.zip bin/libtiff-5.dll -d ${LIBS}
 	unzip -j ${GIFLIB}.zip bin/libgif-7.dll -d ${LIBS}
 	unzip -j ${LIBRSVG}.zip bin/*.dll -x bin/zlib1.dll \
