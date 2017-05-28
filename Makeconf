@@ -9,24 +9,24 @@
 ##
 ## Author: Vincent Goulet
 ##
-## This file is part of GNU Emacs Modified for Windows
-## http://github.com/vigou3/emacs-modified-windows
+## This file is part of Emacs Modified for Windows
+## http://vigou3.github.io/emacs-modified-windows
 
 ## GNU and this distribution version number
-EMACSVERSION=25.1
-EMACSPATCHLEVEL=2
-DISTVERSION=5
+EMACSVERSION=25.2
+EMACSPATCHLEVEL=
+DISTVERSION=2
 
 ## Extensions version numbers
 ESSVERSION=16.10
 AUCTEXVERSION=11.90
-ORGVERSION=9.0.3
+ORGVERSION=9.0.6
 POLYMODEVERSION=2016-12-18
 MARKDOWNMODEVERSION=2.1
 PSVNVERSION=1573006
 LIBPNGVERSION=1.6.12
 ZLIBVERSION=1.2.8-2
-JPEGVERSION=v9a
+JPEGVERSION=v8d
 TIFFVERSION=4.0.3
 GIFLIBVERSION=5.1.0
 LIBRSVGVERSION=2.40.1-2
@@ -37,7 +37,7 @@ GNUTLSVERSION=3.4.15
 ## Version strings and file names
 VERSION=${EMACSVERSION}$(if ${EMACSPATCHLEVEL},-${EMACSPATCHLEVEL},)-modified-${DISTVERSION}
 DISTNAME=emacs-${VERSION}
-ARCH=i686-w64-mingw32
+ARCH=i686
 ZIPFILE=emacs-${EMACSVERSION}$(if ${EMACSPATCHLEVEL},-${EMACSPATCHLEVEL},)-${ARCH}.zip
 
 ## GitHub repository and authentication

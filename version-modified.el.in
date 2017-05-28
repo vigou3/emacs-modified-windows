@@ -1,16 +1,16 @@
-;;; version-modified.el --- version number of Emacs Modified (based on Emacs' version.el)
+;;; version-modified.el --- version number of Emacs Modified for Windows
 
-;; Copyright (C) 2013 Vincent Goulet
+;; Copyright (C) 2013-2017 Vincent Goulet
 
-;; Author: Vincent Goulet
+;; Author: Vincent Goulet (based on version.el from GNU Emacs sources)
 
-;; This file is part of Emacs for Windows Modified
-;; http://vgoulet.act.ulaval.ca/emacs
+;; This file is part of Emacs Modified for Windows
+;; http://vigou3.github.io/emacs-modified-windows
 
-;; GNU Emacs.app Modified is free software; you can redistribute it
-;; and/or modify it under the terms of the GNU General Public License
-;; as published by the Free Software Foundation; either version 3, or
-;; (at your option) any later version.
+;; Emacs Modified for Windows is free software; you can redistribute
+;; it and/or modify it under the terms of the GNU General Public
+;; License as published by the Free Software Foundation; either
+;; version 3, or (at your option) any later version.
 
 ;; GNU Emacs is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of

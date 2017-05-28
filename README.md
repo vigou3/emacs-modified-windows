@@ -5,13 +5,15 @@
 
 # Emacs Modified for Windows
 
-*Emacs Modified for Windows* is a distribution of GNU Emacs bundled with
-a few select packages for LaTeX users and R developers, most notably
+*Emacs Modified for Windows* is a distribution of
+[GNU Emacs](https://www.gnu.org/software/emacs/) bundled with a few
+select packages for LaTeX users and R developers, most notably
 [AUCTeX](https://www.gnu.org/software/auctex/) and
 [ESS](https://ess.r-project.org). It also comes with a spell checker,
 additional image libraries and a convenient installation wizard. The
-distribution is based on the latest stable release of
-[GNU Emacs](http://ftp.gnu.org/gnu/emacs/windows/).
+distribution is based on the
+[latest stable release](http://ftp.gnu.org/gnu/emacs/windows/) of GNU
+Emacs.
 
 Other than the additions mentioned above and some minor configuration,
 this is a stock distribution of Emacs. Users of Emacs on other

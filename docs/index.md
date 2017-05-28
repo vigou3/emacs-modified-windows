@@ -9,7 +9,7 @@ The additions to stock Emacs are the following:
 
 -   [ESS](http://ess.r-project.org) 16.10;
 -   [AUCTeX](http://www.gnu.org/software/auctex/) 11.90;
--   [org](http://orgmode.org/) 9.0.3;
+-   [org](http://orgmode.org/) 9.0.6;
 -   [polymode](https://github.com/vitoshka/polymode) 2016-12-18;
 -   [`markdown-mode.el`](http://jblevins.org/projects/markdown-mode/) 2.1;
 -   [`psvn.el`](http://svn.apache.org/viewvc/subversion/trunk/contrib/client-side/emacs/)
@@ -23,22 +23,20 @@ The additions to stock Emacs are the following:
     [dictionaries](http://aspell.net/win32) for Aspell;
 -   libraries for image formats from the
     [ezwinports](http://sourceforge.net/projects/ezwinports/files/) 
-    project: PNG 1.6.12, JPEG v9a, TIFF
-    4.0.3, GIF 5.1.0 and SVG 2.40.1-2
-    (also including zlib 1.2.8-2);
+    project: PNG 1.6.12, JPEG v8d, TIFF 4.0.3, 
+	GIF 5.1.0 and SVG 2.40.1-2 (including zlib 1.2.8-2);
 -   [GnuTLS](http://www.gnutls.org) libraries 3.4.15 from the
     [ezwinports](http://sourceforge.net/projects/ezwinports/files/)
-    project to allow Emacs to access web sites using
-    `https` on Windows;
+    project to allow Emacs to access web sites using `https` on Windows;
 -   [`framepop.el`](http://bazaar.launchpad.net/~vcs-imports/emacs-goodies-el/trunk/view/head:/elisp/emacs-goodies-el/framepop.el)
     to open temporary buffers in a separate frame;
 -   [`w32-winprint.el`](http://www.emacswiki.org/cgi-bin/emacs?action=browse;id=w32-winprint.el),
     to ease printing under Windows;
 -   [`htmlize.el`](http://fly.srk.fer.hr/~hniksic/emacs/htmlize.el), to
     print in color with `w32-winprint.el`;
--   [`default.el`]({{ site.github.repository_url }}/tags/v25.1-2-modified-5/default.el)
+-   [`default.el`]({{ site.github.repository_url }}/tags/v25.2-modified-2/default.el)
     and
-    [`site-start.el`]({{ site.github.repository_url }}/tags/v25.1-2-modified-5/site-start.el),
+    [`site-start.el`]({{ site.github.repository_url }}/tags/v25.2-modified-2/site-start.el),
     configuration files to make everything work.
 
 This distribution is based on the latest stable official release of GNU Emacs.
@@ -46,7 +44,7 @@ This distribution is based on the latest stable official release of GNU Emacs.
 Latest release
 --------------
 
-Version 25.1-2-modified-5 ([Release notes]({{ site.github.repository_url }}/releases/tag/v25.1-2-modified-5/))
+Version 25.2-modified-2 ([Release notes]({{ site.github.repository_url }}/releases/tag/v25.2-modified-2/))
 
 Installation
 ============

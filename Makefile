@@ -1,4 +1,4 @@
-### -*-Makefile-*- for GitHub page of GNU Emacs Modified for Windows
+### -*-Makefile-*- to build Emacs Modified for Windows
 ##
 ## Copyright (C) 2014-2017 Vincent Goulet
 ##
@@ -7,8 +7,8 @@
 ##
 ## Author: Vincent Goulet
 ##
-## This file is part of GNU Emacs Modified for Windows
-## http://github.com/vigou3/emacs-modified-windows
+## This file is part of Emacs Modified for Windows
+## http://vigou3.github.io/emacs-modified-windows
 
 ## Set most variables in Makeconf
 include ./Makeconf
@@ -102,7 +102,7 @@ libs :
 	if [ -d ${LIBS} ]; then rm -rf ${LIBS}; fi
 	unzip -j ${LIBPNG}.zip bin/libpng16-16.dll -d ${LIBS}
 	unzip -j ${ZLIB}.zip bin/zlib1.dll -d ${LIBS}
-	unzip -j ${JPEG}.zip bin/libjpeg-9.dll -d ${LIBS}
+	unzip -j ${JPEG}.zip bin/libjpeg-8.dll -d ${LIBS}
 	unzip -j ${TIFF}.zip bin/libtiff-5.dll -d ${LIBS}
 	unzip -j ${GIFLIB}.zip bin/libgif-7.dll -d ${LIBS}
 	unzip -j ${LIBRSVG}.zip bin/*.dll -x bin/zlib1.dll \
