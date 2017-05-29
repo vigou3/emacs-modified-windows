@@ -14,39 +14,43 @@
 include ./Makeconf
 
 ## Build directory et al.
-TMPDIR=${CURDIR}/tmpdir
+TMPDIR = ${CURDIR}/tmpdir
 
 ## Emacs specific info
-PREFIX=${TMPDIR}/emacs-bin
-EMACS=${PREFIX}/bin/emacs.exe
+PREFIX = ${TMPDIR}/emacs-bin
+EMACS = ${PREFIX}/bin/emacs.exe
 EMACSBATCH = $(EMACS) -batch -no-site-file -no-init-file
 
 ## Inno Setup info
-INNOSCRIPT=emacs-modified.iss
-INNOSETUP=c:/progra~1/innose~1/iscc.exe
-INFOBEFOREFR=InfoBefore-fr.txt
-INFOBEFOREEN=InfoBefore-en.txt
+INNOSCRIPT = emacs-modified.iss
+INNOSETUP = c:/progra~1/innose~1/iscc.exe
+INFOBEFOREFR = InfoBefore-fr.txt
+INFOBEFOREEN = InfoBefore-en.txt
 
 ## Override of ESS variables
-DESTDIR=${PREFIX}/share/
-SITELISP=${DESTDIR}/emacs/site-lisp
-ETCDIR=${DESTDIR}/emacs/etc
-DOCDIR=${DESTDIR}/doc
-INFODIR=${DESTDIR}/info
+DESTDIR = ${PREFIX}/share/
+SITELISP = ${DESTDIR}/emacs/site-lisp
+ETCDIR = ${DESTDIR}/emacs/etc
+DOCDIR = ${DESTDIR}/doc
+INFODIR = ${DESTDIR}/info
 
 ## Base name of extensions
-ESS=ess-${ESSVERSION}
-AUCTEX=auctex-${AUCTEXVERSION}
-ORG=org-${ORGVERSION}
-POLYMODE=polymode-master
-LIBPNG=libpng-${LIBPNGVERSION}-w32-bin
-ZLIB=zlib-${ZLIBVERSION}-w32-bin
-JPEG=jpeg-${JPEGVERSION}-w32-bin
-TIFF=tiff-${TIFFVERSION}-w32-bin
-GIFLIB=giflib-${GIFLIBVERSION}-w32-bin
-LIBRSVG=librsvg-${LIBRSVGVERSION}-w32-bin
-GNUTLS=gnutls-${GNUTLSVERSION}-w32-bin
-LIBS=libs
+ESS = ess-${ESSVERSION}
+AUCTEX = auctex-${AUCTEXVERSION}
+ORG = org-${ORGVERSION}
+POLYMODE = polymode-master
+LIBPNG = libpng-${LIBPNGVERSION}-w32-bin
+ZLIB = zlib-${ZLIBVERSION}-w32-bin
+JPEG = jpeg-${JPEGVERSION}-w32-bin
+TIFF = tiff-${TIFFVERSION}-w32-bin
+GIFLIB = giflib-${GIFLIBVERSION}-w32-bin
+LIBRSVG = librsvg-${LIBRSVGVERSION}-w32-bin
+GNUTLS = gnutls-${GNUTLSVERSION}-w32-bin
+LIBS = libs
+
+## Toolset
+CP = cp -p
+RM = rm -r
 
 all : get-packages emacs release
 
@@ -64,38 +68,47 @@ dir :
 	mkdir -p ${PREFIX}
 	unzip -q ${ZIPFILE} -d ${PREFIX}
 	cp -dpr aspell ${PREFIX}
-	cp -p default.el ${SITELISP}/
-	sed -e '/^(defconst/s/<DISTVERSION>/${DISTVERSION}/' \
-	    version-modified.el.in > ${SITELISP}/version-modified.el
+	${CP} default.el ${SITELISP}/
+	sed '/^(defconst/s/\(emacs-modified-version '"'"'\)[0-9]\+/\1${DISTVERSION}/' \
+	    version-modified.el > tmpfile && \
+	    mv tmpfile version-modified.el && \
+	  ${CP} version-modified.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/version-modified.el
-	cp -p framepop.el ${SITELISP}/
+	${CP} framepop.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/framepop.el
-	cp -p w32-winprint.el ${SITELISP}/
+	${CP} w32-winprint.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/w32-winprint.el
-	cp -p htmlize.el ${SITELISP}/
+	${CP} htmlize.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/htmlize.el
-	cp -p htmlize-view.el ${SITELISP}/
+	${CP} htmlize-view.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/htmlize-view.el
-	sed -e 's/<VERSION>/${VERSION}/' \
-	    -e 's/<EMACSVERSION>/${EMACSVERSION}/' \
-	    -e 's/<DISTNAME>/${DISTNAME}/' \
-	    ${INNOSCRIPT}.in > ${TMPDIR}/${INNOSCRIPT}
-	sed -e 's/<VERSION>/${VERSION}/' \
-	    -e 's/<ESSVERSION>/${ESSVERSION}/' \
-	    -e 's/<AUCTEXVERSION>/${AUCTEXVERSION}/' \
-	    -e 's/<ORGVERSION>/${ORGVERSION}/' \
-	    -e 's/<POLYMODEVERSION>/${POLYMODEVERSION}/' \
-	    -e 's/<MARKDOWNMODEVERSION>/${MARKDOWNMODEVERSION}/' \
-	    -e 's/<PSVNVERSION>/${PSVNVERSION}/' \
-	    -e 's/<LIBPNGVERSION>/${LIBPNGVERSION}/' \
-	    -e 's/<ZLIBVERSION>/${ZLIBVERSION}/' \
-	    -e 's/<JPEGVERSION>/${JPEGVERSION}/' \
-	    -e 's/<TIFFVERSION>/${TIFFVERSION}/' \
-	    -e 's/<GIFLIBVERSION>/${GIFLIBVERSION}/' \
-	    -e 's/<LIBRSVGVERSION>/${LIBRSVGVERSION}/' \
-	    -e 's/<GNUTLSVERSION>/${GNUTLSVERSION}/' \
-		    README-Modified.txt.in > ${TMPDIR}/README-Modified.txt
-	cp -p site-start.el NEWS ${TMPDIR}
+	sed -e '/^AppVerName/s/\(Emacs \)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
+	    -e '/^AppId/s/\(GNUEmacs\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
+	    -e '/^DefaultDirName/s/\(GNU Emacs \)[0-9.]\+/\1${EMACSVERSION}/' \
+	    -e '/^DefaultGroupName/s/\(GNU Emacs \)[0-9.]\+/\1${EMACSVERSION}/' \
+	    -e '/^OutputBaseFilename/s/\(emacs-\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
+	    -e 's/\(\\emacs\\\)[0-9.]\+/\1${EMACSVERSION}/' \
+	    ${INNOSCRIPT} > tmpfile && \
+	    mv tmpfile ${INNOSCRIPT} && \
+	  ${CP} ${INNOSCRIPT} ${TMPDIR}/
+	sed -e 's/[0-9.]\+-modified-[0-9]/${VERSION}/' \
+	    -e 's/\(ESS \)[0-9.]\+/\1${ESSVERSION}/' \
+	    -e 's/\(AUCTeX \)[0-9.]\+/\1${AUCTEXVERSION}/' \
+	    -e 's/\(org \)[0-9.]\+/\1${ORGVERSION}/' \
+	    -e 's/\(polymode \)[0-9\-]\+/\1${POLYMODEVERSION}/' \
+	    -e 's/\(markdown-mode.el \)[0-9.]\+/\1${MARKDOWNMODEVERSION}/' \
+	    -e 's/\(psvn.el \)[0-9]\+/\1${PSVNVERSION}/' \
+	    -e 's/\(PNG \)[0-9.]\+/\1${LIBPNGVERSION}/' \
+	    -e 's/\(JPEG \)v[0-9]\+[a-z]/\1${JPEGVERSION}/' \
+	    -e 's/\(TIFF \)[0-9.]\+/\1${TIFFVERSION}/' \
+	    -e 's/\(GIF \)[0-9.]\+/\1${GIFLIBVERSION}/' \
+	    -e 's/\(SVG \)[0-9.\-]\+/\1${LIBRSVGVERSION}/' \
+	    -e 's/\(zlib \)[0-9.\-]\+/\1${ZLIBVERSION}/' \
+	    -e 's/\(GnuTLS \)[0-9.]\+/\1${GNUTLSVERSION}/' \
+	    README-modified.txt > tmpfile && \
+	    mv tmpfile README-modified.txt && \
+	  ${CP} README-modified.txt ${TMPDIR}/
+	${CP} site-start.el NEWS ${TMPDIR}
 
 libs :
 	@echo ----- Copying image libraries...
@@ -108,7 +121,7 @@ libs :
 	unzip -j ${LIBRSVG}.zip bin/*.dll -x bin/zlib1.dll \
 	         bin/libiconv-*.dll bin/libintl-*.dll bin/libpng*.dll -d ${LIBS}
 	unzip -j ${GNUTLS}.zip bin/*.dll -x bin/zlib1.dll -d ${LIBS}
-	cp -p ${LIBS}/* ${PREFIX}/bin
+	${CP} ${LIBS}/* ${PREFIX}/bin
 	rm -rf ${LIBS}
 	@echo ----- Done copying the libraries
 
@@ -145,7 +158,7 @@ org :
 	${MAKE} EMACS=${EMACS} -C ${ORG} all
 	${MAKE} EMACS=${EMACS} lispdir=${SITELISP}/org \
 	        datadir=${ETCDIR}/org infodir=${INFODIR} -C ${ORG} install
-	mkdir -p ${DOCDIR}/org && cp -p ${ORG}/doc/*.html ${DOCDIR}/org/
+	mkdir -p ${DOCDIR}/org && ${CP} ${ORG}/doc/*.html ${DOCDIR}/org/
 	rm -rf ${ORG}
 	@echo ----- Done making org
 
@@ -154,16 +167,16 @@ polymode :
 	if [ -d ${POLYMODE} ]; then rm -rf ${POLYMODE}; fi
 	unzip ${POLYMODE}.zip
 	mkdir -p ${SITELISP}/polymode ${DOCDIR}/polymode
-	cp -p ${POLYMODE}/*.el ${POLYMODE}/modes/*.el ${SITELISP}/polymode
+	${CP} ${POLYMODE}/*.el ${POLYMODE}/modes/*.el ${SITELISP}/polymode
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/polymode/*.el
-	cp -p ${POLYMODE}/readme.md ${DOCDIR}/polymode
-	cp -p ${POLYMODE}/modes/readme.md ${DOCDIR}/polymode/developing.md
+	${CP} ${POLYMODE}/readme.md ${DOCDIR}/polymode
+	${CP} ${POLYMODE}/modes/readme.md ${DOCDIR}/polymode/developing.md
 	rm -rf ${POLYMODE}
 	@echo ----- Done installing polymode
 
 markdownmode :
 	@echo ----- Copying and byte compiling markdown-mode.el...
-	cp -p markdown-mode.el ${SITELISP}/
+	${CP} markdown-mode.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/markdown-mode.el
 	@echo ----- Done installing markdown-mode.el
 
@@ -205,8 +218,8 @@ upload :
 	@echo ----- Uploading the installer to GitHub...
 	curl -H 'Content-Type: application/zip' \
 	     -H 'Authorization: token ${OAUTHTOKEN}' \
-	     --upload-file ${DISTNAME}.exe \
-	     -s -i "${upload_url}?&name=${DISTNAME}.exe"
+	     --upload-file emacs-${VERSION}.exe \
+	     -s -i "${upload_url}?&name=emacs-${VERSION}.exe"
 	@echo ----- Done uploading the installer
 
 publish :
@@ -261,8 +274,6 @@ get-libs :
 	curl -OL https://sourceforge.net/projects/ezwinports/files/${GNUTLS}.zip
 
 clean :
-	rm -rf ${TMPDIR}
+	${RM} ${TMPDIR}
 	cd ${ESS} && ${MAKE} clean
 	cd ${AUCTEX} && ${MAKE} clean
-
-
