@@ -91,7 +91,7 @@ dir :
 	    ${INNOSCRIPT} > tmpfile && \
 	    mv tmpfile ${INNOSCRIPT} && \
 	  ${CP} ${INNOSCRIPT} ${TMPDIR}/
-	sed -e 's/[0-9.]\+-modified-[0-9]/${VERSION}/' \
+	sed -e 's/[0-9.]\+-modified-[0-9]\+/${VERSION}/' \
 	    -e 's/\(ESS \)[0-9.]\+/\1${ESSVERSION}/' \
 	    -e 's/\(AUCTeX \)[0-9.]\+/\1${AUCTEXVERSION}/' \
 	    -e 's/\(org \)[0-9.]\+/\1${ORGVERSION}/' \
