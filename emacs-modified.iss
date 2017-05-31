@@ -1,16 +1,18 @@
 [Setup]
+ArchitecturesAllowed=x64
+ArchitecturesInstallIn64BitMode=x64
 AppName=GNU Emacs
-AppVerName=GNU Emacs 25.2-modified-3
-AppId=GNUEmacs25.2-modified-3
+AppVerName=GNU Emacs 25.2-modified-2
+AppId=GNUEmacs25.2-modified-2
 AppPublisher=Vincent Goulet
 AppPublisherURL=https://vigou3.github.io/emacs-modified-windows
 AppSupportURL=https://vigou3.github.io/emacs-modified-windows
 AppUpdatesURL=https://vigou3.github.io/emacs-modified-windows
 DefaultDirName={pf}\GNU Emacs 25.2
 DefaultGroupName=GNU Emacs 25.2
-LicenseFile=emacs-bin\share\emacs\25.2\etc\COPYING
+LicenseFile=emacs\share\emacs\25.2\etc\COPYING
 OutputDir=..
-OutputBaseFilename=emacs-25.2-modified-3
+OutputBaseFilename=emacs-25.2-modified-2
 UninstallDisplayIcon={app}\bin\runemacs.exe
 Compression=lzma
 SolidCompression=yes
@@ -18,7 +20,6 @@ PrivilegesRequired=none
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl";
-Name: "basque"; MessagesFile: "compiler:Languages\Basque.isl"
 Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
 Name: "catalan"; MessagesFile: "compiler:Languages\Catalan.isl"
 Name: "czech"; MessagesFile: "compiler:Languages\Czech.isl"
@@ -33,7 +34,6 @@ Name: "norwegian"; MessagesFile: "compiler:Languages\Norwegian.isl"
 Name: "polish"; MessagesFile: "compiler:Languages\Polish.isl"
 Name: "portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"
 Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
-Name: "slovak"; MessagesFile: "compiler:Languages\Slovak.isl"
 Name: "slovenian"; MessagesFile: "compiler:Languages\Slovenian.isl"
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 
@@ -61,7 +61,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Filename: "{app}\share\emacs\25.2\README-Modified.txt"; Description: "{cm:ReadMe}"; Flags: postinstall shellexec skipifsilent
 
 [Files]
-Source: "emacs-bin\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "emacs\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "site-start.el"; DestDir: "{app}\share\emacs\site-lisp"; AfterInstall: DefaultConfig('{app}'); Flags: ignoreversion
 Source: "README-Modified.txt"; DestDir: "{app}\share\emacs\25.2"; Flags: ignoreversion
 Source: "NEWS"; DestDir: "{app}\share\emacs\25.2"; Flags: ignoreversion
