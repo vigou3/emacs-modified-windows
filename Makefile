@@ -17,13 +17,13 @@ include ./Makeconf
 TMPDIR = ${CURDIR}/tmpdir
 
 ## Emacs specific info
-PREFIX = ${TMPDIR}/emacs-bin
+PREFIX = ${TMPDIR}/emacs
 EMACS = ${PREFIX}/bin/emacs.exe
 EMACSBATCH = $(EMACS) -batch -no-site-file -no-init-file
 
 ## Inno Setup info
 INNOSCRIPT = emacs-modified.iss
-INNOSETUP = c:/progra~1/innose~1/iscc.exe
+INNOSETUP = c:/progra~2/innose~1/iscc.exe
 INFOBEFOREFR = InfoBefore-fr.txt
 INFOBEFOREEN = InfoBefore-en.txt
 
@@ -51,12 +51,13 @@ LIBS = libs
 ## Toolset
 CP = cp -p
 RM = rm -r
+UNZIP = 7z x
 
-all : get-packages emacs release
+all : get-packages emacs
 
-get-packages : get-emacs get-ess get-auctex get-org get-polymode get-markdownmode get-psvn get-libs
+get-packages : get-emacs get-ess get-auctex get-org get-polymode get-markdownmode get-psvn
 
-emacs : dir libs ess auctex org polymode markdownmode psvn exe
+emacs : dir ess auctex org polymode markdownmode psvn exe
 
 release : create-release upload publish
 
@@ -66,7 +67,7 @@ dir :
 	@echo ----- Creating the application in temporary directory...
 	if [ -d ${TMPDIR} ]; then rm -rf ${TMPDIR}; fi
 	mkdir -p ${PREFIX}
-	unzip -q ${ZIPFILE} -d ${PREFIX}
+	${UNZIP} ${ZIPFILE} -o${TMPDIR}
 	cp -dpr aspell ${PREFIX}
 	${CP} default.el ${SITELISP}/
 	sed '/^(defconst/s/\(emacs-modified-version '"'"'\)[0-9]\+/\1${DISTVERSION}/' \
@@ -76,59 +77,30 @@ dir :
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/version-modified.el
 	${CP} framepop.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/framepop.el
-	${CP} w32-winprint.el ${SITELISP}/
-	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/w32-winprint.el
-	${CP} htmlize.el ${SITELISP}/
-	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/htmlize.el
-	${CP} htmlize-view.el ${SITELISP}/
-	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/htmlize-view.el
 	sed -e '/^AppVerName/s/\(Emacs \)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
 	    -e '/^AppId/s/\(GNUEmacs\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
 	    -e '/^DefaultDirName/s/\(GNU Emacs \)[0-9.]\+/\1${EMACSVERSION}/' \
 	    -e '/^DefaultGroupName/s/\(GNU Emacs \)[0-9.]\+/\1${EMACSVERSION}/' \
-	    -e '/^OutputBaseFilename/s/\(emacs-\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
+	    -e '/^OutputBaseFilename/s/\(emacs-w64-\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
 	    -e 's/\(\\emacs\\\)[0-9.]\+/\1${EMACSVERSION}/' \
 	    ${INNOSCRIPT} > tmpfile && \
 	    mv tmpfile ${INNOSCRIPT} && \
 	  ${CP} ${INNOSCRIPT} ${TMPDIR}/
-	sed -e 's/[0-9.]\+-modified-[0-9]\+/${VERSION}/' \
-	    -e 's/\(ESS \)[0-9.]\+/\1${ESSVERSION}/' \
+	sed -e 's/\(ESS \)[0-9.]\+/\1${ESSVERSION}/' \
 	    -e 's/\(AUCTeX \)[0-9.]\+/\1${AUCTEXVERSION}/' \
 	    -e 's/\(org \)[0-9.]\+/\1${ORGVERSION}/' \
 	    -e 's/\(polymode \)[0-9\-]\+/\1${POLYMODEVERSION}/' \
 	    -e 's/\(markdown-mode.el \)[0-9.]\+/\1${MARKDOWNMODEVERSION}/' \
 	    -e 's/\(psvn.el \)[0-9]\+/\1${PSVNVERSION}/' \
-	    -e 's/\(PNG \)[0-9.]\+/\1${LIBPNGVERSION}/' \
-	    -e 's/\(JPEG \)v[0-9]\+[a-z]/\1${JPEGVERSION}/' \
-	    -e 's/\(TIFF \)[0-9.]\+/\1${TIFFVERSION}/' \
-	    -e 's/\(GIF \)[0-9.]\+/\1${GIFLIBVERSION}/' \
-	    -e 's/\(SVG \)[0-9.\-]\+/\1${LIBRSVGVERSION}/' \
-	    -e 's/\(zlib \)[0-9.\-]\+/\1${ZLIBVERSION}/' \
-	    -e 's/\(GnuTLS \)[0-9.]\+/\1${GNUTLSVERSION}/' \
 	    README-modified.txt > tmpfile && \
 	    mv tmpfile README-modified.txt && \
 	  ${CP} README-modified.txt ${TMPDIR}/
 	${CP} site-start.el NEWS ${TMPDIR}
 
-libs :
-	@echo ----- Copying image libraries...
-	if [ -d ${LIBS} ]; then rm -rf ${LIBS}; fi
-	unzip -j ${LIBPNG}.zip bin/libpng16-16.dll -d ${LIBS}
-	unzip -j ${ZLIB}.zip bin/zlib1.dll -d ${LIBS}
-	unzip -j ${JPEG}.zip bin/libjpeg-8.dll -d ${LIBS}
-	unzip -j ${TIFF}.zip bin/libtiff-5.dll -d ${LIBS}
-	unzip -j ${GIFLIB}.zip bin/libgif-7.dll -d ${LIBS}
-	unzip -j ${LIBRSVG}.zip bin/*.dll -x bin/zlib1.dll \
-	         bin/libiconv-*.dll bin/libintl-*.dll bin/libpng*.dll -d ${LIBS}
-	unzip -j ${GNUTLS}.zip bin/*.dll -x bin/zlib1.dll -d ${LIBS}
-	${CP} ${LIBS}/* ${PREFIX}/bin
-	rm -rf ${LIBS}
-	@echo ----- Done copying the libraries
-
 ess :
 	@echo ----- Making ESS...
 	if [ -d ${ESS} ]; then rm -rf ${ESS}; fi
-	unzip ${ESS}.zip
+	${UNZIP} ${ESS}.zip
 	TMPDIR=${TMP} ${MAKE} EMACS=${EMACS} -C ${ESS} all
 	${MAKE} DESTDIR=${DESTDIR} SITELISP=${SITELISP} \
 	        ETCDIR=${ETCDIR}/ess DOCDIR=${DOCDIR}/ess \
@@ -140,7 +112,7 @@ ess :
 auctex :
 	@echo ----- Making AUCTeX...
 	if [ -d ${AUCTEX} ]; then rm -rf ${AUCTEX}; fi
-	unzip ${AUCTEX}.zip
+	${UNZIP} ${AUCTEX}.zip
 	cd ${AUCTEX} && ./configure --prefix=${PREFIX} \
 		--without-texmf-dir \
 		--with-emacs=${EMACS}
@@ -154,7 +126,7 @@ auctex :
 org :
 	@echo ----- Making org...
 	if [ -d ${ORG} ]; then rm -rf ${ORG}; fi
-	unzip ${ORG}.zip
+	${UNZIP} ${ORG}.zip
 	${MAKE} EMACS=${EMACS} -C ${ORG} all
 	${MAKE} EMACS=${EMACS} lispdir=${SITELISP}/org \
 	        datadir=${ETCDIR}/org infodir=${INFODIR} -C ${ORG} install
@@ -165,7 +137,7 @@ org :
 polymode :
 	@echo ----- Copying and byte compiling polymode files...
 	if [ -d ${POLYMODE} ]; then rm -rf ${POLYMODE}; fi
-	unzip ${POLYMODE}.zip
+	${UNZIP} ${POLYMODE}.zip
 	mkdir -p ${SITELISP}/polymode ${DOCDIR}/polymode
 	${CP} ${POLYMODE}/*.el ${POLYMODE}/modes/*.el ${SITELISP}/polymode
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/polymode/*.el
@@ -218,8 +190,8 @@ upload :
 	@echo ----- Uploading the installer to GitHub...
 	curl -H 'Content-Type: application/zip' \
 	     -H 'Authorization: token ${OAUTHTOKEN}' \
-	     --upload-file emacs-${VERSION}.exe \
-	     -s -i "${upload_url}?&name=emacs-${VERSION}.exe"
+	     --upload-file emacs-w64-${VERSION}.exe \
+	     -s -i "${upload_url}?&name=emacs-w64-${VERSION}.exe"
 	@echo ----- Done uploading the installer
 
 publish :
@@ -230,7 +202,7 @@ publish :
 get-emacs :
 	@echo ----- Fetching and unpacking Emacs...
 	if [ -f ${ZIPFILE} ]; then rm ${ZIPFILE}; fi
-	curl -O ftp://ftp.gnu.org/gnu/emacs/windows/${ZIPFILE}
+	curl -OL https://sourceforge.net/projects/emacsbinw64/files/release/${ZIPFILE}
 
 get-ess :
 	@echo ----- Fetching ESS...
@@ -261,17 +233,6 @@ get-psvn :
 	@echo ----- Fetching psvn.el
 	if [ -f psvn.el ]; then rm psvn.el; fi
 	svn cat http://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/emacs/psvn.el > psvn.el && flip -u psvn.el
-
-get-libs :
-	@echo ----- Preparing library files
-	rm -rf lib
-	curl -OL https://sourceforge.net/projects/ezwinports/files/${LIBPNG}.zip
-	curl -OL https://sourceforge.net/projects/ezwinports/files/${ZLIB}.zip
-	curl -OL https://sourceforge.net/projects/ezwinports/files/${JPEG}.zip
-	curl -OL https://sourceforge.net/projects/ezwinports/files/${TIFF}.zip
-	curl -OL https://sourceforge.net/projects/ezwinports/files/${GIFLIB}.zip
-	curl -OL https://sourceforge.net/projects/ezwinports/files/${LIBRSVG}.zip
-	curl -OL https://sourceforge.net/projects/ezwinports/files/${GNUTLS}.zip
 
 clean :
 	${RM} ${TMPDIR}
