@@ -105,13 +105,6 @@
 (require 'psvn)
 
 ;;;
-;;; Easier printing
-;;;
-(require 'w32-winprint)
-(require 'htmlize-view)
-(htmlize-view-add-to-files-menu)
-
-;;;
 ;;; Use Aspell for spell checking
 ;;;
 (setq-default ispell-program-name "<EMACSDIR>/aspell/bin/aspell.exe")
