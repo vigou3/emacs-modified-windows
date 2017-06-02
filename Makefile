@@ -78,7 +78,7 @@ dir :
 	${CP} framepop.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/framepop.el
 	sed -e '/^AppVerName/s/\(Emacs \)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
-	    -e '/^AppId/s/\(GNUEmacs\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
+	    -e '/^AppId/s/\(GNUEmacs-w64-\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
 	    -e '/^DefaultDirName/s/\(GNU Emacs \)[0-9.]\+/\1${EMACSVERSION}/' \
 	    -e '/^DefaultGroupName/s/\(GNU Emacs \)[0-9.]\+/\1${EMACSVERSION}/' \
 	    -e '/^OutputBaseFilename/s/\(emacs-w64-\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
