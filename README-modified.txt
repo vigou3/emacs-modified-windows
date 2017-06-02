@@ -26,7 +26,8 @@ following add-on packages:
 The distribution is based on the release version of emacs-w64
 (https://sourceforge.net/projects/emacsbinw64/), a native 64-bit
 distribution of GNU Emacs for Windows compiled with optimization and
-with support for PNG, JPEG, TIFF, GIF, SVG, XML2 and GnuTLS.
+with support for PNG, JPEG, TIFF, GIF and SVG images, XML2 and
+GnuTLS.
 
 To add Emacs extensions to this distribution, you may drop .el files
 into the ...\share\emacs\site-lisp\site-start.d\ folder.
