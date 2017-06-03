@@ -1,5 +1,7 @@
 # Presentation
 
+> Important change in the distribution: Emacs is now a 64-bit build!
+
 Emacs Modified for Windows is a 64-bit (x64) distribution of
 [GNU Emacs](https://www.gnu.org/software/emacs/) **25.2** (released
 April 21, 2017) bundled with a few select packages for LaTeX users and
