@@ -53,17 +53,17 @@ CP = cp -p
 RM = rm -r
 UNZIP = 7z x
 
-all : get-packages emacs
+all: get-packages emacs
 
-get-packages : get-emacs get-ess get-auctex get-org get-polymode get-markdownmode get-psvn
+get-packages: get-emacs get-ess get-auctex get-org get-polymode get-markdownmode get-psvn
 
-emacs : dir ess auctex org polymode markdownmode psvn exe
+emacs: dir ess auctex org polymode markdownmode psvn exe
 
-release : create-release upload publish
+release: create-release upload publish
 
-.PHONY : emacs dir libs ess auctex org polymode psvn exe release create-release upload publish clean
+.PHONY: emacs dir libs ess auctex org polymode psvn exe release create-release upload publish clean
 
-dir :
+dir:
 	@echo ----- Creating the application in temporary directory...
 	if [ -d ${TMPDIR} ]; then rm -rf ${TMPDIR}; fi
 	mkdir -p ${PREFIX}
@@ -71,8 +71,7 @@ dir :
 	cp -dpr aspell ${PREFIX}
 	${CP} default.el ${SITELISP}/
 	sed '/^(defconst/s/\(emacs-modified-version '"'"'\)[0-9]\+/\1${DISTVERSION}/' \
-	    version-modified.el > tmpfile && \
-	    mv tmpfile version-modified.el && \
+	    -i version-modified.el && \
 	  ${CP} version-modified.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/version-modified.el
 	${CP} framepop.el ${SITELISP}/
@@ -83,8 +82,7 @@ dir :
 	    -e '/^DefaultGroupName/s/\(GNU Emacs \)[0-9.]\+/\1${EMACSVERSION}/' \
 	    -e '/^OutputBaseFilename/s/\(emacs-w64-\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
 	    -e 's/\(\\emacs\\\)[0-9.]\+/\1${EMACSVERSION}/' \
-	    ${INNOSCRIPT} > tmpfile && \
-	    mv tmpfile ${INNOSCRIPT} && \
+	    -i ${INNOSCRIPT} && \
 	  ${CP} ${INNOSCRIPT} ${TMPDIR}/
 	sed -e 's/\(ESS \)[0-9.]\+/\1${ESSVERSION}/' \
 	    -e 's/\(AUCTeX \)[0-9.]\+/\1${AUCTEXVERSION}/' \
@@ -92,12 +90,11 @@ dir :
 	    -e 's/\(polymode \)[0-9\-]\+/\1${POLYMODEVERSION}/' \
 	    -e 's/\(markdown-mode.el \)[0-9.]\+/\1${MARKDOWNMODEVERSION}/' \
 	    -e 's/\(psvn.el \)[0-9]\+/\1${PSVNVERSION}/' \
-	    README-modified.txt > tmpfile && \
-	    mv tmpfile README-modified.txt && \
+	    -i README-modified.txt && \
 	  ${CP} README-modified.txt ${TMPDIR}/
 	${CP} site-start.el NEWS ${TMPDIR}
 
-ess :
+ess:
 	@echo ----- Making ESS...
 	if [ -d ${ESS} ]; then rm -rf ${ESS}; fi
 	${UNZIP} ${ESS}.zip
@@ -109,7 +106,7 @@ ess :
 	rm -rf ${ESS}
 	@echo ----- Done making ESS
 
-auctex :
+auctex:
 	@echo ----- Making AUCTeX...
 	if [ -d ${AUCTEX} ]; then rm -rf ${AUCTEX}; fi
 	${UNZIP} ${AUCTEX}.zip
@@ -123,7 +120,7 @@ auctex :
 	rm -rf ${AUCTEX}
 	@echo ----- Done making AUCTeX
 
-org :
+org:
 	@echo ----- Making org...
 	if [ -d ${ORG} ]; then rm -rf ${ORG}; fi
 	${UNZIP} ${ORG}.zip
@@ -134,7 +131,7 @@ org :
 	rm -rf ${ORG}
 	@echo ----- Done making org
 
-polymode :
+polymode:
 	@echo ----- Copying and byte compiling polymode files...
 	if [ -d ${POLYMODE} ]; then rm -rf ${POLYMODE}; fi
 	${UNZIP} ${POLYMODE}.zip
@@ -146,25 +143,25 @@ polymode :
 	rm -rf ${POLYMODE}
 	@echo ----- Done installing polymode
 
-markdownmode :
+markdownmode:
 	@echo ----- Copying and byte compiling markdown-mode.el...
 	${CP} markdown-mode.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/markdown-mode.el
 	@echo ----- Done installing markdown-mode.el
 
-psvn :
+psvn:
 	@echo ----- Patching and byte compiling psvn.el...
 	patch -o ${SITELISP}/psvn.el psvn.el psvn.el_svn1.7.diff
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
 	@echo ----- Done installing psvn.el
 
-exe :
+exe:
 	@echo ----- Building the archive...
 	cd ${TMPDIR}/ && cmd /c "${INNOSETUP} ${INNOSCRIPT}"
 	rm -rf ${TMPDIR}
 	@echo ----- Done building the archive
 
-create-release :
+create-release:
 	@echo ----- Creating release on GitHub...
 	if [ -e relnotes.in ]; then rm relnotes.in; fi
 	git commit -a -m "Version ${VERSION}" && git push
@@ -181,7 +178,7 @@ create-release :
 	rm relnotes.in
 	@echo ----- Done creating the release
 
-upload :
+upload:
 	@echo ----- Getting upload URL from GitHub...
 	$(eval upload_url=$(shell curl -s ${REPOSURL}/releases/latest \
 	 			  | awk -F '[ {]' '/^  \"upload_url\"/ \
@@ -194,47 +191,47 @@ upload :
 	     -s -i "${upload_url}?&name=emacs-w64-${VERSION}.exe"
 	@echo ----- Done uploading the installer
 
-publish :
+publish:
 	@echo ----- Publishing the web page...
 	${MAKE} -C docs
 	@echo ----- Done publishing
 
-get-emacs :
+get-emacs:
 	@echo ----- Fetching and unpacking Emacs...
 	if [ -f ${ZIPFILE} ]; then rm ${ZIPFILE}; fi
 	curl -OL https://sourceforge.net/projects/emacsbinw64/files/release/${ZIPFILE}
 
-get-ess :
+get-ess:
 	@echo ----- Fetching ESS...
 	if [ -d ${ESS}.zip ]; then rm ${ESS}.zip; fi
 	curl -O http://ess.r-project.org/downloads/ess/${ESS}.zip
 
-get-auctex :
+get-auctex:
 	@echo ----- Fetching AUCTeX...
 	if [ -f ${AUCTEX}.zip ]; then rm ${AUCTEX}.zip; fi
 	curl -O http://ftp.gnu.org/pub/gnu/auctex/${AUCTEX}.zip
 
-get-org :
+get-org:
 	@echo ----- Fetching org...
 	if [ -f ${ORG}.zip ]; then rm ${ORG}.zip; fi
 	curl -O http://orgmode.org/${ORG}.zip
 
-get-polymode :
+get-polymode:
 	@echo ----- Fetching polymode
 	if [ -f ${POLYMODE}.zip ]; then rm ${POLYMODE}.zip; fi
 	curl -L -o ${POLYMODE}.zip https://github.com/vspinu/polymode/archive/master.zip
 
-get-markdownmode :
+get-markdownmode:
 	@echo ----- Fetching markdown-mode.el
 	if [ -f markdown-mode.el ]; then rm markdown-mode.el; fi
 	curl -OL https://github.com/jrblevin/markdown-mode/raw/v${MARKDOWNMODEVERSION}/markdown-mode.el
 
-get-psvn :
+get-psvn:
 	@echo ----- Fetching psvn.el
 	if [ -f psvn.el ]; then rm psvn.el; fi
 	svn cat http://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/emacs/psvn.el > psvn.el && flip -u psvn.el
 
-clean :
+clean:
 	${RM} ${TMPDIR}
 	cd ${ESS} && ${MAKE} clean
 	cd ${AUCTEX} && ${MAKE} clean
