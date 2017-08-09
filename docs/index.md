@@ -60,11 +60,15 @@ in formats XPM, PNG, JPEG, TIFF, GIF and SVG supported on Windows
 since Emacs version 22.1. Among other things, this means that the
 toolbar displays in color, that the ESS toolbar displays correctly and
 that the preview-latex mode of
-[AUCTeX](http://www.gnu.org/software/auctex/) works 11.90 its full
+[AUCTeX](http://www.gnu.org/software/auctex/) works to its full
 extent. However, the latter requires to separately install
 [Ghostscript](http://www.cs.wisc.edu/~ghost/ "Ghostscript/view
 utilities") and to make sure that the file `gswin32c.exe` or
 `gswin64c.exe` is in a folder along the `PATH` environment variable.
+
+The previous comment also applies to the iamge conversion
+tool [ImageMagick](https://www.imagemagick.org/) that may be required
+by Org.
 
 
 # Unix applications
