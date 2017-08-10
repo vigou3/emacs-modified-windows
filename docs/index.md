@@ -66,9 +66,10 @@ extent. However, the latter requires to separately install
 utilities") and to make sure that the file `gswin32c.exe` or
 `gswin64c.exe` is in a folder along the `PATH` environment variable.
 
-The previous comment also applies to the iamge conversion
+The previous comment also applies to the image conversion
 tool [ImageMagick](https://www.imagemagick.org/) that may be required
-by Org.
+by Org. If you need the tool, install it and make sure its location is
+along the `PATH`.
 
 
 # Unix applications
