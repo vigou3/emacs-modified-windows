@@ -34,15 +34,18 @@ Building the distribution on Windows requires a number of Unix
 utilities that do not come bundled with the operating
 system. Therefore, one will need to install the following components:
 
-1. The base [MSYS](http://www.mingw.org/wiki/MSYS) system. This will
-   provide a Unix shell, `make` and standard utilities.
+1. The  [MSYS2](http://www.msys2.org) building platform for Windows. This
+   provides a Unix shell and standard utilities.
 
-2. A binary version of [curl](https://curl.haxx.se/download.html) to
-   download files from the command line.
-
-3. The `flip` utility from the
-   [ezwinports project](https://sourceforge.net/projects/ezwinports/files/?source=navbar)
-   to convert DOS line endings to Unix style.
+2. The following additional MSYS2 packages: `make`, `dos2unix`,
+   `texinfo` and `p7zip` (if 7Zip is not otherwise installed on the
+   system). To install, use
+   
+   ```
+   pacman -S make dos2unix texinfo p7zip
+   ```
+   
+   from the MSYS command line.
 
 4. [Inno Setup](http://innosetup.com) to create the installer.
 
@@ -63,9 +66,7 @@ distribution and the various extensions (more on this below). Then
    [`psvn.el`](http://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/emacs/)
    from their respective GitHub or Subversion repositories; the
    snapshot of the master branch of
-   [Polymode](https://github.com/vspinu/polymode/);
-   the image libraries from the
-   [ezwinports project](https://sourceforge.net/projects/ezwinports/files/?source=navbar).
+   [Polymode](https://github.com/vspinu/polymode/).
 
 2. `emacs` will, in summary, decompress the GNU binary distribution in a
    temporary directory, add all the extensions into the application

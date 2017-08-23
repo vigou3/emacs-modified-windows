@@ -61,7 +61,7 @@ emacs: dir ess auctex org polymode markdownmode psvn exe
 
 release: create-release upload publish
 
-.PHONY: emacs dir libs ess auctex org polymode psvn exe release create-release upload publish clean
+.PHONY: emacs dir ess auctex org polymode psvn exe release create-release upload publish clean
 
 dir:
 	@echo ----- Creating the application in temporary directory...
@@ -71,7 +71,7 @@ dir:
 	cp -dpr aspell ${PREFIX}
 	${CP} default.el ${SITELISP}/
 	sed '/^(defconst/s/\(emacs-modified-version '"'"'\)[0-9]\+/\1${DISTVERSION}/' \
-	    -i version-modified.el && \
+	    -i -b version-modified.el && \
 	  ${CP} version-modified.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/version-modified.el
 	${CP} framepop.el ${SITELISP}/
@@ -82,7 +82,7 @@ dir:
 	    -e '/^DefaultGroupName/s/\(GNU Emacs \)[0-9.]\+/\1${EMACSVERSION}/' \
 	    -e '/^OutputBaseFilename/s/\(emacs-w64-\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
 	    -e 's/\(\\emacs\\\)[0-9.]\+/\1${EMACSVERSION}/' \
-	    -i ${INNOSCRIPT} && \
+	    -i -b ${INNOSCRIPT} && \
 	  ${CP} ${INNOSCRIPT} ${TMPDIR}/
 	sed -e 's/\(ESS \)[0-9.]\+/\1${ESSVERSION}/' \
 	    -e 's/\(AUCTeX \)[0-9.]\+/\1${AUCTEXVERSION}/' \
@@ -90,7 +90,7 @@ dir:
 	    -e 's/\(polymode \)[0-9\-]\+/\1${POLYMODEVERSION}/' \
 	    -e 's/\(markdown-mode.el \)[0-9.]\+/\1${MARKDOWNMODEVERSION}/' \
 	    -e 's/\(psvn.el \)[0-9]\+/\1${PSVNVERSION}/' \
-	    -i README-modified.txt && \
+	    -i -b README-modified.txt && \
 	  ${CP} README-modified.txt ${TMPDIR}/
 	${CP} site-start.el NEWS ${TMPDIR}
 
@@ -229,7 +229,7 @@ get-markdownmode:
 get-psvn:
 	@echo ----- Fetching psvn.el
 	if [ -f psvn.el ]; then rm psvn.el; fi
-	svn cat http://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/emacs/psvn.el > psvn.el && flip -u psvn.el
+	svn cat http://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/emacs/psvn.el > psvn.el && dos2unix -u psvn.el
 
 clean:
 	${RM} ${TMPDIR}
