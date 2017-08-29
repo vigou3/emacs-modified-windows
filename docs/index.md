@@ -18,7 +18,7 @@ The additions to stock Emacs are the following:
   [Subversion](http://subversion.tigris.org) modified to include Andre
   Colomb's and Koji Nakamaru's
   [combined patches](http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/raw/%3c503B958F.6010906@schickhardt.org%3e/1/4)
-  to support Subversion 1.7;
+  to support Subversion >= 1.7;
 - [Aspell](http://aspell.net/) 0.50.3;
 - English, French, German and Spanish
   [dictionaries](http://aspell.net/win32) for Aspell;
