@@ -1,11 +1,17 @@
+---
+title: Emacs Modified for Windows
+tagline: GNU Emacs. Ready for R and LaTeX
+description: Distribution of GNU Emacs for R developers and LaTeX users
+---
+
 # Presentation
 
 > Important change in the distribution: Emacs is now a 64-bit build!
 
-Emacs Modified for Windows is a 64-bit (x64) distribution of
-[GNU Emacs](https://www.gnu.org/software/emacs/) **25.2** (released
-April 21, 2017) bundled with a few select packages for LaTeX users and
-R developers.
+Emacs Modified for Windows is a 64-bit (x64) distribution
+of [GNU Emacs](https://www.gnu.org/software/emacs/) **25.2** (released
+April 21, 2017) bundled with a few select packages for R developers
+and LaTeX users.
 
 The additions to stock Emacs are the following:
 
