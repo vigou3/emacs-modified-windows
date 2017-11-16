@@ -2,6 +2,18 @@
 === Emacs Modified for Windows
 ===
 
+# VERSION 25.3-modified-1 (16 November 2017)
+
+This version brings many package updates. I realize I somewhat fell
+behind!
+
+- Emacs 25.3
+- ESS 17.11
+- AUCTeX 11.91
+- Org 9.1.3
+- markdownmode.el v2.3
+
+
 # VERSION 25.2-modified-3 (2 June 2017)
 
 ## New features
