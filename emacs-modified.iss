@@ -2,17 +2,17 @@
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
 AppName=GNU Emacs
-AppVerName=GNU Emacs 25.2-modified-3
-AppId=GNUEmacs-w64-25.2-modified-3
+AppVerName=GNU Emacs 25.3-modified-1
+AppId=GNUEmacs-w64-25.3-modified-1
 AppPublisher=Vincent Goulet
 AppPublisherURL=https://vigou3.github.io/emacs-modified-windows
 AppSupportURL=https://vigou3.github.io/emacs-modified-windows
 AppUpdatesURL=https://vigou3.github.io/emacs-modified-windows
-DefaultDirName={pf}\GNU Emacs 25.2
-DefaultGroupName=GNU Emacs 25.2
-LicenseFile=emacs\share\emacs\25.2\etc\COPYING
+DefaultDirName={pf}\GNU Emacs 25.3
+DefaultGroupName=GNU Emacs 25.3
+LicenseFile=emacs\share\emacs\25.3\etc\COPYING
 OutputDir=..
-OutputBaseFilename=emacs-w64-25.2-modified-3
+OutputBaseFilename=emacs-w64-25.3-modified-1
 UninstallDisplayIcon={app}\bin\runemacs.exe
 Compression=lzma
 SolidCompression=yes
@@ -58,13 +58,13 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Run]
-Filename: "{app}\share\emacs\25.2\README-Modified.txt"; Description: "{cm:ReadMe}"; Flags: postinstall shellexec skipifsilent
+Filename: "{app}\share\emacs\25.3\README-Modified.txt"; Description: "{cm:ReadMe}"; Flags: postinstall shellexec skipifsilent
 
 [Files]
 Source: "emacs\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "site-start.el"; DestDir: "{app}\share\emacs\site-lisp"; AfterInstall: DefaultConfig('{app}'); Flags: ignoreversion
-Source: "README-Modified.txt"; DestDir: "{app}\share\emacs\25.2"; Flags: ignoreversion
-Source: "NEWS"; DestDir: "{app}\share\emacs\25.2"; Flags: ignoreversion
+Source: "README-Modified.txt"; DestDir: "{app}\share\emacs\25.3"; Flags: ignoreversion
+Source: "NEWS"; DestDir: "{app}\share\emacs\25.3"; Flags: ignoreversion
 
 [Dirs]
 Name: "{app}\share\emacs\site-lisp\site-start.d"
