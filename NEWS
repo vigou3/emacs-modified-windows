@@ -2,6 +2,14 @@
 === Emacs Modified for Windows
 ===
 
+# VERSION 25.3-modified-2 (18 January 2018)
+
+## Updates
+
+- AUCTeX 12.1
+- Org 9.1.6
+
+
 # VERSION 25.3-modified-1 (16 November 2017)
 
 This version brings many package updates. I realize I somewhat fell
