@@ -219,7 +219,7 @@ get-auctex:
 get-org:
 	@echo ----- Fetching org...
 	if [ -f ${ORG}.zip ]; then rm ${ORG}.zip; fi
-	curl -O http://orgmode.org/${ORG}.zip
+	curl -O https://orgmode.org/${ORG}.zip
 
 get-polymode:
 	@echo ----- Fetching polymode
