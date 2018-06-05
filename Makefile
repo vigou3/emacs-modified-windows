@@ -28,7 +28,7 @@ INFOBEFOREFR = InfoBefore-fr.txt
 INFOBEFOREEN = InfoBefore-en.txt
 
 ## Override of ESS variables
-DESTDIR = ${PREFIX}/share/
+DESTDIR = ${PREFIX}/share
 SITELISP = ${DESTDIR}/emacs/site-lisp
 ETCDIR = ${DESTDIR}/emacs/etc
 DOCDIR = ${DESTDIR}/doc
@@ -67,7 +67,7 @@ dir:
 	@echo ----- Creating the application in temporary directory...
 	if [ -d ${TMPDIR} ]; then rm -rf ${TMPDIR}; fi
 	mkdir -p ${PREFIX}
-	${UNZIP} ${ZIPFILE} -o${TMPDIR}
+	${UNZIP} ${ZIPFILE} -o${PREFIX}
 	cp -dpr aspell ${PREFIX}
 	${CP} default.el ${SITELISP}/
 	sed '/^(defconst/s/\(emacs-modified-version '"'"'\)[0-9]\+/\1${DISTVERSION}/' \
@@ -77,10 +77,10 @@ dir:
 	${CP} framepop.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/framepop.el
 	sed -e '/^AppVerName/s/\(Emacs \)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
-	    -e '/^AppId/s/\(GNUEmacs-w64-\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
+	    -e '/^AppId/s/\(GNUEmacs-\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
 	    -e '/^DefaultDirName/s/\(GNU Emacs \)[0-9.]\+/\1${EMACSVERSION}/' \
 	    -e '/^DefaultGroupName/s/\(GNU Emacs \)[0-9.]\+/\1${EMACSVERSION}/' \
-	    -e '/^OutputBaseFilename/s/\(emacs-w64-\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
+	    -e '/^OutputBaseFilename/s/\(emacs-\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
 	    -e 's/\(\\emacs\\\)[0-9.]\+/\1${EMACSVERSION}/' \
 	    -i -b ${INNOSCRIPT} && \
 	  ${CP} ${INNOSCRIPT} ${TMPDIR}/
@@ -204,7 +204,7 @@ publish:
 get-emacs:
 	@echo ----- Fetching and unpacking Emacs...
 	if [ -f ${ZIPFILE} ]; then rm ${ZIPFILE}; fi
-	curl -OL https://sourceforge.net/projects/emacsbinw64/files/release/${ZIPFILE}
+	curl -OL https://ftp.gnu.org/gnu/emacs/windows/${ZIPFILE}
 
 get-ess:
 	@echo ----- Fetching ESS...
