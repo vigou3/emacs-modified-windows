@@ -2,6 +2,15 @@
 === Emacs Modified for Windows
 ===
 
+# VERSION 26.1-modified-1 (31 May 2018)
+
+## Updates
+
+- Emacs 26.1 released 28 May 2018. This is the official GNU build with
+  the optional dependency libraries as it appears the maintainer of
+  the emacs-w64 project does not intend to build a version for 26.1.
+- Org 9.1.13
+
 # VERSION 25.3-modified-2 (18 January 2018)
 
 ## Updates

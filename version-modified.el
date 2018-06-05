@@ -22,7 +22,7 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-(defconst emacs-modified-version '2
+(defconst emacs-modified-version '1
   "Revision number of this version of Emacs Modified")
 
 (defun emacs-modified-version (&optional here)

@@ -13,14 +13,14 @@
 ## http://vigou3.github.io/emacs-modified-windows
 
 ## GNU and this distribution version number
-EMACSVERSION=25.3
+EMACSVERSION=26.1
 EMACSPATCHLEVEL=
-DISTVERSION=2
+DISTVERSION=1
 
 ## Extensions version numbers
 ESSVERSION=17.11
 AUCTEXVERSION=12.1
-ORGVERSION=9.1.6
+ORGVERSION=9.1.13
 POLYMODEVERSION=2017-03-07
 MARKDOWNMODEVERSION=2.3
 EXECPATHVERSION=1.11
@@ -31,8 +31,8 @@ PSVNVERSION=1573006
 
 ## Version strings and file names
 VERSION=${EMACSVERSION}$(if ${EMACSPATCHLEVEL},-${EMACSPATCHLEVEL},)-modified-${DISTVERSION}
-ARCH=O2-with-modules
-ZIPFILE=emacs-w64-${EMACSVERSION}$(if ${EMACSPATCHLEVEL},-${EMACSPATCHLEVEL},)-${ARCH}.7z
+ARCH=x86_64
+ZIPFILE=emacs-${EMACSVERSION}$(if ${EMACSPATCHLEVEL},-${EMACSPATCHLEVEL},)-${ARCH}.zip
 
 ## GitHub repository and authentication
 REPOSURL=https://api.github.com/repos/vigou3/emacs-modified-windows
