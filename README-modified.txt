@@ -1,5 +1,5 @@
 Copyright (C) 2001-2017 Free Software Foundation, Inc.
-Copyright (C) 2009-2017 Vincent Goulet for the modifications.
+Copyright (C) 2009-2018 Vincent Goulet for the modifications.
 See below for GNU Emacs license conditions.
 
 Emacs Modified for Windows
@@ -8,26 +8,29 @@ Emacs Modified for Windows
 This is GNU Emacs for Windows 64-bit (x64) modified to include the
 following add-on packages:
 
-* ESS 17.11;
-* AUCTeX 12.1;
-* org 9.1.6;
-* polymode 2017-03-07 (active by default for RMarkdown mode
+- ESS 17.11;
+- AUCTeX 12.1;
+- org 9.1.13;
+- polymode 2017-03-07 (active by default for RMarkdown mode
   only);
-* markdown-mode.el 2.3;
-* psvn.el 1573006 from Subversion sources, to work with
+- markdown-mode.el 2.3;
+- psvn.el 1573006 from Subversion sources, to work with
   Subversion repositories from within Emacs;
-* Aspell 0.50.3, a spell checker well integrated with Emacs;
-* English (version 0.50-2-3), French (version 0.50-3-3), German
+- Aspell 0.50.3, a spell checker well integrated with Emacs;
+- English (version 0.50-2-3), French (version 0.50-3-3), German
   (version 0.50-2-3) and Spanish (version 0.50-2-3) dictionnaries
    for Aspell;
-* framepop.el, to obtain temporary buffers in separate frames;
-* default.el and site-start.el files to make everything work together.
+- framepop.el, to obtain temporary buffers in separate frames;
+- default.el and site-start.el files to make everything work together.
 
-The distribution is based on the release version of emacs-w64
-(https://sourceforge.net/projects/emacsbinw64/), a native 64-bit
-distribution of GNU Emacs for Windows compiled with optimization and
-with support for PNG, JPEG, TIFF, GIF and SVG images, XML2 and
-GnuTLS.
+The distribution is based on the official GNU release of Emacs with
+the optional dependency libraries that enable support for the
+following:
+
+- displaying inline images of many types (PNG, JPEG, GIF, TIFF, SVG);
+- SSL/TLS secure network communications (HTTPS, IMAPS, etc.);
+- HTML and XML parsing (necessary for the built-in EWW browser);
+- built-in decompression of compressed text.
 
 To add Emacs extensions to this distribution, you may drop .el files
 into the ...\share\emacs\site-lisp\site-start.d\ folder.
