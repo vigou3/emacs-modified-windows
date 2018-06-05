@@ -61,7 +61,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Filename: "{app}\share\emacs\26.1\README-Modified.txt"; Description: "{cm:ReadMe}"; Flags: postinstall shellexec skipifsilent
 
 [Files]
-Source: "*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "emacs\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "site-start.el"; DestDir: "{app}\share\emacs\site-lisp"; AfterInstall: DefaultConfig('{app}'); Flags: ignoreversion
 Source: "README-Modified.txt"; DestDir: "{app}\share\emacs\26.1"; Flags: ignoreversion
 Source: "NEWS"; DestDir: "{app}\share\emacs\26.1"; Flags: ignoreversion
