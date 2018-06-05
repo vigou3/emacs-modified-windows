@@ -192,8 +192,8 @@ upload:
 	@echo ----- Uploading the installer to GitHub...
 	curl -H 'Content-Type: application/zip' \
 	     -H 'Authorization: token ${OAUTHTOKEN}' \
-	     --upload-file emacs-w64-${VERSION}.exe \
-	     -s -i "${upload_url}?&name=emacs-w64-${VERSION}.exe"
+	     --upload-file emacs-${VERSION}.exe \
+	     -s -i "${upload_url}?&name=emacs-${VERSION}.exe"
 	@echo ----- Done uploading the installer
 
 publish:

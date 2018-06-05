@@ -15,7 +15,7 @@ The additions to stock Emacs are the following:
 
 - [ESS](http://ess.r-project.org) 17.11;
 - [AUCTeX](http://www.gnu.org/software/auctex/) 12.1;
-- [org](http://orgmode.org/) 9.1.6;
+- [org](http://orgmode.org/) 9.1.13;
 - [polymode](https://github.com/vitoshka/polymode) 2017-03-07;
 - [markdown-mode.el](http://jblevins.org/projects/markdown-mode/) 2.3;
 - [psvn.el](http://svn.apache.org/viewvc/subversion/trunk/contrib/client-side/emacs/) r1573006, an interface for the version control system
@@ -28,9 +28,9 @@ The additions to stock Emacs are the following:
   [dictionaries](http://aspell.net/win32) for Aspell;
 - [framepop.el](http://bazaar.launchpad.net/~vcs-imports/emacs-goodies-el/trunk/view/head:/elisp/emacs-goodies-el/framepop.el)
   to open temporary buffers in a separate frame;
-- [default.el]({{ site.github.repository_url }}/tags/v25.3-modified-2/default.el)
+- [default.el]({{ site.github.repository_url }}/tags/v26.1-modified-1/default.el)
   and
-  [site-start.el]({{ site.github.repository_url }}/tags/v25.3-modified-2/site-start.el),
+  [site-start.el]({{ site.github.repository_url }}/tags/v26.1-modified-1/site-start.el),
   configuration files to make everything work.
 
 The distribution is based on the official GNU release of Emacs with
@@ -44,8 +44,8 @@ following:
 
 ## Latest release
 
-Version 25.3-modified-2
-([Release notes]({{ site.github.repository_url }}/releases/tag/v25.3-modified-2/))
+Version 26.1-modified-1
+([Release notes]({{ site.github.repository_url }}/releases/tag/v26.1-modified-1/))
 
 ## System requirements
 
