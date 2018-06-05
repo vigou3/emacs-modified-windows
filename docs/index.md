@@ -6,11 +6,9 @@ description: Distribution of GNU Emacs for R developers and LaTeX users
 
 # Presentation
 
-> Important change in the distribution: Emacs is now a 64-bit build!
-
 Emacs Modified for Windows is a 64-bit (x64) distribution
-of [GNU Emacs](https://www.gnu.org/software/emacs/) **25.3** (released
-September 11, 2017) bundled with a few select packages for R developers
+of [GNU Emacs](https://www.gnu.org/software/emacs/) **26.1** (released
+May 28, 2018) bundled with a few select packages for R developers
 and LaTeX users.
 
 The additions to stock Emacs are the following:
@@ -35,10 +33,14 @@ The additions to stock Emacs are the following:
   [site-start.el]({{ site.github.repository_url }}/tags/v25.3-modified-2/site-start.el),
   configuration files to make everything work.
 
-The distribution is based on the release version of
-[emacs-w64](https://sourceforge.net/projects/emacsbinw64/), a native
-64-bit distribution of GNU Emacs for Windows compiled with optimization and
-providing support for PNG, JPEG, TIFF, GIF and SVG images, XML2 and GnuTLS.
+The distribution is based on the official GNU release of Emacs with
+the optional dependency libraries that enable support for the
+following:
+
+- displaying inline images of many types (PNG, JPEG, GIF, TIFF, SVG);
+- SSL/TLS secure network communications (HTTPS, IMAPS, etc.);
+- HTML and XML parsing (necessary for the built-in EWW browser);
+- built-in decompression of compressed text.
 
 ## Latest release
 
@@ -47,7 +49,7 @@ Version 25.3-modified-2
 
 ## System requirements
 
-This distribution requires a 64-Bit version of Microsoft Windows.
+This distribution requires a 64-bit version of Microsoft Windows.
 
 If you are still running a 32-bit version of Windows you need to install the
 32-bit build. The last such version of the distribution was
