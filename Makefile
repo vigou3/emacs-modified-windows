@@ -1,6 +1,6 @@
 ### -*-Makefile-*- to build Emacs Modified for Windows
 ##
-## Copyright (C) 2014-2017 Vincent Goulet
+## Copyright (C) 2014-2018 Vincent Goulet
 ##
 ## The code of this Makefile is based on a file created by Remko
 ## Troncon (http://el-tramo.be/about).
