@@ -2,6 +2,18 @@
 === Emacs Modified for Windows
 ===
 
+# VERSION 26.1-modified-2 (19 June 2018)
+
+## Bug fix
+
+Aspell did not work in the previous release as Emacs 26.1 requires a
+version >= 0.60 for which there is no binary version for Windows (see
+https://github.com/vigou3/emacs-modified-windows/issues/7 for
+additional detail).
+
+As a replacement, the distribution now ships with Hunspell with the
+latest English, French, German and Spanish dictionaries.
+
 # VERSION 26.1-modified-1 (31 May 2018)
 
 ## Updates

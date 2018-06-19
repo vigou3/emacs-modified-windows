@@ -16,10 +16,10 @@ following add-on packages:
 - markdown-mode.el 2.3;
 - psvn.el 1573006 from Subversion sources, to work with
   Subversion repositories from within Emacs;
-- Aspell 0.50.3, a spell checker well integrated with Emacs;
-- English (version 0.50-2-3), French (version 0.50-3-3), German
-  (version 0.50-2-3) and Spanish (version 0.50-2-3) dictionnaries
-   for Aspell;
+- Hunspell 1.3.2-3, a spell checker well integrated with Emacs;
+- English (version 2018.05.01b), French (version 5.7), German
+  (version 2017.01.12) and Spanish (version 2.3) dictionnaries
+  for Hunspell;
 - framepop.el, to obtain temporary buffers in separate frames;
 - default.el and site-start.el files to make everything work together.
 
@@ -39,7 +39,9 @@ In order to use Markdown you may need to install a parser such as
 Pandoc (see https://github.com/jgm/pandoc/releases/latest) and
 customize 'markdown-command'.
 
-See http://aspell.net/win32/ to install other dictionnaries for Aspell.
+The default dictionary for Hunspell is American English. See
+https://extensions.libreoffice.org/extensions to install additional
+dictionnaries.
 
 See http://sourceforge.net/projects/ezwinports/ to install Unix
 utilities sometimes required by Emacs (e.g. diff, gzip).
