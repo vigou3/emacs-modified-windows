@@ -23,7 +23,7 @@ The additions to stock Emacs are the following:
   Colomb's and Koji Nakamaru's
   [combined patches](http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/raw/%3c503B958F.6010906@schickhardt.org%3e/1/4)
   to support Subversion >= 1.7;
-- [Aspell](http://aspell.net/) 0.50.3; *[Does not work]({{ site.github.releases_url }}/issues/7)*
+- [Aspell](http://aspell.net/) 0.50.3; **Warning**: [does not work currently]({{ site.github.repository_url }}/issues/7).
 - English, French, German and Spanish
   [dictionaries](http://aspell.net/win32) for Aspell;
 - [framepop.el](http://bazaar.launchpad.net/~vcs-imports/emacs-goodies-el/trunk/view/head:/elisp/emacs-goodies-el/framepop.el)
