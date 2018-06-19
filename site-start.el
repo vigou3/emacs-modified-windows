@@ -105,9 +105,9 @@
 (require 'psvn)
 
 ;;;
-;;; Use Aspell for spell checking
+;;; Use Hunspell for spell checking
 ;;;
-(setq-default ispell-program-name "<EMACSDIR>/aspell/bin/aspell.exe")
+(setq-default ispell-program-name "<EMACSDIR>/hunspell/bin/hunspell.exe")
 
 ;;;
 ;;; Other extensions

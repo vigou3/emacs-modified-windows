@@ -23,14 +23,16 @@ The additions to stock Emacs are the following:
   Colomb's and Koji Nakamaru's
   [combined patches](http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/raw/%3c503B958F.6010906@schickhardt.org%3e/1/4)
   to support Subversion >= 1.7;
-- [Aspell](http://aspell.net/) 0.50.3; **Warning**: [does not work currently]({{ site.github.repository_url }}/issues/7).
-- English, French, German and Spanish
-  [dictionaries](http://aspell.net/win32) for Aspell;
+- [Hunspell](https://hunspell.github.io/) 1.3.2-3;
+- [English](https://extensions.libreoffice.org/extensions/english-dictionaries) (version 2018.05.01b),
+  [French](https://extensions.libreoffice.org/extensions/dictionnaires-francais) (version 5.7), 
+  [German](https://extensions.libreoffice.org/extensions/german-de-de-frami-dictionaries) (version 2017.01.12) and 
+  [Spanish](https://extensions.libreoffice.org/extensions/spanish-dictionaries) (version 2.3) dictionnaries for Hunspell;
 - [framepop.el](http://bazaar.launchpad.net/~vcs-imports/emacs-goodies-el/trunk/view/head:/elisp/emacs-goodies-el/framepop.el)
   to open temporary buffers in a separate frame;
-- [default.el]({{ site.github.repository_url }}/tags/v26.1-modified-1/default.el)
+- [default.el]({{ site.github.repository_url }}/tags/v26.1-modified-2/default.el)
   and
-  [site-start.el]({{ site.github.repository_url }}/tags/v26.1-modified-1/site-start.el),
+  [site-start.el]({{ site.github.repository_url }}/tags/v26.1-modified-2/site-start.el),
   configuration files to make everything work.
 
 The distribution is based on the official GNU release of Emacs with
@@ -44,8 +46,8 @@ following:
 
 ## Latest release
 
-Version 26.1-modified-1
-([Release notes]({{ site.github.repository_url }}/releases/tag/v26.1-modified-1/))
+Version 26.1-modified-2
+([Release notes]({{ site.github.repository_url }}/releases/tag/v26.1-modified-2/))
 
 ## System requirements
 

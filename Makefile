@@ -39,25 +39,23 @@ ESS = ess-${ESSVERSION}
 AUCTEX = auctex-${AUCTEXVERSION}
 ORG = org-${ORGVERSION}
 POLYMODE = polymode-master
-LIBPNG = libpng-${LIBPNGVERSION}-w32-bin
-ZLIB = zlib-${ZLIBVERSION}-w32-bin
-JPEG = jpeg-${JPEGVERSION}-w32-bin
-TIFF = tiff-${TIFFVERSION}-w32-bin
-GIFLIB = giflib-${GIFLIBVERSION}-w32-bin
-LIBRSVG = librsvg-${LIBRSVGVERSION}-w32-bin
-GNUTLS = gnutls-${GNUTLSVERSION}-w32-bin
-LIBS = libs
+HUNSPELL = hunspell-${HUNSPELLVERSION}-w32-bin
+DICT-EN = dict-en_$(subst .,,${DICT-ENVERSION})
+DICT-FR = lo-oo-ressources-linguistiques-fr-v${DICT-FRVERSION}
+DICT-ES = es_ANY
+DICT-DE = dict-de_DE-frami_$(subst .,-,${DICT-DEVERSION})
 
 ## Toolset
 CP = cp -p
 RM = rm -r
 UNZIP = 7z x
+UNZIPNOPATH = 7z e
 
 all: get-packages emacs
 
-get-packages: get-emacs get-ess get-auctex get-org get-polymode get-markdownmode get-psvn
+get-packages: get-emacs get-ess get-auctex get-org get-polymode get-markdownmode get-psvn get-hunspell
 
-emacs: dir ess auctex org polymode markdownmode psvn exe
+emacs: dir ess auctex org polymode markdownmode psvn hunspell exe
 
 release: create-release upload publish
 
@@ -68,7 +66,6 @@ dir:
 	if [ -d ${TMPDIR} ]; then rm -rf ${TMPDIR}; fi
 	mkdir -p ${PREFIX}
 	${UNZIP} ${ZIPFILE} -o${PREFIX}
-	cp -dpr aspell ${PREFIX}
 	${CP} default.el ${SITELISP}/
 	sed '/^(defconst/s/\(emacs-modified-version '"'"'\)[0-9]\+/\1${DISTVERSION}/' \
 	    -i -b version-modified.el && \
@@ -90,6 +87,11 @@ dir:
 	    -e 's/\(polymode \)[0-9\-]\+/\1${POLYMODEVERSION}/' \
 	    -e 's/\(markdown-mode.el \)[0-9.]\+/\1${MARKDOWNMODEVERSION}/' \
 	    -e 's/\(psvn.el \)[0-9]\+/\1${PSVNVERSION}/' \
+	    -e 's/\(Hunspell \)[0-9.\-]\+/\1${HUNSPELLVERSION}/' \
+	    -e 's/\(English (version \)[0-9a-z.]\+/\1${DICT-ENVERSION}/' \
+	    -e 's/\(French (version \)[0-9.]\+/\1${DICT-FRVERSION}/' \
+	    -e 's/^\(  (version \)[0-9.]\+/\1${DICT-DEVERSION}/' \
+	    -e 's/\(Spanish (version \)[0-9.]\+/\1${DICT-ESVERSION}/' \
 	    -i -b README-modified.txt && \
 	  ${CP} README-modified.txt ${TMPDIR}/
 	${CP} site-start.el NEWS ${TMPDIR}
@@ -155,6 +157,20 @@ psvn:
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
 	@echo ----- Done installing psvn.el
 
+hunspell:
+	@echo ----- Installing hunspell and dictionaries...
+	if [ -d ${PREFIX}/hunspell ]; then rm -rf ${PREFIX}/hunspell; fi
+	mkdir ${PREFIX}/hunspell
+	${UNZIP} -o${PREFIX}/hunspell ${HUNSPELL}.zip
+	${RM} ${PREFIX}/hunspell/share/hunspell/*
+	${UNZIPNOPATH} -o${PREFIX}/hunspell/share/hunspell ${DICT-EN}.zip "*.aff" "*.dic" "th_en*" "README*en*.txt"
+	cp ${PREFIX}/hunspell/share/hunspell/en_US.dic ${PREFIX}/hunspell/share/hunspell/default.dic
+	cp ${PREFIX}/hunspell/share/hunspell/en_US.aff ${PREFIX}/hunspell/share/hunspell/default.aff
+	${UNZIPNOPATH} -o${PREFIX}/hunspell/share/hunspell ${DICT-FR}.zip dictionaries/* 
+	${UNZIPNOPATH} -o${PREFIX}/hunspell/share/hunspell ${DICT-ES}.zip "*.aff" "*.dic" "th_es*" "README*es*.txt"
+	${UNZIPNOPATH} -o${PREFIX}/hunspell/share/hunspell ${DICT-DE}.zip "de_DE_frami/*.aff" "de_DE_frami/*.dic" "de_DE_frami/*README.txt" "hyph_de_DE/*.dic" "hyph_de_DE/*README.txt" "thes_de_DE_v2/th_de_DE*"
+
+
 exe:
 	@echo ----- Building the archive...
 	cd ${TMPDIR}/ && cmd /c "${INNOSETUP} ${INNOSCRIPT}"
@@ -202,9 +218,9 @@ publish:
 	@echo ----- Done publishing
 
 get-emacs:
-	@echo ----- Fetching and unpacking Emacs...
+	@echo ----- Fetching Emacs...
 	if [ -f ${ZIPFILE} ]; then rm ${ZIPFILE}; fi
-	curl -OL https://ftp.gnu.org/gnu/emacs/windows/${ZIPFILE}
+	curl -OL https://ftp.gnu.org/gnu/emacs/windows/emacs-26/${ZIPFILE}
 
 get-ess:
 	@echo ----- Fetching ESS...
@@ -235,6 +251,19 @@ get-psvn:
 	@echo ----- Fetching psvn.el
 	if [ -f psvn.el ]; then rm psvn.el; fi
 	svn cat http://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/emacs/psvn.el > psvn.el && dos2unix -u psvn.el
+
+get-hunspell :
+	@echo ----- Fetching hunspell and dictionaries
+	if [ -f ${HUNSPELL}.zip ]; then rm ${HUNSPELL}.zip; fi
+	curl -OL https://sourceforge.net/projects/ezwinports/files/${HUNSPELL}.zip
+	if [ -f ${DICT-EN}.zip ]; then rm ${DICT-EN}.zip; fi
+	curl -L -o ${DICT-EN}.zip https://extensions.libreoffice.org/extensions/english-dictionaries/$(shell echo ${DICT-ENVERSION} | sed 's/\./-/')/@@download/file/${DICT-EN}.oxt
+	if [ -f ${DICT-FR}.zip ]; then rm ${DICT-FR}.zip; fi
+	curl -L -o ${DICT-FR}.zip https://extensions.libreoffice.org/extensions/dictionnaires-francais/${DICT-FRVERSION}/@@download/file/${DICT-FR}.oxt
+	if [ -f ${DICT-ES}.zip ]; then rm ${DICT-ES}.zip; fi
+	curl -L -o ${DICT-ES}.zip https://extensions.libreoffice.org/extensions/spanish-dictionaries/${DICT-ESVERSION}/@@download/file/${DICT-ES}.oxt
+	if [ -f ${DICT-DE}.zip ]; then rm ${DICT-DE}.zip; fi
+	curl -L -o ${DICT-DE}.zip https://extensions.libreoffice.org/extensions/german-de-de-frami-dictionaries/$(subst .,-,${DICT-DEVERSION})/@@download/file/${DICT-DE}.oxt
 
 clean:
 	${RM} ${TMPDIR}
