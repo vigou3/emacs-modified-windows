@@ -37,5 +37,5 @@ files:
 	    -i ${DEFAULT}
 
 commit:
-	git commit -a -m "Updating the web page for version ${VERSION}" && \
+	git commit ${INDEX} ${DEFAULT} -m "Updating the web page for version ${VERSION}" && \
 	git push
