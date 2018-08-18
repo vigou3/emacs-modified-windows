@@ -183,7 +183,7 @@ exe:
 
 upload :
 	@echo ----- Uploading installer to GitLab...
-	$(eval upload_url_markdown=$(shell curl --form "file=emacs-${VERSION}.exe" \
+	$(eval upload_url_markdown=$(shell curl --form "file=@emacs-${VERSION}.exe" \
 	                                        --header "PRIVATE-TOKEN: ${OAUTHTOKEN}"	\
 	                                        --silent \
 	                                        ${APIURL}/uploads \
