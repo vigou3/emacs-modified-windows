@@ -1,3 +1,12 @@
+;;; Inno Setup script to build Emacs Modified for Windows
+;;
+;; Copyright (C) 2014-2018 Vincent Goulet
+;;
+;; Author: Vincent Goulet
+;;
+;; This file is part of Emacs Modified for Windows
+;; https://gitlab.com/vigou3/emacs-modified-windows
+
 [Setup]
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
