@@ -207,7 +207,7 @@ create-release:
 	      (state == 0) && /^# / { state = 1; \
 		out = $$3; \
 	        for(i = 4; i <= NF; i++) { out = out" "$$i }; \
-	        printf "\"description\": \"# Emacs Modified for macOS %s\\n", out; \
+	        printf "\"description\": \"# Emacs Modified for Windows %s\\n", out; \
 	        next } \
 	      (state == 1) && /^# / { exit } \
 	      state == 1 { printf "%s\\n", $$0 } \
@@ -221,7 +221,6 @@ create-release:
 	     --header "Content-Type: application/json" \
 	     ${APIURL}/repository/tags/${TAGNAME}/release
 	${RM} relnotes.in
-	rm relnotes.in
 	@echo ----- Done creating the release
 
 publish:
