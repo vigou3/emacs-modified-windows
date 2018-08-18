@@ -8,7 +8,22 @@
 ## Author: Vincent Goulet
 ##
 ## This file is part of Emacs Modified for Windows
-## http://vigou3.github.io/emacs-modified-windows
+## https://gitlab.com/vigou3/emacs-modified-windows
+
+## Emacs Modified for Windows is free software; you can redistribute
+## it and/or modify it under the terms of the GNU General Public
+## License as published by the Free Software Foundation; either
+## version 3, or (at your option) any later version.
+##
+## GNU Emacs is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with GNU Emacs; see the file COPYING.  If not, write to the
+## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+## Boston, MA 02110-1301, USA.
 
 ## Set most variables in Makeconf
 include ./Makeconf
@@ -34,17 +49,6 @@ ETCDIR = ${DESTDIR}/emacs/etc
 DOCDIR = ${DESTDIR}/doc
 INFODIR = ${DESTDIR}/info
 
-## Base name of extensions
-ESS = ess-${ESSVERSION}
-AUCTEX = auctex-${AUCTEXVERSION}
-ORG = org-${ORGVERSION}
-POLYMODE = polymode-master
-HUNSPELL = hunspell-${HUNSPELLVERSION}-w32-bin
-DICT-EN = dict-en_$(subst .,,${DICT-ENVERSION})
-DICT-FR = lo-oo-ressources-linguistiques-fr-v${DICT-FRVERSION}
-DICT-ES = es_ANY
-DICT-DE = dict-de_DE-frami_$(subst .,-,${DICT-DEVERSION})
-
 ## Toolset
 CP = cp -p
 RM = rm -r
@@ -57,13 +61,13 @@ get-packages: get-emacs get-ess get-auctex get-org get-polymode get-markdownmode
 
 emacs: dir ess auctex org polymode markdownmode psvn hunspell exe
 
-release: create-release upload publish
+release: upload create-release publish
 
 .PHONY: emacs dir ess auctex org polymode psvn exe release create-release upload publish clean
 
 dir:
 	@echo ----- Creating the application in temporary directory...
-	if [ -d ${TMPDIR} ]; then rm -rf ${TMPDIR}; fi
+	if [ -d ${TMPDIR} ]; then ${RM} -f ${TMPDIR}; fi
 	mkdir -p ${PREFIX}
 	${UNZIP} ${ZIPFILE} -o${PREFIX}
 	${CP} default.el ${SITELISP}/
@@ -98,19 +102,19 @@ dir:
 
 ess:
 	@echo ----- Making ESS...
-	if [ -d ${ESS} ]; then rm -rf ${ESS}; fi
+	if [ -d ${ESS} ]; then ${RM} -f ${ESS}; fi
 	${UNZIP} ${ESS}.zip
 	TMPDIR=${TMP} ${MAKE} EMACS=${EMACS} -C ${ESS} all
 	${MAKE} DESTDIR=${DESTDIR} SITELISP=${SITELISP} \
 	        ETCDIR=${ETCDIR}/ess DOCDIR=${DOCDIR}/ess \
 	        INFODIR=${INFODIR} -C ${ESS} install
 	if [ -f ${SITELISP}/ess-site.el ]; then rm ${SITELISP}/ess-site.el; fi
-	rm -rf ${ESS}
+	${RM} -f ${ESS}
 	@echo ----- Done making ESS
 
 auctex:
 	@echo ----- Making AUCTeX...
-	if [ -d ${AUCTEX} ]; then rm -rf ${AUCTEX}; fi
+	if [ -d ${AUCTEX} ]; then ${RM} -f ${AUCTEX}; fi
 	${UNZIP} ${AUCTEX}.zip
 	cd ${AUCTEX} && ./configure --prefix=${PREFIX} \
 		--without-texmf-dir \
@@ -119,30 +123,30 @@ auctex:
 	make -C ${AUCTEX} install
 	mv ${SITELISP}/auctex/doc/preview.* ${DOCDIR}/auctex
 	rmdir ${SITELISP}/auctex/doc
-	rm -rf ${AUCTEX}
+	${RM} -f ${AUCTEX}
 	@echo ----- Done making AUCTeX
 
 org:
 	@echo ----- Making org...
-	if [ -d ${ORG} ]; then rm -rf ${ORG}; fi
+	if [ -d ${ORG} ]; then ${RM} -f ${ORG}; fi
 	${UNZIP} ${ORG}.zip
 	${MAKE} EMACS=${EMACS} -C ${ORG} all
 	${MAKE} EMACS=${EMACS} lispdir=${SITELISP}/org \
 	        datadir=${ETCDIR}/org infodir=${INFODIR} -C ${ORG} install
 	mkdir -p ${DOCDIR}/org && ${CP} ${ORG}/doc/*.html ${DOCDIR}/org/
-	rm -rf ${ORG}
+	${RM} -f ${ORG}
 	@echo ----- Done making org
 
 polymode:
 	@echo ----- Copying and byte compiling polymode files...
-	if [ -d ${POLYMODE} ]; then rm -rf ${POLYMODE}; fi
+	if [ -d ${POLYMODE} ]; then ${RM} -f ${POLYMODE}; fi
 	${UNZIP} ${POLYMODE}.zip
 	mkdir -p ${SITELISP}/polymode ${DOCDIR}/polymode
 	${CP} ${POLYMODE}/*.el ${POLYMODE}/modes/*.el ${SITELISP}/polymode
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/polymode/*.el
 	${CP} ${POLYMODE}/readme.md ${DOCDIR}/polymode
 	${CP} ${POLYMODE}/modes/readme.md ${DOCDIR}/polymode/developing.md
-	rm -rf ${POLYMODE}
+	${RM} -f ${POLYMODE}
 	@echo ----- Done installing polymode
 
 markdownmode:
@@ -159,7 +163,7 @@ psvn:
 
 hunspell:
 	@echo ----- Installing hunspell and dictionaries...
-	if [ -d ${PREFIX}/hunspell ]; then rm -rf ${PREFIX}/hunspell; fi
+	if [ -d ${PREFIX}/hunspell ]; then ${RM} -f ${PREFIX}/hunspell; fi
 	mkdir ${PREFIX}/hunspell
 	${UNZIP} -o${PREFIX}/hunspell ${HUNSPELL}.zip
 	${RM} ${PREFIX}/hunspell/share/hunspell/*
@@ -174,95 +178,105 @@ hunspell:
 exe:
 	@echo ----- Building the archive...
 	cd ${TMPDIR}/ && cmd /c "${INNOSETUP} ${INNOSCRIPT}"
-	rm -rf ${TMPDIR}
+	${RM} -f ${TMPDIR}
 	@echo ----- Done building the archive
 
+upload :
+	@echo ----- Uploading installer to GitLab...
+	$(eval upload_url_markdown=$(shell curl --form "file=emacs-${VERSION}.exe" \
+	                                        --header "PRIVATE-TOKEN: ${OAUTHTOKEN}"	\
+	                                        --silent \
+	                                        ${APIURL}/uploads \
+	                                   | awk -F '"' '{ print $$12 }'))
+	@echo Markdown ready url to file:
+	@echo "${upload_url_markdown}"
+	@echo ----- Done uploading installer
+
 create-release:
-	@echo ----- Creating release on GitHub...
+	@echo ----- Creating release on GitLab...
 	@if [ -n "$(shell git status --porcelain | grep -v '^??')" ]; then \
 	     echo "uncommitted changes in repository; not creating release"; exit 2; fi
 	@if [ -n "$(shell git log origin/master..HEAD)" ]; then \
 	    echo "unpushed commits in repository; pushing to origin"; \
 	     git push; fi
-	if [ -e relnotes.in ]; then rm relnotes.in; fi
+	if [ -e relnotes.in ]; then ${RM} relnotes.in; fi
 	touch relnotes.in
-	awk 'BEGIN { ORS=" "; print "{\"tag_name\": \"v${VERSION}\"," } \
+	$(eval FILESIZE=$(shell du -h emacs-${VERSION}.exe | cut -f1 | sed 's/\([KMG]\)/ \1b/'))
+	awk 'BEGIN { ORS = " "; print "{\"tag_name\": \"${TAGNAME}\"," } \
 	      /^$$/ { next } \
-              (state==0) && /^# / { state=1; \
-	                            print "\"name\": \"Emacs Modified for Windows ${VERSION}\", \"body\": \""; \
-	                             next } \
-	      (state==1) && /^# / { state=2; print "\","; next } \
-	      state==1 { printf "%s\\n", $$0 } \
-	      END { print "\"draft\": false, \"prerelease\": false}" }' \
-	      NEWS >> relnotes.in
-	curl --data @relnotes.in ${REPOSURL}/releases?access_token=${OAUTHTOKEN}
+	      (state == 0) && /^# / { state = 1; \
+		out = $$3; \
+	        for(i = 4; i <= NF; i++) { out = out" "$$i }; \
+	        printf "\"description\": \"# Emacs Modified for macOS %s\\n", out; \
+	        next } \
+	      (state == 1) && /^# / { exit } \
+	      state == 1 { printf "%s\\n", $$0 } \
+	      END { print "\\n## Download the installer\\n${upload_url_markdown} (${FILESIZE})\"}" }' \
+	     NEWS >> relnotes.in
+	curl --request POST \
+	     --header "PRIVATE-TOKEN: ${OAUTHTOKEN}" \
+	     "${APIURL}/repository/tags?tag_name=${TAGNAME}&ref=master"
+	curl --data @relnotes.in \
+	     --header "PRIVATE-TOKEN: ${OAUTHTOKEN}" \
+	     --header "Content-Type: application/json" \
+	     ${APIURL}/repository/tags/${TAGNAME}/release
+	${RM} relnotes.in
 	rm relnotes.in
 	@echo ----- Done creating the release
 
-upload:
-	@echo ----- Getting upload URL from GitHub...
-	$(eval upload_url=$(shell curl -s ${REPOSURL}/releases/latest \
-	 			  | awk -F '[ {]' '/^  \"upload_url\"/ \
-	                                    { print substr($$4, 2, length) }'))
-	@echo ${upload_url}
-	@echo ----- Uploading the installer to GitHub...
-	curl -H 'Content-Type: application/zip' \
-	     -H 'Authorization: token ${OAUTHTOKEN}' \
-	     --upload-file emacs-${VERSION}.exe \
-	     -s -i "${upload_url}?&name=emacs-${VERSION}.exe"
-	@echo ----- Done uploading the installer
-
 publish:
 	@echo ----- Publishing the web page...
-	${MAKE} -C docs
+	git checkout pages && \
+	  ${MAKE} && \
+	  git checkout master
 	@echo ----- Done publishing
 
 get-emacs:
 	@echo ----- Fetching Emacs...
-	if [ -f ${ZIPFILE} ]; then rm ${ZIPFILE}; fi
+	if [ -f ${ZIPFILE} ]; then ${RM} ${ZIPFILE}; fi
 	curl -OL https://ftp.gnu.org/gnu/emacs/windows/emacs-26/${ZIPFILE}
 
 get-ess:
 	@echo ----- Fetching ESS...
-	if [ -d ${ESS}.zip ]; then rm ${ESS}.zip; fi
+	if [ -d ${ESS}.zip ]; then ${RM} ${ESS}.zip; fi
 	curl -O http://ess.r-project.org/downloads/ess/${ESS}.zip
 
 get-auctex:
 	@echo ----- Fetching AUCTeX...
-	if [ -f ${AUCTEX}.zip ]; then rm ${AUCTEX}.zip; fi
+	if [ -f ${AUCTEX}.zip ]; then ${RM} ${AUCTEX}.zip; fi
 	curl -O http://ftp.gnu.org/pub/gnu/auctex/${AUCTEX}.zip
 
 get-org:
 	@echo ----- Fetching org...
-	if [ -f ${ORG}.zip ]; then rm ${ORG}.zip; fi
+	if [ -f ${ORG}.zip ]; then ${RM} ${ORG}.zip; fi
 	curl -O https://orgmode.org/${ORG}.zip
 
 get-polymode:
 	@echo ----- Fetching polymode
-	if [ -f ${POLYMODE}.zip ]; then rm ${POLYMODE}.zip; fi
+	if [ -f ${POLYMODE}.zip ]; then ${RM} ${POLYMODE}.zip; fi
 	curl -L -o ${POLYMODE}.zip https://github.com/vspinu/polymode/archive/master.zip
 
 get-markdownmode:
 	@echo ----- Fetching markdown-mode.el
-	if [ -f markdown-mode.el ]; then rm markdown-mode.el; fi
+	if [ -f markdown-mode.el ]; then ${RM} markdown-mode.el; fi
 	curl -OL https://github.com/jrblevin/markdown-mode/raw/v${MARKDOWNMODEVERSION}/markdown-mode.el
 
 get-psvn:
 	@echo ----- Fetching psvn.el
-	if [ -f psvn.el ]; then rm psvn.el; fi
+	if [ -f psvn.el ]; then ${RM} psvn.el; fi
 	svn cat http://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/emacs/psvn.el > psvn.el && dos2unix -u psvn.el
 
 get-hunspell :
 	@echo ----- Fetching hunspell and dictionaries
-	if [ -f ${HUNSPELL}.zip ]; then rm ${HUNSPELL}.zip; fi
+	if [ -f ${HUNSPELL}.zip ]; then ${RM} ${HUNSPELL}.zip; fi
 	curl -OL https://sourceforge.net/projects/ezwinports/files/${HUNSPELL}.zip
-	if [ -f ${DICT-EN}.zip ]; then rm ${DICT-EN}.zip; fi
+	if [ -f ${DICT-EN}.zip ]; then ${RM} ${DICT-EN}.zip; fi
 	curl -L -o ${DICT-EN}.zip https://extensions.libreoffice.org/extensions/english-dictionaries/$(shell echo ${DICT-ENVERSION} | sed 's/\./-/')/@@download/file/${DICT-EN}.oxt
-	if [ -f ${DICT-FR}.zip ]; then rm ${DICT-FR}.zip; fi
+	if [ -f ${DICT-FR}.zip ]; then ${RM} ${DICT-FR}.zip; fi
 	curl -L -o ${DICT-FR}.zip https://extensions.libreoffice.org/extensions/dictionnaires-francais/${DICT-FRVERSION}/@@download/file/${DICT-FR}.oxt
-	if [ -f ${DICT-ES}.zip ]; then rm ${DICT-ES}.zip; fi
+	if [ -f ${DICT-ES}.zip ]; then ${RM} ${DICT-ES}.zip; fi
 	curl -L -o ${DICT-ES}.zip https://extensions.libreoffice.org/extensions/spanish-dictionaries/${DICT-ESVERSION}/@@download/file/${DICT-ES}.oxt
-	if [ -f ${DICT-DE}.zip ]; then rm ${DICT-DE}.zip; fi
+	if [ -f ${DICT-DE}.zip ]; then ${RM} ${DICT-DE}.zip; fi
 	curl -L -o ${DICT-DE}.zip https://extensions.libreoffice.org/extensions/german-de-de-frami-dictionaries/$(subst .,-,${DICT-DEVERSION})/@@download/file/${DICT-DE}.oxt
 
 clean:
