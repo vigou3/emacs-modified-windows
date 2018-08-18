@@ -61,7 +61,7 @@ DICT-ES = es_ANY
 DICT-DE = dict-de_DE-frami_$(subst .,-,${DICT-DEVERSION})
 
 ## GitLab repository and authentication
-REPOSURL=https://gitlab.com/vigou3/emacs-modified-macos
+REPOSURL=https://gitlab.com/vigou3/emacs-modified-windows
 REPOSNAME=$(shell basename ${REPOSURL})
 APIURL=https://gitlab.com/api/v4/projects/vigou3%2F${REPOSNAME}
 OAUTHTOKEN=$(shell cat ~/.gitlab/token)
