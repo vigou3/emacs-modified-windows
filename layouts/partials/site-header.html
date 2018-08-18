@@ -1,0 +1,48 @@
+{{ $featured_image := .Param "featured_image" | default "images/gohugo-default-sample-hero-image.jpg" }}
+{{ if $featured_image }}
+  {{/* Trimming the slash and adding absURL make sure the image works no matter where our site lives */}}
+  {{ $featured_image := (trim $featured_image "/") | absURL }}
+  <header class="cover bg-top" style="background-image: url('{{ $featured_image }}');">
+    <div class="bg-black-30">
+      {{ partial "site-navigation.html" .}}
+      <div class="tc-l pv4 pv6-l ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
+          {{ .Title | default .Site.Title }}
+        </h1>
+        {{ with .Params.description }}
+          <h2 class="fw1 f5 f3-l white-80 measure-wide-l center mt3">
+            {{ . }}
+          </h2>
+        {{ end }}
+	<a class="ba white-70 no-underline bg-animate hover-bg-white-30 br2 inline-flex items-center mr3 mb3 pv2 ph3" href="https://gitlab.com/vigou3/emacs-modified-windows/uploads/579cf6f4b8218d2d49ada26bc97ceb70/emacs-26.1-2-modified-1.exe" title="Download Installer">
+	    <span class="fas fa-download f4 pr3"></span> <span>Download Installer</span>
+	</a>
+	<a class="ba white-70 no-underline bg-animate hover-bg-white-30 br2 inline-flex items-center mr3 mb3 pv2 ph3" href="https://gitlab.com/vigou3/emacs-modified-windows/tags/v26.1-2-modified-1/" title="See What's New">
+	    <span class="fas fa-list f4 pr3"></span><span>See What's New</span>
+	</a>
+	<a class="ba white-70 no-underline bg-animate hover-bg-white-30 br2 inline-flex items-center mr3 mb3 pv2 ph3" href="https://gitlab.com/vigou3/emacs-modified-windows/" title="View on GitLab">
+	    <span class="fab fa-gitlab f4 pr3"></span> <span>View on GitLab</span>
+	</a>
+      </div>
+    </div>
+  </header>
+{{ else }}
+  <header>
+    <div class="pb3-m pb6-l {{ .Site.Params.background_color_class | default "bg-black" }}">
+      {{ partial "site-navigation.html" . }}
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          {{ .Title | default .Site.Title }}
+        </h1>
+        {{ with .Params.description }}
+          <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+            {{ . }}
+          </h2>
+        {{ end }}
+	  <a class="ba black-70 no-underline grow br2 b inline-flex items-center mr3 mb3 pv2 ph3" href="https://twitter.com/tachyons_css" title="Follow us on Twitter">
+	    <span>Follow @tachyons_css</span>
+	  </a>
+      </div>
+    </div>
+  </header>
+{{ end }}
