@@ -1,18 +1,28 @@
 ### User settable variables used in -*-Makefile-*-
 ##
-## Copyright (C) 2017 Vincent Goulet
-##
-## This file should only serves as a fall-back when the version
-## strings did not come from the make process started in branch
-## master. All values in this file are static since the submodules are
-## not installed in this branch.
+## Copyright (C) 2018 Vincent Goulet
 ##
 ## Author: Vincent Goulet
 ##
 ## This file is part of Emacs Modified for Windows
-## http://vigou3.github.io/emacs-modified-windows
+## https://gitlab.com/vigou3/emacs-modified-windows
 
-## GNU and this distribution version number
+## Emacs Modified for Windows is free software; you can redistribute
+## it and/or modify it under the terms of the GNU General Public
+## License as published by the Free Software Foundation; either
+## version 3, or (at your option) any later version.
+##
+## GNU Emacs is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with GNU Emacs; see the file COPYING.  If not, write to the
+## Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+## Boston, MA 02110-1301, USA.
+
+## GNU Emacs and this distribution version number
 EMACSVERSION=26.1
 EMACSPATCHLEVEL=
 DISTVERSION=2
@@ -35,9 +45,23 @@ DICT-DEVERSION=2017.01.12
 
 ## Version strings and file names
 VERSION=${EMACSVERSION}$(if ${EMACSPATCHLEVEL},-${EMACSPATCHLEVEL},)-modified-${DISTVERSION}
+TAGNAME=v${VERSION}
 ARCH=x86_64
 ZIPFILE=emacs-${EMACSVERSION}$(if ${EMACSPATCHLEVEL},-${EMACSPATCHLEVEL},)-${ARCH}.zip
 
-## GitHub repository and authentication
-REPOSURL=https://api.github.com/repos/vigou3/emacs-modified-windows
-OAUTHTOKEN=$(shell cat ~/.github/token)
+## Base name of extensions
+ESS = ess-${ESSVERSION}
+AUCTEX = auctex-${AUCTEXVERSION}
+ORG = org-${ORGVERSION}
+POLYMODE = polymode-master
+HUNSPELL = hunspell-${HUNSPELLVERSION}-w32-bin
+DICT-EN = dict-en_$(subst .,,${DICT-ENVERSION})
+DICT-FR = lo-oo-ressources-linguistiques-fr-v${DICT-FRVERSION}
+DICT-ES = es_ANY
+DICT-DE = dict-de_DE-frami_$(subst .,-,${DICT-DEVERSION})
+
+## GitLab repository and authentication
+REPOSURL=https://gitlab.com/vigou3/emacs-modified-macos
+REPOSNAME=$(shell basename ${REPOSURL})
+APIURL=https://gitlab.com/api/v4/projects/vigou3%2F${REPOSNAME}
+OAUTHTOKEN=$(shell cat ~/.gitlab/token)
