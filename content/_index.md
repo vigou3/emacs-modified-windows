@@ -46,7 +46,7 @@ following:
 ## Latest release
 
 Version 26.1-modified-2
-([Release notes](https://gitlab.com/vigou3/emacs-modified-windows/tags/v26.1-2-modified-1/))
+([Release notes](https://gitlab.com/vigou3/emacs-modified-windows/tags/v26.1-modified-2/))
 
 ## System requirements
 
