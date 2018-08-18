@@ -1,5 +1,5 @@
 > See the
-> [project page](https://vigou3.github.io/emacs-modified-windows) for
+> [project page](https://vigou3.gitlab.io/emacs-modified-windows) for
 > detailed information on the distribution and to obtain binary
 > releases.
 
@@ -22,11 +22,10 @@ application.
 
 ## Repository content
 
-The repository contains a binary distribution of
-[Aspell](http://aspell.net/), a few distribution-specific files and a
+The repository contains a few distribution-specific files and a
 `Makefile` to fetch the other components and combine everything into
 an installer based on [Inno Setup](http://innosetup.com). The complete
-source code of Emacs and the extensions is *not* hosted here.
+source code of Emacs and the extensions is not hosted here.
 
 ## Prerequisites
 
@@ -58,8 +57,9 @@ distribution and the various extensions (more on this below). Then
 1. `get-packages` will fetch the
    [binary release of GNU Emacs](http://ftp.gnu.org/gnu/emacs/windows/);
    the official releases of [ESS](https://ess.r-project.org),
-   [AUCTeX](https://www.gnu.org/software/auctex/) and
-   [org](https://org-mode.org);
+   [AUCTeX](https://www.gnu.org/software/auctex/),
+   [org](https://org-mode.org),
+   [Hunspell](https://hunspell.github.io/) and some dictionaries; 
    [`markdown-mode.el`](https://github.com/jrblevin/markdown-mode),
    [`exec-path-from-shell.el`](https://github.com/purcell/exec-path-from-shell)
    and
@@ -72,21 +72,23 @@ distribution and the various extensions (more on this below). Then
    temporary directory, add all the extensions into the application
    tree and build and installer.
 
-3. `release` will create a tag and a release on GitHub, upload the
-   installer and attach it to said release, and update the project's
-   web page with the correct version numbers and hyperlinks.
+3. `release` will upload the installer to GitLab, create a release
+   with the a link to the installer in the release notes, and update
+   the project's web page with the correct version numbers and
+   hyperlinks.
 
 Each of the above three steps is split into smaller recipes, around 20
 in total. See the `Makefile` for details.
 
-## Publishing on GitHub
+## Publishing on GitLab
 
-Publishing a release and uploading files in GitHub from the command
+Uploading files and publishing a release on GitLab from the command
 line involves using the
-[GitHub API](https://developer.github.com/v3/). The interested reader
-may have a look at the `create-release` and `upload` recipes in the
-`Makefile` to see how we achieved complete automation of the process,
-including the extraction of the release notes from the `NEWS` file.
+[GitLab API](https://docs.gitlab.com/ee/api/README.html). The
+interested reader may have a look at the `upload` and `create-release`
+recipes in the `Makefile` to see how we achieved complete automation
+of the process, including the extraction of the release notes from the
+`NEWS` file.
 
 ## Version numbers of the extensions
 
