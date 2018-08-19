@@ -1,7 +1,7 @@
-> See the
-> [project page](https://vigou3.gitlab.io/emacs-modified-windows) for
-> detailed information on the distribution and to obtain binary
-> releases.
+> If you are reading this on GitHub, please be advised that the
+> project is now [hosted on GitLab](https://gitlab.com/vigou3/emacs-modified-windows). 
+> The GitHub repository is just a mirror setup for continuity
+> purposes.
 
 # Emacs Modified for Windows
 
@@ -19,6 +19,9 @@ Other than the additions mentioned above and some minor configuration,
 this is a stock distribution of Emacs. Users of Emacs on other
 platforms will appreciate the similar look and feel of the
 application.
+
+The [official project page](https://vigou3.gitlab.io/emacs-modified-windows) 
+provides detailed information on the distribution and links to the binary release.
 
 ## Repository content
 
