@@ -1,4 +1,4 @@
 title: Emacs Modified for Windows
 description: GNU Emacs. Ready for R and LaTeX.
 theme: jekyll-theme-cayman
-show_downloads: "true"
+show_downloads: "false"
