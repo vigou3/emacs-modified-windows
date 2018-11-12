@@ -11,10 +11,8 @@ following add-on packages:
 - ESS 17.11;
 - AUCTeX 12.1;
 - org 9.1.13;
-- polymode 2017-03-07 (active by default for RMarkdown mode
-  only);
 - markdown-mode.el 2.3;
-- psvn.el 1573006 from Subversion sources, to work with
+- psvn.el r1573006 from Subversion sources, to work with
   Subversion repositories from within Emacs;
 - Hunspell 1.3.2-3, a spell checker well integrated with Emacs;
 - English (version 2018.05.01b), French (version 5.7), German

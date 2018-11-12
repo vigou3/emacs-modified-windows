@@ -57,14 +57,13 @@ UNZIPNOPATH = 7z e
 
 all: get-packages emacs
 
-get-packages: get-emacs get-ess get-auctex get-org get-polymode get-markdownmode get-psvn get-hunspell
+get-packages: get-emacs get-ess get-auctex get-org get-markdownmode get-psvn get-hunspell
 
-emacs: dir ess auctex org polymode markdownmode psvn hunspell exe
+emacs: dir ess auctex org markdownmode psvn hunspell exe
 
 release: upload create-release publish
 
-.PHONY: emacs dir ess auctex org polymode psvn exe release create-release upload publish clean
-
+.PHONY: dir
 dir:
 	@echo ----- Creating the application in temporary directory...
 	if [ -d ${TMPDIR} ]; then ${RM} -f ${TMPDIR}; fi
@@ -88,9 +87,8 @@ dir:
 	sed -e 's/\(ESS \)[0-9.]\+/\1${ESSVERSION}/' \
 	    -e 's/\(AUCTeX \)[0-9.]\+/\1${AUCTEXVERSION}/' \
 	    -e 's/\(org \)[0-9.]\+/\1${ORGVERSION}/' \
-	    -e 's/\(polymode \)[0-9\-]\+/\1${POLYMODEVERSION}/' \
 	    -e 's/\(markdown-mode.el \)[0-9.]\+/\1${MARKDOWNMODEVERSION}/' \
-	    -e 's/\(psvn.el \)[0-9]\+/\1${PSVNVERSION}/' \
+	    -e 's/\(psvn.el r\)[0-9]\+/\1${PSVNVERSION}/' \
 	    -e 's/\(Hunspell \)[0-9.\-]\+/\1${HUNSPELLVERSION}/' \
 	    -e 's/\(English (version \)[0-9a-z.]\+/\1${DICT-ENVERSION}/' \
 	    -e 's/\(French (version \)[0-9.]\+/\1${DICT-FRVERSION}/' \
@@ -100,6 +98,7 @@ dir:
 	  ${CP} README-modified.txt ${TMPDIR}/
 	${CP} site-start.el NEWS ${TMPDIR}
 
+.PHONY: ess
 ess:
 	@echo ----- Making ESS...
 	if [ -d ${ESS} ]; then ${RM} -f ${ESS}; fi
@@ -108,10 +107,12 @@ ess:
 	${MAKE} DESTDIR=${DESTDIR} SITELISP=${SITELISP} \
 	        ETCDIR=${ETCDIR}/ess DOCDIR=${DOCDIR}/ess \
 	        INFODIR=${INFODIR} -C ${ESS} install
+	${CP} ${ESS}/lisp/*.el ${SITELISP}/ess # temporary; should be fixed for ESS > 18.10.2
 	if [ -f ${SITELISP}/ess-site.el ]; then rm ${SITELISP}/ess-site.el; fi
 	${RM} -f ${ESS}
 	@echo ----- Done making ESS
 
+.PHONY: auctex
 auctex:
 	@echo ----- Making AUCTeX...
 	if [ -d ${AUCTEX} ]; then ${RM} -f ${AUCTEX}; fi
@@ -126,6 +127,7 @@ auctex:
 	${RM} -f ${AUCTEX}
 	@echo ----- Done making AUCTeX
 
+.PHONY: org
 org:
 	@echo ----- Making org...
 	if [ -d ${ORG} ]; then ${RM} -f ${ORG}; fi
@@ -137,30 +139,21 @@ org:
 	${RM} -f ${ORG}
 	@echo ----- Done making org
 
-polymode:
-	@echo ----- Copying and byte compiling polymode files...
-	if [ -d ${POLYMODE} ]; then ${RM} -f ${POLYMODE}; fi
-	${UNZIP} ${POLYMODE}.zip
-	mkdir -p ${SITELISP}/polymode ${DOCDIR}/polymode
-	${CP} ${POLYMODE}/*.el ${POLYMODE}/modes/*.el ${SITELISP}/polymode
-	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/polymode/*.el
-	${CP} ${POLYMODE}/readme.md ${DOCDIR}/polymode
-	${CP} ${POLYMODE}/modes/readme.md ${DOCDIR}/polymode/developing.md
-	${RM} -f ${POLYMODE}
-	@echo ----- Done installing polymode
-
+.PHONY: markdownmode
 markdownmode:
 	@echo ----- Copying and byte compiling markdown-mode.el...
 	${CP} markdown-mode.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/markdown-mode.el
 	@echo ----- Done installing markdown-mode.el
 
+.PHONY: psvn
 psvn:
 	@echo ----- Patching and byte compiling psvn.el...
 	patch -o ${SITELISP}/psvn.el psvn.el psvn.el_svn1.7.diff
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
 	@echo ----- Done installing psvn.el
 
+.PHONY: hunspell
 hunspell:
 	@echo ----- Installing hunspell and dictionaries...
 	if [ -d ${PREFIX}/hunspell ]; then ${RM} -f ${PREFIX}/hunspell; fi
@@ -174,14 +167,15 @@ hunspell:
 	${UNZIPNOPATH} -o${PREFIX}/hunspell/share/hunspell ${DICT-ES}.zip "*.aff" "*.dic" "th_es*" "README*es*.txt"
 	${UNZIPNOPATH} -o${PREFIX}/hunspell/share/hunspell ${DICT-DE}.zip "de_DE_frami/*.aff" "de_DE_frami/*.dic" "de_DE_frami/*README.txt" "hyph_de_DE/*.dic" "hyph_de_DE/*README.txt" "thes_de_DE_v2/th_de_DE*"
 
-
+.PHONY: exe
 exe:
 	@echo ----- Building the archive...
 	cd ${TMPDIR}/ && cmd /c "${INNOSETUP} ${INNOSCRIPT}"
 	${RM} -f ${TMPDIR}
 	@echo ----- Done building the archive
 
-upload :
+.PHONY: upload
+upload:
 	@echo ----- Uploading installer to GitLab...
 	$(eval upload_url_markdown=$(shell curl --form "file=@emacs-${VERSION}.exe" \
 	                                        --header "PRIVATE-TOKEN: ${OAUTHTOKEN}"	\
@@ -192,6 +186,7 @@ upload :
 	@echo "${upload_url_markdown}"
 	@echo ----- Done uploading installer
 
+.PHONY: create-release
 create-release:
 	@echo ----- Creating release on GitLab...
 	@if [ -n "$(shell git status --porcelain | grep -v '^??')" ]; then \
@@ -223,6 +218,7 @@ create-release:
 	${RM} relnotes.in
 	@echo ----- Done creating the release
 
+.PHONY: publish
 publish:
 	@echo ----- Publishing the web page...
 	git checkout pages && \
@@ -230,42 +226,44 @@ publish:
 	  git checkout master
 	@echo ----- Done publishing
 
+.PHONY: get-emacs
 get-emacs:
 	@echo ----- Fetching Emacs...
 	if [ -f ${ZIPFILE} ]; then ${RM} ${ZIPFILE}; fi
 	curl -OL https://ftp.gnu.org/gnu/emacs/windows/emacs-26/${ZIPFILE}
 
+.PHONY: get-ess
 get-ess:
 	@echo ----- Fetching ESS...
 	if [ -d ${ESS}.zip ]; then ${RM} ${ESS}.zip; fi
 	curl -O http://ess.r-project.org/downloads/ess/${ESS}.zip
 
+.PHONY: get-auctex
 get-auctex:
 	@echo ----- Fetching AUCTeX...
 	if [ -f ${AUCTEX}.zip ]; then ${RM} ${AUCTEX}.zip; fi
 	curl -O http://ftp.gnu.org/pub/gnu/auctex/${AUCTEX}.zip
 
+.PHONY: get-org
 get-org:
 	@echo ----- Fetching org...
 	if [ -f ${ORG}.zip ]; then ${RM} ${ORG}.zip; fi
 	curl -O https://orgmode.org/${ORG}.zip
 
-get-polymode:
-	@echo ----- Fetching polymode
-	if [ -f ${POLYMODE}.zip ]; then ${RM} ${POLYMODE}.zip; fi
-	curl -L -o ${POLYMODE}.zip https://github.com/vspinu/polymode/archive/master.zip
-
+.PHONY: get-markdownmode
 get-markdownmode:
 	@echo ----- Fetching markdown-mode.el
 	if [ -f markdown-mode.el ]; then ${RM} markdown-mode.el; fi
 	curl -OL https://github.com/jrblevin/markdown-mode/raw/v${MARKDOWNMODEVERSION}/markdown-mode.el
 
+.PHONY: get-psvn
 get-psvn:
 	@echo ----- Fetching psvn.el
 	if [ -f psvn.el ]; then ${RM} psvn.el; fi
 	svn cat http://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/emacs/psvn.el > psvn.el && dos2unix -u psvn.el
 
-get-hunspell :
+.PHONY: get-hunspell
+get-hunspell:
 	@echo ----- Fetching hunspell and dictionaries
 	if [ -f ${HUNSPELL}.zip ]; then ${RM} ${HUNSPELL}.zip; fi
 	curl -OL https://sourceforge.net/projects/ezwinports/files/${HUNSPELL}.zip
@@ -278,6 +276,7 @@ get-hunspell :
 	if [ -f ${DICT-DE}.zip ]; then ${RM} ${DICT-DE}.zip; fi
 	curl -L -o ${DICT-DE}.zip https://extensions.libreoffice.org/extensions/german-de-de-frami-dictionaries/$(subst .,-,${DICT-DEVERSION})/@@download/file/${DICT-DE}.oxt
 
+.PHONY: clean
 clean:
 	${RM} ${TMPDIR}
 	cd ${ESS} && ${MAKE} clean
