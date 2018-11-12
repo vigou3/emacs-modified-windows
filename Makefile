@@ -66,7 +66,7 @@ files:
 	                        | grep -o "/uploads/[a-z0-9]*/" \
 	                        | cut -d/ -f3))
 	cd content && \
-	  sed -e '/^\[25.2-modified-2\]/! s/[0-9.]\+-modified-[0-9]\+/${VERSION}/g' \
+	  sed -e '/^\[25.2-modified-2\]/! s/[0-9.-]\+-modified-[0-9]\+/${VERSION}/g' \
 	      -e '/\[ESS\]/s/[0-9]\+[0-9.]*/${ESSVERSION}/' \
 	      -e '/\[AUCTeX\]/s/[0-9]\+[0-9.]*/${AUCTEXVERSION}/' \
 	      -e '/\[org\]/s/[0-9]\+[0-9.]*/${ORGVERSION}/' \
