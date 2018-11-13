@@ -28,9 +28,9 @@ The additions to stock Emacs are the following:
   [Spanish](https://extensions.libreoffice.org/extensions/spanish-dictionaries) (version 2.3) dictionnaries for Hunspell;
 - [framepop.el](http://bazaar.launchpad.net/~vcs-imports/emacs-goodies-el/trunk/view/head:/elisp/emacs-goodies-el/framepop.el)
   to open temporary buffers in a separate frame;
-- [default.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.1-2-modified-3/default.el)
+- [default.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.1-modified-3/default.el)
   and
-  [site-start.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.1-2-modified-3/site-start.el),
+  [site-start.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.1-modified-3/site-start.el),
   configuration files to make everything work.
 
 The distribution is based on the official GNU release of Emacs with
@@ -44,8 +44,8 @@ following:
 
 ## Latest release
 
-Version 26.1-2-modified-3
-([Release notes](https://gitlab.com/vigou3/emacs-modified-windows/tags/v26.1-2-modified-3/))
+Version 26.1-modified-3
+([Release notes](https://gitlab.com/vigou3/emacs-modified-windows/tags/v26.1-modified-3/))
 
 ## System requirements
 
