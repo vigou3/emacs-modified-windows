@@ -12,11 +12,11 @@ and LaTeX users.
 
 The additions to stock Emacs are the following:
 
-- [ESS](http://ess.r-project.org) 17.11;
+- [ESS](http://ess.r-project.org) 18.10.2;
 - [AUCTeX](http://www.gnu.org/software/auctex/) 12.1;
-- [org](http://orgmode.org/) 9.1.13;
+- [org](http://orgmode.org/) 9.1.14;
 - [markdown-mode.el](http://jblevins.org/projects/markdown-mode/) 2.3;
-- [psvn.el](http://svn.apache.org/viewvc/subversion/trunk/contrib/client-side/emacs/) r1573006, an interface for the version control system
+- [psvn.el](http://svn.apache.org/viewvc/subversion/trunk/contrib/client-side/emacs/) rr1573006, an interface for the version control system
   [Subversion](http://subversion.tigris.org) modified to include Andre
   Colomb's and Koji Nakamaru's
   [combined patches](http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/raw/%3c503B958F.6010906@schickhardt.org%3e/1/4)
@@ -28,9 +28,9 @@ The additions to stock Emacs are the following:
   [Spanish](https://extensions.libreoffice.org/extensions/spanish-dictionaries) (version 2.3) dictionnaries for Hunspell;
 - [framepop.el](http://bazaar.launchpad.net/~vcs-imports/emacs-goodies-el/trunk/view/head:/elisp/emacs-goodies-el/framepop.el)
   to open temporary buffers in a separate frame;
-- [default.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.1-modified-2/default.el)
+- [default.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.1-2-modified-3/default.el)
   and
-  [site-start.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.1-modified-2/site-start.el),
+  [site-start.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.1-2-modified-3/site-start.el),
   configuration files to make everything work.
 
 The distribution is based on the official GNU release of Emacs with
@@ -44,8 +44,8 @@ following:
 
 ## Latest release
 
-Version 26.1-modified-2
-([Release notes](https://gitlab.com/vigou3/emacs-modified-windows/tags/v26.1-modified-2/))
+Version 26.1-2-modified-3
+([Release notes](https://gitlab.com/vigou3/emacs-modified-windows/tags/v26.1-2-modified-3/))
 
 ## System requirements
 
