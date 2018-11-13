@@ -103,6 +103,7 @@ ess:
 	@echo ----- Making ESS...
 	if [ -d ${ESS} ]; then ${RM} -f ${ESS}; fi
 	${UNZIP} ${ESS}.zip
+	patch  ${ESS}/lisp/ess-sp6-d.el ess-sp6-d.diff && ${RM} ${ESS}/lisp/ess-sp6-d.el.orig # temporary; should be fixed for ESS > 18.10.2
 	TMPDIR=${TMP} ${MAKE} EMACS=${EMACS} -C ${ESS} all
 	${MAKE} DESTDIR=${DESTDIR} SITELISP=${SITELISP} \
 	        ETCDIR=${ETCDIR}/ess DOCDIR=${DOCDIR}/ess \
