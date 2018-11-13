@@ -11,42 +11,54 @@
 ## Get variables and version strings from Makeconf, NEWS and
 ## README.txt files in master branch (version strings are computed in
 ## Makeconf, hence we cannot use them directly here)
+## Get variables and version strings from Makeconf in master branch
+## (version strings are computed in Makeconf, hence we cannot use them
+## directly here)
+EMACSVERSION = $(shell git show master:Makeconf \
+	| grep ^EMACSVERSION \
+	| cut -d = -f 2)
+EMACSPATCHLEVEL = $(shell git show master:Makeconf \
+	| grep ^EMACSPATCHLEVEL \
+	| cut -d = -f 2)
+DISTVERSION = $(shell git show master:Makeconf \
+	| grep ^DISTVERSION \
+	| cut -d = -f 2)
+ESSVERSION = $(shell git show master:Makeconf \
+	| grep ^ESSVERSION \
+	| cut -d = -f 2)
+AUCTEXVERSION = $(shell git show master:Makeconf \
+	| grep ^AUCTEXVERSION \
+	| cut -d = -f 2)
+ORGVERSION = $(shell git show master:Makeconf \
+	| grep ^ORGVERSION \
+	| cut -d = -f 2)
+MARKDOWNMODEVERSION = $(shell git show master:Makeconf \
+	| grep ^MARKDOWNMODEVERSION \
+	| cut -d = -f 2)
+EXECPATHVERSION = $(shell git show master:Makeconf \
+	| grep ^EXECPATHVERSION \
+	| cut -d = -f 2)
+PSVNVERSION = $(shell git show master:Makeconf \
+	| grep ^PSVNVERSION \
+	| cut -d = -f 2)
+HUNSPELLVERSION = $(shell git show master:Makeconf \
+	| grep ^HUNSPELLVERSION \
+	| cut -d = -f 2)
+DICT-ENVERSION = $(shell git show master:Makeconf \
+	| grep ^DICT-ENVERSION \
+	| cut -d = -f 2)
+DICT-FRVERSION = $(shell git show master:Makeconf \
+	| grep ^DICT-FRVERSION \
+	| cut -d = -f 2)
+DICT-DEVERSION = $(shell git show master:Makeconf \
+	| grep ^DICT-DEVERSION \
+	| cut -d = -f 2)
+DICT-ESVERSION = $(shell git show master:Makeconf \
+	| grep ^DICT-ESVERSION \
+	| cut -d = -f 2)
 REPOSURL = $(shell git show master:Makeconf \
 	| grep ^REPOSURL \
 	| cut -d = -f 2)
-VERSION = $(shell git show master:NEWS \
-	| awk '/^\# / { print $$3; exit }')
-DISTNAME = emacs-${VERSION}
-ESSVERSION = $(shell git show master:README-modified.txt \
-	| awk '/^- ESS/ { print $$3; exit }' \
-	| tr -d ";")
-AUCTEXVERSION = $(shell git show master:README-modified.txt \
-	| awk '/^- AUCTeX/ { print $$3; exit }' \
-	| tr -d ";")
-ORGVERSION = $(shell git show master:README-modified.txt \
-	| awk '/^- org/ { print $$3; exit }' \
-	| tr -d ";")
-MARKDOWNMODEVERSION = $(shell git show master:README-modified.txt \
-	| awk '/^- markdown/ { print $$3; exit }' \
-	| tr -d ";")
-PSVNVERSION = $(shell git show master:README-modified.txt \
-	| awk '/^- psvn/ { print $$3; exit }' \
-	| tr -d ";")
-HUNSPELLVERSION = $(shell git show master:README-modified.txt \
-	| awk '/^- Hunspell/ { print $$3; exit }' \
-	| tr -d ",")
-DICT-ENVERSION = ${shell git show master:README-modified.txt \
-	| awk '/^- English/ { print $$4; exit }' \
-	| tr -d "),"}
-DICT-FRVERSION = ${shell git show master:README-modified.txt \
-	| awk '/^- English/ { print $$7; exit }' \
-	| tr -d "),"}
-DICT-DEVERSION = ${shell git show master:README-modified.txt \
-	| awk '/^- English/ { getline; print $$2; exit }' \
-	| tr -d ")"}
-DICT-ESVERSION = ${shell git show master:README-modified.txt \
-	| awk '/^- English/ { getline; print $$6; exit }' \
-	| tr -d ")"}
 
 ## GitLab repository and authentication
 REPOSNAME = $(shell basename ${REPOSURL})
@@ -54,7 +66,9 @@ APIURL = https://gitlab.com/api/v4/projects/vigou3%2F${REPOSNAME}
 OAUTHTOKEN = $(shell cat ~/.gitlab/token)
 
 ## Automatic variable
+VERSION=${EMACSVERSION}$(if ${EMACSPATCHLEVEL},-${EMACSPATCHLEVEL},)-modified-${DISTVERSION}
 TAGNAME = v${VERSION}
+
 
 all: files commit
 
