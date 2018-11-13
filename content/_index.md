@@ -22,7 +22,7 @@ The additions to stock Emacs are the following:
   [combined patches](http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/raw/%3c503B958F.6010906@schickhardt.org%3e/1/4)
   to support Subversion >= 1.7;
 - [Hunspell](https://hunspell.github.io/) 1.3.2-3;
-- [English](https://extensions.libreoffice.org/extensions/english-dictionaries) (version 2018.05.01b),
+- [English](https://extensions.libreoffice.org/extensions/english-dictionaries) (version 2018.11.01),
   [French](https://extensions.libreoffice.org/extensions/dictionnaires-francais) (version 5.7), 
   [German](https://extensions.libreoffice.org/extensions/german-de-de-frami-dictionaries) (version 2017.01.12) and 
   [Spanish](https://extensions.libreoffice.org/extensions/spanish-dictionaries) (version 2.3) dictionnaries for Hunspell;
