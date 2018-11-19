@@ -87,7 +87,7 @@ files:
 	      -e '/\[markdown-mode.el\]/s/[0-9]\+[0-9.]*/${MARKDOWNMODEVERSION}/' \
 	      -e '/\[psvn.el\]/s/r[0-9]\+/r${PSVNVERSION}/' \
 	      -e '/\[Hunspell\]/s/[0-9]\+[0-9.]*[0-9\-]*/${HUNSPELLVERSION}/' \
-	      -e '/\[English\]/s/version [0-9.]\+[a-z]?/version ${DICT-ENVERSION}/' \
+	      -e '/\[English\]/s/version [0-9.]\+[a-z]\?/version ${DICT-ENVERSION}/' \
 	      -e '/\[French\]/s/version [0-9.]\+/version ${DICT-FRVERSION}/' \
 	      -e '/\[German\]/s/version [0-9.]\+/version ${DICT-DEVERSION}/' \
 	      -e '/\[Spanish\]/s/version [0-9.]\+/version ${DICT-ESVERSION}/' \
