@@ -40,6 +40,12 @@ DICT-FRVERSION=5.7
 DICT-DEVERSION=2017.01.12
 DICT-ESVERSION=2.3
 
+## GitLab repository and authentication
+REPOSURL=https://gitlab.com/vigou3/emacs-modified-windows
+REPOSNAME=$(shell basename ${REPOSURL})
+APIURL=https://gitlab.com/api/v4/projects/vigou3%2F${REPOSNAME}
+OAUTHTOKEN=$(shell cat ~/.gitlab/token)
+
 ### No modification should be necessary beyond this point
 
 ## Version strings and file names
@@ -58,9 +64,3 @@ DICT-EN = dict-en_$(subst .,,${DICT-ENVERSION})
 DICT-FR = lo-oo-ressources-linguistiques-fr-v${DICT-FRVERSION}
 DICT-ES = es_ANY
 DICT-DE = dict-de_DE-frami_$(subst .,-,${DICT-DEVERSION})
-
-## GitLab repository and authentication
-REPOSURL=https://gitlab.com/vigou3/emacs-modified-windows
-REPOSNAME=$(shell basename ${REPOSURL})
-APIURL=https://gitlab.com/api/v4/projects/vigou3%2F${REPOSNAME}
-OAUTHTOKEN=$(shell cat ~/.gitlab/token)
