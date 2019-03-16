@@ -80,6 +80,21 @@ by Org. If you need the tool, install it and make sure its location is
 along the `PATH`.
 
 
+# Additional packages
+
+If you want to install additional Emacs packages
+([polymode](https://polymode.github.io) comes to mind, here) through
+the [MELPA](https://melpa.org/) repository, add the following lines
+to your `.emacs` configuration file:
+
+```
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(package-initialize)
+```
+
+
 # Unix applications
 
 Emacs sometimes uses external applications that are standard on Unix but
