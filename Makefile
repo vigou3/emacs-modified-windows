@@ -61,7 +61,7 @@ get-packages: get-emacs get-ess get-auctex get-org get-markdownmode get-psvn get
 
 emacs: dir ess auctex org markdownmode psvn hunspell exe
 
-release: upload create-release publish
+release: check-status upload create-release publish
 
 .PHONY: dir
 dir:
@@ -175,6 +175,17 @@ exe:
 	${RM} -f ${TMPDIR}
 	@echo ----- Done building the archive
 
+.PHONY: check-status
+check-status:
+	@echo ----- Checking status of working directory...
+	@if [ "master" != $(shell git branch --list | grep ^* | cut -d " " -f 2-) ]; then \
+	     echo "not on branch master"; exit 2; fi
+	@if [ -n "$(shell git status --porcelain | grep -v '^??')" ]; then \
+	     echo "uncommitted changes in repository; not creating release"; exit 2; fi
+	@if [ -n "$(shell git log origin/master..HEAD)" ]; then \
+	    echo "unpushed commits in repository; pushing to origin"; \
+	     git push; fi
+
 .PHONY: upload
 upload:
 	@echo ----- Uploading installer to GitLab...
@@ -190,11 +201,6 @@ upload:
 .PHONY: create-release
 create-release:
 	@echo ----- Creating release on GitLab...
-	@if [ -n "$(shell git status --porcelain | grep -v '^??')" ]; then \
-	     echo "uncommitted changes in repository; not creating release"; exit 2; fi
-	@if [ -n "$(shell git log origin/master..HEAD)" ]; then \
-	    echo "unpushed commits in repository; pushing to origin"; \
-	     git push; fi
 	if [ -e relnotes.in ]; then ${RM} relnotes.in; fi
 	touch relnotes.in
 	$(eval FILESIZE=$(shell du -h emacs-${VERSION}.exe | cut -f1 | sed 's/\([KMG]\)/ \1b/'))
