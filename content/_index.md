@@ -16,7 +16,7 @@ The additions to stock Emacs are the following:
 - [AUCTeX](http://www.gnu.org/software/auctex/) 12.1;
 - [org](http://orgmode.org/) 9.2.3;
 - [markdown-mode.el](http://jblevins.org/projects/markdown-mode/) 2.3;
-- [psvn.el](http://svn.apache.org/viewvc/subversion/trunk/contrib/client-side/emacs/) rr1573006, an interface for the version control system
+- [psvn.el](http://svn.apache.org/viewvc/subversion/trunk/contrib/client-side/emacs/) r1573006, an interface for the version control system
   [Subversion](http://subversion.tigris.org) modified to include Andre
   Colomb's and Koji Nakamaru's
   [combined patches](http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/raw/%3c503B958F.6010906@schickhardt.org%3e/1/4)
@@ -78,6 +78,21 @@ The previous comment also applies to the image conversion
 tool [ImageMagick](https://www.imagemagick.org/) that may be required
 by Org. If you need the tool, install it and make sure its location is
 along the `PATH`.
+
+
+# Additional packages
+
+If you want to install additional Emacs packages
+([polymode](https://polymode.github.io) comes to mind, here) through
+the [MELPA](https://melpa.org/) repository, add the following lines
+to your `.emacs` configuration file:
+
+```
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(package-initialize)
+```
 
 
 # Unix applications
