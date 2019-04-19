@@ -10,13 +10,13 @@ following add-on packages:
 
 - ESS 18.10.2;
 - AUCTeX 12.1;
-- org 9.1.14;
+- org 9.2.3;
 - markdown-mode.el 2.3;
 - psvn.el r1573006 from Subversion sources, to work with
   Subversion repositories from within Emacs;
 - Hunspell 1.3.2-3, a spell checker well integrated with Emacs;
-- English (version 2018.11.01), French (version 5.7), German
-  (version 2017.01.12) and Spanish (version 2.3) dictionnaries
+- English (version 2019.03.01), French (version 5.7), German
+  (version 2017.01.12) and Spanish (version 2.4) dictionnaries
   for Hunspell;
 - framepop.el, to obtain temporary buffers in separate frames;
 - default.el and site-start.el files to make everything work together.
