@@ -1,0 +1,11 @@
+--- a/lisp/ess-sp6-d.el
++++ b/lisp/ess-sp6-d.el
+@@ -41,7 +41,7 @@
+ (require 'ess-s-lang)
+ (require 'ess-dde)
+ (require 'ess-trns)
+-
++(when ess-microsoft-p (require 'ess-sp6w-d))
+ 
+ ;; You now need to make sure you've defined if you are running 5.0 or 5.1.
+ ;; Lots of things are broken between them, GRR...

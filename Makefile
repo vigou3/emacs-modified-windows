@@ -61,7 +61,7 @@ get-packages: get-emacs get-ess get-auctex get-org get-markdownmode get-psvn get
 
 emacs: dir ess auctex org markdownmode psvn hunspell exe
 
-release: upload create-release publish
+release: check-status upload create-release publish
 
 .PHONY: dir
 dir:
@@ -103,6 +103,7 @@ ess:
 	@echo ----- Making ESS...
 	if [ -d ${ESS} ]; then ${RM} -f ${ESS}; fi
 	${UNZIP} ${ESS}.zip
+	patch  ${ESS}/lisp/ess-sp6-d.el ess-sp6-d.diff && ${RM} ${ESS}/lisp/ess-sp6-d.el.orig # temporary; should be fixed for ESS > 18.10.2
 	TMPDIR=${TMP} ${MAKE} EMACS=${EMACS} -C ${ESS} all
 	${MAKE} DESTDIR=${DESTDIR} SITELISP=${SITELISP} \
 	        ETCDIR=${ETCDIR}/ess DOCDIR=${DOCDIR}/ess \
@@ -174,6 +175,17 @@ exe:
 	${RM} -f ${TMPDIR}
 	@echo ----- Done building the archive
 
+.PHONY: check-status
+check-status:
+	@echo ----- Checking status of working directory...
+	@if [ "master" != $(shell git branch --list | grep ^* | cut -d " " -f 2-) ]; then \
+	     echo "not on branch master"; exit 2; fi
+	@if [ -n "$(shell git status --porcelain | grep -v '^??')" ]; then \
+	     echo "uncommitted changes in repository; not creating release"; exit 2; fi
+	@if [ -n "$(shell git log origin/master..HEAD)" ]; then \
+	    echo "unpushed commits in repository; pushing to origin"; \
+	     git push; fi
+
 .PHONY: upload
 upload:
 	@echo ----- Uploading installer to GitLab...
@@ -189,11 +201,6 @@ upload:
 .PHONY: create-release
 create-release:
 	@echo ----- Creating release on GitLab...
-	@if [ -n "$(shell git status --porcelain | grep -v '^??')" ]; then \
-	     echo "uncommitted changes in repository; not creating release"; exit 2; fi
-	@if [ -n "$(shell git log origin/master..HEAD)" ]; then \
-	    echo "unpushed commits in repository; pushing to origin"; \
-	     git push; fi
 	if [ -e relnotes.in ]; then ${RM} relnotes.in; fi
 	touch relnotes.in
 	$(eval FILESIZE=$(shell du -h emacs-${VERSION}.exe | cut -f1 | sed 's/\([KMG]\)/ \1b/'))

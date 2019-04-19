@@ -72,14 +72,6 @@
 (load "preview-latex.el" nil t t)
 
 ;;;
-;;; polymode
-;;;
-;; Activation of the R Markdown (Rmd) specific bundle and basic
-;; configuration.
-(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
-(require 'poly-R)
-
-;;;
 ;;; markdown-mode
 ;;;
 ;; Activation of markdown-mode for common file extensions. One will

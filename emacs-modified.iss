@@ -11,17 +11,17 @@
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
 AppName=GNU Emacs
-AppVerName=GNU Emacs 26.1-modified-2
-AppId=GNUEmacs-26.1-modified-2
+AppVerName=GNU Emacs 26.2-modified-1
+AppId=GNUEmacs-26.2-modified-1
 AppPublisher=Vincent Goulet
 AppPublisherURL=https://vigou3.gitlab.io/emacs-modified-windows
 AppSupportURL=https://gitlab.com/vigou3/emacs-modified-windows
 AppUpdatesURL=https://gitlab.com/vigou3/emacs-modified-windows
-DefaultDirName={pf}\GNU Emacs 26.1
-DefaultGroupName=GNU Emacs 26.1
-LicenseFile=emacs\share\emacs\26.1\etc\COPYING
+DefaultDirName={pf}\GNU Emacs 26.2
+DefaultGroupName=GNU Emacs 26.2
+LicenseFile=emacs\share\emacs\26.2\etc\COPYING
 OutputDir=..
-OutputBaseFilename=emacs-26.1-modified-2
+OutputBaseFilename=emacs-26.2-modified-1
 UninstallDisplayIcon={app}\bin\runemacs.exe
 Compression=lzma
 SolidCompression=yes
@@ -67,13 +67,13 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Run]
-Filename: "{app}\share\emacs\26.1\README-Modified.txt"; Description: "{cm:ReadMe}"; Flags: postinstall shellexec skipifsilent
+Filename: "{app}\share\emacs\26.2\README-Modified.txt"; Description: "{cm:ReadMe}"; Flags: postinstall shellexec skipifsilent
 
 [Files]
 Source: "emacs\*"; DestDir: "{app}"; Excludes: ".svn"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "site-start.el"; DestDir: "{app}\share\emacs\site-lisp"; AfterInstall: DefaultConfig('{app}'); Flags: ignoreversion
-Source: "README-Modified.txt"; DestDir: "{app}\share\emacs\26.1"; Flags: ignoreversion
-Source: "NEWS"; DestDir: "{app}\share\emacs\26.1"; Flags: ignoreversion
+Source: "README-Modified.txt"; DestDir: "{app}\share\emacs\26.2"; Flags: ignoreversion
+Source: "NEWS"; DestDir: "{app}\share\emacs\26.2"; Flags: ignoreversion
 
 [Dirs]
 Name: "{app}\share\emacs\site-lisp\site-start.d"
