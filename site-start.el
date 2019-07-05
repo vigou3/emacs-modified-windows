@@ -1,6 +1,6 @@
 ;;; site-start.el --- Customizations for Emacs Modified for Windows
 ;;
-;; Copyright (C) 2015-2017 Vincent Goulet
+;; Copyright (C) 2019 Vincent Goulet
 ;;
 ;; Author: Vincent Goulet
 ;;
@@ -95,6 +95,16 @@
 (add-to-list 'vc-handled-backends 'SVN)
 (add-hook 'svn-log-edit-mode-hook 'turn-off-auto-fill) ; useful option
 (require 'psvn)
+
+;;;
+;;; tabbar
+;;;
+;; Start with (tabbar-mode) in ~/.emacs
+;; Toggle with (tabbar-mode -1)
+;; tabbar v2.2 was cloned from https://github.com/dholm/tabbar
+;; tabbar-mode's inclusion in Vincent's distribution is maintained by 
+;; Rodney Sparapani <rsparapa@mcw.edu>
+(require 'tabbar) 
 
 ;;;
 ;;; Use Hunspell for spell checking

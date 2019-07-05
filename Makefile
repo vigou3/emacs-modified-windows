@@ -52,14 +52,15 @@ INFODIR = ${DESTDIR}/info
 ## Toolset
 CP = cp -p
 RM = rm -r
+MD = mkdir -p
 UNZIP = 7z x
 UNZIPNOPATH = 7z e
 
 all: get-packages emacs
 
-get-packages: get-emacs get-ess get-auctex get-org get-markdownmode get-psvn get-hunspell
+get-packages: get-emacs get-ess get-auctex get-org get-markdownmode get-psvn get-tabbar get-hunspell
 
-emacs: dir ess auctex org markdownmode psvn hunspell exe
+emacs: dir ess auctex org markdownmode psvn tabbar hunspell exe
 
 release: check-status upload create-release publish
 
@@ -67,7 +68,7 @@ release: check-status upload create-release publish
 dir:
 	@echo ----- Creating the application in temporary directory...
 	if [ -d ${TMPDIR} ]; then ${RM} -f ${TMPDIR}; fi
-	mkdir -p ${PREFIX}
+	${MD} ${PREFIX}
 	${UNZIP} ${ZIPFILE} -o${PREFIX}
 	${CP} default.el ${SITELISP}/
 	sed '/^(defconst/s/\(emacs-modified-version '"'"'\)[0-9]\+/\1${DISTVERSION}/' \
@@ -87,6 +88,7 @@ dir:
 	sed -e 's/\(ESS \)[0-9.]\+/\1${ESSVERSION}/' \
 	    -e 's/\(AUCTeX \)[0-9.]\+/\1${AUCTEXVERSION}/' \
 	    -e 's/\(org \)[0-9.]\+/\1${ORGVERSION}/' \
+	    -e 's/\(Tabbar \)[0-9.]+/\1${TABBARVERSION}/' \
 	    -e 's/\(markdown-mode.el \)[0-9.]\+/\1${MARKDOWNMODEVERSION}/' \
 	    -e 's/\(psvn.el r\)[0-9]\+/\1${PSVNVERSION}/' \
 	    -e 's/\(Hunspell \)[0-9.\-]\+/\1${HUNSPELLVERSION}/' \
@@ -136,7 +138,7 @@ org:
 	${MAKE} EMACS=${EMACS} -C ${ORG} all
 	${MAKE} EMACS=${EMACS} lispdir=${SITELISP}/org \
 	        datadir=${ETCDIR}/org infodir=${INFODIR} -C ${ORG} install
-	mkdir -p ${DOCDIR}/org && ${CP} ${ORG}/doc/*.html ${DOCDIR}/org/
+	${MD} ${DOCDIR}/org && ${CP} ${ORG}/doc/*.html ${DOCDIR}/org/
 	${RM} -f ${ORG}
 	@echo ----- Done making org
 
@@ -154,11 +156,31 @@ psvn:
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/psvn.el
 	@echo ----- Done installing psvn.el
 
+.PHONY: tabbar
+tabbar:
+	@echo ----- Making tabbar...
+	if [ -d ${TABBAR} ]; then ${RM} -f ${TABBAR}; fi
+	unzip ${TABBAR}.zip
+	${MD} ${SITELISP}/tabbar
+	${CP} ${TABBAR}/*.el ${SITELISP}/tabbar
+	${CP} ${TABBAR}/*.tiff ${SITELISP}/tabbar
+	${CP} ${TABBAR}/*.png ${SITELISP}/tabbar
+	${MD} ${DOCDIR}/tabbar
+	${CP} ${TABBAR}/README.markdown ${DOCDIR}/tabbar/README.md
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/tabbar/aquamacs-compat.el
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/tabbar/aquamacs-tabbar.el
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/tabbar/aquamacs-tools.el
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/tabbar/one-buffer-one-frame.el
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/tabbar/tabbar-window.el
+	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/tabbar/tabbar.el
+	${RM} -f ${TABBAR}
+	@echo ----- Done making tabbar
+
 .PHONY: hunspell
 hunspell:
 	@echo ----- Installing hunspell and dictionaries...
 	if [ -d ${PREFIX}/hunspell ]; then ${RM} -f ${PREFIX}/hunspell; fi
-	mkdir ${PREFIX}/hunspell
+	${MD} ${PREFIX}/hunspell
 	${UNZIP} -o${PREFIX}/hunspell ${HUNSPELL}.zip
 	${RM} ${PREFIX}/hunspell/share/hunspell/*
 	${UNZIPNOPATH} -o${PREFIX}/hunspell/share/hunspell ${DICT-EN}.zip "*.aff" "*.dic" "th_en*" "README*en*.txt"
@@ -268,6 +290,14 @@ get-psvn:
 	@echo ----- Fetching psvn.el
 	if [ -f psvn.el ]; then ${RM} psvn.el; fi
 	svn cat http://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/emacs/psvn.el > psvn.el && dos2unix -u psvn.el
+
+.PHONY: get-tabbar
+get-tabbar:
+	@echo ----- Fetching tabbar...
+	if [ -f ${TABBAR}.zip ]; then ${RM} ${TABBAR}.zip; fi
+	curl -OL https://github.com/dholm/tabbar/archive/v${TABBARVERSION}.zip
+	${CP} v${TABBARVERSION}.zip ${TABBAR}.zip
+	${RM} v${TABBARVERSION}.zip
 
 .PHONY: get-hunspell
 get-hunspell:

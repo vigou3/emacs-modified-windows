@@ -11,6 +11,8 @@ following add-on packages:
 - ESS 18.10.2;
 - AUCTeX 12.1;
 - org 9.2.3;
+- Tabbar 2.2, an emacs minor mode that displays a tab bar at the top,
+  similar to the idea of web browser’s tabs;
 - markdown-mode.el 2.3;
 - psvn.el r1573006 from Subversion sources, to work with
   Subversion repositories from within Emacs;
@@ -32,6 +34,9 @@ following:
 
 To add Emacs extensions to this distribution, you may drop .el files
 into the ...\share\emacs\site-lisp\site-start.d\ folder.
+
+Tabbar is not enabled by default. To use it, use 'M-x tabbar-mode' or
+add '(tabbar-mode)' in your ~/.emacs file.
 
 In order to use Markdown you may need to install a parser such as
 Pandoc (see https://github.com/jgm/pandoc/releases/latest) and

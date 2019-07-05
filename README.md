@@ -15,7 +15,7 @@ distribution is based on the
 [latest stable release](http://ftp.gnu.org/gnu/emacs/windows/) of GNU
 Emacs.
 
-Other than the additions mentioned above and some minor configuration,
+Other than the few selected additions and some minor configuration,
 this is a stock distribution of Emacs. Users of Emacs on other
 platforms will appreciate the similar look and feel of the
 application.
@@ -36,7 +36,7 @@ Building the distribution on Windows requires a number of Unix
 utilities that do not come bundled with the operating
 system. Therefore, one will need to install the following components:
 
-1. The  [MSYS2](http://www.msys2.org) building platform for Windows. This
+1. The [MSYS2](http://www.msys2.org) building platform for Windows. This
    provides a Unix shell and standard utilities.
 
 2. The following additional MSYS2 packages: `make`, `dos2unix`,
