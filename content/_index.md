@@ -15,6 +15,7 @@ The additions to stock Emacs are the following:
 - [ESS](http://ess.r-project.org) 18.10.2;
 - [AUCTeX](http://www.gnu.org/software/auctex/) 12.1;
 - [org](http://orgmode.org/) 9.2.3;
+- [Tabbar](https://github.com/dholm/tabbar) 2.2, a minor mode that displays a tab bar at the top of the Emacs window, similar to the idea of web browsers tabs;
 - [markdown-mode.el](http://jblevins.org/projects/markdown-mode/) 2.3;
 - [psvn.el](http://svn.apache.org/viewvc/subversion/trunk/contrib/client-side/emacs/) r1573006, an interface for the version control system
   [Subversion](http://subversion.tigris.org) modified to include Andre
