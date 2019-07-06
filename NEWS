@@ -2,6 +2,22 @@
 === Emacs Modified for Windows
 ===
 
+# VERSION 26.2-modified-2 (6 July 2019)
+
+## New feature
+
+David Holm's TabBarMode (v2.2), a minor mode to display a tab bar at
+the top, similar to the idea of web browsers tabs. Brought to you by
+Rodney Sparapani <rsparapa@mcw.edu>.
+
+Note that TabBarMode is *not* enabled by default. To use it, use `M-x
+tabbar-mode` or add `(tabbar-mode)` in your `~/.emacs` file.
+
+## Updates
+
+- Org 9.2.4
+- Libre Office English dictionary 2019.07.01
+
 # VERSION 26.2-modified-1 (19 April 2019)
 
 ## Updates
