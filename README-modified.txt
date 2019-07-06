@@ -10,14 +10,14 @@ following add-on packages:
 
 - ESS 18.10.2;
 - AUCTeX 12.1;
-- org 9.2.3;
+- org 9.2.4;
 - Tabbar 2.2, an emacs minor mode that displays a tab bar at the top,
   similar to the idea of web browser’s tabs;
 - markdown-mode.el 2.3;
 - psvn.el r1573006 from Subversion sources, to work with
   Subversion repositories from within Emacs;
 - Hunspell 1.3.2-3, a spell checker well integrated with Emacs;
-- English (version 2019.03.01), French (version 5.7), German
+- English (version 2019.07.01), French (version 5.7), German
   (version 2017.01.12) and Spanish (version 2.4) dictionnaries
   for Hunspell;
 - framepop.el, to obtain temporary buffers in separate frames;
