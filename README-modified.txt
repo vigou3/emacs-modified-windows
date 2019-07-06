@@ -1,5 +1,5 @@
 Copyright (C) 2001-2017 Free Software Foundation, Inc.
-Copyright (C) 2009-2018 Vincent Goulet for the modifications.
+Copyright (C) 2009-2019 Vincent Goulet for the modifications.
 See below for GNU Emacs license conditions.
 
 Emacs Modified for Windows
@@ -11,8 +11,8 @@ following add-on packages:
 - ESS 18.10.2;
 - AUCTeX 12.1;
 - org 9.2.4;
-- Tabbar 2.2, an emacs minor mode that displays a tab bar at the top,
-  similar to the idea of web browser’s tabs;
+- Tabbar 2.2, a minor mode that displays a tab bar at the top of the
+  Emacs window, similar to the idea of web browsers tabs;
 - markdown-mode.el 2.3;
 - psvn.el r1573006 from Subversion sources, to work with
   Subversion repositories from within Emacs;
