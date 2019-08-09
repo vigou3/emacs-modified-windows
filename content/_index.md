@@ -14,7 +14,8 @@ The additions to stock Emacs are the following:
 
 - [ESS](http://ess.r-project.org) 18.10.2;
 - [AUCTeX](http://www.gnu.org/software/auctex/) 12.1;
-- [org](http://orgmode.org/) 9.2.3;
+- [org](http://orgmode.org/) 9.2.4;
+- [Tabbar](https://github.com/dholm/tabbar) 2.2, a minor mode that displays a tab bar at the top of the Emacs window, similar to the idea of web browsers tabs;
 - [markdown-mode.el](http://jblevins.org/projects/markdown-mode/) 2.3;
 - [psvn.el](http://svn.apache.org/viewvc/subversion/trunk/contrib/client-side/emacs/) r1573006, an interface for the version control system
   [Subversion](http://subversion.tigris.org) modified to include Andre
@@ -22,15 +23,15 @@ The additions to stock Emacs are the following:
   [combined patches](http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/raw/%3c503B958F.6010906@schickhardt.org%3e/1/4)
   to support Subversion >= 1.7;
 - [Hunspell](https://hunspell.github.io/) 1.3.2-3;
-- [English](https://extensions.libreoffice.org/extensions/english-dictionaries) (version 2019.03.01),
+- [English](https://extensions.libreoffice.org/extensions/english-dictionaries) (version 2019.07.01),
   [French](https://extensions.libreoffice.org/extensions/dictionnaires-francais) (version 5.7), 
   [German](https://extensions.libreoffice.org/extensions/german-de-de-frami-dictionaries) (version 2017.01.12) and 
   [Spanish](https://extensions.libreoffice.org/extensions/spanish-dictionaries) (version 2.4) dictionnaries for Hunspell;
 - [framepop.el](http://bazaar.launchpad.net/~vcs-imports/emacs-goodies-el/trunk/view/head:/elisp/emacs-goodies-el/framepop.el)
   to open temporary buffers in a separate frame;
-- [default.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.2-modified-1/default.el)
+- [default.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.2-modified-2/default.el)
   and
-  [site-start.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.2-modified-1/site-start.el),
+  [site-start.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.2-modified-2/site-start.el),
   configuration files to make everything work.
 
 The distribution is based on the official GNU release of Emacs with
@@ -44,8 +45,8 @@ following:
 
 ## Latest release
 
-Version 26.2-modified-1
-([Release notes](https://gitlab.com/vigou3/emacs-modified-windows/tags/v26.2-modified-1/))
+Version 26.2-modified-2
+([Release notes](https://gitlab.com/vigou3/emacs-modified-windows/tags/v26.2-modified-2/))
 
 ## System requirements
 
