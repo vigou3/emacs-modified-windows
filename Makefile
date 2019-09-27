@@ -204,7 +204,7 @@ check-status:
 	     echo "not on branch master"; exit 2; fi
 	@if [ -n "$(shell git status --porcelain | grep -v '^??')" ]; then \
 	     echo "uncommitted changes in repository; not creating release"; exit 2; fi
-	@if [ -n "$(shell git log origin/master..HEAD)" ]; then \
+	@if [ -n "$(shell git log origin/master..HEAD | head -n1)" ]; then \
 	    echo "unpushed commits in repository; pushing to origin"; \
 	     git push; fi
 
