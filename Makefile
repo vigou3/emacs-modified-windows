@@ -103,10 +103,7 @@ files:
 				       exit 1; } \
 				   $$7 = "${file_id}"; \
 	                           sub(/.*\.exe/, "emacs-${VERSION}.exe", $$8) } \
-	       /${url}\/tags/ { if (NF > 8) { \
-		                    print "too many fields in the tags url" > "/dev/stderr"; \
-				    exit 1; } \
-		                $$7 = "${TAGNAME}" } 1' \
+	       1' \
 	       site-header.html > tmpfile && \
 	  mv tmpfile site-header.html
 
