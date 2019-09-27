@@ -96,9 +96,9 @@ dir:
 	    -e 's/\(French (version \)[0-9.]\+/\1${DICT-FRVERSION}/' \
 	    -e 's/^\(  (version \)[0-9.]\+/\1${DICT-DEVERSION}/' \
 	    -e 's/\(Spanish (version \)[0-9.]\+/\1${DICT-ESVERSION}/' \
-	    -i -b README-modified.txt && \
-	  ${CP} README-modified.txt ${TMPDIR}/
-	${CP} site-start.el NEWS ${TMPDIR}
+	    -i -b ${README} && \
+	  ${CP} ${README} ${TMPDIR}/
+	${CP} site-start.el ${NEWS} ${TMPDIR}
 
 .PHONY: ess
 ess:
@@ -211,13 +211,13 @@ check-status:
 .PHONY: upload
 upload:
 	@echo ----- Uploading installer to GitLab...
-	$(eval upload_url_markdown=$(shell curl --form "file=@emacs-${VERSION}.exe" \
+	$(eval upload_url=$(shell curl --form "file=@emacs-${VERSION}.exe" \
 	                                        --header "PRIVATE-TOKEN: ${OAUTHTOKEN}"	\
 	                                        --silent \
 	                                        ${APIURL}/uploads \
-	                                   | awk -F '"' '{ print $$12 }'))
-	@echo Markdown ready url to file:
-	@echo "${upload_url_markdown}"
+	                                   | awk -F '"' '{ print $$8 }'))
+	@echo url to file:
+	@echo "${upload_url}"
 	@echo ----- Done uploading installer
 
 .PHONY: create-release
@@ -225,25 +225,25 @@ create-release:
 	@echo ----- Creating release on GitLab...
 	if [ -e relnotes.in ]; then ${RM} relnotes.in; fi
 	touch relnotes.in
-	$(eval FILESIZE=$(shell du -h emacs-${VERSION}.exe | cut -f1 | sed 's/\([KMG]\)/ \1b/'))
 	awk 'BEGIN { ORS = " "; print "{\"tag_name\": \"${TAGNAME}\"," } \
 	      /^$$/ { next } \
 	      (state == 0) && /^# / { state = 1; \
 		out = $$3; \
 	        for(i = 4; i <= NF; i++) { out = out" "$$i }; \
-	        printf "\"description\": \"# Emacs Modified for Windows %s\\n", out; \
+	        printf "\"name\": \"Emacs Modified for Windows %s\", \"description\":\"", out; \
 	        next } \
 	      (state == 1) && /^# / { exit } \
 	      state == 1 { printf "%s\\n", $$0 } \
-	      END { print "\\n## Download the installer\\n${upload_url_markdown} (${FILESIZE})\"}" }' \
-	     NEWS >> relnotes.in
+	      END { print "\",\"assets\": { \"links\": [{ \"name\": \"emacs-${VERSION}.exe\", \"url\": \"${REPOSURL}${upload_url}\" }] }}" }' \
+	     ${NEWS} >> relnotes.in
 	curl --request POST \
 	     --header "PRIVATE-TOKEN: ${OAUTHTOKEN}" \
 	     "${APIURL}/repository/tags?tag_name=${TAGNAME}&ref=master"
-	curl --data @relnotes.in \
+	curl --request POST \
+	     --data @relnotes.in \
 	     --header "PRIVATE-TOKEN: ${OAUTHTOKEN}" \
 	     --header "Content-Type: application/json" \
-	     ${APIURL}/repository/tags/${TAGNAME}/release
+	     ${APIURL}/releases
 	${RM} relnotes.in
 	@echo ----- Done creating the release
 
