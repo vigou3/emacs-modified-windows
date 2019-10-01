@@ -79,7 +79,7 @@ files:
 	$(eval url=$(subst /,\/,$(patsubst %/,%,${REPOSURL})))
 	$(eval file_id=$(shell curl --header "PRIVATE-TOKEN: ${OAUTHTOKEN}" \
 	                             --silent \
-	                             ${APIURL}/repository/tags/${TAGNAME} \
+	                             ${APIURL}/releases/${TAGNAME}/assets/links \
 	                        | grep -o "/uploads/[a-z0-9]*/" \
 	                        | cut -d/ -f3))
 	cd content && \
