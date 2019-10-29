@@ -1,6 +1,6 @@
 ---
 title: Emacs Modified for Windows
-description: GNU Emacs. Ready for R and LaTeX
+description: GNU Emacs. Ready for R and LaTeX.
 ---
 
 # Presentation
@@ -22,11 +22,7 @@ The additions to stock Emacs are the following:
   Colomb's and Koji Nakamaru's
   [combined patches](http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/raw/%3c503B958F.6010906@schickhardt.org%3e/1/4)
   to support Subversion >= 1.7;
-- [Hunspell](https://hunspell.github.io/) 1.3.2-3;
-- [English](https://extensions.libreoffice.org/extensions/english-dictionaries) (version 2019.09.01),
-  [French](https://extensions.libreoffice.org/extensions/dictionnaires-francais) (version 5.7), 
-  [German](https://extensions.libreoffice.org/extensions/german-de-de-frami-dictionaries) (version 2017.01.12) and 
-  [Spanish](https://extensions.libreoffice.org/extensions/spanish-dictionaries) (version 2.4) dictionnaries for Hunspell;
+- [Hunspell](https://hunspell.github.io/) 1.3.2-3, a spell checker well integrated with Emacs, and some popular dictionaries (see below for details);
 - [framepop.el](http://bazaar.launchpad.net/~vcs-imports/emacs-goodies-el/trunk/view/head:/elisp/emacs-goodies-el/framepop.el)
   to open temporary buffers in a separate frame;
 - [default.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.3-modified-1/default.el)
@@ -56,13 +52,11 @@ If you are still running a 32-bit version of Windows you need to install the
 32-bit build. The last such version of the distribution was
 [25.2-modified-2](https://gitlab.com/vigou3/emacs-modified-windows/tags/v25.2-modified-2/).
 
-
-# Installation
+## Installation
 
 Start the installation wizard and follow the instructions on screen.
 
-
-# Images and preview-latex mode
+## Images and preview-latex mode
 
 This version of Emacs bundles the libraries needed to display images
 in formats XPM, PNG, JPEG, TIFF, GIF and SVG supported on Windows
@@ -80,8 +74,19 @@ tool [ImageMagick](https://www.imagemagick.org/) that may be required
 by Org. If you need the tool, install it and make sure its location is
 along the `PATH`.
 
+## Spell checking and dictionaries
 
-# Additional packages
+This distribution ships with [Hunspell](https://hunspell.github.io)
+for spell checking inside Emacs, along with the following [Libre
+Office dictionaries](https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any) suitable for use with Hunspell:
+[English](https://extensions.libreoffice.org/extensions/english-dictionaries/);
+[French](https://extensions.libreoffice.org/extensions/dictionnaires-francais/);
+[German](https://extensions.libreoffice.org/extensions/german-de-de-frami-dictionaries);
+[Spanish](https://extensions.libreoffice.org/extensions/spanish-dictionaries).
+
+The default dictionary for Hunspell is American English.
+
+## Additional packages
 
 If you want to install additional Emacs packages
 ([polymode](https://polymode.github.io) comes to mind, here) through
