@@ -16,10 +16,8 @@ following add-on packages:
 - markdown-mode.el 2.3;
 - psvn.el r1573006 from Subversion sources, to work with
   Subversion repositories from within Emacs;
-- Hunspell 1.3.2-3, a spell checker well integrated with Emacs;
-- English (version 2019.07.01), French (version 5.7), German
-  (version 2017.01.12) and Spanish (version 2.4) dictionnaries
-  for Hunspell;
+- Hunspell 1.3.2-3, a spell checker well integrated with Emacs, and
+  some popular dictionaries (see below for details);
 - framepop.el, to obtain temporary buffers in separate frames;
 - default.el and site-start.el files to make everything work together.
 
@@ -35,22 +33,18 @@ following:
 To add Emacs extensions to this distribution, you may drop .el files
 into the ...\share\emacs\site-lisp\site-start.d\ folder.
 
-Tabbar is not enabled by default. To use it, use 'M-x tabbar-mode' or
-add '(tabbar-mode)' in your ~/.emacs file.
+Tabbar is not enabled by default. To use it, use `M-x tabbar-mode` or
+add `(tabbar-mode)` in your ~/.emacs file.
 
 In order to use Markdown you may need to install a parser such as
-Pandoc (see https://github.com/jgm/pandoc/releases/latest) and
-customize 'markdown-command'.
+Pandoc (see <https://github.com/jgm/pandoc/releases/latest>) and
+customize `markdown-command`.
 
-The default dictionary for Hunspell is American English. See
-https://extensions.libreoffice.org/extensions to install additional
-dictionnaries.
-
-See http://sourceforge.net/projects/ezwinports/ to install Unix
+See <https://sourceforge.net/projects/ezwinports/> to install Unix
 utilities sometimes required by Emacs (e.g. diff, gzip).
 
 preview-latex requires an installation of Ghostscript
-(http://www.cs.wisc.edu/~ghost/). Make sure the file gswin32c.exe is
+(<https://www.ghostscript.com>). Make sure the file gswin32c.exe is
 somewhere in the PATH environment variable.
 
 If it did not already exist, an environment variable HOME was created
@@ -58,13 +52,29 @@ during installation. This variable is required by Emacs and, thus,
 should not be removed. The HOME folder will be the default work folder
 of Emacs.
 
-Please direct questions or comments on this modified version of
-Emacs Modified for Windows to Vincent Goulet <vincent.goulet@act.ulaval.ca>.
+Please direct questions or comments on this modified version of Emacs
+Modified for Windows to Vincent Goulet <vincent.goulet@act.ulaval.ca>.
 
 Emacs Modified for Windows is free software: you can redistribute it
 and/or modify it under the terms of the GNU General Public License as
 published by the Free Software Foundation, either version 3 of the
 License, or (at your option) any later version.
+
+Spell checking and dictionaries
+===============================
+
+This distribution ships with Hunspell for spell checking inside Emacs,
+along with the following Libre Office dictionaries suitable for use
+with Hunspell:
+
+- English (version 2019.07.01);
+- French (version 5.7);
+- German (version 2017.01.12);
+- Spanish (version 2.4).
+
+The default dictionary for Hunspell is American English. See
+<https://extensions.libreoffice.org/extensions> to install additional
+dictionnaries.
 
 GNU Emacs
 =========
