@@ -2,7 +2,13 @@
 === Emacs Modified for Windows
 ===
 
-# VERSION devel
+# VERSION 26.3-modified-2 (11 March 2020)
+
+## Updates
+
+- AUCTeX 12.2
+- Org 9.3.6
+- Libre Office English dictionary 2020.03.01
 
 # VERSION 26.3-modified-1 (27 September 2019)
 

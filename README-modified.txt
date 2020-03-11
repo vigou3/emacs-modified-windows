@@ -9,8 +9,8 @@ This is GNU Emacs for Windows 64-bit (x64) modified to include the
 following add-on packages:
 
 - ESS 18.10.2;
-- AUCTeX 12.1;
-- org 9.2.6;
+- AUCTeX 12.2;
+- org 9.3.6;
 - Tabbar 2.2, a minor mode that displays a tab bar at the top of the
   Emacs window, similar to the idea of web browsers tabs;
 - markdown-mode.el 2.3;
@@ -67,7 +67,7 @@ This distribution ships with Hunspell for spell checking inside Emacs,
 along with the following Libre Office dictionaries suitable for use
 with Hunspell:
 
-- English (version 2019.07.01);
+- English (version 2020.03.01);
 - French (version 5.7);
 - German (version 2017.01.12);
 - Spanish (version 2.4).
