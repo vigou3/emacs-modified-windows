@@ -79,10 +79,10 @@ along the `PATH`.
 This distribution ships with [Hunspell](https://hunspell.github.io)
 for spell checking inside Emacs, along with the following [Libre
 Office dictionaries](https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any) suitable for use with Hunspell:
-[English](https://extensions.libreoffice.org/extensions/english-dictionaries/);
-[French](https://extensions.libreoffice.org/extensions/dictionnaires-francais/);
-[German](https://extensions.libreoffice.org/extensions/german-de-de-frami-dictionaries);
-[Spanish](https://extensions.libreoffice.org/extensions/spanish-dictionaries).
+[English](https://extensions.libreoffice.org/extensions/english-dictionaries/) (version 2042.03.01);
+[French](https://extensions.libreoffice.org/extensions/dictionnaires-francais/) (version 5.42);
+[German](https://extensions.libreoffice.org/extensions/german-de-de-frami-dictionaries) (version 2042.01.12);
+[Spanish](https://extensions.libreoffice.org/extensions/spanish-dictionaries) (version 2.42).
 
 The default dictionary for Hunspell is American English.
 
