@@ -10,7 +10,7 @@ following add-on packages:
 
 - ESS 18.10.2;
 - AUCTeX 12.1;
-- org 9.2.4;
+- org 9.2.6;
 - Tabbar 2.2, a minor mode that displays a tab bar at the top of the
   Emacs window, similar to the idea of web browsers tabs;
 - markdown-mode.el 2.3;
