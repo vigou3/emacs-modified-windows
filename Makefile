@@ -80,8 +80,8 @@ files:
 	$(eval file_id=$(shell curl --header "PRIVATE-TOKEN: ${OAUTHTOKEN}" \
 	                             --silent \
 	                             ${APIURL}/releases/${TAGNAME}/assets/links \
-	                        | grep -o "/uploads/[a-z0-9]*/" \
-	                        | cut -d/ -f3))
+				| sed -E 's/.*\"direct_asset_url\":\"([^"]*)\".*/\1/' \
+				| cut -d/ -f7))
 	cd content && \
 	  sed -e '/^\[25.2-modified-2\]/! s/[0-9.-]\+-modified-[0-9]\+/${VERSION}/g' \
 	      -e '/\[ESS\]/s/[0-9]\+[0-9.]*/${ESSVERSION}/' \
@@ -95,7 +95,8 @@ files:
 	      -e '/\[French\]/s/version [0-9.]\+/version ${DICT-FRVERSION}/' \
 	      -e '/\[German\]/s/version [0-9.]\+/version ${DICT-DEVERSION}/' \
 	      -e '/\[Spanish\]/s/version [0-9.]\+/version ${DICT-ESVERSION}/' \
-	      -i  _index.md
+	       _index.md > tmpfile && \
+	  mv tmpfile _index.md
 	cd layouts/partials && \
 	  awk 'BEGIN { FS = "/"; OFS = "/" } \
 	       /${url}\/uploads/ { if (NF > 8) { \
