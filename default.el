@@ -49,9 +49,9 @@ Return a list of one element based on major mode."
     ((member (buffer-name) '("*GNU Emacs*" "*ESS*" "*Messages*" "*Warnings*"))
      "Bury" )
     ((member (buffer-name) '("*S+6*" "*R*" "*R:2*" "*R:3*" "*R:4*" "*R:5*" "*R:6*" "*R:7*" "*R:8*" "*R:9*"))
-     "ESS[S]" ) 
-    ((string-match "\*R:.*\*" (buffer-name)) "ESS[S]" ) 
-    ((memq major-mode '(ess-help-mode ess-transcript-mode)) "ESS[S]" )
+     "ESS[R]" ) 
+    ((string-match "\*R:.*\*" (buffer-name)) "ESS[R]" ) 
+    ((memq major-mode '(ess-help-mode ess-transcript-mode)) "ESS[R]" )
     ((member mode-name '("ESS[LST]")) "ESS[LST]" )
    ((or (get-buffer-process (current-buffer))
          ;; Check if the major mode derives from `comint-mode' or
