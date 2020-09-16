@@ -75,8 +75,6 @@ dir:
 	    -i -b version-modified.el && \
 	  ${CP} version-modified.el ${SITELISP}/
 	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/version-modified.el
-	${CP} framepop.el ${SITELISP}/
-	$(EMACSBATCH) -f batch-byte-compile ${SITELISP}/framepop.el
 	sed -e '/^AppVerName/s/\(Emacs \)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
 	    -e '/^AppId/s/\(GNUEmacs-\)[0-9.]\+-modified-[0-9]\+/\1${VERSION}/' \
 	    -e '/^DefaultDirName/s/\(GNU Emacs \)[0-9.]\+/\1${EMACSVERSION}/' \
@@ -259,7 +257,7 @@ publish:
 get-emacs:
 	@echo ----- Fetching Emacs...
 	if [ -f ${ZIPFILE} ]; then ${RM} ${ZIPFILE}; fi
-	curl -OL https://ftp.gnu.org/gnu/emacs/windows/emacs-26/${ZIPFILE}
+	curl -OL https://ftp.gnu.org/gnu/emacs/windows/emacs-$(basename ${EMACSVERSION})/${ZIPFILE}
 
 .PHONY: get-ess
 get-ess:
@@ -305,13 +303,13 @@ get-hunspell:
 	if [ -f ${HUNSPELL}.zip ]; then ${RM} ${HUNSPELL}.zip; fi
 	curl -OL https://sourceforge.net/projects/ezwinports/files/${HUNSPELL}.zip
 	if [ -f ${DICT-EN}.zip ]; then ${RM} ${DICT-EN}.zip; fi
-	curl -L -o ${DICT-EN}.zip https://extensions.libreoffice.org/extensions/english-dictionaries/$(shell echo ${DICT-ENVERSION} | sed 's/\./-/')/@@download/file/${DICT-EN}.oxt
+	curl -L -o ${DICT-EN}.zip https://extensions.libreoffice.org/assets/downloads/41/${DICT-EN}.oxt
 	if [ -f ${DICT-FR}.zip ]; then ${RM} ${DICT-FR}.zip; fi
-	curl -L -o ${DICT-FR}.zip https://extensions.libreoffice.org/extensions/dictionnaires-francais/${DICT-FRVERSION}/@@download/file/${DICT-FR}.oxt
+	curl -L -o ${DICT-FR}.zip https://extensions.libreoffice.org/assets/downloads/z/${DICT-FR}.oxt
 	if [ -f ${DICT-ES}.zip ]; then ${RM} ${DICT-ES}.zip; fi
-	curl -L -o ${DICT-ES}.zip https://extensions.libreoffice.org/extensions/spanish-dictionaries/${DICT-ESVERSION}/@@download/file/${DICT-ES}.oxt
+	curl -L -o ${DICT-ES}.zip https://extensions.libreoffice.org/assets/downloads/z/${DICT-ES}.oxt
 	if [ -f ${DICT-DE}.zip ]; then ${RM} ${DICT-DE}.zip; fi
-	curl -L -o ${DICT-DE}.zip https://extensions.libreoffice.org/extensions/german-de-de-frami-dictionaries/$(subst .,-,${DICT-DEVERSION})/@@download/file/${DICT-DE}.oxt
+	curl -L -o ${DICT-DE}.zip https://extensions.libreoffice.org/assets/downloads/z/${DICT-DE}.oxt
 
 .PHONY: clean
 clean:
