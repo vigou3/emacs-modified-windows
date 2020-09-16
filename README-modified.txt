@@ -5,15 +5,15 @@ See below for GNU Emacs license conditions.
 Emacs Modified for Windows
 ==========================
 
-This is GNU Emacs 26.3 for Windows 64-bit (x64) modified to include
+This is GNU Emacs 27.1 for Windows 64-bit (x64) modified to include
 the following add-on packages:
 
 - ESS 18.10.2;
 - AUCTeX 12.2;
-- org 9.3.6;
+- org 9.3.8;
 - Tabbar 2.2, a minor mode that displays a tab bar at the top of the
   Emacs window, similar to the idea of web browsers tabs;
-- markdown-mode.el 2.3;
+- markdown-mode.el 2.4;
 - psvn.el r1573006 from Subversion sources, to work with
   Subversion repositories from within Emacs;
 - Hunspell 1.3.2-3, a spell checker well integrated with Emacs, and
@@ -66,10 +66,10 @@ This distribution ships with Hunspell for spell checking inside Emacs,
 along with the following Libre Office dictionaries suitable for use
 with Hunspell:
 
-- English (version 2020.03.01);
+- English (version 2020.08.01);
 - French (version 5.7);
 - German (version 2017.01.12);
-- Spanish (version 2.4).
+- Spanish (version 2.5).
 
 The default dictionary for Hunspell is American English. See
 <https://extensions.libreoffice.org/extensions> to install additional
