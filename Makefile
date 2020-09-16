@@ -1,6 +1,6 @@
 ### -*-Makefile-*- for GitLab page of Emacs Modified for Windows
 ##
-## Copyright (C) 2019 Vincent Goulet
+## Copyright (C) 2020 Vincent Goulet
 ##
 ## Author: Vincent Goulet
 ##

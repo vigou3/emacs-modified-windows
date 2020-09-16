@@ -6,8 +6,8 @@ description: GNU Emacs. Ready for R and LaTeX.
 # Presentation
 
 Emacs Modified for Windows is a 64-bit (x64) distribution
-of [GNU Emacs](https://www.gnu.org/software/emacs/) **26.3** (released
-August 28, 2019) bundled with a few select packages for R developers
+of [GNU Emacs](https://www.gnu.org/software/emacs/) **27.1** (released
+August 10, 2020) bundled with a few select packages for R developers
 and LaTeX users.
 
 The additions to stock Emacs are the following:
@@ -23,8 +23,6 @@ The additions to stock Emacs are the following:
   [combined patches](http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/raw/%3c503B958F.6010906@schickhardt.org%3e/1/4)
   to support Subversion >= 1.7;
 - [Hunspell](https://hunspell.github.io/) 1.3.2-3, a spell checker well integrated with Emacs, and some popular dictionaries (see below for details);
-- [framepop.el](http://bazaar.launchpad.net/~vcs-imports/emacs-goodies-el/trunk/view/head:/elisp/emacs-goodies-el/framepop.el)
-  to open temporary buffers in a separate frame;
 - [default.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.3-modified-2/default.el)
   and
   [site-start.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v26.3-modified-2/site-start.el),
