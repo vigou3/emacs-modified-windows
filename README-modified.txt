@@ -18,7 +18,6 @@ following add-on packages:
   Subversion repositories from within Emacs;
 - Hunspell 1.3.2-3, a spell checker well integrated with Emacs, and
   some popular dictionaries (see below for details);
-- framepop.el, to obtain temporary buffers in separate frames;
 - default.el and site-start.el files to make everything work together.
 
 The distribution is based on the official GNU release of Emacs with
