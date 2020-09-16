@@ -1,12 +1,12 @@
 Copyright (C) 2001-2017 Free Software Foundation, Inc.
-Copyright (C) 2009-2019 Vincent Goulet for the modifications.
+Copyright (C) 2009-2020 Vincent Goulet for the modifications.
 See below for GNU Emacs license conditions.
 
 Emacs Modified for Windows
 ==========================
 
-This is GNU Emacs for Windows 64-bit (x64) modified to include the
-following add-on packages:
+This is GNU Emacs 26.3 for Windows 64-bit (x64) modified to include
+the following add-on packages:
 
 - ESS 18.10.2;
 - AUCTeX 12.2;

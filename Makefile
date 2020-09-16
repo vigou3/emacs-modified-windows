@@ -1,6 +1,6 @@
 ### -*-Makefile-*- to build Emacs Modified for Windows
 ##
-## Copyright (C) 2019 Vincent Goulet
+## Copyright (C) 2020 Vincent Goulet
 ##
 ## The code of this Makefile is based on a file created by Remko
 ## Troncon (http://el-tramo.be/about).
@@ -83,7 +83,8 @@ dir:
 	    -e 's/\(\\emacs\\\)[0-9.]\+/\1${EMACSVERSION}/' \
 	    -i -b ${INNOSCRIPT} && \
 	  ${CP} ${INNOSCRIPT} ${TMPDIR}/
-	sed -e 's/\(ESS \)[0-9.]\+/\1${ESSVERSION}/' \
+	sed -e 's/\(GNU Emacs \)[0-9.]\+/\1${EMACSVERSION}/' \
+	    -e 's/\(ESS \)[0-9.]\+/\1${ESSVERSION}/' \
 	    -e 's/\(AUCTeX \)[0-9.]\+/\1${AUCTEXVERSION}/' \
 	    -e 's/\(org \)[0-9.]\+/\1${ORGVERSION}/' \
 	    -e 's/\(Tabbar \)[0-9.]+/\1${TABBARVERSION}/' \
@@ -92,7 +93,7 @@ dir:
 	    -e 's/\(Hunspell \)[0-9.\-]\+/\1${HUNSPELLVERSION}/' \
 	    -e 's/\(English (version \)[0-9a-z.]\+/\1${DICT-ENVERSION}/' \
 	    -e 's/\(French (version \)[0-9.]\+/\1${DICT-FRVERSION}/' \
-	    -e 's/^\(  (version \)[0-9.]\+/\1${DICT-DEVERSION}/' \
+	    -e 's/\(German (version \)[0-9.]\+/\1${DICT-DEVERSION}/' \
 	    -e 's/\(Spanish (version \)[0-9.]\+/\1${DICT-ESVERSION}/' \
 	    -i -b ${README} && \
 	  ${CP} ${README} ${TMPDIR}/
