@@ -54,6 +54,10 @@
                          (ess-nuke-trailing-whitespace)))
 	     (setq ess-nuke-trailing-whitespace-p t)))
 
+;; Add support for R 4.x-y series (temporary fix for ESS 18.10 added
+;; in version 27.1-modified-1)
+(setq ess-r-versions '("R-1" "R-2" "R-3" "R-4" "R-devel" "R-patched"))
+
 ;; Load ESS.
 (require 'ess-site)
 
