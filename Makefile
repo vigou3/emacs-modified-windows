@@ -1,6 +1,6 @@
 ### -*-Makefile-*- for GitLab page of Emacs Modified for Windows
 ##
-## Copyright (C) 2019 Vincent Goulet
+## Copyright (C) 2020 Vincent Goulet
 ##
 ## Author: Vincent Goulet
 ##
@@ -98,7 +98,8 @@ files:
 	      -e '/\[French\]/s/version [0-9.]\+/version ${DICT-FRVERSION}/' \
 	      -e '/\[German\]/s/version [0-9.]\+/version ${DICT-DEVERSION}/' \
 	      -e '/\[Spanish\]/s/version [0-9.]\+/version ${DICT-ESVERSION}/' \
-	      -i  _index.md
+	       _index.md > tmpfile && \
+	  mv tmpfile _index.md
 
 commit:
 	git commit content/_index.md layouts/partials/site-header.html \
