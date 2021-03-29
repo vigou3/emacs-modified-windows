@@ -1,48 +1,36 @@
 {{ $featured_image := .Param "featured_image" | default "images/gohugo-default-sample-hero-image.jpg" }}
+{{ $repos_url := printf "%s/%s" .Site.Params.gitlab .Site.Params.repos }}
+{{ $file_url := printf "%s/%s" $repos_url .Site.Params.file_id }}
+{{ $release_notes_url := printf "%s/%s" $repos_url .Site.Params.release_notes }}
+
 {{ if $featured_image }}
   {{/* Trimming the slash and adding absURL make sure the image works no matter where our site lives */}}
   {{ $featured_image := (trim $featured_image "/") | absURL }}
   <header class="cover bg-top" style="background-image: url('{{ $featured_image }}');">
     <div class="bg-black-30">
+{{ else }}
+  <header>
+    <div class="pb3-m pb6-l {{ .Site.Params.background_color_class | default "bg-black" }}">
+{{ end }}      
       {{ partial "site-navigation.html" .}}
       <div class="tc-l pv4 pv6-l ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
+        <h1 class="f2 f-subheadline-l fw6 white-90 mb0 lh-title">
           {{ .Title | default .Site.Title }}
         </h1>
         {{ with .Params.description }}
-          <h2 class="fw1 f5 f3-l white-80 measure-wide-l center mt3">
+          <h2 class="fw3 f5 f3-l white-80 measure-wide-l center mt3">
             {{ . }}
           </h2>
         {{ end }}
-	<a class="ba white-70 no-underline bg-animate hover-bg-white-30 br2 inline-flex items-center mr3 mb3 pv2 ph3" href="https://gitlab.com/vigou3/emacs-modified-windows/uploads/07fcdff47361ea34eaf4df005d0141db/emacs-26.3-modified-1.exe" title="Download Installer">
+	<a class="ba white-70 no-underline bg-animate hover-bg-white-30 br2 inline-flex items-center mr3 mb3 pv2 ph3" href="{{ $file_url }}" title="Download Installer">
 	    <span class="fas fa-download f4 pr3"></span> <span>Download Installer</span>
 	</a>
-	<a class="ba white-70 no-underline bg-animate hover-bg-white-30 br2 inline-flex items-center mr3 mb3 pv2 ph3" href="https://gitlab.com/vigou3/emacs-modified-windows/releases/" title="See What's New">
+	<a class="ba white-70 no-underline bg-animate hover-bg-white-30 br2 inline-flex items-center mr3 mb3 pv2 ph3" href="{{ $release_notes_url }}" title="See What's New">
 	    <span class="fas fa-list f4 pr3"></span><span>See What's New</span>
 	</a>
-	<a class="ba white-70 no-underline bg-animate hover-bg-white-30 br2 inline-flex items-center mr3 mb3 pv2 ph3" href="https://gitlab.com/vigou3/emacs-modified-windows/" title="View on GitLab">
+	<a class="ba white-70 no-underline bg-animate hover-bg-white-30 br2 inline-flex items-center mr3 mb3 pv2 ph3" href="{{ $repos_url }}" title="View on GitLab">
 	    <span class="fab fa-gitlab f4 pr3"></span> <span>View on GitLab</span>
 	</a>
       </div>
     </div>
   </header>
-{{ else }}
-  <header>
-    <div class="pb3-m pb6-l {{ .Site.Params.background_color_class | default "bg-black" }}">
-      {{ partial "site-navigation.html" . }}
-      <div class="tc-l pv3 ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
-          {{ .Title | default .Site.Title }}
-        </h1>
-        {{ with .Params.description }}
-          <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
-            {{ . }}
-          </h2>
-        {{ end }}
-	  <a class="ba black-70 no-underline grow br2 b inline-flex items-center mr3 mb3 pv2 ph3" href="https://twitter.com/tachyons_css" title="Follow us on Twitter">
-	    <span>Follow @tachyons_css</span>
-	  </a>
-      </div>
-    </div>
-  </header>
-{{ end }}

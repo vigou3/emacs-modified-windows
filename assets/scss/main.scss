@@ -1,0 +1,17 @@
+/* Use the font config as variables in your SCSS */
+
+$font-body: {{ $.Site.Params.body_font | default "'Helvetica', sans-serif" }};
+$font-heading: {{ $.Site.Params.heading_font | default "'Helvetica', sans-serif" }};
+$font-code: {{ $.Site.Params.code_font | default "'Helvetica', sans-serif" }};
+
+body {
+  font-family: $font-body;
+}
+
+h1, h2, h3, h4, h5, h6 {
+ font-family: $font-heading; 
+}
+
+pre, code {
+ font-family: $font-code; 
+}

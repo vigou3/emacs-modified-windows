@@ -76,12 +76,15 @@ TAGNAME = v${VERSION}
 all: files commit
 
 files: 
-	$(eval url=$(subst /,\/,$(patsubst %/,%,${REPOSURL})))
 	$(eval file_id=$(shell curl --header "PRIVATE-TOKEN: ${OAUTHTOKEN}" \
 	                             --silent \
 	                             ${APIURL}/releases/${TAGNAME}/assets/links \
-	                        | grep -o "/uploads/[a-z0-9]*/" \
-	                        | cut -d/ -f3))
+	                       | sed -E 's/.*\"direct_asset_url\":\".*\/(uploads\/[^\"]*)\".*/\1/'))
+	awk 'BEGIN { FS = "\""; OFS = "\"" } \
+	     /file_id/ { $$2 = "${file_id}" } \
+	     1' \
+	    config.toml > tmpfile && \
+	  mv tmpfile config.toml
 	cd content && \
 	  sed -e '/^\[25.2-modified-2\]/! s/[0-9.-]\+-modified-[0-9]\+/${VERSION}/g' \
 	      -e '/\[ESS\]/s/[0-9]\+[0-9.]*/${ESSVERSION}/' \
@@ -96,16 +99,6 @@ files:
 	      -e '/\[German\]/s/version [0-9.]\+/version ${DICT-DEVERSION}/' \
 	      -e '/\[Spanish\]/s/version [0-9.]\+/version ${DICT-ESVERSION}/' \
 	      -i  _index.md
-	cd layouts/partials && \
-	  awk 'BEGIN { FS = "/"; OFS = "/" } \
-	       /${url}\/uploads/ { if (NF > 8) { \
-		                       print "too many fields in the uploads url" > "/dev/stderr"; \
-				       exit 1; } \
-				   $$7 = "${file_id}"; \
-	                           sub(/.*\.exe/, "emacs-${VERSION}.exe", $$8) } \
-	       1' \
-	       site-header.html > tmpfile && \
-	  mv tmpfile site-header.html
 
 commit:
 	git commit content/_index.md layouts/partials/site-header.html \
