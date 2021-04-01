@@ -1,6 +1,6 @@
 ### User settable variables used in -*-Makefile-*-
 ##
-## Copyright (C) 2020 Vincent Goulet
+## Copyright (C) 2021 Vincent Goulet
 ##
 ## Author: Vincent Goulet
 ##
@@ -23,19 +23,19 @@
 ## Boston, MA 02110-1301, USA.
 
 ## GNU Emacs and this distribution version number
-EMACSVERSION=27.1
+EMACSVERSION=27.2
 EMACSPATCHLEVEL=
 DISTVERSION=1
 
 ## Extensions version numbers
 ESSVERSION=18.10.2
-AUCTEXVERSION=12.2
-ORGVERSION=9.3.8
+AUCTEXVERSION=12.3
+ORGVERSION=9.4
 MARKDOWNMODEVERSION=2.4
 PSVNVERSION=1573006
 TABBARVERSION=2.2
 HUNSPELLVERSION=1.3.2-3
-DICT-ENVERSION=2020.08.01
+DICT-ENVERSION=2021.02.01
 DICT-FRVERSION=5.7
 DICT-DEVERSION=2017.01.12
 DICT-ESVERSION=2.5
