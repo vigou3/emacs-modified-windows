@@ -102,6 +102,6 @@ files:
 	  mv tmpfile _index.md
 
 commit:
-	git commit content/_index.md layouts/partials/site-header.html \
+	git commit config.toml content/_index.md \
 	    -m "Updated web page for version ${VERSION}"
 	git push
