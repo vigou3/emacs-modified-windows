@@ -7,7 +7,7 @@ description: GNU Emacs. Ready for R and LaTeX.
 
 Emacs Modified for Windows is a 64-bit (x64) distribution
 of [GNU Emacs](https://www.gnu.org/software/emacs/) **27.2** (released
-August 10, 2020) bundled with a few select packages for R developers
+March 25, 2021) bundled with a few select packages for R developers
 and LaTeX users.
 
 The additions to stock Emacs are the following:
