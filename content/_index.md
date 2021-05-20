@@ -6,15 +6,15 @@ description: GNU Emacs. Ready for R and LaTeX.
 # Presentation
 
 Emacs Modified for Windows is a 64-bit (x64) distribution
-of [GNU Emacs](https://www.gnu.org/software/emacs/) **27.1** (released
-August 10, 2020) bundled with a few select packages for R developers
+of [GNU Emacs](https://www.gnu.org/software/emacs/) **27.2** (released
+March 25, 2021) bundled with a few select packages for R developers
 and LaTeX users.
 
 The additions to stock Emacs are the following:
 
 - [ESS](http://ess.r-project.org) 18.10.2;
-- [AUCTeX](http://www.gnu.org/software/auctex/) 12.2;
-- [org](http://orgmode.org/) 9.3.8;
+- [AUCTeX](http://www.gnu.org/software/auctex/) 12.3;
+- [org](http://orgmode.org/) 9.4;
 - [Tabbar](https://github.com/dholm/tabbar) 2.2, a minor mode that displays a tab bar at the top of the Emacs window, similar to the idea of web browsers tabs;
 - [markdown-mode.el](http://jblevins.org/projects/markdown-mode/) 2.4;
 - [psvn.el](http://svn.apache.org/viewvc/subversion/trunk/contrib/client-side/emacs/) r1573006, an interface for the version control system
@@ -23,9 +23,9 @@ The additions to stock Emacs are the following:
   [combined patches](http://mail-archives.apache.org/mod_mbox//subversion-dev/201208.mbox/raw/%3c503B958F.6010906@schickhardt.org%3e/1/4)
   to support Subversion >= 1.7;
 - [Hunspell](https://hunspell.github.io/) 1.3.2-3, a spell checker well integrated with Emacs, and some popular dictionaries (see below for details);
-- [default.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v27.1-modified-1/default.el)
+- [default.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v27.2-modified-1/default.el)
   and
-  [site-start.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v27.1-modified-1/site-start.el),
+  [site-start.el](https://gitlab.com/vigou3/emacs-modified-windows/blob/v27.2-modified-1/site-start.el),
   configuration files to make everything work.
 
 The distribution is based on the official GNU release of Emacs with
@@ -39,8 +39,8 @@ following:
 
 ## Latest release
 
-Version 27.1-modified-1
-([Release notes](https://gitlab.com/vigou3/emacs-modified-windows/tags/v27.1-modified-1/))
+Version 27.2-modified-1
+([Release notes](https://gitlab.com/vigou3/emacs-modified-windows/tags/v27.2-modified-1/))
 
 ## System requirements
 
@@ -77,7 +77,7 @@ along the `PATH`.
 This distribution ships with [Hunspell](https://hunspell.github.io)
 for spell checking inside Emacs, along with the following [Libre
 Office dictionaries](https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any) suitable for use with Hunspell:
-[English](https://extensions.libreoffice.org/extensions/english-dictionaries/) (version 2020.08.01);
+[English](https://extensions.libreoffice.org/extensions/english-dictionaries/) (version 2021.02.01);
 [French](https://extensions.libreoffice.org/extensions/dictionnaires-francais/) (version 5.7);
 [German](https://extensions.libreoffice.org/extensions/german-de-de-frami-dictionaries) (version 2017.01.12);
 [Spanish](https://extensions.libreoffice.org/extensions/spanish-dictionaries) (version 2.5).
