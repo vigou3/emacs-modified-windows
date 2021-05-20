@@ -15,6 +15,7 @@ enableRobotsTXT = true
   custom_css = ["/css/custom.css"]
   background_color_class = "bg-black"
   featured_image = "/images/pleiades.jpg"
+  body_classes = "bg-near-white"
 
   ## Google Fonts integration using the implementation of
   ## https://jeremybise.com/google-fonts-in-hugo-themes/

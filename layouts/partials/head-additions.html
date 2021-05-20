@@ -1,0 +1,22 @@
+<!-- enable font awesome icons -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+<!-- Google Fonts infrastructure -->
+{{ if .Site.Params.google_fonts }}
+  {{ $fonts := slice }}
+  {{ range .Site.Params.google_fonts }}
+    {{ $family := replace (index (.)  0) " " "+" }}
+    {{ $weights := replace (index (.) 1) " " "" }}
+    {{ $string := print $family ":" $weights }}
+    {{ $fonts = $fonts | append $string }}
+  {{ end }}
+  {{ $url_part := (delimit $fonts "|") | safeHTMLAttr }}
+  <link {{ printf "href=\"//fonts.googleapis.com/css?family=%s\"" $url_part | safeHTMLAttr }} rel="stylesheet">
+{{ else }}
+  <!-- specify a default in case custom config not present -->
+  <link href="//fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+{{ end }}
+
+<!-- activate assets/scss/main.scss -->
+{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | resources.ToCSS | resources.Minify }}
+<link rel="stylesheet" href="{{ $style.Permalink }}">
